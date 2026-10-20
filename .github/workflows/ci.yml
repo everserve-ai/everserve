@@ -90,7 +90,14 @@ jobs:
       - name: breaking
         env:
           BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
-        run: buf breaking --against ".git#ref=$BASE,subdir=proto"
+        # a branch's first push, the repository's included, has no commit before it: nothing
+        # to break against, and the check says so rather than fail on the zero ref
+        run: |
+          if [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
+            echo "first push of this branch: no base to compare the schema against"
+            exit 0
+          fi
+          buf breaking --against ".git#ref=$BASE,subdir=proto"
 
   e2e:
     # a worker node lost twice end to end, with no GPU: the real coordinator and daemons built from
