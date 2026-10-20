@@ -96,9 +96,10 @@ Then delete one of the engine's node pods and keep sending requests.
 - **The head's node.** Losing it restarts the engine (decision 0045). Put the head on a node
   that is not preempted (`headOnDemand`), or run two engines behind Dynamo's frontend so its
   streams migrate.
-- **Growing back.** A lost rank is replaced by a spare. When no spare is left the engine can
-  shrink to a narrower layout for models that allow it, but it does not grow again when
-  capacity returns.
+- **Running out of spares.** A lost rank is replaced by a spare. When none is left, the
+  engine goes down and is restarted once capacity is back. Shrinking to fewer GPUs instead
+  exists only as a reference implementation that the CPU tests exercise, not in the vLLM
+  plugin, and growing back when capacity returns is designed and not built.
 - **Other engines.** Only vLLM, and only through this plugin. `docs/CONTRACT.md` describes what
   an engine has to expose for Everserve to keep it serving, as a proposal for upstream.
 - **Other orchestrators.** Kubernetes with Dynamo, or bare metal with systemd units
