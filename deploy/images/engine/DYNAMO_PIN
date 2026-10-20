@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# ai-dynamo/dynamo main, 2026-10-13: the first Dynamo whose vLLM runtime is vLLM 0.31.0, the
+# adapter's pin (container/context.yaml: vllm/vllm-openai v0.31.0-ubuntu2404). Released Dynamo
+# (1.5.1) pins vLLM 0.28.0. Move to a release tag once one pins 0.31.0 or later. Its runtime is
+# Dynamo 1.6.0 (pyproject.toml): an instance's dynamoRuntimeVersion (integrations/dynamo).
+a6df4fbbf575a7ea46f50ebdf1c9bad042568eb6

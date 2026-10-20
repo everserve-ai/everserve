@@ -1,0 +1,86 @@
+11:41:06Z the certificates, made here
+[2m2026-10-15T11:41:07.774221Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5h/certs/ca.crt
+[2m2026-10-15T11:41:07.774279Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5h/certs/ca.key
+[2m2026-10-15T11:41:07.774287Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5h/certs/coordinator.crt
+[2m2026-10-15T11:41:07.774293Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5h/certs/coordinator.key
+[2m2026-10-15T11:41:07.774299Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5h/certs/operator-proof.crt
+[2m2026-10-15T11:41:07.774304Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5h/certs/operator-proof.key
+11:41:07Z the cluster: 3 gpu-h100-sxm 1gpu-16vcpu-200gb nodes, released at the latest after 1.0 h
+2026-10-15T11:46:30Z node-group create --async answered: 'opmk8snodegroup-e00je2jyf8tqqtd35z\n'
+2026-10-15T11:48:38Z up everserve-proof-1015114106 gpu-h100-sxm/1gpu-16vcpu-200gb x3: {"cluster": "mk8scluster-e00fa1tt7bgzx0jvr1", "node_group": "mk8snodegroup-e00am8yq5jdjbdfsy6", "kubeconfig": "/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5h/kubeconfig"}
+{"cluster": "mk8scluster-e00fa1tt7bgzx0jvr1", "node_group": "mk8snodegroup-e00am8yq5jdjbdfsy6", "kubeconfig": "/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5h/kubeconfig"}
+NAME                                 GPU
+computeinstance-e00dv87ws0yfrp930f   1
+computeinstance-e00hr5gxry78tnfrex   1
+computeinstance-e00pya3mer8zqsea5s   <none>
+namespace/everserve created
+namespace/everserve labeled
+secret/nebius-cr created
+namespace/serving created
+namespace/serving labeled
+secret/nebius-cr created
+secret/everserve-tls created
+11:48:44Z Dynamo's platform 1.5.1, with Grove
+NAME: dynamo-platform
+LAST DEPLOYED: Thu Oct 15 07:48:50 2026
+NAMESPACE: dynamo-system
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+# SPDX-FileCopyrightText: Copyright (c) 2025-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+11:49:22Z the instance: the head, one node of the engine, 1 spare node(s)
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5h/proof.k8s.json
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5h/proof.engine.json
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5h/proof.values.json
+11:49:22Z Everserve's chart
+NAME: everserve
+LAST DEPLOYED: Thu Oct 15 07:49:25 2026
+NAMESPACE: everserve
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+dynamographdeployment.nvidia.com/proof created
+service/proof-rendezvous created
+networkpolicy.networking.k8s.io/proof-engine created
+11:49:40Z waiting for the instance to serve
+NAME                     READY   STATUS    RESTARTS   AGE     IP             NODE                                 NOMINATED NODE   READINESS GATES
+proof-0-frontend-tzr8c   1/1     Running   0          8m53s   10.0.129.180   computeinstance-e00hr5gxry78tnfrex   <none>           <none>
+proof-0-head-dcd9m       1/1     Running   0          8m53s   10.0.29.44     computeinstance-e00pya3mer8zqsea5s   <none>           <none>
+proof-0-nodes-bsfz5      1/1     Running   0          8m53s   10.0.80.244    computeinstance-e00dv87ws0yfrp930f   <none>           <none>
+proof-0-nodes-jgdf7      1/1     Running   0          8m53s   10.0.129.104   computeinstance-e00hr5gxry78tnfrex   <none>           <none>
+Forwarding from 127.0.0.1:18000 -> 8000
+Forwarding from [::1]:18000 -> 8000
+11:58:45Z the coordinator's API: its record decides when the loss is taken and whether it passed
+serviceaccount/proof-viewer created
+rolebinding.rbac.authorization.k8s.io/proof-viewer created
+Forwarding from 127.0.0.1:17443 -> 7443
+Forwarding from [::1]:17443 -> 7443
+11:58:50Z warm: one short completion
+Handling connection for 18000
+{"streams": 1, "completed": 1, "errors": [], "max_gap_s": 0.077}
+11:58:51Z passed: 0 losses of rank 1 under load, each taken by a spare
+11:58:52Z nccl probe: a group of two whose second member never comes (pod/proof-0-nodes-bsfz5)
+11:59:07Z nccl probe: {"mode": "missing", "as": 0, "nccl": 22907, "init_rc": 7, "state": 7, "waited_s": 10.006, "polls": 995, "abort_rc": 0, "abort_s": 0.0, "device_ok": true}
+11:59:07Z nccl probe: a member whose server made its id and is gone (pod/proof-0-head-dcd9m)
+11:59:28Z nccl probe: {"mode": "missing", "as": 1, "nccl": 22907, "init_rc": 7, "state": 7, "waited_s": 10.006, "polls": 995, "abort_rc": 0, "abort_s": 0.794, "device_ok": true}
+11:59:28Z nccl probe: a group of two formed by rounds, then eager and graphed all-reduces (pod/proof-0-head-dcd9m, pod/proof-0-nodes-bsfz5)
+12:01:07Z nccl probe: rounds rank 0: {"mode": "rounds", "rank": 0, "nccl": 22907, "gpu": {"name": "NVIDIA H100 80GB HBM3", "driver_version": "580.173.02", "clocks.sm": "1980 MHz", "clocks.max.sm": "1980 MHz", "clocks_locked": false}, "split": {"rc": 0, "state": 0, "s": 0.008, "polls": 7, "child": true}, "arms": {"V": {"896": {"eager": {"rounds": [148.42, 170.82, 140.51, 150.75, 141.16, 146.67, 158.53, 151.14, 154.96, 140.43], "median": 149.58, "iqr": 11.46, "min": 140.43, "max": 170.82}, "replay": {"rounds": [145.99, 147.21, 152.67, 148.5, 147.9, 152.19, 160.83, 147.64, 147.42, 146.32], "median": 147.77, "iqr": 4.0, "min": 145.99, "max": 160.83}}, "7168": {"eager": {"rounds": [203.79, 209.71, 219.87, 210.22, 217.98, 246.4, 248.15, 260.58, 198.1, 210.72], "median": 214.35, "iqr": 29.93, "min": 198.1, "max": 260.58}, "replay": {"rounds": [206.2, 228.54, 214.03, 230.81, 221.79, 221.4, 213.09, 208.97, 216.31, 331.1], "median": 218.86, "iqr": 13.52, "min": 206.2, "max": 331.1}}}, "P": {"896": {"eager": {"rounds": [150.4, 160.63, 164.47, 160.89, 146.68, 141.97, 154.6, 146.99, 161.94, 145.55], "median": 152.5, "iqr": 14.07, "min": 141.97, "max": 164.47}, "replay": {"rounds": [144.18, 156.68, 154.18, 150.25, 151.84, 145.94, 156.95, 146.21, 147.35, 149.6], "median": 149.92, "iqr": 7.1, "min": 144.18, "max": 156.95}}, "7168": {"eager": {"rounds": [224.51, 224.2, 231.94, 213.72, 199.51, 233.64, 229.74, 255.56, 280.68, 218.54], "median": 227.12, "iqr": 13.27, "min": 199.51, "max": 280.68}, "replay": {"rounds": [219.09, 216.42, 221.48, 221.33, 224.93, 215.05, 213.09, 218.74, 224.15, 217.07], "median": 218.92, "iqr": 4.86, "min": 213.09, "max": 224.93}}}, "C": {"896": {"eager": {"rounds": [144.77, 151.74, 146.21, 140.69, 147.36, 146.1, 142.38, 149.74, 137.41, 139.81], "median": 145.43, "iqr": 5.97, "min": 137.41, "max": 151.74}, "replay": {"rounds": [151.97, 151.45, 150.49, 146.68, 151.66, 146.48, 151.27, 147.63, 146.71, 146.95], "median": 149.06, "iqr": 4.63, "min": 146.48, "max": 151.97}}, "7168": {"eager": {"rounds": [211.88, 213.73, 220.49, 220.72, 218.42, 219.86, 219.45, 227.3, 208.45, 196.58], "median": 218.94, "iqr": 7.99, "min": 196.58, "max": 227.3}, "replay": {"rounds": [218.85, 215.51, 220.52, 217.07, 223.53, 215.61, 225.26, 216.79, 214.92, 231.26], "median": 217.96, "iqr": 6.88, "min": 214.92, "max": 231.26}}}, "W": {"896": {"eager": {"rounds": [155.03, 139.73, 151.71, 151.1, 141.07, 147.71, 154.92, 153.19, 146.98, 141.84], "median": 149.4, "iqr": 9.7, "min": 139.73, "max": 155.03}}, "7168": {"eager": {"rounds": [212.35, 225.09, 204.89, 212.24, 223.4, 338.26, 209.01, 213.39, 210.31, 236.45], "median": 212.87, "iqr": 13.87, "min": 204.89, "max": 338.26}}}}, "bad_calls": [], "all_success": true, "gpu_after": {"name": "NVIDIA H100 80GB HBM3", "driver_version": "580.173.02", "clocks.sm": "1980 MHz", "clocks.max.sm": "1980 MHz", "clocks_locked": false}, "aborts": {"C": {"rc": 0, "s": 0.508}, "P": {"rc": 0, "s": 0.509}}}
+12:01:07Z nccl probe: rounds rank 1: {"mode": "rounds", "rank": 1, "nccl": 22907, "gpu": {"name": "NVIDIA H100 80GB HBM3", "driver_version": "580.173.02", "clocks.sm": "1980 MHz", "clocks.max.sm": "1980 MHz", "clocks_locked": false}, "split": {"rc": 0, "state": 0, "s": 0.008, "polls": 7, "child": true}, "arms": {"V": {"896": {"eager": {"rounds": [148.18, 170.07, 140.41, 150.61, 140.75, 146.31, 158.9, 151.08, 154.44, 140.47], "median": 149.4, "iqr": 11.46, "min": 140.41, "max": 170.07}, "replay": {"rounds": [146.09, 147.22, 152.61, 148.43, 147.9, 152.28, 160.75, 147.6, 147.43, 146.26], "median": 147.75, "iqr": 4.05, "min": 146.09, "max": 160.75}}, "7168": {"eager": {"rounds": [202.97, 209.69, 219.62, 210.15, 217.93, 247.24, 248.32, 260.55, 198.77, 210.69], "median": 214.31, "iqr": 30.53, "min": 198.77, "max": 260.55}, "replay": {"rounds": [206.32, 228.51, 214.01, 230.81, 221.62, 221.27, 212.95, 208.94, 216.29, 331.02], "median": 218.78, "iqr": 13.57, "min": 206.32, "max": 331.02}}}, "P": {"896": {"eager": {"rounds": [149.97, 160.83, 164.26, 160.97, 147.02, 141.51, 155.08, 147.18, 161.93, 145.7], "median": 152.53, "iqr": 13.88, "min": 141.51, "max": 164.26}, "replay": {"rounds": [144.11, 156.69, 154.21, 150.31, 151.86, 145.99, 156.97, 146.17, 147.33, 149.65], "median": 149.98, "iqr": 7.16, "min": 144.11, "max": 156.97}}, "7168": {"eager": {"rounds": [224.39, 223.54, 232.11, 213.68, 200.13, 233.16, 228.1, 255.53, 277.21, 218.7], "median": 226.24, "iqr": 12.98, "min": 200.13, "max": 277.21}, "replay": {"rounds": [219.09, 216.3, 221.44, 221.32, 224.97, 215.04, 213.25, 218.61, 224.16, 217.05], "median": 218.85, "iqr": 4.92, "min": 213.25, "max": 224.97}}}, "C": {"896": {"eager": {"rounds": [144.8, 152.16, 145.78, 140.77, 147.38, 146.11, 142.11, 149.93, 137.59, 139.73], "median": 145.29, "iqr": 5.96, "min": 137.59, "max": 152.16}, "replay": {"rounds": [151.87, 151.45, 150.51, 146.63, 151.58, 146.49, 151.22, 147.67, 146.57, 146.93], "median": 149.09, "iqr": 4.69, "min": 146.49, "max": 151.87}}, "7168": {"eager": {"rounds": [211.86, 213.72, 220.6, 220.82, 218.43, 219.95, 218.77, 227.27, 208.44, 196.09], "median": 218.6, "iqr": 8.12, "min": 196.09, "max": 227.27}, "replay": {"rounds": [218.88, 215.55, 220.52, 217.06, 223.51, 215.61, 225.3, 216.79, 214.92, 231.27], "median": 217.97, "iqr": 6.86, "min": 214.92, "max": 231.27}}}, "W": {"896": {"eager": {"rounds": [155.69, 139.5, 151.33, 151.2, 141.66, 147.82, 153.97, 153.15, 146.48, 142.22], "median": 149.51, "iqr": 9.41, "min": 139.5, "max": 155.69}}, "7168": {"eager": {"rounds": [211.68, 225.11, 205.41, 211.48, 223.41, 338.47, 208.67, 213.37, 210.37, 236.47], "median": 212.52, "iqr": 14.04, "min": 205.41, "max": 338.47}}}}, "bad_calls": [], "all_success": true, "gpu_after": {"name": "NVIDIA H100 80GB HBM3", "driver_version": "580.173.02", "clocks.sm": "1980 MHz", "clocks.max.sm": "1980 MHz", "clocks_locked": false}, "aborts": {"C": {"rc": 0, "s": 0.509}, "P": {"rc": 0, "s": 0.509}}}
+12:01:31Z taking the cluster down
+2026-10-15T12:14:17Z down: {"down": "everserve-proof-1015114106", "cluster": "mk8scluster-e00fa1tt7bgzx0jvr1"}

@@ -1,0 +1,100 @@
+{
+  "preregistration": "PREREGISTRATION.md (52e7d78)",
+  "host": "Apple M-series Mac, 14 cores, 36 GiB, ulimit -n 65536, kern.ipc.somaxconn 128",
+  "runs": [
+    {
+      "commit": "b0ecf3a",
+      "size": 1250,
+      "outcome": "harness error: every fake daemon gave up on its first refused connect (6,514 ECONNREFUSED at a 128-connection backlog); no measurement"
+    },
+    {
+      "commit": "993d266 + harness retry with the daemon's RECONNECT_MIN/MAX",
+      "size": 1250,
+      "outcome": "not linked in 10 min; every coordinator thread parked at 0.1% CPU: the link deadlock fixed in 1f19f2e"
+    },
+    {
+      "commit": "1f19f2e",
+      "size": 1250,
+      "outcome": "linked; 20 of 20 changes committed",
+      "measured": {
+        "bytes_received_per_change": [
+          110417,
+          112921,
+          112921,
+          112921,
+          115425,
+          115425,
+          115425,
+          115425,
+          115425,
+          115425,
+          115425,
+          115425,
+          115425,
+          115425,
+          115425,
+          115425,
+          115425,
+          115425,
+          115425,
+          115425
+        ],
+        "change_s": {
+          "max": 0.018703208,
+          "n": 20,
+          "p50": 0.01617075,
+          "p99": 0.018703208
+        },
+        "connections_refused": 2744,
+        "cpu_s": {
+          "changes": 2.460000000000008,
+          "link": 240.22
+        },
+        "daemons_sent_to_per_change": [
+          1250,
+          1250,
+          1250,
+          1250,
+          1250,
+          1250,
+          1250,
+          1250,
+          1250,
+          1250,
+          1250,
+          1250,
+          1250,
+          1250,
+          1250,
+          1250,
+          1250,
+          1250,
+          1250,
+          1250
+        ],
+        "engines": 625,
+        "gpus": 10000,
+        "link_s": 123.026369916,
+        "node_views_s": 0.010418792,
+        "nodes": 1250,
+        "nodes_per_engine": 2,
+        "readiness_s": 0.007457625,
+        "rss_bytes": {
+          "after_changes": 2461679616,
+          "idle": 4423680,
+          "linked": 2461057024
+        }
+      }
+    },
+    {
+      "commit": "1f19f2e",
+      "size": 2500,
+      "outcome": "not linked in 10 min: 2500 of 2500 daemons linked, 72 of 1250 engines whole, 15182 connections refused"
+    },
+    {
+      "commit": "1f19f2e",
+      "size": 5000,
+      "outcome": "not run: 2,500 did not link, and linking memory grows as nodes x engines past this host's 36 GiB"
+    }
+  ]
+}

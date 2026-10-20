@@ -1,0 +1,1718 @@
+{
+ "stock_tps_mean": 464.4373794781852,
+ "runs": {
+  "adapter_1": {
+   "arm": "adapter",
+   "kill": null,
+   "tps_10_200": 335.39767378754345,
+   "overhead_pct": 27.78409133124109,
+   "pause_s": 0.039395809173583984,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 43.52007620036602,
+     "p50_ms": 17.25977100431919,
+     "p99_ms": 30.2208187058568,
+     "max_ms": 5202.14525423944
+    },
+    "1": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 43.731581000150136,
+     "p50_ms": 17.41324458271265,
+     "p99_ms": 31.012962572276592,
+     "max_ms": 5038.464331999421
+    },
+    "2": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 43.26336501203109,
+     "p50_ms": 16.885175369679928,
+     "p99_ms": 32.217768020927906,
+     "max_ms": 4880.044935271144
+    },
+    "3": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 43.58710009272736,
+     "p50_ms": 17.332933843135834,
+     "p99_ms": 32.889929600059986,
+     "max_ms": 4857.222481630743
+    }
+   },
+   "protocol": "pre-registered"
+  },
+  "adapter_2": {
+   "arm": "adapter",
+   "kill": null,
+   "tps_10_200": 335.12294395218566,
+   "overhead_pct": 27.843244587954942,
+   "pause_s": 0.0366058349609375,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 42.7741821495687,
+     "p50_ms": 17.856729216873646,
+     "p99_ms": 28.971065767109394,
+     "max_ms": 4819.9349930509925
+    },
+    "1": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 41.92734260278026,
+     "p50_ms": 16.993988305330276,
+     "p99_ms": 26.323631405830383,
+     "max_ms": 4905.625009909272
+    },
+    "2": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 42.395463697427864,
+     "p50_ms": 17.360742203891277,
+     "p99_ms": 30.736103653907776,
+     "max_ms": 4834.662931039929
+    },
+    "3": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 41.83934841046829,
+     "p50_ms": 16.995374113321304,
+     "p99_ms": 29.201507568359375,
+     "max_ms": 4723.751533776522
+    }
+   },
+   "protocol": "pre-registered"
+  },
+  "adapter_3": {
+   "arm": "adapter",
+   "kill": null,
+   "tps_10_200": 335.0797099432168,
+   "overhead_pct": 27.85255348747061,
+   "pause_s": 0.03919243812561035,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 42.06309589732549,
+     "p50_ms": 17.052450217306614,
+     "p99_ms": 31.59421682357788,
+     "max_ms": 4892.365848645568
+    },
+    "1": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 41.95340162622604,
+     "p50_ms": 17.019174061715603,
+     "p99_ms": 31.38182032853365,
+     "max_ms": 4906.676101498306
+    },
+    "2": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 42.320343605842034,
+     "p50_ms": 17.419874668121338,
+     "p99_ms": 28.92445959150791,
+     "max_ms": 4903.391695581377
+    },
+    "3": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 42.045044864869055,
+     "p50_ms": 17.14056171476841,
+     "p99_ms": 29.870369471609592,
+     "max_ms": 4908.733408898115
+    }
+   },
+   "protocol": "pre-registered"
+  },
+  "notice_1": {
+   "arm": "notice",
+   "kill": null,
+   "tps_10_200": 340.03668444716277,
+   "overhead_pct": 26.78524609082753,
+   "pause_s": 0.0791482925415039,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 41.29282191930579,
+     "p50_ms": 16.95056539028883,
+     "p99_ms": 30.210187658667564,
+     "max_ms": 4812.420275062323
+    },
+    "1": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 41.47728351820813,
+     "p50_ms": 17.056682147085667,
+     "p99_ms": 29.573697596788406,
+     "max_ms": 4745.369141921401
+    },
+    "2": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 41.63702934666878,
+     "p50_ms": 17.237513326108456,
+     "p99_ms": 30.28509020805359,
+     "max_ms": 4671.656814403832
+    },
+    "3": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 41.13035254862787,
+     "p50_ms": 16.720810905098915,
+     "p99_ms": 29.885082505643368,
+     "max_ms": 4813.270981423557
+    }
+   },
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0551,
+    "t": 1791161518.6727087
+   },
+   "protocol": "pre-registered (invalid: sessions ended before the notice deadline; no swap)"
+  },
+  "notice_2": {
+   "arm": "notice",
+   "kill": null,
+   "tps_10_200": 343.61212697896866,
+   "overhead_pct": 26.015402256159646,
+   "pause_s": 0.07451391220092773,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 41.94118100965377,
+     "p50_ms": 17.166977748274803,
+     "p99_ms": 29.51542939990759,
+     "max_ms": 4929.539289325476
+    },
+    "1": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 41.87172957889662,
+     "p50_ms": 16.83367509394884,
+     "p99_ms": 30.485182069242,
+     "max_ms": 4729.095251299441
+    },
+    "2": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 42.32499523014568,
+     "p50_ms": 17.48601347208023,
+     "p99_ms": 32.56157319992781,
+     "max_ms": 4749.764655716717
+    },
+    "3": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 41.91798581695645,
+     "p50_ms": 17.019927501678467,
+     "p99_ms": 27.967478148639202,
+     "max_ms": 4649.7304989025
+    }
+   },
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0527,
+    "t": 1791161582.8335547
+   },
+   "protocol": "pre-registered (invalid: sessions ended before the notice deadline; no swap)"
+  },
+  "notice_3": {
+   "arm": "notice",
+   "kill": null,
+   "tps_10_200": 343.4418135290947,
+   "overhead_pct": 26.052073174005518,
+   "pause_s": 0.07727789878845215,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 41.273747142035475,
+     "p50_ms": 16.95678010582924,
+     "p99_ms": 27.387352660298347,
+     "max_ms": 4842.276973649859
+    },
+    "1": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 41.932217389492706,
+     "p50_ms": 17.511852085590363,
+     "p99_ms": 30.63935972750187,
+     "max_ms": 4591.746610589325
+    },
+    "2": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 41.44761136428702,
+     "p50_ms": 16.857320442795753,
+     "p99_ms": 28.501635417342186,
+     "max_ms": 4675.6990710273385
+    },
+    "3": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 41.47015487092851,
+     "p50_ms": 17.055151052773,
+     "p99_ms": 28.446179814636707,
+     "max_ms": 4667.68650431186
+    }
+   },
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0543,
+    "t": 1791161646.5031557
+   },
+   "protocol": "pre-registered (invalid: sessions ended before the notice deadline; no swap)"
+  },
+  "posthoc_notice_1": {
+   "arm": "notice",
+   "kill": null,
+   "tps_10_200": 341.59024724558816,
+   "overhead_pct": 26.450741835340853,
+   "pause_s": 0.40548086166381836,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 550,
+     "skipped": 53,
+     "mean_ms": 26.907790751958434,
+     "p50_ms": 17.313998192548752,
+     "p99_ms": 29.257659800350666,
+     "max_ms": 4455.759909003973
+    },
+    "1": {
+     "steps": 550,
+     "skipped": 53,
+     "mean_ms": 27.265199216252025,
+     "p50_ms": 17.468197271227837,
+     "p99_ms": 29.81298230588436,
+     "max_ms": 4547.898325137794
+    },
+    "2": {
+     "steps": 16,
+     "skipped": 0,
+     "mean_ms": 21.08641801169142,
+     "p50_ms": 17.354747280478477,
+     "p99_ms": 60.852207243442535,
+     "max_ms": 60.852207243442535
+    },
+    "3": {
+     "steps": 550,
+     "skipped": 53,
+     "mean_ms": 27.10816513408314,
+     "p50_ms": 17.535812221467495,
+     "p99_ms": 30.427091754972935,
+     "max_ms": 4451.386763714254
+    }
+   },
+   "rank_lost_events": 0,
+   "restore_s": 1.6098,
+   "resume_s": 0.06325554847717285,
+   "first_token_s": 0.297863245010376,
+   "commit_to_resume_ms": 63.25554847717285,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-a2beaedd": 2580,
+    "1-bebd7be9": 2580,
+    "2-a02a9daa": 2580,
+    "3-a01594c9": 2580,
+    "4-ab7a3194": 2580,
+    "5-9df97e7d": 2580,
+    "6-a254bbc7": 2580,
+    "7-9ea50ade": 2580
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0547,
+    "t": 1791162406.0760496
+   },
+   "protocol": "post-hoc"
+  },
+  "posthoc_notice_2": {
+   "arm": "notice",
+   "kill": null,
+   "tps_10_200": 341.42112559892627,
+   "overhead_pct": 26.48715614093613,
+   "pause_s": 0.3599250316619873,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 557,
+     "skipped": 46,
+     "mean_ms": 26.988097846079985,
+     "p50_ms": 17.539309337735176,
+     "p99_ms": 29.484457336366177,
+     "max_ms": 4497.082019224763
+    },
+    "1": {
+     "steps": 557,
+     "skipped": 46,
+     "mean_ms": 26.752012133049902,
+     "p50_ms": 17.569031566381454,
+     "p99_ms": 29.614431783556938,
+     "max_ms": 4537.442171946168
+    },
+    "2": {
+     "steps": 25,
+     "skipped": 0,
+     "mean_ms": 19.900617077946663,
+     "p50_ms": 17.10396818816662,
+     "p99_ms": 68.78169812262058,
+     "max_ms": 68.78169812262058
+    },
+    "3": {
+     "steps": 557,
+     "skipped": 46,
+     "mean_ms": 27.007609431897716,
+     "p50_ms": 17.47730653733015,
+     "p99_ms": 29.22289352864027,
+     "max_ms": 4394.855497404933
+    }
+   },
+   "rank_lost_events": 0,
+   "restore_s": 1.5002,
+   "resume_s": 0.05379939079284668,
+   "first_token_s": 0.3155999183654785,
+   "commit_to_resume_ms": 53.79939079284668,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-9d51e597": 2578,
+    "1-bf1da301": 2578,
+    "2-81a8733d": 2578,
+    "3-9fcecf9e": 2578,
+    "4-90d68bbc": 2578,
+    "5-89279b50": 2578,
+    "6-8fac514a": 2578,
+    "7-ad94a065": 2578
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0549,
+    "t": 1791162483.4410806
+   },
+   "protocol": "post-hoc"
+  },
+  "posthoc_notice_3": {
+   "arm": "notice",
+   "kill": null,
+   "tps_10_200": 336.11448292527086,
+   "overhead_pct": 27.629752087803627,
+   "pause_s": 0.39876246452331543,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 553,
+     "skipped": 50,
+     "mean_ms": 27.318279722041936,
+     "p50_ms": 17.375717870891094,
+     "p99_ms": 32.082938589155674,
+     "max_ms": 4562.758341431618
+    },
+    "1": {
+     "steps": 553,
+     "skipped": 50,
+     "mean_ms": 27.267504527248697,
+     "p50_ms": 17.349245958030224,
+     "p99_ms": 40.25261756032705,
+     "max_ms": 4584.971247240901
+    },
+    "2": {
+     "steps": 20,
+     "skipped": 0,
+     "mean_ms": 22.317308746278286,
+     "p50_ms": 17.364542931318283,
+     "p99_ms": 92.66646858304739,
+     "max_ms": 92.66646858304739
+    },
+    "3": {
+     "steps": 553,
+     "skipped": 50,
+     "mean_ms": 27.4647000998555,
+     "p50_ms": 17.520539462566376,
+     "p99_ms": 62.465161085128784,
+     "max_ms": 4532.801321707666
+    }
+   },
+   "rank_lost_events": 0,
+   "restore_s": 1.5838,
+   "resume_s": 0.05742478370666504,
+   "first_token_s": 0.31006860733032227,
+   "commit_to_resume_ms": 57.42478370666504,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-b6b1c53d": 2579,
+    "1-af758977": 2579,
+    "2-bd3607a8": 2579,
+    "3-9e2d99b3": 2579,
+    "4-a91ad331": 2579,
+    "5-b0f6e2ec": 2579,
+    "6-ae35374b": 2579,
+    "7-a96dee5f": 2579
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0551,
+    "t": 1791162561.6534207
+   },
+   "protocol": "post-hoc"
+  },
+  "posthoc_replace_between_1": {
+   "arm": "replace",
+   "kill": "between",
+   "tps_10_200": 327.7106372883284,
+   "overhead_pct": 29.43922006094234,
+   "pause_s": 1.6208009719848633,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 43.366239465809805,
+     "p50_ms": 16.949398443102837,
+     "p99_ms": 91.14505536854267,
+     "max_ms": 4594.573799520731
+    },
+    "1": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 43.83351148239204,
+     "p50_ms": 17.435611225664616,
+     "p99_ms": 173.5280454158783,
+     "max_ms": 4514.734421856701
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 18.08501952327788,
+     "p50_ms": 17.16590393334627,
+     "p99_ms": 44.40061375498772,
+     "max_ms": 44.40061375498772
+    },
+    "3": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 43.90800242849025,
+     "p50_ms": 17.442802898585796,
+     "p99_ms": 221.3138397783041,
+     "max_ms": 4467.604583129287
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.25954508781433105,
+   "change_s": 0.00250108604431154,
+   "restore_s": 1.1312,
+   "resume_s": 0.025964736938476562,
+   "first_token_s": 0.2025613784790039,
+   "commit_to_resume_ms": 25.964736938476562,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-90707c36": 2149,
+    "1-a81bcf63": 2149,
+    "2-93a2ded8": 2149,
+    "3-90023542": 2149,
+    "4-8a932584": 2149,
+    "5-958a76db": 2149,
+    "6-bdbbf882": 2149,
+    "7-9fda2e3c": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0546,
+    "t": 1791161983.1097043
+   },
+   "protocol": "post-hoc"
+  },
+  "posthoc_replace_between_2": {
+   "arm": "replace",
+   "kill": "between",
+   "tps_10_200": 324.3613415056892,
+   "overhead_pct": 30.1603712711232,
+   "pause_s": 1.5637474060058594,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 45.633467001464275,
+     "p50_ms": 17.482117749750614,
+     "p99_ms": 168.88372227549553,
+     "max_ms": 4839.726469479501
+    },
+    "1": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 45.664204504762964,
+     "p50_ms": 17.540806904435158,
+     "p99_ms": 268.79491098225117,
+     "max_ms": 4742.923324927688
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 18.04657731205225,
+     "p50_ms": 17.276238650083542,
+     "p99_ms": 33.92333444207907,
+     "max_ms": 33.92333444207907
+    },
+    "3": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 45.64760110611692,
+     "p50_ms": 17.497526481747627,
+     "p99_ms": 178.25776245445013,
+     "max_ms": 4841.771049425006
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.2317032814025879,
+   "change_s": 0.003242453384399324,
+   "restore_s": 1.0637,
+   "resume_s": 0.026925086975097656,
+   "first_token_s": 0.23908638954162598,
+   "commit_to_resume_ms": 26.925086975097656,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-87966baa": 2149,
+    "1-a10b7fd7": 2149,
+    "2-aca71476": 2149,
+    "3-ad8d9a0c": 2149,
+    "4-888b00ed": 2149,
+    "5-a179a4bc": 2149,
+    "6-bd3d0c3e": 2149,
+    "7-aa7a5c16": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0545,
+    "t": 1791162054.308314
+   },
+   "protocol": "post-hoc"
+  },
+  "posthoc_replace_between_3": {
+   "arm": "replace",
+   "kill": "between",
+   "tps_10_200": 328.561773319226,
+   "overhead_pct": 29.255958319207885,
+   "pause_s": 1.7019329071044922,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 45.91591858988619,
+     "p50_ms": 17.49433856457472,
+     "p99_ms": 349.51354935765266,
+     "max_ms": 4780.571608804166
+    },
+    "1": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 45.81709347408393,
+     "p50_ms": 17.389525659382343,
+     "p99_ms": 199.74743761122227,
+     "max_ms": 4931.871443986893
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 18.084237026050687,
+     "p50_ms": 17.357677221298218,
+     "p99_ms": 45.122080482542515,
+     "max_ms": 45.122080482542515
+    },
+    "3": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 46.338887371379755,
+     "p50_ms": 17.884294502437115,
+     "p99_ms": 319.0956311300397,
+     "max_ms": 4815.576598979533
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.3042306900024414,
+   "change_s": 0.002893675613403257,
+   "restore_s": 1.1587,
+   "resume_s": 0.03109884262084961,
+   "first_token_s": 0.20590448379516602,
+   "commit_to_resume_ms": 31.09884262084961,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-bf69eaa7": 2149,
+    "1-ae58c045": 2149,
+    "2-87c271ff": 2149,
+    "3-be4c79df": 2149,
+    "4-aff0c9fa": 2149,
+    "5-8e73e32d": 2149,
+    "6-90bd016f": 2149,
+    "7-8b14f591": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0554,
+    "t": 1791162125.534525
+   },
+   "protocol": "post-hoc"
+  },
+  "posthoc_replace_mid_1": {
+   "arm": "replace",
+   "kill": "mid",
+   "tps_10_200": 333.26070730094284,
+   "overhead_pct": 28.244210731837484,
+   "pause_s": 1.6686041355133057,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 43.387980729925864,
+     "p50_ms": 16.879756934940815,
+     "p99_ms": 49.67345856130123,
+     "max_ms": 4669.395139440894
+    },
+    "1": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 43.95609724280589,
+     "p50_ms": 17.424501478672028,
+     "p99_ms": 37.15530689805746,
+     "max_ms": 4671.345271170139
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 17.88226790726185,
+     "p50_ms": 17.24213268607855,
+     "p99_ms": 33.860704861581326,
+     "max_ms": 33.860704861581326
+    },
+    "3": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 44.22252185587936,
+     "p50_ms": 17.7428824827075,
+     "p99_ms": 34.805603325366974,
+     "max_ms": 4685.813749209046
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.2800722122192383,
+   "change_s": 0.002697008895873987,
+   "restore_s": 1.1287,
+   "resume_s": 0.030524730682373047,
+   "first_token_s": 0.21588802337646484,
+   "commit_to_resume_ms": 30.524730682373047,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-ac0fc62c": 2149,
+    "1-94825860": 2149,
+    "2-8314232c": 2149,
+    "3-a00786c7": 2149,
+    "4-a9a42349": 2149,
+    "5-a48f897a": 2149,
+    "6-8eb5f46a": 2149,
+    "7-9661d9d9": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0522,
+    "t": 1791162195.12889
+   },
+   "protocol": "post-hoc"
+  },
+  "posthoc_replace_mid_2": {
+   "arm": "replace",
+   "kill": "mid",
+   "tps_10_200": 334.6457133783702,
+   "overhead_pct": 27.94599914538347,
+   "pause_s": 1.553048849105835,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 44.002988362027445,
+     "p50_ms": 16.664357855916023,
+     "p99_ms": 98.6557099968195,
+     "max_ms": 4881.6045466810465
+    },
+    "1": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 45.0687834846915,
+     "p50_ms": 17.622429877519608,
+     "p99_ms": 42.814211919903755,
+     "max_ms": 4956.559511832893
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 17.52245013602078,
+     "p50_ms": 16.890717670321465,
+     "p99_ms": 41.816764511168,
+     "max_ms": 41.816764511168
+    },
+    "3": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 44.49137863611766,
+     "p50_ms": 17.034453339874744,
+     "p99_ms": 377.725413069129,
+     "max_ms": 4610.7461880892515
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.2592146396636963,
+   "change_s": 0.0020109577178955007,
+   "restore_s": 1.0705,
+   "resume_s": 0.019007444381713867,
+   "first_token_s": 0.1915132999420166,
+   "commit_to_resume_ms": 19.007444381713867,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-aac41672": 2149,
+    "1-93579c5c": 2149,
+    "2-ae9b6270": 2149,
+    "3-99a4e329": 2149,
+    "4-b69d9726": 2149,
+    "5-8b4e24bb": 2149,
+    "6-88545e17": 2149,
+    "7-8e87a242": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0553,
+    "t": 1791162264.1876698
+   },
+   "protocol": "post-hoc"
+  },
+  "posthoc_replace_mid_3": {
+   "arm": "replace",
+   "kill": "mid",
+   "tps_10_200": 332.0494140122307,
+   "overhead_pct": 28.505019474250304,
+   "pause_s": 1.686828851699829,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 43.386937502552485,
+     "p50_ms": 17.587345093488693,
+     "p99_ms": 45.522093772888184,
+     "max_ms": 4557.800815440714
+    },
+    "1": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 43.294174016873335,
+     "p50_ms": 17.47480034828186,
+     "p99_ms": 80.46949096024036,
+     "max_ms": 4496.618431992829
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 17.76044120080769,
+     "p50_ms": 16.89793821424246,
+     "p99_ms": 44.31892745196819,
+     "max_ms": 44.31892745196819
+    },
+    "3": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 42.7626380879505,
+     "p50_ms": 16.845273785293102,
+     "p99_ms": 83.09368044137955,
+     "max_ms": 4494.834529235959
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.23237943649291992,
+   "change_s": 0.0022561416625976882,
+   "restore_s": 1.214,
+   "resume_s": 0.031325340270996094,
+   "first_token_s": 0.19611835479736328,
+   "commit_to_resume_ms": 31.325340270996094,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-9a5ef79d": 2149,
+    "1-87d0fb5d": 2149,
+    "2-9931ee93": 2149,
+    "3-9232f1e0": 2149,
+    "4-b975d214": 2149,
+    "5-9274c916": 2149,
+    "6-a361ae30": 2149,
+    "7-aa242516": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0539,
+    "t": 1791162332.8391109
+   },
+   "protocol": "post-hoc"
+  },
+  "replace_between_1": {
+   "arm": "replace",
+   "kill": "between",
+   "tps_10_200": 329.57794126256533,
+   "overhead_pct": 29.03716285005744,
+   "pause_s": 10.949565410614014,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 91.39031311267702,
+     "p50_ms": 17.608139663934708,
+     "p99_ms": 34.0963713824749,
+     "max_ms": 10256.142641417682
+    },
+    "1": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 91.2872548421542,
+     "p50_ms": 17.386391758918762,
+     "p99_ms": 44.71119958907366,
+     "max_ms": 10255.8702705428
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 18.361872229725122,
+     "p50_ms": 17.64072198420763,
+     "p99_ms": 34.04085338115692,
+     "max_ms": 34.04085338115692
+    },
+    "3": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 91.23344434507815,
+     "p50_ms": 17.344790510833263,
+     "p99_ms": 99.63563829660416,
+     "max_ms": 10255.797244608402
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.24501585960388184,
+   "change_s": 9.196114115142823,
+   "restore_s": 1.2381,
+   "resume_s": 0.025106191635131836,
+   "first_token_s": 0.24610137939453125,
+   "commit_to_resume_ms": 25.106191635131836,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-b815213f": 2149,
+    "1-8bfafaa9": 2149,
+    "2-81ae8d5e": 2149,
+    "3-a4673bfd": 2149,
+    "4-bddfede0": 2149,
+    "5-b8b45e9c": 2149,
+    "6-aee8264c": 2149,
+    "7-abe3dc3f": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0553,
+    "t": 1791161040.6720293
+   },
+   "protocol": "pre-registered"
+  },
+  "replace_between_2": {
+   "arm": "replace",
+   "kill": "between",
+   "tps_10_200": 337.1957062488099,
+   "overhead_pct": 27.396949266300798,
+   "pause_s": 10.848432779312134,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 91.77151708198446,
+     "p50_ms": 17.211729660630226,
+     "p99_ms": 43.22890844196081,
+     "max_ms": 10237.307347357273
+    },
+    "1": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 92.13589714482207,
+     "p50_ms": 17.568509094417095,
+     "p99_ms": 136.5975346416235,
+     "max_ms": 10237.512021325529
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 17.596697602421045,
+     "p50_ms": 16.743909567594528,
+     "p99_ms": 42.144645005464554,
+     "max_ms": 42.144645005464554
+    },
+    "3": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 91.89437550900898,
+     "p50_ms": 17.26914383471012,
+     "p99_ms": 43.41960046440363,
+     "max_ms": 10239.127745851874
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.22958111763000488,
+   "change_s": 9.367311153030396,
+   "restore_s": 1.0354,
+   "resume_s": 0.0264892578125,
+   "first_token_s": 0.19060182571411133,
+   "commit_to_resume_ms": 26.4892578125,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-9a82a82a": 2149,
+    "1-8ebbd108": 2149,
+    "2-be5eefd2": 2149,
+    "3-bdabc667": 2149,
+    "4-9afdf37e": 2149,
+    "5-aacfef5a": 2149,
+    "6-ae36c135": 2149,
+    "7-a3214a05": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0541,
+    "t": 1791161119.6020706
+   },
+   "protocol": "pre-registered"
+  },
+  "replace_between_3": {
+   "arm": "replace",
+   "kill": "between",
+   "tps_10_200": 330.2279039419719,
+   "overhead_pct": 28.897216603668575,
+   "pause_s": 10.996275424957275,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 90.53598303953414,
+     "p50_ms": 17.046148888766766,
+     "p99_ms": 74.90265928208828,
+     "max_ms": 10267.990283668041
+    },
+    "1": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 91.34883320720618,
+     "p50_ms": 17.841101624071598,
+     "p99_ms": 47.124567441642284,
+     "max_ms": 10269.984124228358
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 18.04318998940289,
+     "p50_ms": 17.027782276272774,
+     "p99_ms": 41.767677292227745,
+     "max_ms": 41.767677292227745
+    },
+    "3": {
+     "steps": 203,
+     "skipped": 0,
+     "mean_ms": 91.06703103506213,
+     "p50_ms": 17.469358630478382,
+     "p99_ms": 190.9517114982009,
+     "max_ms": 10267.725922167301
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.2618837356567383,
+   "change_s": 9.44120484237671,
+   "restore_s": 1.0262,
+   "resume_s": 0.036243438720703125,
+   "first_token_s": 0.2318570613861084,
+   "commit_to_resume_ms": 36.243438720703125,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-8c13b4f9": 2149,
+    "1-a5512034": 2149,
+    "2-b440324e": 2149,
+    "3-859c1347": 2149,
+    "4-bc73ed8e": 2149,
+    "5-971dfffa": 2149,
+    "6-a59ee37c": 2149,
+    "7-b76ab415": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0548,
+    "t": 1791161196.6665587
+   },
+   "protocol": "pre-registered"
+  },
+  "replace_mid_1": {
+   "arm": "replace",
+   "kill": "mid",
+   "tps_10_200": 326.25294187729605,
+   "overhead_pct": 29.7530826989303,
+   "pause_s": 10.728936910629272,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 91.7266251601498,
+     "p50_ms": 17.605398781597614,
+     "p99_ms": 50.560069270431995,
+     "max_ms": 10266.013300046325
+    },
+    "1": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 91.79215755441463,
+     "p50_ms": 17.59001426398754,
+     "p99_ms": 50.347959622740746,
+     "max_ms": 10266.787463799119
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 17.887114146724343,
+     "p50_ms": 16.94085169583559,
+     "p99_ms": 48.264709301292896,
+     "max_ms": 48.264709301292896
+    },
+    "3": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 91.60113294937594,
+     "p50_ms": 17.46564731001854,
+     "p99_ms": 117.67108086496592,
+     "max_ms": 10266.049057245255
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.2646028995513916,
+   "change_s": 9.155286968231202,
+   "restore_s": 1.037,
+   "resume_s": 0.03167223930358887,
+   "first_token_s": 0.22940301895141602,
+   "commit_to_resume_ms": 31.672239303588867,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-ad476314": 2149,
+    "1-8922462c": 2149,
+    "2-9c46c965": 2149,
+    "3-9397a47e": 2149,
+    "4-b85cea6f": 2149,
+    "5-85e10efb": 2149,
+    "6-a5ab4ed8": 2149,
+    "7-a5533606": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0546,
+    "t": 1791161276.5838256
+   },
+   "protocol": "pre-registered"
+  },
+  "replace_mid_2": {
+   "arm": "replace",
+   "kill": "mid",
+   "tps_10_200": 325.5479014989225,
+   "overhead_pct": 29.90488796042017,
+   "pause_s": 10.766850709915161,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 93.76674496988748,
+     "p50_ms": 17.74938404560089,
+     "p99_ms": 430.8230886235833,
+     "max_ms": 10248.001215048134
+    },
+    "1": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 93.70216939087008,
+     "p50_ms": 17.518149688839912,
+     "p99_ms": 229.59379479289055,
+     "max_ms": 10249.971290118992
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 17.883028304204345,
+     "p50_ms": 17.033802345395088,
+     "p99_ms": 46.5427553281188,
+     "max_ms": 46.5427553281188
+    },
+    "3": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 93.55085925199091,
+     "p50_ms": 17.388010397553444,
+     "p99_ms": 48.931981436908245,
+     "max_ms": 10248.370901681483
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.2497861385345459,
+   "change_s": 9.150236758804322,
+   "restore_s": 1.0979,
+   "resume_s": 0.03093862533569336,
+   "first_token_s": 0.22698497772216797,
+   "commit_to_resume_ms": 30.93862533569336,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-a844b012": 2149,
+    "1-9497ad18": 2149,
+    "2-8f5d7c7b": 2149,
+    "3-8e60ad2a": 2149,
+    "4-b53e8c57": 2149,
+    "5-ba53dd08": 2149,
+    "6-abacf2b4": 2149,
+    "7-a9d8e91d": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.055,
+    "t": 1791161356.2441535
+   },
+   "protocol": "pre-registered"
+  },
+  "replace_mid_3": {
+   "arm": "replace",
+   "kill": "mid",
+   "tps_10_200": 331.7058169754149,
+   "overhead_pct": 28.57900082286653,
+   "pause_s": 11.073352575302124,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 91.62376190572246,
+     "p50_ms": 17.823733389377594,
+     "p99_ms": 113.24145458638668,
+     "max_ms": 10282.544112764299
+    },
+    "1": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 91.57520837570523,
+     "p50_ms": 17.507257871329784,
+     "p99_ms": 92.02891122549772,
+     "max_ms": 10279.547851532698
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 17.298239059746265,
+     "p50_ms": 16.6556928306818,
+     "p99_ms": 37.508610635995865,
+     "max_ms": 37.508610635995865
+    },
+    "3": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 91.1843156186389,
+     "p50_ms": 17.2487935051322,
+     "p99_ms": 43.97755768150091,
+     "max_ms": 10281.176703050733
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.27883148193359375,
+   "change_s": 9.442918740081787,
+   "restore_s": 1.0867,
+   "resume_s": 0.02456068992614746,
+   "first_token_s": 0.2295701503753662,
+   "commit_to_resume_ms": 24.56068992614746,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-b86560a1": 2149,
+    "1-a11ae094": 2149,
+    "2-95516621": 2149,
+    "3-8f91c503": 2149,
+    "4-bbab5f66": 2149,
+    "5-a4280665": 2149,
+    "6-b8466e11": 2149,
+    "7-afb3ca75": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0546,
+    "t": 1791161434.8772306
+   },
+   "protocol": "pre-registered"
+  },
+  "stock_1": {
+   "arm": "stock",
+   "kill": null,
+   "tps_10_200": 466.68327792309583,
+   "overhead_pct": -0.4835740067765437,
+   "pause_s": 0.018620967864990234,
+   "pause_session": 0,
+   "sessions": 8,
+   "protocol": "pre-registered"
+  },
+  "stock_2": {
+   "arm": "stock",
+   "kill": null,
+   "tps_10_200": 463.19678914912834,
+   "overhead_pct": 0.2671168135628399,
+   "pause_s": 0.019023895263671875,
+   "pause_session": 0,
+   "sessions": 8,
+   "protocol": "pre-registered"
+  },
+  "stock_3": {
+   "arm": "stock",
+   "kill": null,
+   "tps_10_200": 463.43207136233156,
+   "overhead_pct": 0.21645719321368162,
+   "pause_s": 0.01949787139892578,
+   "pause_session": 0,
+   "sessions": 8,
+   "protocol": "pre-registered"
+  }
+ },
+ "tree": {
+  "stock_*, adapter_*": {
+   "ran_on": "cd64f82",
+   "on_main": "8136741"
+  },
+  "replace_*, notice_*": {
+   "ran_on": "570f1b7",
+   "on_main": "161d60d"
+  },
+  "posthoc_*": {
+   "ran_on": "d66f08f",
+   "on_main": "e0cf7b4"
+  },
+  "note": "ran_on commits predate dropping commit trailers and the rebase onto main's telemetry commits (824ecf7..b92afcd); the adapter, core and harness code is identical, the on_main trees add telemetry to the daemon and store. Two earlier replace_between_1 attempts hung and are in data/dev, not scored."
+ },
+ "pod": {
+  "id": "t8jgr7fvniodb6",
+  "gpus": "5x A40 48 GB",
+  "cloud": "secure SE",
+  "usd_per_h": 2.45,
+  "up": "2026-10-04T23:46:00Z",
+  "terminated": "2026-10-05T01:10:40Z",
+  "usd": 3.43
+ },
+ "verdicts": {
+  "1 pause 2.0-3.5 s (kill > 5 s)": {
+   "pre-registered": "dead (10.73-11.07 s)",
+   "post-hoc": "1.55-1.70 s, below the band, under the kill"
+  },
+  "2 sessions kept, 20 tokens equal (kill: re-prefill or loss)": {
+   "pre-registered": "alive (8/8 sessions, 8/8 equal, none re-prefilled, 6/6 runs)",
+   "post-hoc": "same (6/6)"
+  },
+  "3 overhead 4.0-6.0 % (kill > 8 %)": {
+   "pre-registered": "dead (27.8-27.9 %)"
+  },
+  "4 commit within 100 ms of resume, acked epoch (kill: none or mismatch)": {
+   "pre-registered": "alive (25-36 ms, epoch 1 everywhere)",
+   "post-hoc": "19-31 ms; notice 54-63 ms"
+  },
+  "5 restore bytes equal (kill: any mismatch)": {
+   "pre-registered": "alive (48/48 tables, 6/6 runs)",
+   "post-hoc": "alive (9/9 runs incl. notice)"
+  },
+  "6 notice: no fault, pause < 1 s (kill: fault event)": {
+   "pre-registered": "not tested (no swap happened)",
+   "post-hoc": "0 fault events, pause 0.36-0.41 s"
+  }
+ },
+ "raw_data_sha256": {
+  "adapter_1.json": "8bec0a6a3157cd262a87e09b2af7bb77c07cc6ffcab32f99b8249319f5badf44",
+  "adapter_2.json": "f9e1be48ac41d59cf0c853f25fc15b05a99f9a3a080af54f6d14c296f9c87de1",
+  "adapter_3.json": "a41dab2e99ab016e53ecb1c57299c13c01099c28fc1fdcaf7905c14db3dd9296",
+  "notice_1.json": "608eb9a5587d0fd028ce7499a2ddfa737458ed61e200ccbf3c5ed58831b3fab4",
+  "notice_2.json": "d15901411a0f89b5350430f73ad08888948524aa20014e6f71eb45c1a944d28f",
+  "notice_3.json": "6b48e101561210f02026f866a6c9b3a64aa7aa5e940b11944fb2df5022d2d8e3",
+  "posthoc_notice_1.json": "972dd04fc10cf40a84c6d1006a20aa6c839ff03ac35c1086f37ab0a08aecc243",
+  "posthoc_notice_2.json": "b327fcb18ca0b6c124d3de06fe125325b4d6169a91c1617578cc572352d38b65",
+  "posthoc_notice_3.json": "dc3f3be7300db40841244d689aa104596d853b8a72019f1b532738baeb038868",
+  "posthoc_replace_between_1.json": "a804113df9c4b7e2e718aa8363ee5a4a93b046072fc9731f1d18be6431131bcb",
+  "posthoc_replace_between_2.json": "499cf0fbb5e1e4aef1fbdae612bb700083526149cc31036e1cfe123669fab369",
+  "posthoc_replace_between_3.json": "0efa6caf6c153528ca218ef0d46733ad032ee818a8d403f565ad4b2da649cae9",
+  "posthoc_replace_mid_1.json": "15b9c98a5f7f0a1d4171822c74284e17faad64771e28999eb2ba199444992216",
+  "posthoc_replace_mid_2.json": "a59d757605c1c20e30e2c82c62a37212f6f36a140b8d20bb55bf17ae3c21775b",
+  "posthoc_replace_mid_3.json": "22403148a8d8455d29339abf6edcff118e10831ce7cbb99836f8e3d571c7b605",
+  "replace_between_1.json": "21ecafd653c18e32343d026afca50cb1898e5f1a6987767740d7174ed578dba4",
+  "replace_between_2.json": "c5e268b7dcacafae60f6c9a9f8e4de9dcfb238abfb60daf0bb35716320de58ae",
+  "replace_between_3.json": "d1d5b67c44cd830fad994b21053bb829ba8c60e9f759680f027f0af2c33f66f0",
+  "replace_mid_1.json": "a29ac54afe8bee4a52de912041fd3ce6b0c3c18f241fa154b9cb258b3b55911e",
+  "replace_mid_2.json": "8f5e84c6bf3019ff6c297907122e82e5cda0251441c8884d662e1d94ca988a7c",
+  "replace_mid_3.json": "cf90a5ec2da6b74c349485c34409ffdfe1c264d710c2314ad5dc0aa5e9f4cb26",
+  "stock_1.json": "67a63790c3dac69c485c18c3521acb5130b80f8eeaf044fbc415ba5f229c599e",
+  "stock_2.json": "cd010b9b646130aefc14f607dc4eecc6de238b5e2b031c3689e7bb331e2e071a",
+  "stock_3.json": "3aa3e33f686b4588b9726ff3d31a51b5627d31e8648e1aa7f5ffc32bbf0928f8"
+ }
+}

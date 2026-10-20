@@ -1,0 +1,189 @@
+# Decision 0021 verification: run log
+2026-10-06T23:47:14Z owner's brief: build 0021, verify with one REPLACE on the 72B shape, cap $10. First a compile and function check on the cheapest 3-GPU pod (Qwen3-1.7B, TP2 + spare): the kernel test, adapter_1, replace_mid_1. Tree e1644e8 (branch detection-0021, not yet on main). Watchdog 30 min.
+2026-10-06T23:47:22Z deploy 3x NVIDIA RTX A6000: {"id": "ysekielbivv4bz", "costPerHr": 1.59, "machine": {"gpuDisplayName": "RTX A6000", "location": "SE"}}
+2026-10-06T23:47:22Z pod ysekielbivv4bz (NVIDIA RTX A6000); watchdog terminates at +30 min
+NVIDIA RTX A6000, 580.159.03
+2026-10-06T23:48:04Z tree e1644e8 on the pod; setup, build and the Qwen3-1.7B download
+2026-10-06T23:56:59Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;    Finished `release` profile [optimized] target(s) in 23.87s -rwxr-xr-x 2 root root 8962120 Oct  6 23:56 /workspace/everserve/target/release/everserve-controller -rwxr-xr-x 2 root root 6805792 Oct  6 23:56 /workspace/everserve/target/release/everserve-store 
+ss.....                                                                  [100%]
+=========================== short test summary info ============================
+SKIPPED [2] core/tests/test_slot_kernel.py:151: the Everserve kernels did not build here
+2026-10-06T23:57:06Z kernel tests did not pass: stopping
+2026-10-06T23:57:08Z terminate ysekielbivv4bz: {"data": {"podTerminate": null}}
+2026-10-06T23:57:08Z data copied; pod terminated
+2026-10-06T23:58:28Z the first check ran the kernel tests without CUDA_HOME and the CUDA 13 toolkit on PATH (setup exports both): the extension loader failed, every kernel test skipped, and the script stopped (pod up 9.8 min, ~$0.26). Setup's own suite showed the probe's GPU test failing on PCIe: it expected a confirmation wherever CUDA reports peer access. Fixed on the branch (5634c15); the check runs again with setup's environment and per-test results.
+2026-10-06T23:58:33Z deploy 3x NVIDIA RTX A6000: {"id": "cu0m31k34fo9o4", "costPerHr": 1.59, "machine": {"gpuDisplayName": "RTX A6000", "location": "US"}}
+2026-10-06T23:58:33Z pod cu0m31k34fo9o4 (NVIDIA RTX A6000); watchdog terminates at +30 min
+NVIDIA RTX A6000, 595.91.07
+2026-10-06T23:59:22Z tree 5634c15 on the pod; setup, build and the Qwen3-1.7B download
+2026-10-07T00:05:44Z setup done: cuda-compat-13-0 does not help on this driver: not used;    Finished `release` profile [optimized] target(s) in 18.85s -rwxr-xr-x 2 root root 8962120 Oct  7 00:05 /workspace/everserve/target/release/everserve-controller -rwxr-xr-x 2 root root 6805792 Oct  7 00:05 /workspace/everserve/target/release/everserve-store 
+PASSED core/tests/test_slotwatch.py::test_a_late_member_that_is_alive_is_slow_until_the_hang_bound
+PASSED core/tests/test_slotwatch.py::test_the_late_row_is_reported_as_the_rank_in_its_position
+PASSED core/tests/test_p2p_probe.py::test_the_probe_answers_in_time_and_confirms_peer_to_peer_over_nvlink
+SKIPPED [1] core/tests/test_slot_kernel.py:136: the peer-to-peer variant needs 4 devices
+7 passed, 1 skipped in 8.99s
+2026-10-07T00:05:55Z kernel tests: 7 passed, 1 skipped in 8.99s
+2026-10-07T00:05:55Z pod: adapter_port.sh drill adapter_1 --arm adapter --tp 2 --serve-gpus 0,1 --spare-gpu 2 --kill-rank 1 --policy /workspace/everserve/bench/harness/policies/rig-2gpu.json
+2026-10-07T00:05:58Z start adapter_1: --arm adapter --tp 2 --serve-gpus 0,1 --spare-gpu 2 --kill-rank 1 --policy /workspace/everserve/bench/harness/policies/rig-2gpu.json
+2026-10-07T00:07:40Z end adapter_1 rc=0: (MainProcess pid=10563) INFO 10-07 00:07:37 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-07T00:07:41Z adapter_1: detect {'steps': 3.0, 'floor_s': 0.03, 'step_s': 0.00602, 'bound_s': 0.03} events [] exit_s None watch [{'reported': [], 'slow': []}, {'reported': [], 'slow': [{'rank': 0, 'late_s': 0.1485, 'at': 1791331654.0234878}]}]
+2026-10-07T00:07:41Z pod: adapter_port.sh drill replace_mid_1 --arm replace --kill mid --tp 2 --serve-gpus 0,1 --spare-gpu 2 --kill-rank 1 --policy /workspace/everserve/bench/harness/policies/rig-2gpu.json
+2026-10-07T00:07:43Z start replace_mid_1: --arm replace --kill mid --tp 2 --serve-gpus 0,1 --spare-gpu 2 --kill-rank 1 --policy /workspace/everserve/bench/harness/policies/rig-2gpu.json
+2026-10-07T00:08:36Z end replace_mid_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T00:08:37Z replace_mid_1: detect {'steps': 3.0, 'floor_s': 0.03, 'step_s': 0.00604, 'bound_s': 0.03} events [('rank_lost', 'slot', 0.044), ('exited', None, 0.442)] exit_s 0.002 watch [{'reported': [{'rank': 1, 'detail': 'slot row 0: no words from rank 1 past 30 ms; its process 12216 is exiting', 'epoch': 0, 'at': 1791331705.3971848}], 'slow': [{'rank': 1, 'late_s': 0.1997, 'at': 1791331704.4760249}]}, {'reported': [], 'slow': []}]
+2026-10-07T00:08:39Z terminate cu0m31k34fo9o4: {"data": {"podTerminate": null}}
+2026-10-07T00:08:39Z data copied; pod terminated
+2026-10-07T00:09:48Z second check passed on 3x A6000 (pod cu0m31k34fo9o4, $1.59/h, about 12 min): kernel tests 7 passed (p2p skipped: 4 devices needed); adapter_1 no report, two live ranks late 149 and 200 ms recorded as slow; replace_mid_1 detected by the slot in 44 ms, pause 0.853 s, 8/8 identical, every exactness check passing, exit 2 ms, sentinel 0.44 s. Landed on main as edf0e05 and 1569a96 (rebased onto 542af89, main's decision 0021, with an As-built section added).
+2026-10-07T00:10:59Z 72B run: tree 2182eb2 (pre-registration committed, preflight green). Polling 5x H100 SXM secure, balance 23.95; watchdog +28 min.
+2026-10-07T00:11:00Z deploy 5x H100 SXM SECURE (balance 23.95): {"id": "yq3jxlut1ojcgh", "costPerHr": 17.45, "machine": {"gpuDisplayName": "H100 SXM", "location": "US"}}
+2026-10-07T00:11:00Z pod yq3jxlut1ojcgh; watchdog terminates at +28 min (estimate 16 + 12)
+2026-10-07T00:11:26Z tree 2182eb2 on the pod
+0, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+1, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+2, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+3, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+4, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+	[4mGPU0	GPU1	GPU2	GPU3	GPU4	NIC0	NIC1	NIC2	NIC3	NIC4	NIC5	NIC6	NIC7	NIC8	NIC9	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+GPU0	 X 	NV18	NV18	NV18	NV18	PIX	NODE	NODE	NODE	SYS	SYS	SYS	SYS	NODE	NODE	0-51,104-155	0		N/A
+GPU1	NV18	 X 	NV18	NV18	NV18	NODE	PIX	NODE	NODE	SYS	SYS	SYS	SYS	NODE	NODE	0-51,104-155	0		N/A
+GPU2	NV18	NV18	 X 	NV18	NV18	NODE	NODE	PIX	NODE	SYS	SYS	SYS	SYS	NODE	NODE	0-51,104-155	0		N/A
+GPU3	NV18	NV18	NV18	 X 	NV18	SYS	SYS	SYS	SYS	PIX	NODE	NODE	NODE	SYS	SYS	52-103,156-207	1		N/A
+GPU4	NV18	NV18	NV18	NV18	 X 	SYS	SYS	SYS	SYS	NODE	NODE	NODE	PIX	SYS	SYS	52-103,156-207	1		N/A
+shm             586G     0  586G   0% /dev/shm
+overlay         200G   26M  200G   1% /
+2026-10-07T00:11:28Z setup, build and the Qwen/Qwen2.5-72B-Instruct download started
+2026-10-07T00:26:30Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;136G	/workspace/models/Qwen2.5-72B-Instruct;shm             586G   21M  586G   1% /dev/shm;
+2026-10-07T00:26:32Z pod:  adapter_port.sh drill stock_1 --arm stock --custom-all-reduce default
+2026-10-07T00:26:35Z start stock_1: --arm stock --custom-all-reduce default
+2026-10-07T00:29:10Z end stock_1 rc=0: (MainProcess pid=12178) INFO 10-07 00:29:07 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-07T00:29:10Z end stock_1 rc=0
+2026-10-07T00:29:11Z stock_1 results written; slot: None
+2026-10-07T00:29:11Z spend [after stock] balance 18.88, spent since start $5.07, pod yq3jxlut1ojcgh $17.45/h up 1052s
+2026-10-07T00:29:12Z pod:  adapter_port.sh drill adapter_1 --arm adapter
+2026-10-07T00:29:15Z start adapter_1: --arm adapter
+2026-10-07T00:31:23Z end adapter_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T00:31:23Z end adapter_1 rc=0
+2026-10-07T00:31:24Z adapter_1 results written; slot: {'variant': 'p2p', 'how': 'probe', 'detail': 'exact sum on all 5 devices', 'seconds': 4.34}
+2026-10-07T00:31:25Z spend [after adapter] balance 18.88, spent since start $5.07, pod yq3jxlut1ojcgh $17.45/h up 1210s
+2026-10-07T00:31:25Z pod:  adapter_port.sh drill replace_mid_1 --arm replace --kill mid
+2026-10-07T00:31:28Z start replace_mid_1: --arm replace --kill mid
+2026-10-07T00:34:50Z end replace_mid_1 rc=1:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T00:34:50Z end replace_mid_1 rc=0
+2026-10-07T00:34:51Z replace_mid_1 left no results: stopping the battery
+2026-10-07T00:34:52Z terminate yq3jxlut1ojcgh: {"data": {"podTerminate": null}}
+2026-10-07T00:34:52Z data copied; pod terminated; watchdog stopped
+2026-10-07T00:34:53Z balance 17.42
+2026-10-07T00:37:25Z the 72B REPLACE failed (pod yq3jxlut1ojcgh, US, 00:11:00-00:34:52, 23.9 min, ~$6.95; setup 15 min on this host). stock_1 and adapter_1 completed. Detected by the slot on all three survivors, but row 0's watchdog reported while its worker applied the change: the daemon read that report as the Ack, rank 0's link closed, the change failed, and the executor timed out waiting for the commit. The report also carried the new epoch. Fixed on main (12d3d2d). Before another H100 run: the same three-survivor case on 5 cheap GPUs (Qwen3-1.7B, TP4 + spare).
+2026-10-07T00:37:39Z deploy 3x NVIDIA RTX A6000: {"id": "mbvgrx2jn38n3g", "costPerHr": 2.65, "machine": {"gpuDisplayName": "RTX A6000", "location": "SE"}}
+2026-10-07T00:37:39Z pod mbvgrx2jn38n3g (NVIDIA RTX A6000); watchdog terminates at +30 min
+NVIDIA RTX A6000, 580.159.03
+2026-10-07T00:37:59Z tree 12d3d2d on the pod; setup, build and the Qwen3-1.7B download
+2026-10-07T00:53:20Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;    Finished `release` profile [optimized] target(s) in 22.77s -rwxr-xr-x 2 root root 9172840 Oct  7 00:53 /workspace/everserve/target/release/everserve-controller -rwxr-xr-x 2 root root 6805792 Oct  7 00:53 /workspace/everserve/target/release/everserve-store 
+ERROR: file or directory not found: p2p
+
+
+no tests ran in 0.00s
+2026-10-07T00:53:24Z kernel tests did not pass: stopping
+2026-10-07T00:53:26Z terminate mbvgrx2jn38n3g: {"data": {"podTerminate": null}}
+2026-10-07T00:53:26Z data copied; pod terminated
+2026-10-07T00:54:05Z the 5-GPU check (pod mbvgrx2jn38n3g, 5x A6000 $2.65/h, 00:37:39-00:53:26, ~$0.70) ran no test: the script's -k filter lost its quotes over ssh. Setup's own suite also hung on the slot kernel's p2p case (CUDA reports peer access on PCIe). The p2p tests are now gated on NVLink; the check runs again. Owner approved one H100 rerun past the $10 cap (adapter and REPLACE).
+2026-10-07T00:54:26Z deploy 3x NVIDIA RTX A6000: {"id": "elk3b1toavwztq", "costPerHr": 2.65, "machine": {"gpuDisplayName": "RTX A6000", "location": "SE"}}
+2026-10-07T00:54:26Z pod elk3b1toavwztq (NVIDIA RTX A6000); watchdog terminates at +30 min
+NVIDIA RTX A6000, 570.195.03
+2026-10-07T00:55:08Z tree 5488ad3 on the pod; setup, build and the Qwen3-1.7B download
+2026-10-07T01:02:24Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;    Finished `release` profile [optimized] target(s) in 20.63s -rwxr-xr-x 2 root root 9172840 Oct  7 01:02 /workspace/everserve/target/release/everserve-controller -rwxr-xr-x 2 root root 6805792 Oct  7 01:02 /workspace/everserve/target/release/everserve-store 
+PASSED core/tests/test_slotwatch.py::test_the_late_row_is_reported_as_the_rank_in_its_position
+PASSED core/tests/test_slotwatch.py::test_a_report_carries_the_epoch_the_lateness_began_in
+PASSED core/tests/test_p2p_probe.py::test_the_probe_answers_in_time_and_confirms_peer_to_peer_over_nvlink
+SKIPPED [1] core/tests/test_slot_kernel.py:138: the peer-to-peer variant needs NVLink: CUDA's peer access is not enough
+8 passed, 1 skipped in 37.48s
+2026-10-07T01:03:06Z kernel tests: 8 passed, 1 skipped in 37.48s
+2026-10-07T01:03:06Z pod: adapter_port.sh drill adapter_1 --arm adapter 
+2026-10-07T01:03:10Z start adapter_1: --arm adapter
+2026-10-07T01:05:00Z end adapter_1 rc=0: (MainProcess pid=10760) INFO 10-07 01:04:57 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-07T01:05:02Z adapter_1: detect {'steps': 3.0, 'floor_s': 0.03, 'step_s': 0.00574, 'bound_s': 0.03} events [] exit_s None watch [{'reported': [], 'slow': [{'rank': 1, 'late_s': 0.0157, 'at': 1791335094.2367947}, {'rank': 1, 'late_s': 0.0458, 'at': 1791335094.5145383}]}, {'reported': [], 'slow': []}, {'reported': [], 'slow': [{'rank': 1, 'late_s': 0.0314, 'at': 1791335094.5143797}]}, {'reported': [], 'slow': [{'rank': 1, 'late_s': 0.0458, 'at': 1791335094.5157595}]}]
+2026-10-07T01:05:02Z pod: adapter_port.sh drill replace_mid_1 --arm replace --kill mid 
+2026-10-07T01:05:06Z start replace_mid_1: --arm replace --kill mid
+2026-10-07T01:07:51Z end replace_mid_1 rc=1:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T01:07:53Z replace_mid_1 left no results
+2026-10-07T01:07:56Z terminate elk3b1toavwztq: {"data": {"podTerminate": null}}
+2026-10-07T01:07:56Z data copied; pod terminated
+2026-10-07T01:10:17Z the 5-GPU check (pod elk3b1toavwztq, 5x A6000 $2.65/h, 00:54:26-01:07:56, ~$0.60): kernel and watch tests passed; adapter_1 no report (four live ranks late 16-46 ms, recorded as slow); replace_mid_1 failed: detected by the slot on all three survivors, but rank 3's report reached the daemon after the daemon had sent rank 3 its Change and before rank 3 read it; the daemon decoded the report as the Ack (Ack.epoch: invalid wire type), the link closed, the change failed. The hold during apply could not cover that gap. Fixed: every worker frame is a Signal, the Ack included.
+2026-10-07T01:11:11Z deploy 3x NVIDIA RTX A6000: {"id": "bhkgdpjumwck19", "costPerHr": 2.65, "machine": {"gpuDisplayName": "RTX A6000", "location": "SE"}}
+2026-10-07T01:11:11Z pod bhkgdpjumwck19 (NVIDIA RTX A6000); watchdog terminates at +30 min
+NVIDIA RTX A6000, 570.195.03
+2026-10-07T01:11:38Z tree fbc6efc on the pod; setup, build and the Qwen3-1.7B download
+2026-10-07T01:18:54Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;    Finished `release` profile [optimized] target(s) in 23.44s -rwxr-xr-x 2 root root 9170488 Oct  7 01:18 /workspace/everserve/target/release/everserve-controller -rwxr-xr-x 2 root root 6805448 Oct  7 01:18 /workspace/everserve/target/release/everserve-store 
+PASSED core/tests/test_slotwatch.py::test_the_late_row_is_reported_as_the_rank_in_its_position
+PASSED core/tests/test_slotwatch.py::test_a_report_carries_the_epoch_the_lateness_began_in
+PASSED core/tests/test_p2p_probe.py::test_the_probe_answers_in_time_and_confirms_peer_to_peer_over_nvlink
+SKIPPED [1] core/tests/test_slot_kernel.py:138: the peer-to-peer variant needs NVLink: CUDA's peer access is not enough
+8 passed, 1 skipped in 37.34s
+2026-10-07T01:19:36Z kernel tests: 8 passed, 1 skipped in 37.34s
+2026-10-07T01:19:36Z pod: adapter_port.sh drill adapter_1 --arm adapter 
+2026-10-07T01:19:40Z start adapter_1: --arm adapter
+2026-10-07T01:21:29Z end adapter_1 rc=0: (MainProcess pid=10728) INFO 10-07 01:21:26 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-07T01:21:32Z adapter_1: detect {'steps': 3.0, 'floor_s': 0.03, 'step_s': 0.00598, 'bound_s': 0.03} events [] exit_s None watch [{'reported': [], 'slow': [{'rank': 1, 'late_s': 0.0195, 'at': 1791336083.4749267}, {'rank': 3, 'late_s': 0.0646, 'at': 1791336083.762246}]}, {'reported': [], 'slow': [{'rank': 3, 'late_s': 0.0619, 'at': 1791336083.76194}]}, {'reported': [], 'slow': [{'rank': 3, 'late_s': 0.0429, 'at': 1791336083.7612333}]}, {'reported': [], 'slow': []}]
+2026-10-07T01:21:32Z pod: adapter_port.sh drill replace_mid_1 --arm replace --kill mid 
+2026-10-07T01:21:35Z start replace_mid_1: --arm replace --kill mid
+2026-10-07T01:22:25Z end replace_mid_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T01:22:27Z replace_mid_1: detect {'steps': 3.0, 'floor_s': 0.03, 'step_s': 0.00573, 'bound_s': 0.03} events [('rank_lost', 'slot', 0.045), ('exited', None, 0.312)] exit_s 0.002 watch [{'reported': [{'rank': 2, 'detail': 'slot row 0: no words from rank 2 past 30 ms; its process 12978 is exiting', 'epoch': 0, 'at': 1791336134.1828592}], 'slow': [{'rank': 1, 'late_s': 0.0272, 'at': 1791336133.1107304}, {'rank': 3, 'late_s': 0.0225, 'at': 1791336133.3585215}]}, {'reported': [{'rank': 2, 'detail': 'slot row 1: no words from rank 2 past 30 ms; its process 12978 is exiting', 'epoch': 0, 'at': 1791336134.1840897}], 'slow': [{'rank': 3, 'late_s': 0.0247, 'at': 1791336133.360852}]}, {'reported': [], 'slow': []}, {'reported': [{'rank': 2, 'detail': 'slot row 3: no words from rank 2 past 30 ms; its process 12978 is exiting', 'epoch': 0, 'at': 1791336134.1841526}], 'slow': []}]
+2026-10-07T01:22:32Z terminate bhkgdpjumwck19: {"data": {"podTerminate": null}}
+2026-10-07T01:22:32Z data copied; pod terminated
+2026-10-07T01:22:48Z 5-GPU check passed on fbc6efc (pod bhkgdpjumwck19, 5x A6000 $2.65/h, 01:11:11-01:22:32, ~$0.50): kernel tests 8 passed (p2p skipped: no NVLink); adapter_1 no report; replace_mid_1 detected by the slot in 45 ms on all three survivors, two duplicates and the sentinel folded, one change committed, pause 1.119 s, 8/8 identical, every exactness check passing. Owner approved one H100 rerun past the $10 cap: adapter_1 and replace_mid_1 on c61af38 (fbc6efc plus test and comment changes), watchdog +27 min.
+2026-10-07T01:22:49Z deploy 5x H100 SXM SECURE (balance 15.35): {"id": "1xbucv0yh1ifv7", "costPerHr": 17.45, "machine": {"gpuDisplayName": "H100 SXM", "location": "IN"}}
+2026-10-07T01:22:49Z pod 1xbucv0yh1ifv7; watchdog terminates at +27 min (estimate 20 with a 15-min setup, ~.85 at most)
+2026-10-07T01:23:39Z tree c61af38 on the pod
+0, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+1, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+2, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+3, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+4, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+	[4mGPU0	GPU1	GPU2	GPU3	GPU4	NIC0	NIC1	NIC2	NIC3	NIC4	NIC5	NIC6	NIC7	NIC8	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+GPU0	 X 	NV18	NV18	NV18	NV18	NODE	PIX	NODE	NODE	SYS	SYS	SYS	SYS	SYS	0-55,112-167	0		N/A
+GPU1	NV18	 X 	NV18	NV18	NV18	NODE	NODE	NODE	PIX	SYS	SYS	SYS	SYS	SYS	0-55,112-167	0		N/A
+GPU2	NV18	NV18	 X 	NV18	NV18	SYS	SYS	SYS	SYS	NODE	PIX	NODE	NODE	NODE	56-111,168-223	1		N/A
+GPU3	NV18	NV18	NV18	 X 	NV18	SYS	SYS	SYS	SYS	NODE	NODE	PIX	NODE	NODE	56-111,168-223	1		N/A
+GPU4	NV18	NV18	NV18	NV18	 X 	SYS	SYS	SYS	SYS	NODE	NODE	NODE	PIX	NODE	56-111,168-223	1		N/A
+shm             586G     0  586G   0% /dev/shm
+overlay         200G   26M  200G   1% /
+2026-10-07T01:23:47Z setup, build and the Qwen/Qwen2.5-72B-Instruct download started
+2026-10-07T01:26:54Z the review's items on branch detection-mask (4b973af: the late mask named by every block, the hang clock paused across a change, the same-host note): a 5-GPU check in parallel with the H100 rerun, kernel tests (a dead rank's push cut after block 0's share) and a three-survivor REPLACE.
+2026-10-07T01:26:55Z deploy 3x NVIDIA RTX A6000: {"id": "2mo24hgs0raga7", "costPerHr": 2.65, "machine": {"gpuDisplayName": "RTX A6000", "location": "SE"}}
+2026-10-07T01:26:55Z pod 2mo24hgs0raga7 (NVIDIA RTX A6000); watchdog terminates at +30 min
+NVIDIA RTX A6000, 570.195.03
+2026-10-07T01:27:15Z tree 4b973af on the pod; setup, build and the Qwen3-1.7B download
+2026-10-07T01:33:36Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;136G	/workspace/models/Qwen2.5-72B-Instruct;shm             586G   25M  586G   1% /dev/shm;
+2026-10-07T01:33:40Z pod:  adapter_port.sh drill adapter_1 --arm adapter
+2026-10-07T01:33:46Z start adapter_1: --arm adapter
+2026-10-07T01:34:48Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;    Finished `release` profile [optimized] target(s) in 22.50s -rwxr-xr-x 2 root root 9170472 Oct  7 01:34 /workspace/everserve/target/release/everserve-controller -rwxr-xr-x 2 root root 6805448 Oct  7 01:34 /workspace/everserve/target/release/everserve-store 
+PASSED core/tests/test_slotwatch.py::test_a_node_lost_at_once_is_one_report_of_every_rank
+PASSED core/tests/test_slotwatch.py::test_the_hang_clock_waits_for_the_first_steps_after_a_change
+PASSED core/tests/test_p2p_probe.py::test_the_probe_answers_in_time_and_confirms_peer_to_peer_over_nvlink
+SKIPPED [1] core/tests/test_slot_kernel.py:158: the peer-to-peer variant needs NVLink: CUDA's peer access is not enough
+10 passed, 1 skipped in 37.57s
+2026-10-07T01:35:30Z kernel tests: 10 passed, 1 skipped in 37.57s
+2026-10-07T01:35:30Z pod: adapter_port.sh drill adapter_1 --arm adapter 
+2026-10-07T01:35:33Z start adapter_1: --arm adapter
+2026-10-07T01:37:33Z end adapter_1 rc=0: (MainProcess pid=10750) INFO 10-07 01:37:30 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-07T01:37:35Z adapter_1: detect {'steps': 3.0, 'floor_s': 0.03, 'step_s': 0.00592, 'bound_s': 0.03} events [] exit_s None watch [{'reported': [], 'slow': [{'rank': 1, 'late_s': 0.0185, 'at': 1791337047.1384325}, {'rank': 2, 'late_s': 0.0185, 'at': 1791337047.1384325}, {'rank': 3, 'late_s': 0.0185, 'at': 1791337047.1384325}]}, {'reported': [], 'slow': []}, {'reported': [], 'slow': []}, {'reported': [], 'slow': []}]
+2026-10-07T01:37:35Z pod: adapter_port.sh drill replace_mid_1 --arm replace --kill mid 
+2026-10-07T01:37:39Z start replace_mid_1: --arm replace --kill mid
+2026-10-07T01:38:33Z end replace_mid_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T01:38:35Z replace_mid_1: detect {'steps': 3.0, 'floor_s': 0.03, 'step_s': 0.00593, 'bound_s': 0.03} events [('rank_lost', 'slot', 0.044), ('exited', None, 0.251)] exit_s 0.002 watch [{'reported': [{'ranks': [2], 'detail': 'slot row 0: no words from ranks [2] past 30 ms; their processes [12995] are exiting', 'epoch': 0, 'at': 1791337102.0003154}], 'slow': [{'rank': 1, 'late_s': 0.0192, 'at': 1791337100.9076176}, {'rank': 2, 'late_s': 0.0192, 'at': 1791337100.9076176}, {'rank': 3, 'late_s': 0.0192, 'at': 1791337100.9076176}, {'rank': 1, 'late_s': 0.0115, 'at': 1791337101.1578639}]}, {'reported': [{'ranks': [2], 'detail': 'slot row 1: no words from ranks [2] past 30 ms; their processes [12995] are exiting', 'epoch': 0, 'at': 1791337101.9998927}], 'slow': []}, {'reported': [], 'slow': []}, {'reported': [{'ranks': [2], 'detail': 'slot row 3: no words from ranks [2] past 30 ms; their processes [12995] are exiting', 'e
+2026-10-07T01:38:40Z terminate 2mo24hgs0raga7: {"data": {"podTerminate": null}}
+2026-10-07T01:38:40Z data copied; pod terminated
+2026-10-07T01:38:53Z branch check passed (pod 2mo24hgs0raga7, 5x A6000, 01:26:55-01:38:40, ~$0.52): kernel tests 10 passed, the dead rank's push cut after block 0's share named by block 1; adapter_1 no report; replace_mid_1 detected by the slot in 44 ms, one report, pause 1.154 s, 8/8 identical, exactness passing. Landing detection-mask on main.
+2026-10-07T01:39:50Z end adapter_1 rc=0
+2026-10-07T01:39:55Z adapter_1 results written; slot: {'variant': 'p2p', 'how': 'probe', 'detail': 'exact sum on all 5 devices', 'seconds': 4.16}
+2026-10-07T01:39:56Z spend [after adapter] balance 10.13, spent since start $5.22, pod 1xbucv0yh1ifv7 $17.45/h up 1001s
+2026-10-07T01:39:57Z pod:  adapter_port.sh drill replace_mid_1 --arm replace --kill mid
+2026-10-07T01:40:02Z start replace_mid_1: --arm replace --kill mid
+2026-10-07T01:41:37Z end replace_mid_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T01:41:37Z end replace_mid_1 rc=0
+2026-10-07T01:41:43Z replace_mid_1 results written; slot: {'variant': 'p2p', 'how': 'cache', 'detail': 'exact sum on all 5 devices', 'seconds': 0.0}
+2026-10-07T01:41:44Z spend [after replace] balance 10.13, spent since start $5.22, pod 1xbucv0yh1ifv7 $17.45/h up 1095s
+2026-10-07T01:41:48Z pod: adapter_port.sh summary (results.json)
+2026-10-07T01:41:54Z terminate 1xbucv0yh1ifv7: {"data": {"podTerminate": null}}
+2026-10-07T01:41:54Z data copied; pod terminated; watchdog stopped
+2026-10-07T01:41:55Z balance 10.13

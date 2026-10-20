@@ -1,0 +1,1 @@
+[{"at_ms":1791858826012,"severity":"Normal","reason":"SpecWritten","message":"generation 1 by operator api: cordoned, drained by 1791858946009 ms (nodes.sh drain)"},{"at_ms":1791858826012,"severity":"Normal","reason":"DrainWaiting","message":"2 positions would move at once, the policy allows 1"}]

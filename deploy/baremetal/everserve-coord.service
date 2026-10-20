@@ -1,0 +1,35 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# The coordinator: one per deployment, holding the lease. A second instance on another host
+# stands by until the first releases it.
+[Unit]
+Description=Everserve coordinator
+Documentation=file:///usr/share/doc/everserve/README.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=everserve
+Group=everserve
+EnvironmentFile=/etc/everserve/coord.env
+ExecStart=/usr/local/bin/everserve-controller coord
+RuntimeDirectory=everserve
+RuntimeDirectoryPreserve=yes
+StateDirectory=everserve
+KillSignal=SIGTERM
+# the graceful period (EVERSERVE_GRACEFUL_SHUTDOWN_SECS, 30 s) plus a margin
+TimeoutStopSec=45
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectControlGroups=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+SyslogIdentifier=everserve-coord
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

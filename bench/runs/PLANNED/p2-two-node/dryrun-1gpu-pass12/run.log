@@ -1,0 +1,138 @@
+2026-10-09T14:40:13Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: stock_restart node_fault single_death; trials 1 (fault) / 3 (other); tree 68f4520 + uncommitted
+2026-10-09T14:40:24Z nodes updated from the working tree (68f4520 + uncommitted)
+2026-10-09T14:40:59Z iperf3 node-b -> node-a: 28.59 Gbit/s
+2026-10-09T14:41:10Z NCCL send node-a <-> node-b: "decode_pp_send_128KB: 0.20 ms per send, 0.66 GB/s;prefill_pp_send_268MB: 138.13 ms per send, 1.94 GB/s;replication_burst_650MB: 332.79 ms per send, 1.95 GB/s;"
+2026-10-09T14:41:25Z iperf3 node-c -> node-a: 36.67 Gbit/s
+2026-10-09T14:41:25Z fabric: slowest link to node-a 28.59 Gbit/s (floor 1)
+2026-10-09T14:41:32Z clock of node-b against node-a: {"host": "10.0.0.9", "at": 1791556891.9540496, "probes": 20, "lost": 20, "error": "[Errno 111] Connection refused"}
+2026-10-09T14:41:33Z clock of node-c against node-a: {"host": "10.0.0.53", "at": 1791556893.5583372, "probes": 20, "lost": 20, "error": "[Errno 111] Connection refused"}
+2026-10-09T14:41:36Z == stock_restart trial 1
+2026-10-09T14:42:13Z control plane up: coordinator on a at 10.0.0.40:7400, daemons linked on a b c, records exchanged
+2026-10-09T14:42:17Z node-b headless started: stock vLLM (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T14:43:46Z stock_restart_1 armed: {"t_armed": 1791557023.5402322, "step": 100}
+2026-10-09T14:43:50Z node-b lost at 1791557028.495104954 (daemon and workers killed)
+2026-10-09T14:43:57Z native stacks of node-a's and node-b's engine processes requested for stock_restart_1
+2026-10-09T14:48:59Z end stock_restart_1 rc=1
+2026-10-09T14:48:59Z stock_restart_1: the stock engine exited 0 after node-b's loss; relaunching it
+2026-10-09T14:49:36Z control plane up: coordinator on a at 10.0.0.40:7400, daemons linked on a b c, records exchanged
+2026-10-09T14:49:41Z node-b headless started: stock vLLM (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T14:50:23Z end stock_restart_1_restart rc=0
+2026-10-09T14:50:29Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass12/arms/stock_restart/trial1
+stock_restart trial 1: stock_restart_first_token_s=379.029, stock_restart_relaunch_latency_s=312.44, stock_restart_engine_ready_s=17.479, sessions_kept_identical=0/8, requests_re_prefilled=8
+2026-10-09T14:50:39Z nodes a b c down
+stock_restart: 1 trials, green True, requests_re_prefilled=8, sessions_kept_identical=['0/8'], stock_restart_engine_ready_s=17.479, stock_restart_first_token_s=379.029, stock_restart_relaunch_latency_s=312.44
+2026-10-09T14:50:39Z == node_fault trial 1: control
+2026-10-09T14:51:14Z control plane up: coordinator on a at 10.0.0.40:7400, daemons linked on a b c, records exchanged
+2026-10-09T14:51:19Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T14:53:13Z end control_node_fault_1 rc=0
+2026-10-09T14:53:20Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass12/arms/node_fault/trial1/control
+2026-10-09T14:53:30Z nodes a b c down
+2026-10-09T14:53:33Z == node_fault trial 1
+2026-10-09T14:54:06Z compile cache staged from node-b onto node-c: b=49d4cf3c60:a57477b7647e,f964ea4030:21ecec3b6bb9 c=49d4cf3c60:a57477b7647e,f964ea4030:21ecec3b6bb9 
+2026-10-09T14:54:42Z control plane up: coordinator on a at 10.0.0.40:7400, daemons linked on a b c, records exchanged
+2026-10-09T14:54:47Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T14:55:15Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":["10.0.0.9:7402"],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"92e817b4a1484a607a67970bfdde5fe51fe1a7893bd3ff293289aeee61f0d98e"}
+pool 1 of 1 wanted (any position: 1 ); members 2 of 2
+replication targets {0: ['10.0.0.9:7402'], 1: ['10.0.0.40:7402']}
+compile key 35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1 consistent True per rank {0: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', '92e817b4a148'), 1: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', 'd50d27de49c0')} spares {}
+2026-10-09T14:55:19Z node_fault_1 armed: {"t_armed": 1791557714.245351, "step": 100}
+2026-10-09T14:55:22Z node-b lost at 1791557721.059817479 (daemon and workers killed)
+2026-10-09T14:55:29Z native stacks of node-a's and node-b's engine processes requested for node_fault_1
+2026-10-09T14:57:23Z end node_fault_1 rc=1
+2026-10-09T14:57:52Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass12/arms/node_fault/trial1
+2026-10-09T14:57:53Z node_fault_1 left no results (rc 0)
+2026-10-09T14:57:53Z node_fault trial 1 failed
+node_fault: 0 trials, green False, 
+2026-10-09T14:57:53Z == single_death trial 1: control
+2026-10-09T14:58:29Z control plane up: coordinator on a at 10.0.0.40:7400, daemons linked on a b c, records exchanged
+2026-10-09T14:58:34Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T14:59:30Z end control_single_death_1 rc=0
+2026-10-09T15:17:43Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: node_fault single_death; trials 1 (fault) / 3 (other); tree 4e947c2 + uncommitted
+2026-10-09T15:17:53Z nodes updated from the working tree (4e947c2 + uncommitted)
+2026-10-09T15:18:29Z iperf3 node-b -> node-a: 42.02 Gbit/s
+2026-10-09T15:18:40Z NCCL send node-a <-> node-b: "decode_pp_send_128KB: 0.17 ms per send, 0.78 GB/s;prefill_pp_send_268MB: 137.21 ms per send, 1.96 GB/s;replication_burst_650MB: 323.78 ms per send, 2.01 GB/s;"
+2026-10-09T15:18:55Z iperf3 node-c -> node-a: 41.71 Gbit/s
+2026-10-09T15:18:55Z fabric: slowest link to node-a 41.71 Gbit/s (floor 1)
+2026-10-09T15:19:01Z clock of node-b against node-a: {"host": "10.0.0.9", "at": 1791559141.6788158, "probes": 20, "lost": 20, "error": "[Errno 111] Connection refused"}
+2026-10-09T15:19:03Z clock of node-c against node-a: {"host": "10.0.0.53", "at": 1791559143.2679563, "probes": 20, "lost": 20, "error": "[Errno 111] Connection refused"}
+2026-10-09T15:19:03Z == node_fault trial 1: control
+2026-10-09T15:19:38Z control plane up: coordinator on a at 10.0.0.40:7400, daemons linked on a b c, records exchanged
+2026-10-09T15:19:43Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T15:20:25Z end control_node_fault_1 rc=0
+2026-10-09T15:20:51Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass12/arms/node_fault/trial1/control
+2026-10-09T15:21:01Z nodes a b c down
+2026-10-09T15:21:04Z == node_fault trial 1
+2026-10-09T15:21:50Z compile cache staged from node-b onto node-c: b=49d4cf3c60:c0300fea9072,f964ea4030:5a356e5d0fc7 c=49d4cf3c60:c0300fea9072,f964ea4030:5a356e5d0fc7 
+2026-10-09T15:22:25Z control plane up: coordinator on a at 10.0.0.40:7400, daemons linked on a b c, records exchanged
+2026-10-09T15:22:30Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T15:22:59Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":["10.0.0.9:7402"],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"92e817b4a1484a607a67970bfdde5fe51fe1a7893bd3ff293289aeee61f0d98e"}
+pool 1 of 1 wanted (any position: 1 ); members 2 of 2
+replication targets {0: ['10.0.0.9:7402'], 1: ['10.0.0.40:7402']}
+compile key 35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1 consistent True per rank {0: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', '92e817b4a148'), 1: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', 'd50d27de49c0')} spares {}
+2026-10-09T15:23:02Z node_fault_1 armed: {"t_armed": 1791559378.579207, "step": 100}
+2026-10-09T15:23:05Z node-b lost at 1791559384.248406338 (daemon and workers killed)
+2026-10-09T15:23:12Z native stacks of node-a's and node-b's engine processes requested for node_fault_1
+2026-10-09T15:25:06Z end node_fault_1 rc=1
+2026-10-09T15:25:35Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass12/arms/node_fault/trial1
+2026-10-09T15:25:37Z node_fault_1 left no results (rc 0)
+2026-10-09T15:25:37Z node_fault trial 1 failed
+node_fault: 0 trials, green False, 
+2026-10-09T15:25:37Z == single_death trial 1: control
+2026-10-09T15:26:12Z control plane up: coordinator on a at 10.0.0.40:7400, daemons linked on a b c, records exchanged
+2026-10-09T15:54:27Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: node_fault single_death; trials 1 (fault) / 3 (other); tree 69ceb21 + uncommitted
+2026-10-09T15:54:37Z nodes updated from the working tree (69ceb21 + uncommitted)
+2026-10-09T15:55:13Z iperf3 node-b -> node-a: 41.41 Gbit/s
+2026-10-09T15:55:24Z NCCL send node-a <-> node-b: "decode_pp_send_128KB: 0.19 ms per send, 0.68 GB/s;prefill_pp_send_268MB: 135.90 ms per send, 1.98 GB/s;replication_burst_650MB: 337.18 ms per send, 1.93 GB/s;"
+2026-10-09T15:55:40Z iperf3 node-c -> node-a: 40.76 Gbit/s
+2026-10-09T15:55:40Z fabric: slowest link to node-a 40.76 Gbit/s (floor 1)
+2026-10-09T15:55:45Z clock of node-b against node-a: {"host": "10.0.0.9", "at": 1791561345.850969, "probes": 20, "lost": 20, "error": "[Errno 111] Connection refused"}
+2026-10-09T15:55:47Z clock of node-c against node-a: {"host": "10.0.0.53", "at": 1791561347.457209, "probes": 20, "lost": 20, "error": "[Errno 111] Connection refused"}
+2026-10-09T15:55:47Z == node_fault trial 1: control
+2026-10-09T15:56:23Z control plane up: coordinator on a at 10.0.0.40:7400, daemons linked on a b c, records exchanged
+2026-10-09T15:56:27Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T15:57:11Z end control_node_fault_1 rc=0
+2026-10-09T15:57:36Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass12/arms/node_fault/trial1/control
+2026-10-09T15:57:46Z nodes a b c down
+2026-10-09T15:57:49Z == node_fault trial 1
+2026-10-09T15:58:35Z compile cache staged from node-b onto node-c: b=49d4cf3c60:c0300fea9072,f964ea4030:5a356e5d0fc7 c=49d4cf3c60:c0300fea9072,f964ea4030:5a356e5d0fc7 
+2026-10-09T15:59:11Z control plane up: coordinator on a at 10.0.0.40:7400, daemons linked on a b c, records exchanged
+2026-10-09T15:59:15Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T15:59:44Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":["10.0.0.9:7402"],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"92e817b4a1484a607a67970bfdde5fe51fe1a7893bd3ff293289aeee61f0d98e"}
+pool 1 of 1 wanted (any position: 1 ); members 2 of 2
+replication targets {0: ['10.0.0.9:7402'], 1: ['10.0.0.40:7402']}
+compile key 35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1 consistent True per rank {0: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', '92e817b4a148'), 1: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', 'd50d27de49c0')} spares {}
+2026-10-09T15:59:47Z node_fault_1 armed: {"t_armed": 1791561585.17846, "step": 100}
+2026-10-09T15:59:51Z node-b lost at 1791561589.544193485 (daemon and workers killed)
+2026-10-09T15:59:58Z native stacks of node-a's and node-b's engine processes requested for node_fault_1
+2026-10-09T16:00:24Z end node_fault_1 rc=0
+2026-10-09T16:00:54Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass12/arms/node_fault/trial1
+2026-10-09T16:01:05Z node_fault_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+node_fault trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+2026-10-09T16:01:14Z nodes a b c down
+node_fault: 1 trials, green True, first_differing_position=[None], instrument_pause_s=1.5607, node_fault_detection_s=0.0107, node_fault_gap_s=10.9539, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8'], shadow_formation_s=0.294
+2026-10-09T16:01:14Z == single_death trial 1: control
+2026-10-09T16:01:50Z control plane up: coordinator on a at 10.0.0.40:7400, daemons linked on a b c, records exchanged
+2026-10-09T16:01:54Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T16:02:36Z end control_single_death_1 rc=0
+2026-10-09T16:03:03Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass12/arms/single_death/trial1/control
+2026-10-09T16:03:12Z nodes a b c down
+2026-10-09T16:03:15Z == single_death trial 1
+2026-10-09T16:03:47Z compile cache staged from node-b onto node-c: b=49d4cf3c60:c0300fea9072,f964ea4030:5a356e5d0fc7 c=49d4cf3c60:c0300fea9072,f964ea4030:5a356e5d0fc7 
+2026-10-09T16:04:22Z control plane up: coordinator on a at 10.0.0.40:7400, daemons linked on a b c, records exchanged
+2026-10-09T16:04:27Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T16:04:56Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":["10.0.0.9:7402"],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"92e817b4a1484a607a67970bfdde5fe51fe1a7893bd3ff293289aeee61f0d98e"}
+pool 1 of 1 wanted (any position: 1 ); members 2 of 2
+replication targets {0: ['10.0.0.9:7402'], 1: ['10.0.0.40:7402']}
+compile key 35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1 consistent True per rank {0: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', '92e817b4a148'), 1: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', 'd50d27de49c0')} spares {}
+2026-10-09T16:04:59Z single_death_1 armed: {"t_armed": 1791561894.3263278, "step": 100}
+2026-10-09T16:05:04Z node-b's worker for rank 1 (pid 28116) killed at 1791561902.660622603
+2026-10-09T16:05:11Z native stacks of node-a's and node-b's engine processes requested for single_death_1
+2026-10-09T16:05:34Z end single_death_1 rc=0
+2026-10-09T16:06:20Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass12/arms/single_death/trial1
+2026-10-09T16:06:31Z single_death_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+single_death trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+2026-10-09T16:06:41Z nodes a b c down
+single_death: 1 trials, green True, first_differing_position=[None], instrument_pause_s=1.5615, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8'], shadow_formation_s=0.305, single_death_detection_s=0.0097, single_death_gap_s=11.2781
+2026-10-09T16:06:47Z clock of node-b against node-a: {"host": "10.0.0.9", "at": 1791562007.0367296, "probes": 20, "lost": 20, "error": "[Errno 111] Connection refused"}
+2026-10-09T16:06:48Z clock of node-c against node-a: {"host": "10.0.0.53", "at": 1791562008.6372876, "probes": 20, "lost": 20, "error": "[Errno 111] Connection refused"}
+2026-10-09T16:06:48Z battery done: node_fault node_fault-staged-rows-refused node_fault-take-built-as-rank0 single_death stock_restart ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass12

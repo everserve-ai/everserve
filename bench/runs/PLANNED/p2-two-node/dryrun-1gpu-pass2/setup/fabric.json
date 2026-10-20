@@ -1,0 +1,2 @@
+{"node": "node-b", "iperf3_gbit_s": 40.32, "nccl": "decode_pp_send_128KB: 0.17 ms per send, 0.77 GB/s;prefill_pp_send_268MB: 133.97 ms per send, 2.00 GB/s;replication_burst_650MB: 326.33 ms per send, 1.99 GB/s;"}
+{"node": "node-c", "iperf3_gbit_s": 37.03, "nccl": null}

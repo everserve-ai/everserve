@@ -1,0 +1,1109 @@
+2026-10-12T17:13:00Z run 3, the drains smoke, on Nebius eu-north1: five gpu-l40s-a 1gpu-8vcpu-32gb VMs, Qwen/Qwen3-1.7B @ 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e, TP1 x PP3 on a b c, spares on d (rank 1) and e (rank 2); commit 3767782; watchdog 60 min, budget cap $11 at $2.00/GPU-h
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00yg53f2stdc1q3s4" over resource "computeinstance-e00mccsvdz587vrysb" to complete
+2026-10-12T17:13:13Z deploy c failed: RuntimeError: waiting for operation "computeoperation-e00yg53f2stdc1q3s4" over resource "computeinstance-e00mccsvdz587vrysb" to complete
+2026-10-12T17:13:13Z deploy c attempt 1 failed; a half-made VM is deleted and the deploy retried in 60 s
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00z3ywrs5v4cg5vkt" over resource "computeinstance-e00sd6wd7t2gs0jnta" to complete
+2026-10-12T17:13:14Z deploy d failed: RuntimeError: waiting for operation "computeoperation-e00z3ywrs5v4cg5vkt" over resource "computeinstance-e00sd6wd7t2gs0jnta" to complete
+2026-10-12T17:13:14Z deploy d attempt 1 failed; a half-made VM is deleted and the deploy retried in 60 s
+2026-10-12T17:13:25Z terminate computeinstance-e00mccsvdz587vrysb: {"deleted": "computeinstance-e00mccsvdz587vrysb", "disks": []}
+2026-10-12T17:13:26Z terminate computeinstance-e00sd6wd7t2gs0jnta: {"deleted": "computeinstance-e00sd6wd7t2gs0jnta", "disks": []}
+2026-10-12T17:13:41Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00afngq63vr8y8d87", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.11", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:13:41Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00afngq63vr8y8d87", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.11", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:13:41Z VM b computeinstance-e00afngq63vr8y8d87 up, watchdog at the start + 60 min
+2026-10-12T17:13:54Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00mw8g669bp1qdzz4", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.4", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:13:54Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00mw8g669bp1qdzz4", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.4", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:13:54Z VM e computeinstance-e00mw8g669bp1qdzz4 up, watchdog at the start + 60 min
+2026-10-12T17:14:26Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00ckzxm34xz3e9txf", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.0", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:14:26Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00ckzxm34xz3e9txf", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.0", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:14:26Z VM a computeinstance-e00ckzxm34xz3e9txf up, watchdog at the start + 60 min
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00x1cj35km8e03s75" over resource "computeinstance-e00cgdj6sad783jy6z" to complete
+2026-10-12T17:14:33Z deploy c failed: RuntimeError: waiting for operation "computeoperation-e00x1cj35km8e03s75" over resource "computeinstance-e00cgdj6sad783jy6z" to complete
+2026-10-12T17:14:33Z deploy c attempt 2 failed; a half-made VM is deleted and the deploy retried in 60 s
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00g1fr4nar14t7j34" over resource "computeinstance-e00msewf8nyk1t0t98" to complete
+2026-10-12T17:14:42Z deploy d failed: RuntimeError: waiting for operation "computeoperation-e00g1fr4nar14t7j34" over resource "computeinstance-e00msewf8nyk1t0t98" to complete
+2026-10-12T17:14:42Z deploy d attempt 2 failed; a half-made VM is deleted and the deploy retried in 60 s
+2026-10-12T17:14:45Z terminate computeinstance-e00cgdj6sad783jy6z: {"deleted": "computeinstance-e00cgdj6sad783jy6z", "disks": []}
+2026-10-12T17:14:55Z terminate computeinstance-e00msewf8nyk1t0t98: {"deleted": "computeinstance-e00msewf8nyk1t0t98", "disks": []}
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00jta5012y0erp4eb" over resource "computeinstance-e00qphvsjhsn207m96" to complete
+2026-10-12T17:15:54Z deploy c failed: RuntimeError: waiting for operation "computeoperation-e00jta5012y0erp4eb" over resource "computeinstance-e00qphvsjhsn207m96" to complete
+2026-10-12T17:15:54Z deploy c attempt 3 failed; a half-made VM is deleted and the deploy retried in 60 s
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00y71hyf2m7q6dvzn" over resource "computeinstance-e00gj4r0hekcvy5yp1" to complete
+2026-10-12T17:16:04Z deploy d failed: RuntimeError: waiting for operation "computeoperation-e00y71hyf2m7q6dvzn" over resource "computeinstance-e00gj4r0hekcvy5yp1" to complete
+2026-10-12T17:16:04Z deploy d attempt 3 failed; a half-made VM is deleted and the deploy retried in 60 s
+2026-10-12T17:16:05Z terminate computeinstance-e00qphvsjhsn207m96: {"deleted": "computeinstance-e00qphvsjhsn207m96", "disks": []}
+2026-10-12T17:17:05Z a deploy failed; every VM released:     raise JSONDecodeError("Expecting value", s, err.value) from None;json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0);
+2026-10-12T17:17:24Z terminate computeinstance-e00gj4r0hekcvy5yp1: {"deleted": "computeinstance-e00gj4r0hekcvy5yp1", "disks": []}
+2026-10-12T17:18:59Z terminate computeinstance-e00ckzxm34xz3e9txf: {"deleted": "computeinstance-e00ckzxm34xz3e9txf", "disks": []}
+2026-10-12T17:20:40Z terminate computeinstance-e00mw8g669bp1qdzz4: {"deleted": "computeinstance-e00mw8g669bp1qdzz4", "disks": []}
+2026-10-12T17:22:02Z terminate computeinstance-e00afngq63vr8y8d87: {"deleted": "computeinstance-e00afngq63vr8y8d87", "disks": []}
+2026-10-12T17:26:24Z attempt 2: the public IPv4 quota raised to 10 in eu-north1 (Cort, 2026-10-12); Cort's go: "go or it"
+2026-10-12T17:26:31Z run 3, the drains smoke, on Nebius eu-north1: five gpu-l40s-a 1gpu-8vcpu-32gb VMs, Qwen/Qwen3-1.7B @ 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e, TP1 x PP3 on a b c, spares on d (rank 1) and e (rank 2); commit 3767782; watchdog 60 min, budget cap $11 at $2.00/GPU-h
+2026-10-12T17:27:09Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00qyjt8exdmjp570g", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.3", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:27:09Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00qyjt8exdmjp570g", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.3", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:27:09Z VM e computeinstance-e00qyjt8exdmjp570g up, watchdog at the start + 60 min
+2026-10-12T17:27:11Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00f29e48a49nfpw0j", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.73", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:27:11Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00f29e48a49nfpw0j", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.73", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:27:12Z VM d computeinstance-e00f29e48a49nfpw0j up, watchdog at the start + 60 min
+2026-10-12T17:27:14Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00kat9fj0m32n8md0", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.33", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:27:14Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00kat9fj0m32n8md0", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.33", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:27:14Z VM c computeinstance-e00kat9fj0m32n8md0 up, watchdog at the start + 60 min
+2026-10-12T17:27:15Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00xzy09dasaqbsnj5", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.15", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:27:15Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00xzy09dasaqbsnj5", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.15", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:27:15Z VM a computeinstance-e00xzy09dasaqbsnj5 up, watchdog at the start + 60 min
+2026-10-12T17:28:57Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00kxaxxqa8jnc308x", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.71", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:28:57Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00kxaxxqa8jnc308x", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.71", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T17:28:57Z VM b computeinstance-e00kxaxxqa8jnc308x up, watchdog at the start + 60 min
+2026-10-12T17:28:57Z budget: 5 VMs, 5 GPUs at $2.0/GPU-h, cap $11.0
+2026-10-12T17:28:57Z budget: $0.41 spent of $11.0
+2026-10-12T17:28:58Z VM a computeinstance-e00xzy09dasaqbsnj5 public 195.242.30.187 private 10.0.0.15
+2026-10-12T17:28:58Z VM b computeinstance-e00kxaxxqa8jnc308x public 89.169.124.189 private 10.0.0.71
+2026-10-12T17:28:59Z VM c computeinstance-e00kat9fj0m32n8md0 public 89.169.123.189 private 10.0.0.33
+2026-10-12T17:28:59Z VM d computeinstance-e00f29e48a49nfpw0j public 89.169.111.107 private 10.0.0.73
+2026-10-12T17:29:00Z VM e computeinstance-e00qyjt8exdmjp570g public 89.169.121.159 private 10.0.0.3
+2026-10-12T17:29:37Z private network (a to b, c, d, e): ok after 5 s
+2026-10-12T17:29:39Z node-a: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T17:29:40Z node-b: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T17:29:42Z node-c: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T17:29:43Z node-d: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T17:29:45Z node-e: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T17:30:36Z setup started on a b c d e
+2026-10-12T17:33:57Z budget: $1.24 spent of $11.0
+2026-10-12T17:35:25Z setup done on a b c d e
+2026-10-12T17:35:35Z the node guards on a: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+2026-10-12T17:35:35Z setup done; the node-a guards: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+[2m2026-10-12T17:35:37.008925Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-12T17:35:37.008939Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-12T17:35:37.008941Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-12T17:35:37.008943Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-12T17:35:37.008944Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-12T17:35:37.008945Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-12T17:35:37.008947Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-12T17:35:37.008948Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-12T17:35:37.008949Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-12T17:35:37.008950Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+[2m2026-10-12T17:35:37.008951Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.crt
+[2m2026-10-12T17:35:37.008952Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.key
+[2m2026-10-12T17:35:37.008954Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.crt
+[2m2026-10-12T17:35:37.008955Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.key
+2026-10-12T17:35:44Z certs made on a, the other nodes' copied
+2026-10-12T17:35:49Z node-a versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 37677820cb960f036b55900d8905f4b86babd466 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T17:35:55Z node-b versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 37677820cb960f036b55900d8905f4b86babd466 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T17:36:00Z node-c versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 37677820cb960f036b55900d8905f4b86babd466 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T17:36:05Z node-d versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 37677820cb960f036b55900d8905f4b86babd466 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T17:36:11Z node-e versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 37677820cb960f036b55900d8905f4b86babd466 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T17:36:11Z drains smoke on Qwen/Qwen3-1.7B, TP1 x PP3 over a b c, spares d:1 e:1, 8 sessions x 512 prompt, 7000 tokens, blocks 3948; leads node-b 30000 ms, node-c 120000 ms; commit 3767782, $1.61 spent
+2026-10-12T17:38:57Z budget: $2.07 spent of $11.0
+2026-10-12T17:43:57Z budget: $2.91 spent of $11.0
+2026-10-12T17:47:58Z terminate computeinstance-e00qyjt8exdmjp570g: {"deleted": "computeinstance-e00qyjt8exdmjp570g", "disks": []}
+2026-10-12T17:47:58Z terminate computeinstance-e00kxaxxqa8jnc308x: {"deleted": "computeinstance-e00kxaxxqa8jnc308x", "disks": []}
+2026-10-12T17:47:59Z terminate computeinstance-e00xzy09dasaqbsnj5: {"deleted": "computeinstance-e00xzy09dasaqbsnj5", "disks": []}
+2026-10-12T17:47:59Z terminate computeinstance-e00kat9fj0m32n8md0: {"deleted": "computeinstance-e00kat9fj0m32n8md0", "disks": []}
+2026-10-12T17:48:08Z terminate computeinstance-e00f29e48a49nfpw0j: {"deleted": "computeinstance-e00f29e48a49nfpw0j", "disks": []}
+2026-10-12T17:48:08Z released every VM at once: the spares were refused for their compile caches (no cache staged onto node-d and node-e) and the sessions ran 80 s; the fix needs a gate the hour cannot hold
+2026-10-12T18:09:36Z attempt 3 on 60a1ee2 (cache staging after a warm-up; 4 x 16,000 tokens); Cort's standing word: "you havve permission to keep restarting the run until we get it good to go"
+2026-10-12T18:09:36Z run 3, the drains smoke, on Nebius eu-north1: five gpu-l40s-a 1gpu-8vcpu-32gb VMs, Qwen/Qwen3-1.7B @ 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e, TP1 x PP3 on a b c, spares on d (rank 1) and e (rank 2); commit 60a1ee2; watchdog 60 min, budget cap $11 at $2.00/GPU-h
+2026-10-12T18:10:16Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00rngekz622e85sjd", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.0", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T18:10:16Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00rngekz622e85sjd", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.0", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T18:10:16Z VM d computeinstance-e00rngekz622e85sjd up, watchdog at the start + 60 min
+2026-10-12T18:10:24Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00a5xgy2tw0gzpt44", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.36", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T18:10:24Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00a5xgy2tw0gzpt44", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.36", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T18:10:24Z VM c computeinstance-e00a5xgy2tw0gzpt44 up, watchdog at the start + 60 min
+2026-10-12T18:10:34Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00wntb3nk167scgs1", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.63", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T18:10:34Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00wntb3nk167scgs1", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.63", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T18:10:34Z VM a computeinstance-e00wntb3nk167scgs1 up, watchdog at the start + 60 min
+2026-10-12T18:10:35Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00w0y0kve85jm8h71", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.9", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T18:10:35Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00w0y0kve85jm8h71", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.9", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T18:10:35Z VM e computeinstance-e00w0y0kve85jm8h71 up, watchdog at the start + 60 min
+2026-10-12T18:10:37Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00zv6v3yx5kpqs73h", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.47", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T18:10:37Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00zv6v3yx5kpqs73h", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.47", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T18:10:37Z VM b computeinstance-e00zv6v3yx5kpqs73h up, watchdog at the start + 60 min
+2026-10-12T18:10:37Z budget: 5 VMs, 5 GPUs at $2.0/GPU-h, cap $11.0
+2026-10-12T18:10:37Z budget: $0.17 spent of $11.0
+2026-10-12T18:10:37Z VM a computeinstance-e00wntb3nk167scgs1 public 89.169.98.199 private 10.0.0.63
+2026-10-12T18:10:38Z VM b computeinstance-e00zv6v3yx5kpqs73h public 89.169.113.42 private 10.0.0.47
+2026-10-12T18:10:38Z VM c computeinstance-e00a5xgy2tw0gzpt44 public 89.169.123.98 private 10.0.0.36
+2026-10-12T18:10:39Z VM d computeinstance-e00rngekz622e85sjd public 89.169.99.214 private 10.0.0.0
+2026-10-12T18:10:39Z VM e computeinstance-e00w0y0kve85jm8h71 public 89.169.102.28 private 10.0.0.9
+2026-10-12T18:11:17Z private network (a to b, c, d, e): ok after 5 s
+2026-10-12T18:11:19Z node-a: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T18:11:20Z node-b: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T18:11:22Z node-c: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T18:11:24Z node-d: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T18:11:25Z node-e: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T18:12:18Z setup started on a b c d e
+2026-10-12T18:15:37Z budget: $1.00 spent of $11.0
+2026-10-12T18:17:08Z setup done on a b c d e
+2026-10-12T18:17:18Z the node guards on a: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+2026-10-12T18:17:18Z setup done; the node-a guards: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+[2m2026-10-12T18:17:20.080873Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-12T18:17:20.080889Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-12T18:17:20.080891Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-12T18:17:20.080893Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-12T18:17:20.080894Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-12T18:17:20.080895Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-12T18:17:20.080897Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-12T18:17:20.080898Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-12T18:17:20.080899Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-12T18:17:20.080900Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+[2m2026-10-12T18:17:20.080901Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.crt
+[2m2026-10-12T18:17:20.080902Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.key
+[2m2026-10-12T18:17:20.080904Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.crt
+[2m2026-10-12T18:17:20.080905Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.key
+2026-10-12T18:17:27Z certs made on a, the other nodes' copied
+2026-10-12T18:17:32Z node-a versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 60a1ee23d94b344c69b458067f69610a241f2604 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T18:17:37Z node-b versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 60a1ee23d94b344c69b458067f69610a241f2604 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T18:17:43Z node-c versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 60a1ee23d94b344c69b458067f69610a241f2604 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T18:17:48Z node-d versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 60a1ee23d94b344c69b458067f69610a241f2604 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T18:17:53Z node-e versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 60a1ee23d94b344c69b458067f69610a241f2604 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T18:17:53Z drains smoke on Qwen/Qwen3-1.7B, TP1 x PP3 over a b c, spares d:1 e:1, 4 sessions x 512 prompt, 16000 tokens, blocks 4256; leads node-b 20000 ms, node-c 60000 ms; commit 60a1ee2, $1.38 spent
+2026-10-12T18:20:37Z budget: $1.84 spent of $11.0
+2026-10-12T18:23:36Z warm-up done; compile caches staged b to d and c to e, $2.34 spent
+2026-10-12T18:25:37Z budget: $2.67 spent of $11.0
+2026-10-12T18:26:31Z serving at step 50 with both spares standing, $2.82 spent
+2026-10-12T18:27:16Z node-d and node-e cordoned and uncordoned, $2.95 spent
+2026-10-12T18:27:34Z drains asked: node-b (20000 ms), node-c (60000 ms), node-b again (80000 ms), $2.99 spent
+2026-10-12T18:30:37Z budget: $3.50 spent of $11.0
+2026-10-12T18:32:48Z node-b's notice not seen in 120 s, $3.87 spent
+2026-10-12T18:33:25Z coordinator restarted, $3.97 spent
+2026-10-12T18:35:37Z budget: $4.34 spent of $11.0
+2026-10-12T18:40:37Z budget: $5.17 spent of $11.0
+2026-10-12T18:45:37Z budget: $6.01 spent of $11.0
+2026-10-12T18:50:37Z budget: $6.84 spent of $11.0
+2026-10-12T18:51:58Z attempt 3 stopped: node-b's change committed (epoch 1); node-c's failed on every member's KeyError (0, 'R1', 'R2'): sets are formed at the engine's start only, so an engine covers one transition (decision 0035, not built); logs collected
+2026-10-12T18:53:40Z terminate computeinstance-e00w0y0kve85jm8h71: {"deleted": "computeinstance-e00w0y0kve85jm8h71", "disks": []}
+2026-10-12T18:53:40Z terminate computeinstance-e00zv6v3yx5kpqs73h: {"deleted": "computeinstance-e00zv6v3yx5kpqs73h", "disks": []}
+2026-10-12T18:53:40Z terminate computeinstance-e00wntb3nk167scgs1: {"deleted": "computeinstance-e00wntb3nk167scgs1", "disks": []}
+2026-10-12T18:53:41Z terminate computeinstance-e00rngekz622e85sjd: {"deleted": "computeinstance-e00rngekz622e85sjd", "disks": []}
+2026-10-12T18:53:44Z terminate computeinstance-e00a5xgy2tw0gzpt44: {"deleted": "computeinstance-e00a5xgy2tw0gzpt44", "disks": []}
+2026-10-12T18:53:44Z released every VM at once: the spares were refused for their compile caches (no cache staged onto node-d and node-e) and the sessions ran 80 s; the fix needs a gate the hour cannot hold
+2026-10-12T19:49:43Z attempt 4 on a238104: cover plans (0035 both halves, protocol 8), the release by kill, the commit to every daemon, the cordon's refresh; Cort's word: "feel free to run another test once we land all fixes and expect a full green run"
+2026-10-12T19:49:44Z run 3, the drains smoke, on Nebius eu-north1: five gpu-l40s-a 1gpu-8vcpu-32gb VMs, Qwen/Qwen3-1.7B @ 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e, TP1 x PP3 on a b c, spares on d (rank 1) and e (rank 2); commit a238104; watchdog 60 min, budget cap $11 at $2.00/GPU-h
+2026-10-12T19:50:19Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00ppgbt8wxd8ktcqs", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.3", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T19:50:19Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00ppgbt8wxd8ktcqs", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.3", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T19:50:19Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00vczjytqr6x6jwj6", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.2", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T19:50:19Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00vczjytqr6x6jwj6", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.2", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T19:50:19Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00m38m8ngz9jhn37s", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.73", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T19:50:19Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00m38m8ngz9jhn37s", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.73", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T19:50:19Z VM c computeinstance-e00ppgbt8wxd8ktcqs up, watchdog at the start + 60 min
+2026-10-12T19:50:19Z VM a computeinstance-e00vczjytqr6x6jwj6 up, watchdog at the start + 60 min
+2026-10-12T19:50:19Z VM d computeinstance-e00m38m8ngz9jhn37s up, watchdog at the start + 60 min
+2026-10-12T19:50:19Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00rnwwh0vfkdjhehw", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.9", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T19:50:19Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00rnwwh0vfkdjhehw", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.9", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T19:50:19Z VM e computeinstance-e00rnwwh0vfkdjhehw up, watchdog at the start + 60 min
+2026-10-12T19:50:23Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00nr2289nj6psttdz", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.26", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T19:50:23Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00nr2289nj6psttdz", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.26", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T19:50:23Z VM b computeinstance-e00nr2289nj6psttdz up, watchdog at the start + 60 min
+2026-10-12T19:50:23Z budget: 5 VMs, 5 GPUs at $2.0/GPU-h, cap $11.0
+2026-10-12T19:50:23Z budget: $0.11 spent of $11.0
+2026-10-12T19:50:24Z VM a computeinstance-e00vczjytqr6x6jwj6 public 89.169.121.123 private 10.0.0.2
+2026-10-12T19:50:24Z VM b computeinstance-e00nr2289nj6psttdz public 89.169.122.55 private 10.0.0.26
+2026-10-12T19:50:24Z VM c computeinstance-e00ppgbt8wxd8ktcqs public 195.242.30.49 private 10.0.0.3
+2026-10-12T19:50:25Z VM d computeinstance-e00m38m8ngz9jhn37s public 89.169.110.13 private 10.0.0.73
+2026-10-12T19:50:25Z VM e computeinstance-e00rnwwh0vfkdjhehw public 89.169.111.196 private 10.0.0.9
+2026-10-12T19:51:03Z private network (a to b, c, d, e): ok after 5 s
+2026-10-12T19:51:05Z node-a: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T19:51:07Z node-b: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T19:51:08Z node-c: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T19:51:10Z node-d: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T19:51:11Z node-e: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T19:52:22Z setup started on a b c d e
+2026-10-12T19:55:23Z budget: $0.94 spent of $11.0
+2026-10-12T19:57:12Z setup done on a b c d e
+2026-10-12T19:57:22Z the node guards on a: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+2026-10-12T19:57:22Z setup done; the node-a guards: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+[2m2026-10-12T19:57:24.191463Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-12T19:57:24.191477Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-12T19:57:24.191479Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-12T19:57:24.191481Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-12T19:57:24.191482Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-12T19:57:24.191483Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-12T19:57:24.191485Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-12T19:57:24.191486Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-12T19:57:24.191487Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-12T19:57:24.191488Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+[2m2026-10-12T19:57:24.191489Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.crt
+[2m2026-10-12T19:57:24.191490Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.key
+[2m2026-10-12T19:57:24.191492Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.crt
+[2m2026-10-12T19:57:24.191493Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.key
+2026-10-12T19:57:31Z certs made on a, the other nodes' copied
+2026-10-12T19:57:37Z node-a versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c a2381046c40c52fd72f0efec1dcc541dd00499da 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T19:57:42Z node-b versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c a2381046c40c52fd72f0efec1dcc541dd00499da 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T19:57:48Z node-c versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c a2381046c40c52fd72f0efec1dcc541dd00499da 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T19:57:53Z node-d versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c a2381046c40c52fd72f0efec1dcc541dd00499da 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T19:57:58Z node-e versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c a2381046c40c52fd72f0efec1dcc541dd00499da 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T19:57:59Z drains smoke on Qwen/Qwen3-1.7B, TP1 x PP3 over a b c, spares d:1 e:1, 4 sessions x 512 prompt, 16000 tokens, blocks 4256; leads node-b 20000 ms, node-c 120000 ms; commit a238104, $1.38 spent
+2026-10-12T20:00:23Z budget: $1.78 spent of $11.0
+2026-10-12T20:03:44Z warm-up done; compile caches staged b to d and c to e, $2.34 spent
+2026-10-12T20:05:23Z budget: $2.61 spent of $11.0
+2026-10-12T20:06:32Z the engine up, both spares standing, both losses covered, $2.80 spent
+2026-10-12T20:07:34Z node-d and node-e cordoned and uncordoned; both losses covered again, $2.97 spent
+2026-10-12T20:07:37Z serving at step 50, $2.98 spent
+2026-10-12T20:07:55Z drains asked: node-b (20000 ms), node-c (120000 ms), node-b again (80000 ms), $3.03 spent
+2026-10-12T20:10:23Z budget: $3.44 spent of $11.0
+2026-10-12T20:10:25Z attempt 4 stopped: the engine served on planned cover (both losses covered at 20:06:32, again after the cordon round at 20:07:34), then node-b's change failed on rank 0's KeyError (0, 'R1', 2): the change path named the spare R1 while the plan formed (0, R1@node-d:0, 2); logs collected
+2026-10-12T20:11:58Z terminate computeinstance-e00nr2289nj6psttdz: {"deleted": "computeinstance-e00nr2289nj6psttdz", "disks": []}
+2026-10-12T20:11:58Z terminate computeinstance-e00rnwwh0vfkdjhehw: {"deleted": "computeinstance-e00rnwwh0vfkdjhehw", "disks": []}
+2026-10-12T20:11:59Z terminate computeinstance-e00ppgbt8wxd8ktcqs: {"deleted": "computeinstance-e00ppgbt8wxd8ktcqs", "disks": []}
+2026-10-12T20:12:00Z terminate computeinstance-e00vczjytqr6x6jwj6: {"deleted": "computeinstance-e00vczjytqr6x6jwj6", "disks": []}
+2026-10-12T20:12:01Z terminate computeinstance-e00m38m8ngz9jhn37s: {"deleted": "computeinstance-e00m38m8ngz9jhn37s", "disks": []}
+2026-10-12T20:12:01Z released every VM at once: the spares were refused for their compile caches (no cache staged onto node-d and node-e) and the sessions ran 80 s; the fix needs a gate the hour cannot hold
+2026-10-12T20:26:06Z attempt 5 on 04208a1: the replacement set found by its spare, the stage's stand-in with a plan's pipeline group; record in run/attempt5; cap $9.50 under the balance left
+2026-10-12T20:26:06Z run 3, the drains smoke, on Nebius eu-north1: five gpu-l40s-a 1gpu-8vcpu-32gb VMs, Qwen/Qwen3-1.7B @ 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e, TP1 x PP3 on a b c, spares on d (rank 1) and e (rank 2); commit 04208a1; watchdog 60 min, budget cap $9.5 at $2.00/GPU-h
+2026-10-12T20:26:56Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00pq4511xyy4tasqw", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.0", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T20:26:56Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00pq4511xyy4tasqw", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.0", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T20:26:57Z VM e computeinstance-e00pq4511xyy4tasqw up, watchdog at the start + 60 min
+2026-10-12T20:27:00Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00gd0x8kq9nkte23y", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.4", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T20:27:00Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00gd0x8kq9nkte23y", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.4", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T20:27:00Z VM a computeinstance-e00gd0x8kq9nkte23y up, watchdog at the start + 60 min
+2026-10-12T20:27:00Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00mxyjtdmmw28hpxd", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.96", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T20:27:00Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00mxyjtdmmw28hpxd", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.96", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T20:27:00Z VM d computeinstance-e00mxyjtdmmw28hpxd up, watchdog at the start + 60 min
+2026-10-12T20:27:00Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00x1rcm9z0v60h5av", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.63", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T20:27:00Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00x1rcm9z0v60h5av", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.63", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T20:27:00Z VM c computeinstance-e00x1rcm9z0v60h5av up, watchdog at the start + 60 min
+2026-10-12T20:27:10Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00twv2jj2s0zjy7cs", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.20", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T20:27:10Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00twv2jj2s0zjy7cs", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.20", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T20:27:10Z VM b computeinstance-e00twv2jj2s0zjy7cs up, watchdog at the start + 60 min
+2026-10-12T20:27:10Z budget: 5 VMs, 5 GPUs at $2.0/GPU-h, cap $9.5
+2026-10-12T20:27:10Z budget: $0.18 spent of $9.5
+2026-10-12T20:27:11Z VM a computeinstance-e00gd0x8kq9nkte23y public 89.169.112.163 private 10.0.0.4
+2026-10-12T20:27:11Z VM b computeinstance-e00twv2jj2s0zjy7cs public 89.169.123.97 private 10.0.0.20
+2026-10-12T20:27:12Z VM c computeinstance-e00x1rcm9z0v60h5av public 89.169.120.3 private 10.0.0.63
+2026-10-12T20:27:12Z VM d computeinstance-e00mxyjtdmmw28hpxd public 89.169.112.248 private 10.0.0.96
+2026-10-12T20:27:13Z VM e computeinstance-e00pq4511xyy4tasqw public 89.169.125.246 private 10.0.0.0
+2026-10-12T20:27:47Z private network (a to b, c, d, e): ok after 5 s
+2026-10-12T20:27:49Z node-a: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T20:27:50Z node-b: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T20:27:52Z node-c: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T20:27:54Z node-d: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T20:27:55Z node-e: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T20:28:52Z setup started on a b c d e
+2026-10-12T20:32:10Z budget: $1.01 spent of $9.5
+2026-10-12T20:34:09Z setup done on a b c d e
+2026-10-12T20:34:19Z the node guards on a: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+2026-10-12T20:34:19Z setup done; the node-a guards: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+[2m2026-10-12T20:34:21.485653Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-12T20:34:21.485669Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-12T20:34:21.485671Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-12T20:34:21.485673Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-12T20:34:21.485674Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-12T20:34:21.485675Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-12T20:34:21.485677Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-12T20:34:21.485678Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-12T20:34:21.485679Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-12T20:34:21.485680Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+[2m2026-10-12T20:34:21.485682Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.crt
+[2m2026-10-12T20:34:21.485683Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.key
+[2m2026-10-12T20:34:21.485684Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.crt
+[2m2026-10-12T20:34:21.485685Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.key
+2026-10-12T20:34:29Z certs made on a, the other nodes' copied
+2026-10-12T20:34:34Z node-a versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 04208a1c3cc076053dd9148da9c97596ab66a5ce 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T20:34:40Z node-b versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 04208a1c3cc076053dd9148da9c97596ab66a5ce 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T20:34:45Z node-c versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 04208a1c3cc076053dd9148da9c97596ab66a5ce 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T20:34:50Z node-d versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 04208a1c3cc076053dd9148da9c97596ab66a5ce 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T20:34:56Z node-e versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 04208a1c3cc076053dd9148da9c97596ab66a5ce 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T20:34:56Z drains smoke on Qwen/Qwen3-1.7B, TP1 x PP3 over a b c, spares d:1 e:1, 4 sessions x 512 prompt, 16000 tokens, blocks 4256; leads node-b 20000 ms, node-c 120000 ms; commit 04208a1, $1.47 spent
+2026-10-12T20:37:10Z budget: $1.85 spent of $9.5
+2026-10-12T20:40:38Z warm-up done; compile caches staged b to d and c to e, $2.42 spent
+2026-10-12T20:42:10Z budget: $2.68 spent of $9.5
+2026-10-12T20:43:24Z the engine up, both spares standing, both losses covered, $2.89 spent
+2026-10-12T20:44:26Z node-d and node-e cordoned and uncordoned; both losses covered again, $3.06 spent
+2026-10-12T20:44:30Z serving at step 50, $3.07 spent
+2026-10-12T20:44:48Z drains asked: node-b (20000 ms), node-c (120000 ms), node-b again (80000 ms), $3.12 spent
+2026-10-12T20:47:10Z budget: $3.51 spent of $9.5
+2026-10-12T20:48:14Z attempt 5b on 4c361fb: the drains again on attempt 5's held VMs
+2026-10-12T20:48:14Z drains smoke on Qwen/Qwen3-1.7B, TP1 x PP3 over a b c, spares d:1 e:1, 4 sessions x 512 prompt, 16000 tokens, blocks 4256; leads node-b 20000 ms, node-c 120000 ms; commit 4c361fb
+2026-10-12T20:52:11Z budget: $4.35 spent of $9.5
+2026-10-12T20:57:11Z budget: $5.18 spent of $9.5
+2026-10-12T20:59:07Z warm-up done; compile caches staged b to d and c to e
+2026-10-12T21:01:48Z the engine up, both spares standing, both losses covered
+2026-10-12T21:02:11Z budget: $6.01 spent of $9.5
+2026-10-12T21:02:50Z node-d and node-e cordoned and uncordoned; both losses covered again
+2026-10-12T21:02:53Z serving at step 50
+2026-10-12T21:03:11Z drains asked: node-b (20000 ms), node-c (120000 ms), node-b again (80000 ms)
+2026-10-12T21:07:11Z budget: $6.85 spent of $9.5
+2026-10-12T21:07:55Z attempt 5b stopped: node-b's change committed at epoch 1 at 21:03:15 on its deadline; node-c's change was refused by the cover gate at 21:04:57, rank 2's set at epoch 1 never formed: rank 0's rendezvous store for it failed, Errno 98 Address already in use, the port the old group's store still held; logs collected
+2026-10-12T21:09:30Z terminate computeinstance-e00x1rcm9z0v60h5av: {"deleted": "computeinstance-e00x1rcm9z0v60h5av", "disks": []}
+2026-10-12T21:09:31Z terminate computeinstance-e00twv2jj2s0zjy7cs: {"deleted": "computeinstance-e00twv2jj2s0zjy7cs", "disks": []}
+2026-10-12T21:09:35Z terminate computeinstance-e00gd0x8kq9nkte23y: {"deleted": "computeinstance-e00gd0x8kq9nkte23y", "disks": []}
+2026-10-12T21:09:36Z terminate computeinstance-e00pq4511xyy4tasqw: {"deleted": "computeinstance-e00pq4511xyy4tasqw", "disks": []}
+2026-10-12T21:09:37Z terminate computeinstance-e00mxyjtdmmw28hpxd: {"deleted": "computeinstance-e00mxyjtdmmw28hpxd", "disks": []}
+2026-10-12T21:09:37Z released every VM at once: the spares were refused for their compile caches (no cache staged onto node-d and node-e) and the sessions ran 80 s; the fix needs a gate the hour cannot hold
+2026-10-12T22:30:54Z attempt 6 on df65e91: every fix after attempt 5b on main (the store closed at a release, the commit's lost ranks, the holder-aware ports and their quarantine, the cover record); Cort's balance $11.45, cap $10.50
+2026-10-12T22:31:04Z run 3, the drains smoke, on Nebius eu-north1: five gpu-l40s-a 1gpu-8vcpu-32gb VMs, Qwen/Qwen3-1.7B @ 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e, TP1 x PP3 on a b c, spares on d (rank 1) and e (rank 2); commit df65e91; watchdog 60 min, budget cap $10.5 at $2.00/GPU-h
+2026-10-12T22:31:38Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00j1yfpzzsp5wz11x", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.8", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T22:31:38Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00j1yfpzzsp5wz11x", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.8", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T22:31:38Z VM a computeinstance-e00j1yfpzzsp5wz11x up, watchdog at the start + 60 min
+2026-10-12T22:31:39Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00pm5h489d7fa4ada", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.61", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T22:31:39Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00pm5h489d7fa4ada", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.61", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T22:31:39Z VM e computeinstance-e00pm5h489d7fa4ada up, watchdog at the start + 60 min
+2026-10-12T22:31:44Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00x3wk4ffqy2tgz6n", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.112", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T22:31:44Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00x3wk4ffqy2tgz6n", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.112", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T22:31:44Z VM c computeinstance-e00x3wk4ffqy2tgz6n up, watchdog at the start + 60 min
+2026-10-12T22:31:44Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00qqzr2pnf3f6gp5b", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.34", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T22:31:44Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00qqzr2pnf3f6gp5b", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.34", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T22:31:44Z VM b computeinstance-e00qqzr2pnf3f6gp5b up, watchdog at the start + 60 min
+2026-10-12T22:31:46Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00wh3rm7e4jbgt4ak", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.68", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T22:31:46Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00wh3rm7e4jbgt4ak", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.68", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T22:31:46Z VM d computeinstance-e00wh3rm7e4jbgt4ak up, watchdog at the start + 60 min
+2026-10-12T22:31:46Z budget: 5 VMs, 5 GPUs at $2.0/GPU-h, cap $10.5
+2026-10-12T22:31:46Z budget: $0.12 spent of $10.5
+2026-10-12T22:31:47Z VM a computeinstance-e00j1yfpzzsp5wz11x public 89.169.110.13 private 10.0.0.8
+2026-10-12T22:31:47Z VM b computeinstance-e00qqzr2pnf3f6gp5b public 89.169.99.239 private 10.0.0.34
+2026-10-12T22:31:48Z VM c computeinstance-e00x3wk4ffqy2tgz6n public 195.242.29.163 private 10.0.0.112
+2026-10-12T22:31:48Z VM d computeinstance-e00wh3rm7e4jbgt4ak public 89.169.123.113 private 10.0.0.68
+2026-10-12T22:31:49Z VM e computeinstance-e00pm5h489d7fa4ada public 89.169.123.166 private 10.0.0.61
+2026-10-12T22:32:22Z private network (a to b, c, d, e): ok after 5 s
+2026-10-12T22:32:24Z node-a: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T22:32:25Z node-b: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T22:32:27Z node-c: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T22:32:29Z node-d: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T22:32:31Z node-e: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T22:33:23Z setup started on a b c d e
+2026-10-12T22:36:46Z budget: $0.95 spent of $10.5
+2026-10-12T22:38:13Z setup done on a b c d e
+2026-10-12T22:38:24Z the node guards on a: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+2026-10-12T22:38:24Z setup done; the node-a guards: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+[2m2026-10-12T22:38:25.941819Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-12T22:38:25.941835Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-12T22:38:25.941837Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-12T22:38:25.941839Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-12T22:38:25.941840Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-12T22:38:25.941841Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-12T22:38:25.941843Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-12T22:38:25.941844Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-12T22:38:25.941845Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-12T22:38:25.941846Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+[2m2026-10-12T22:38:25.941847Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.crt
+[2m2026-10-12T22:38:25.941848Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.key
+[2m2026-10-12T22:38:25.941850Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.crt
+[2m2026-10-12T22:38:25.941851Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.key
+2026-10-12T22:38:33Z certs made on a, the other nodes' copied
+2026-10-12T22:38:38Z node-a versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c df65e91f5391e9ca76bf4f308c076a7b4a11f255 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T22:38:43Z node-b versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c df65e91f5391e9ca76bf4f308c076a7b4a11f255 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T22:38:49Z node-c versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c df65e91f5391e9ca76bf4f308c076a7b4a11f255 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T22:38:55Z node-d versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c df65e91f5391e9ca76bf4f308c076a7b4a11f255 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T22:39:00Z node-e versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c df65e91f5391e9ca76bf4f308c076a7b4a11f255 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T22:39:00Z drains smoke on Qwen/Qwen3-1.7B, TP1 x PP3 over a b c, spares d:1 e:1, 4 sessions x 512 prompt, 16000 tokens, blocks 4256; leads node-b 20000 ms, node-c 120000 ms; commit df65e91, $1.32 spent
+2026-10-12T22:41:46Z budget: $1.79 spent of $10.5
+2026-10-12T22:44:44Z warm-up done; compile caches staged b to d and c to e, $2.28 spent
+2026-10-12T22:46:47Z budget: $2.62 spent of $10.5
+2026-10-12T22:47:30Z the engine up, both spares standing, both losses covered, $2.74 spent
+2026-10-12T22:48:32Z node-d and node-e cordoned and uncordoned; both losses covered again, $2.91 spent
+2026-10-12T22:48:35Z serving at step 50, $2.92 spent
+2026-10-12T22:48:53Z drains asked: node-b (20000 ms), node-c (120000 ms), node-b again (80000 ms), $2.97 spent
+2026-10-12T22:51:47Z budget: $3.45 spent of $10.5
+2026-10-12T22:52:41Z attempt 6 stopped: node-b's change committed at epoch 1 and node-c's change went through the cover gate, then failed: node-e's spare, outside the epoch-1 membership, staged and acknowledged epoch 1 for the change at epoch 2 (the runtime counted its own epoch, not the change's); logs collected
+2026-10-12T22:54:18Z terminate computeinstance-e00j1yfpzzsp5wz11x: {"deleted": "computeinstance-e00j1yfpzzsp5wz11x", "disks": []}
+2026-10-12T22:54:18Z terminate computeinstance-e00wh3rm7e4jbgt4ak: {"deleted": "computeinstance-e00wh3rm7e4jbgt4ak", "disks": []}
+2026-10-12T22:54:18Z terminate computeinstance-e00pm5h489d7fa4ada: {"deleted": "computeinstance-e00pm5h489d7fa4ada", "disks": []}
+2026-10-12T22:54:19Z terminate computeinstance-e00qqzr2pnf3f6gp5b: {"deleted": "computeinstance-e00qqzr2pnf3f6gp5b", "disks": []}
+2026-10-12T22:54:19Z terminate computeinstance-e00x3wk4ffqy2tgz6n: {"deleted": "computeinstance-e00x3wk4ffqy2tgz6n", "disks": []}
+2026-10-12T22:54:19Z released every VM at once: the spares were refused for their compile caches (no cache staged onto node-d and node-e) and the sessions ran 80 s; the fix needs a gate the hour cannot hold
+2026-10-12T23:07:42Z attempt 7 on 5f973a4: a change moves every process to the change's own epoch; balance about $7.50, cap $7
+2026-10-12T23:07:52Z run 3, the drains smoke, on Nebius eu-north1: five gpu-l40s-a 1gpu-8vcpu-32gb VMs, Qwen/Qwen3-1.7B @ 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e, TP1 x PP3 on a b c, spares on d (rank 1) and e (rank 2); commit 5f973a4; watchdog 60 min, budget cap $7.0 at $2.00/GPU-h
+2026-10-12T23:08:38Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00fet9b9q7cfa1kgg", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.47", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T23:08:38Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00fet9b9q7cfa1kgg", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.47", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T23:08:38Z VM d computeinstance-e00fet9b9q7cfa1kgg up, watchdog at the start + 60 min
+2026-10-12T23:08:40Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00zx4fdmf6209qmrg", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.38", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T23:08:40Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00zx4fdmf6209qmrg", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.38", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T23:08:40Z VM a computeinstance-e00zx4fdmf6209qmrg up, watchdog at the start + 60 min
+2026-10-12T23:08:41Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00qy7wagvjvwvvmv2", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.65", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T23:08:41Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00qy7wagvjvwvvmv2", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.65", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T23:08:41Z VM e computeinstance-e00qy7wagvjvwvvmv2 up, watchdog at the start + 60 min
+2026-10-12T23:08:48Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00nhrgq5bchajdq9e", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.23", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T23:08:48Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00nhrgq5bchajdq9e", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.23", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T23:08:48Z VM b computeinstance-e00nhrgq5bchajdq9e up, watchdog at the start + 60 min
+2026-10-12T23:08:50Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00padavzc8254gke5", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.51", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T23:08:50Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00padavzc8254gke5", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.51", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-12T23:08:50Z VM c computeinstance-e00padavzc8254gke5 up, watchdog at the start + 60 min
+2026-10-12T23:08:50Z budget: 5 VMs, 5 GPUs at $2.0/GPU-h, cap $7.0
+2026-10-12T23:08:50Z budget: $0.16 spent of $7.0
+2026-10-12T23:08:51Z VM a computeinstance-e00zx4fdmf6209qmrg public 89.169.113.15 private 10.0.0.38
+2026-10-12T23:08:51Z VM b computeinstance-e00nhrgq5bchajdq9e public 89.169.109.224 private 10.0.0.23
+2026-10-12T23:08:52Z VM c computeinstance-e00padavzc8254gke5 public 89.169.114.4 private 10.0.0.51
+2026-10-12T23:08:52Z VM d computeinstance-e00fet9b9q7cfa1kgg public 195.242.30.87 private 10.0.0.47
+2026-10-12T23:08:53Z VM e computeinstance-e00qy7wagvjvwvvmv2 public 89.169.113.68 private 10.0.0.65
+2026-10-12T23:09:28Z private network (a to b, c, d, e): ok after 5 s
+2026-10-12T23:09:30Z node-a: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T23:09:32Z node-b: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T23:09:34Z node-c: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T23:09:36Z node-d: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T23:09:37Z node-e: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-12T23:10:31Z setup started on a b c d e
+2026-10-12T23:13:50Z budget: $1.00 spent of $7.0
+2026-10-12T23:15:25Z setup done on a b c d e
+2026-10-12T23:15:35Z the node guards on a: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+2026-10-12T23:15:35Z setup done; the node-a guards: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+[2m2026-10-12T23:15:37.427716Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-12T23:15:37.427732Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-12T23:15:37.427734Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-12T23:15:37.427736Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-12T23:15:37.427737Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-12T23:15:37.427738Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-12T23:15:37.427740Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-12T23:15:37.427741Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-12T23:15:37.427742Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-12T23:15:37.427743Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+[2m2026-10-12T23:15:37.427744Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.crt
+[2m2026-10-12T23:15:37.427745Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.key
+[2m2026-10-12T23:15:37.427747Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.crt
+[2m2026-10-12T23:15:37.427748Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.key
+2026-10-12T23:15:44Z certs made on a, the other nodes' copied
+2026-10-12T23:15:49Z node-a versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 5f973a458951a8225daf01c3230be581f38eb91e 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T23:15:55Z node-b versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 5f973a458951a8225daf01c3230be581f38eb91e 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T23:16:01Z node-c versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 5f973a458951a8225daf01c3230be581f38eb91e 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T23:16:06Z node-d versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 5f973a458951a8225daf01c3230be581f38eb91e 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T23:16:12Z node-e versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 5f973a458951a8225daf01c3230be581f38eb91e 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-12T23:16:12Z drains smoke on Qwen/Qwen3-1.7B, TP1 x PP3 over a b c, spares d:1 e:1, 4 sessions x 512 prompt, 16000 tokens, blocks 4256; leads node-b 20000 ms, node-c 120000 ms; commit 5f973a4, $1.39 spent
+2026-10-12T23:18:50Z budget: $1.83 spent of $7.0
+2026-10-12T23:22:16Z warm-up done; compile caches staged b to d and c to e, $2.40 spent
+2026-10-12T23:23:50Z budget: $2.66 spent of $7.0
+2026-10-12T23:25:06Z the engine up, both spares standing, both losses covered, $2.87 spent
+2026-10-12T23:26:07Z node-d and node-e cordoned and uncordoned; both losses covered again, $3.04 spent
+2026-10-12T23:26:10Z serving at step 50, $3.05 spent
+2026-10-12T23:26:28Z drains asked: node-b (20000 ms), node-c (120000 ms), node-b again (80000 ms), $3.10 spent
+2026-10-12T23:28:50Z budget: $3.50 spent of $7.0
+2026-10-12T23:31:44Z node-b's notice not seen in 120 s, $3.98 spent
+2026-10-12T23:32:20Z coordinator restarted, $4.08 spent
+2026-10-12T23:33:50Z budget: $4.33 spent of $7.0
+2026-10-12T23:39:20Z budget: $5.25 spent of $7.0
+2026-10-12T23:44:20Z budget: $6.08 spent of $7.0
+2026-10-12T23:45:20Z budget: $6.25 spent, the cap $7.0 reached; releasing ['computeinstance-e00zx4fdmf6209qmrg', 'computeinstance-e00nhrgq5bchajdq9e', 'computeinstance-e00padavzc8254gke5', 'computeinstance-e00fet9b9q7cfa1kgg', 'computeinstance-e00qy7wagvjvwvvmv2']
+bench/harness/twonode/drains.sh: line 171: n_b_again: command not found
+2026-10-12T23:47:01Z budget: released: [{"deleted": "computeinstance-e00zx4fdmf6209qmrg", "disks": []}, {"deleted": "computeinstance-e00nhrgq5bchajdq9e", "disks": []}, {"deleted": "computeinstance-e00padavzc8254gke5", "disks": []}, {"deleted": "computeinstance-e00fet9b9q7cfa1kgg", "disks": []}, {"deleted": "computeinstance-e00qy7wagvjvwvvmv2", "disks": []}]
+2026-10-12T23:48:53Z drains asked: node-b (20000 ms), node-c (120000 ms), node-b again (80000 ms), $6.84 spent
+bench/harness/twonode/drains.sh: line 174: RESTART: unbound variable
+2026-10-12T23:48:53Z drains failed: holding the VMs for a fix: touch /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/retry (reruns the stage, at /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/run3.commit if written) or /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/stop (releases), within 10 min, after this line
+2026-10-12T23:52:53Z drains.sh done: 
+ssh: connect to host 89.169.113.15 port 22: Operation timed out
+ssh: connect to host 89.169.109.224 port 22: Operation timed out
+ssh: connect to host 89.169.114.4 port 22: Operation timed out
+ssh: connect to host 195.242.30.87 port 22: Operation timed out
+ssh: connect to host 89.169.113.68 port 22: Operation timed out
+2026-10-12T23:54:34Z collected into bench/runs/PLANNED/run3-smoke/run/attempt7/collect_final
+2026-10-12T23:54:35Z VMs released: []
+2026-10-13T00:24:48Z attempt 8 on 97a8240: a refused pipeline transfer names no loss; the restart timed from the coordinator's notice line; the driver's waits by the clock; protoc before the controller's build. Cap $12.
+2026-10-13T00:24:48Z run 3, the drains smoke, on Nebius eu-north1: five gpu-l40s-a 1gpu-8vcpu-32gb VMs, Qwen/Qwen3-1.7B @ 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e, TP1 x PP3 on a b c, spares on d (rank 1) and e (rank 2); commit 97a8240; watchdog 60 min, budget cap $12.0 at $2.00/GPU-h
+2026-10-13T00:25:34Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00z4yxvmvdb3jnkhp", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.94", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T00:25:34Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00z4yxvmvdb3jnkhp", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.94", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T00:25:34Z VM b computeinstance-e00z4yxvmvdb3jnkhp up, watchdog at the start + 60 min
+2026-10-13T00:25:35Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00n8y4p6g1vqbysa2", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.47", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T00:25:35Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00n8y4p6g1vqbysa2", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.47", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T00:25:35Z VM c computeinstance-e00n8y4p6g1vqbysa2 up, watchdog at the start + 60 min
+2026-10-13T00:25:36Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00tbeqnzhwv05v96y", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.98", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T00:25:36Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00tbeqnzhwv05v96y", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.98", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T00:25:36Z VM a computeinstance-e00tbeqnzhwv05v96y up, watchdog at the start + 60 min
+2026-10-13T00:25:38Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00b8ngq4byj47e6j6", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.82", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T00:25:38Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00b8ngq4byj47e6j6", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.82", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T00:25:38Z VM e computeinstance-e00b8ngq4byj47e6j6 up, watchdog at the start + 60 min
+2026-10-13T00:25:39Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00tkqr3n6p3dfm85h", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.84", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T00:25:39Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00tkqr3n6p3dfm85h", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.84", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T00:25:39Z VM d computeinstance-e00tkqr3n6p3dfm85h up, watchdog at the start + 60 min
+2026-10-13T00:25:39Z budget: 5 VMs, 5 GPUs at $2.0/GPU-h, cap $12.0
+2026-10-13T00:25:39Z budget: $0.14 spent of $12.0
+2026-10-13T00:25:39Z VM a computeinstance-e00tbeqnzhwv05v96y public 89.169.121.123 private 10.0.0.98
+2026-10-13T00:25:40Z VM b computeinstance-e00z4yxvmvdb3jnkhp public 89.169.110.232 private 10.0.0.94
+2026-10-13T00:25:40Z VM c computeinstance-e00n8y4p6g1vqbysa2 public 89.169.110.13 private 10.0.0.47
+2026-10-13T00:25:41Z VM d computeinstance-e00tkqr3n6p3dfm85h public 195.242.28.135 private 10.0.0.84
+2026-10-13T00:25:43Z VM e computeinstance-e00b8ngq4byj47e6j6 public 89.169.120.136 private 10.0.0.82
+2026-10-13T00:26:20Z private network (a to b, c, d, e): ok after 5 s
+2026-10-13T00:26:22Z node-a: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T00:26:24Z node-b: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T00:26:25Z node-c: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T00:26:28Z node-d: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T00:26:30Z node-e: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T00:27:25Z setup started on a b c d e
+2026-10-13T00:30:39Z budget: $0.98 spent of $12.0
+2026-10-13T00:32:43Z setup done on a b c d e
+2026-10-13T00:32:54Z the node guards on a: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+2026-10-13T00:32:54Z setup done; the node-a guards: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+[2m2026-10-13T00:32:55.769498Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-13T00:32:55.769513Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-13T00:32:55.769515Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-13T00:32:55.769517Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-13T00:32:55.769518Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-13T00:32:55.769519Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-13T00:32:55.769521Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-13T00:32:55.769522Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-13T00:32:55.769523Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-13T00:32:55.769525Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+[2m2026-10-13T00:32:55.769526Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.crt
+[2m2026-10-13T00:32:55.769527Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.key
+[2m2026-10-13T00:32:55.769528Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.crt
+[2m2026-10-13T00:32:55.769529Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.key
+2026-10-13T00:33:03Z certs made on a, the other nodes' copied
+2026-10-13T00:33:09Z node-a versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 97a8240 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T00:33:14Z node-b versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 97a8240 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T00:33:19Z node-c versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 97a8240 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T00:33:25Z node-d versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 97a8240 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T00:33:30Z node-e versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 97a8240 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T00:33:30Z drains smoke on Qwen/Qwen3-1.7B, TP1 x PP3 over a b c, spares d:1 e:1, 4 sessions x 512 prompt, 16000 tokens, blocks 4256; leads node-b 20000 ms, node-c 120000 ms; commit 97a8240, $1.45 spent
+2026-10-13T00:35:39Z budget: $1.81 spent of $12.0
+2026-10-13T00:39:10Z warm-up done; compile caches staged b to d and c to e, $2.40 spent
+2026-10-13T00:41:09Z budget: $2.73 spent of $12.0
+2026-10-13T00:41:56Z the engine up, both spares standing, both losses covered, $2.86 spent
+2026-10-13T00:42:58Z node-d and node-e cordoned and uncordoned; both losses covered again, $3.03 spent
+2026-10-13T00:43:02Z serving at step 50, $3.04 spent
+2026-10-13T00:43:20Z drains asked: node-b (20000 ms), node-c (120000 ms), node-b again (80000 ms), $3.09 spent
+2026-10-13T00:43:42Z coordinator restarted, $3.15 spent
+2026-10-13T00:44:38Z rank 2's set at epoch 1: covered, $3.31 spent
+2026-10-13T00:45:19Z both changes committed; the sessions run to their end, $3.42 spent
+2026-10-13T00:46:09Z budget: $3.56 spent of $12.0
+2026-10-13T00:47:56Z verdict: fail ['R1', 'R2', 'R4'], $3.86 spent
+2026-10-13T00:47:56Z drains.sh done: fail ['R1', 'R2', 'R4']
+2026-10-13T00:48:07Z collected into bench/runs/PLANNED/run3-smoke/run/attempt8/collect_final
+2026-10-13T00:49:46Z terminate computeinstance-e00z4yxvmvdb3jnkhp: {"deleted": "computeinstance-e00z4yxvmvdb3jnkhp", "disks": []}
+2026-10-13T00:49:46Z terminate computeinstance-e00b8ngq4byj47e6j6: {"deleted": "computeinstance-e00b8ngq4byj47e6j6", "disks": []}
+2026-10-13T00:49:49Z terminate computeinstance-e00n8y4p6g1vqbysa2: {"deleted": "computeinstance-e00n8y4p6g1vqbysa2", "disks": []}
+2026-10-13T00:49:50Z terminate computeinstance-e00tbeqnzhwv05v96y: {"deleted": "computeinstance-e00tbeqnzhwv05v96y", "disks": []}
+2026-10-13T00:49:51Z terminate computeinstance-e00tkqr3n6p3dfm85h: {"deleted": "computeinstance-e00tkqr3n6p3dfm85h", "disks": []}
+2026-10-13T00:49:51Z VMs released: []
+2026-10-13T01:36:48Z attempt 9 on c495a5e: protocol 9, a departure decided by its change and the commit's membership followed by the drained nodes; R1 strict on an overdue end. Cap $12.
+2026-10-13T01:36:49Z run 3, the drains smoke, on Nebius eu-north1: five gpu-l40s-a 1gpu-8vcpu-32gb VMs, Qwen/Qwen3-1.7B @ 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e, TP1 x PP3 on a b c, spares on d (rank 1) and e (rank 2); commit c495a5e; watchdog 60 min, budget cap $12.0 at $2.00/GPU-h
+2026-10-13T01:37:25Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00v9h8add33nxejmf", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.28", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T01:37:25Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00v9h8add33nxejmf", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.28", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T01:37:25Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00znafbcfagzbxt9h", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.21", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T01:37:25Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00znafbcfagzbxt9h", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.21", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T01:37:25Z VM c computeinstance-e00v9h8add33nxejmf up, watchdog at the start + 60 min
+2026-10-13T01:37:25Z VM e computeinstance-e00znafbcfagzbxt9h up, watchdog at the start + 60 min
+2026-10-13T01:37:25Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00x33zvkqxdb7tvbp", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.41", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T01:37:25Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00x33zvkqxdb7tvbp", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.41", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T01:37:25Z VM d computeinstance-e00x33zvkqxdb7tvbp up, watchdog at the start + 60 min
+2026-10-13T01:37:27Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00xsrjr2kyvrn251e", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.15", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T01:37:27Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00xsrjr2kyvrn251e", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.15", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T01:37:27Z VM a computeinstance-e00xsrjr2kyvrn251e up, watchdog at the start + 60 min
+2026-10-13T01:37:29Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00ck45wv2cc1yw710", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.52", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T01:37:29Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00ck45wv2cc1yw710", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.52", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T01:37:29Z VM b computeinstance-e00ck45wv2cc1yw710 up, watchdog at the start + 60 min
+2026-10-13T01:37:29Z budget: 5 VMs, 5 GPUs at $2.0/GPU-h, cap $12.0
+2026-10-13T01:37:29Z budget: $0.11 spent of $12.0
+2026-10-13T01:37:29Z VM a computeinstance-e00xsrjr2kyvrn251e public 89.169.113.20 private 10.0.0.15
+2026-10-13T01:37:30Z VM b computeinstance-e00ck45wv2cc1yw710 public 89.169.103.220 private 10.0.0.52
+2026-10-13T01:37:30Z VM c computeinstance-e00v9h8add33nxejmf public 195.242.28.140 private 10.0.0.28
+2026-10-13T01:37:30Z VM d computeinstance-e00x33zvkqxdb7tvbp public 89.169.120.182 private 10.0.0.41
+2026-10-13T01:37:31Z VM e computeinstance-e00znafbcfagzbxt9h public 89.169.123.97 private 10.0.0.21
+2026-10-13T01:38:10Z private network (a to b, c, d, e): ok after 5 s
+2026-10-13T01:38:12Z node-a: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T01:38:14Z node-b: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T01:38:15Z node-c: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T01:38:17Z node-d: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T01:38:19Z node-e: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T01:39:13Z setup started on a b c d e
+2026-10-13T01:42:29Z budget: $0.95 spent of $12.0
+2026-10-13T01:44:31Z setup done on a b c d e
+2026-10-13T01:44:42Z the node guards failed or skipped on a (rc 1): PASSED adapters/vllm/tests/test_resident.py::test_the_copy_holds_each_file_s_tensor_bytes_and_no_more PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released FAILED adapters/vllm/tests/test_executor_failed.py::test_the_executor_reads_a_refused_step_as_the_loss_it_holds 
+2026-10-13T01:44:42Z setup failed: holding the VMs for a fix: touch /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/retry (reruns the stage, at /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/run3.commit if written) or /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/stop (releases), within 10 min, after this line
+2026-10-13T01:47:29Z budget: $1.78 spent of $12.0
+2026-10-13T01:52:29Z budget: $2.61 spent of $12.0
+2026-10-13T01:52:33Z the stage reruns at f56bd9fadaaacefa017a3851204b575fd54dd015
+2026-10-13T01:53:27Z setup started on a b c d e
+2026-10-13T01:55:07Z setup done on a b c d e
+2026-10-13T01:55:18Z the node guards on a: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+2026-10-13T01:55:18Z setup done; the node-a guards: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+[2m2026-10-13T01:55:20.036866Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-13T01:55:20.036886Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-13T01:55:20.036888Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-13T01:55:20.036890Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-13T01:55:20.036891Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-13T01:55:20.036893Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-13T01:55:20.036894Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-13T01:55:20.036895Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-13T01:55:20.036897Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-13T01:55:20.036898Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+[2m2026-10-13T01:55:20.036899Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.crt
+[2m2026-10-13T01:55:20.036900Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.key
+[2m2026-10-13T01:55:20.036901Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.crt
+[2m2026-10-13T01:55:20.036902Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.key
+2026-10-13T01:55:27Z certs made on a, the other nodes' copied
+2026-10-13T01:55:33Z node-a versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c f56bd9fadaaacefa017a3851204b575fd54dd015 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T01:55:38Z node-b versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c f56bd9fadaaacefa017a3851204b575fd54dd015 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T01:55:44Z node-c versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c f56bd9fadaaacefa017a3851204b575fd54dd015 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T01:55:49Z node-d versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c f56bd9fadaaacefa017a3851204b575fd54dd015 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T01:55:55Z node-e versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c f56bd9fadaaacefa017a3851204b575fd54dd015 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T01:55:55Z drains smoke on Qwen/Qwen3-1.7B, TP1 x PP3 over a b c, spares d:1 e:1, 4 sessions x 512 prompt, 16000 tokens, blocks 4256; leads node-b 20000 ms, node-c 120000 ms; commit f56bd9f, $3.18 spent
+2026-10-13T01:57:29Z budget: $3.45 spent of $12.0
+2026-10-13T02:01:54Z warm-up done; compile caches staged b to d and c to e, $4.18 spent
+2026-10-13T02:02:29Z budget: $4.28 spent of $12.0
+2026-10-13T02:04:41Z the engine up, both spares standing, both losses covered, $4.64 spent
+2026-10-13T02:05:43Z node-d and node-e cordoned and uncordoned; both losses covered again, $4.82 spent
+2026-10-13T02:05:47Z serving at step 50, $4.83 spent
+2026-10-13T02:06:05Z drains asked: node-b (20000 ms), node-c (120000 ms), node-b again (80000 ms), $4.88 spent
+2026-10-13T02:06:27Z coordinator restarted, $4.94 spent
+2026-10-13T02:07:29Z budget: $5.11 spent of $12.0
+2026-10-13T02:12:29Z budget: $5.95 spent of $12.0
+2026-10-13T02:16:32Z drains failed: holding the VMs for a fix: touch /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/retry (reruns the stage, at /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/run3.commit if written) or /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/stop (releases), within 10 min, after this line
+2026-10-13T02:17:29Z budget: $6.78 spent of $12.0
+2026-10-13T02:17:42Z the stage reruns at 453bbeef504aec909b3141382941751612b1ce3a
+2026-10-13T02:18:09Z stacks asked of every rank's process and the spare (still running on a)
+2026-10-13T02:18:35Z nodes a b c d e down: a=none b=clean c=clean d=clean e=clean 
+2026-10-13T02:18:35Z drains smoke on Qwen/Qwen3-1.7B, TP1 x PP3 over a b c, spares d:1 e:1, 4 sessions x 512 prompt, 16000 tokens, blocks 4256; leads node-b 20000 ms, node-c 120000 ms; commit 453bbee, $6.96 spent
+2026-10-13T02:22:29Z budget: $7.61 spent of $12.0
+2026-10-13T02:27:29Z budget: $8.45 spent of $12.0
+2026-10-13T02:29:55Z warm-up done; compile caches staged b to d and c to e, $8.85 spent
+2026-10-13T02:32:29Z budget: $9.28 spent of $12.0
+2026-10-13T02:32:32Z the engine up, both spares standing, both losses covered, $9.29 spent
+2026-10-13T02:33:39Z node-d and node-e cordoned and uncordoned; both losses covered again, $9.47 spent
+2026-10-13T02:33:42Z serving at step 50, $9.48 spent
+2026-10-13T02:34:00Z drains asked: node-b (20000 ms), node-c (120000 ms), node-b again (80000 ms), $9.53 spent
+2026-10-13T02:34:22Z coordinator restarted, $9.59 spent
+2026-10-13T02:35:20Z rank 2's set at epoch 1: covered, $9.76 spent
+2026-10-13T02:36:02Z both changes committed; the sessions run to their end, $9.87 spent
+2026-10-13T02:37:29Z budget: $10.11 spent of $12.0
+2026-10-13T02:38:31Z watchdog computeinstance-e00xsrjr2kyvrn251e: {"deleted": "computeinstance-e00xsrjr2kyvrn251e", "disks": []}
+2026-10-13T02:38:32Z watchdog computeinstance-e00x33zvkqxdb7tvbp: {"deleted": "computeinstance-e00x33zvkqxdb7tvbp", "disks": []}
+2026-10-13T02:38:32Z watchdog computeinstance-e00znafbcfagzbxt9h: {"deleted": "computeinstance-e00znafbcfagzbxt9h", "disks": []}
+2026-10-13T02:38:32Z watchdog computeinstance-e00v9h8add33nxejmf: {"deleted": "computeinstance-e00v9h8add33nxejmf", "disks": []}
+2026-10-13T02:38:33Z watchdog computeinstance-e00ck45wv2cc1yw710: {"deleted": "computeinstance-e00ck45wv2cc1yw710", "disks": []}
+2026-10-13T02:42:59Z budget: $11.03 spent of $12.0
+2026-10-13T02:43:30Z drains failed: holding the VMs for a fix: touch /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/retry (reruns the stage, at /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/run3.commit if written) or /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/stop (releases), within 10 min, after this line
+2026-10-13T02:43:59Z budget: $11.20 spent, the cap $12.0 reached; releasing ['computeinstance-e00xsrjr2kyvrn251e', 'computeinstance-e00ck45wv2cc1yw710', 'computeinstance-e00v9h8add33nxejmf', 'computeinstance-e00x33zvkqxdb7tvbp', 'computeinstance-e00znafbcfagzbxt9h']
+2026-10-13T02:44:00Z budget: released: [{"budget": "computeinstance-e00xsrjr2kyvrn251e", "error": "Error: rpc error: code = NotFound desc = instance not found by id \"computeinstance-e00xsrjr2kyvrn251e\""}, {"budget": "computeinstance-e00ck45wv2cc1yw710", "error": "Error: rpc error: code = NotFound desc = instance not found by id \"computeinstance-e00ck45wv2cc1yw710\""}, {"budget": "computeinstance-e00v9h8add33nxejmf", "error": "Error: rpc error: code = NotFound desc = instance not found by id \"computeinstance-e00v9h8add33nxejmf\""}, {"budget": "computeinstance-e00x33zvkqxdb7tvbp", "error": "Error: rpc error: code = NotFound desc = instance not found by id \"computeinstance-e00x33zvkqxdb7tvbp\""}, {"budget": "computeinstance-e00znafbcfagzbxt9h", "error": "Error: rpc error: code = NotFound desc = instance not found by id \"computeinstance-e00znafbcfagzbxt9h\""}]
+2026-10-13T02:53:31Z drains.sh done: 
+ssh: connect to host 89.169.113.20 port 22: Operation timed out
+ssh: connect to host 89.169.103.220 port 22: Operation timed out
+ssh: connect to host 195.242.28.140 port 22: Operation timed out
+ssh: connect to host 89.169.120.182 port 22: Operation timed out
+ssh: connect to host 89.169.123.97 port 22: Operation timed out
+2026-10-13T02:55:11Z collected into bench/runs/PLANNED/run3-smoke/run/attempt9/collect_final
+2026-10-13T02:55:13Z VMs released: []
+2026-10-13T03:04:51Z attempt 10 on d10a00e: attempt 9's fixes (a standing spare never departs), one rental, no reruns. Cap $12.
+2026-10-13T03:05:04Z run 3, the drains smoke, on Nebius eu-north1: five gpu-l40s-a 1gpu-8vcpu-32gb VMs, Qwen/Qwen3-1.7B @ 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e, TP1 x PP3 on a b c, spares on d (rank 1) and e (rank 2); commit d10a00e; watchdog 60 min, budget cap $12.0 at $2.00/GPU-h
+2026-10-13T03:05:42Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00qcexj81g030hcda", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.7", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T03:05:42Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00qcexj81g030hcda", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.7", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T03:05:42Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00h1jnv0ayzdr3yk9", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.14", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T03:05:42Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00h1jnv0ayzdr3yk9", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.14", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T03:05:42Z VM d computeinstance-e00qcexj81g030hcda up, watchdog at the start + 60 min
+2026-10-13T03:05:42Z VM c computeinstance-e00h1jnv0ayzdr3yk9 up, watchdog at the start + 60 min
+2026-10-13T03:05:44Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00as90vezj1za5ttq", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.10", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T03:05:44Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00as90vezj1za5ttq", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.10", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T03:05:44Z VM e computeinstance-e00as90vezj1za5ttq up, watchdog at the start + 60 min
+2026-10-13T03:05:47Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00gqf3xyjvbq5te6c", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.32", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T03:05:47Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00gqf3xyjvbq5te6c", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.32", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T03:05:47Z VM a computeinstance-e00gqf3xyjvbq5te6c up, watchdog at the start + 60 min
+2026-10-13T03:05:49Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00jd9ntq7bektq7fv", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.18", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T03:05:49Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00jd9ntq7bektq7fv", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.18", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T03:05:49Z VM b computeinstance-e00jd9ntq7bektq7fv up, watchdog at the start + 60 min
+2026-10-13T03:05:49Z budget: 5 VMs, 5 GPUs at $2.0/GPU-h, cap $12.0
+2026-10-13T03:05:49Z budget: $0.13 spent of $12.0
+2026-10-13T03:05:50Z VM a computeinstance-e00gqf3xyjvbq5te6c public 89.169.108.105 private 10.0.0.32
+2026-10-13T03:05:50Z VM b computeinstance-e00jd9ntq7bektq7fv public 89.169.123.44 private 10.0.0.18
+2026-10-13T03:05:51Z VM c computeinstance-e00h1jnv0ayzdr3yk9 public 89.169.110.159 private 10.0.0.14
+2026-10-13T03:05:51Z VM d computeinstance-e00qcexj81g030hcda public 89.169.123.103 private 10.0.0.7
+2026-10-13T03:05:52Z VM e computeinstance-e00as90vezj1za5ttq public 89.169.112.48 private 10.0.0.10
+2026-10-13T03:06:29Z private network (a to b, c, d, e): ok after 5 s
+2026-10-13T03:06:31Z node-a: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T03:06:33Z node-b: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T03:06:34Z node-c: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T03:06:36Z node-d: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T03:06:38Z node-e: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T03:07:29Z setup started on a b c d e
+2026-10-13T03:10:49Z budget: $0.96 spent of $12.0
+2026-10-13T03:13:41Z setup done on a b c d e
+2026-10-13T03:13:52Z the node guards on a: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+2026-10-13T03:13:52Z setup done; the node-a guards: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+[2m2026-10-13T03:13:54.043988Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-13T03:13:54.044007Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-13T03:13:54.044009Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-13T03:13:54.044010Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-13T03:13:54.044012Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-13T03:13:54.044013Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-13T03:13:54.044014Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-13T03:13:54.044016Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-13T03:13:54.044017Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-13T03:13:54.044018Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+[2m2026-10-13T03:13:54.044019Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.crt
+[2m2026-10-13T03:13:54.044020Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.key
+[2m2026-10-13T03:13:54.044021Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.crt
+[2m2026-10-13T03:13:54.044022Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.key
+2026-10-13T03:14:01Z certs made on a, the other nodes' copied
+2026-10-13T03:14:06Z node-a versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c d10a00e 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T03:14:12Z node-b versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c d10a00e 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T03:14:17Z node-c versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c d10a00e 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T03:14:23Z node-d versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c d10a00e 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T03:14:29Z node-e versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c d10a00e 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T03:14:29Z drains smoke on Qwen/Qwen3-1.7B, TP1 x PP3 over a b c, spares d:1 e:1, 4 sessions x 512 prompt, 16000 tokens, blocks 4256; leads node-b 20000 ms, node-c 120000 ms; commit d10a00e, $1.57 spent
+2026-10-13T03:15:49Z budget: $1.79 spent of $12.0
+2026-10-13T03:20:27Z warm-up done; compile caches staged b to d and c to e, $2.57 spent
+2026-10-13T03:20:49Z budget: $2.63 spent of $12.0
+2026-10-13T03:23:20Z the engine up, both spares standing, both losses covered, $3.04 spent
+2026-10-13T03:24:21Z node-d and node-e cordoned and uncordoned; both losses covered again, $3.22 spent
+2026-10-13T03:24:25Z serving at step 50, $3.23 spent
+2026-10-13T03:24:43Z drains asked: node-b (20000 ms), node-c (120000 ms), node-b again (80000 ms), $3.28 spent
+2026-10-13T03:25:05Z coordinator restarted, $3.34 spent
+2026-10-13T03:25:49Z budget: $3.46 spent of $12.0
+2026-10-13T03:30:49Z budget: $4.29 spent of $12.0
+2026-10-13T03:35:50Z budget: $5.13 spent of $12.0
+2026-10-13T03:40:06Z node-b's change not committed in 900 s, $5.84 spent
+2026-10-13T03:40:50Z budget: $5.96 spent of $12.0
+2026-10-13T03:45:21Z rank 2's set at epoch 1: not covered in 300 s, $6.71 spent
+2026-10-13T03:45:50Z budget: $6.80 spent of $12.0
+2026-10-13T03:46:07Z drains failed: holding the VMs for a fix: touch /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/retry (reruns the stage, at /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/run3.commit if written) or /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/stop (releases), within 10 min, after this line
+2026-10-13T03:46:17Z drains.sh done: 
+2026-10-13T03:46:30Z collected into bench/runs/PLANNED/run3-smoke/run/attempt10/collect_final
+2026-10-13T03:48:12Z terminate computeinstance-e00jd9ntq7bektq7fv: {"deleted": "computeinstance-e00jd9ntq7bektq7fv", "disks": []}
+2026-10-13T03:48:12Z terminate computeinstance-e00qcexj81g030hcda: {"deleted": "computeinstance-e00qcexj81g030hcda", "disks": []}
+2026-10-13T03:48:23Z terminate computeinstance-e00as90vezj1za5ttq: {"deleted": "computeinstance-e00as90vezj1za5ttq", "disks": []}
+2026-10-13T03:48:23Z terminate computeinstance-e00h1jnv0ayzdr3yk9: {"deleted": "computeinstance-e00h1jnv0ayzdr3yk9", "disks": []}
+2026-10-13T03:48:24Z terminate computeinstance-e00gqf3xyjvbq5te6c: {"deleted": "computeinstance-e00gqf3xyjvbq5te6c", "disks": []}
+2026-10-13T03:48:24Z VMs released: []
+2026-10-13T04:16:28Z attempt 11 on 4df4aac: a restart adopts the daemons' plan and retries a blocked drain; a cover forms each planned entry on its own thread. One rental. Cap $12.
+2026-10-13T04:16:28Z run 3, the drains smoke, on Nebius eu-north1: five gpu-l40s-a 1gpu-8vcpu-32gb VMs, Qwen/Qwen3-1.7B @ 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e, TP1 x PP3 on a b c, spares on d (rank 1) and e (rank 2); commit 4df4aac; watchdog 60 min, budget cap $12.0 at $2.00/GPU-h
+2026-10-13T04:17:08Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00j76qxa8eha4j5pd", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.25", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T04:17:08Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00j76qxa8eha4j5pd", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.25", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T04:17:09Z VM c computeinstance-e00j76qxa8eha4j5pd up, watchdog at the start + 60 min
+2026-10-13T04:17:11Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00zwxb37qam2hjxab", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.76", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T04:17:11Z deploy everserve-d gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00zwxb37qam2hjxab", "name": "everserve-d", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.76", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T04:17:11Z VM d computeinstance-e00zwxb37qam2hjxab up, watchdog at the start + 60 min
+2026-10-13T04:17:14Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00pz1zyb0gfgrz6a6", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.13", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T04:17:14Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00pz1zyb0gfgrz6a6", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.13", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T04:17:14Z VM e computeinstance-e00pz1zyb0gfgrz6a6 up, watchdog at the start + 60 min
+2026-10-13T04:17:14Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00twh48n86fs7y47g", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.17", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T04:17:14Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00twh48n86fs7y47g", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.17", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T04:17:14Z VM a computeinstance-e00twh48n86fs7y47g up, watchdog at the start + 60 min
+2026-10-13T04:17:16Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00sb8j6j46382kp3z", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.23", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T04:17:16Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00sb8j6j46382kp3z", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.23", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T04:17:16Z VM b computeinstance-e00sb8j6j46382kp3z up, watchdog at the start + 60 min
+2026-10-13T04:17:16Z budget: 5 VMs, 5 GPUs at $2.0/GPU-h, cap $12.0
+2026-10-13T04:17:16Z budget: $0.13 spent of $12.0
+2026-10-13T04:17:16Z VM a computeinstance-e00twh48n86fs7y47g public 89.169.122.190 private 10.0.0.17
+2026-10-13T04:17:17Z VM b computeinstance-e00sb8j6j46382kp3z public 89.169.109.195 private 10.0.0.23
+2026-10-13T04:17:17Z VM c computeinstance-e00j76qxa8eha4j5pd public 89.169.109.172 private 10.0.0.25
+2026-10-13T04:17:18Z VM d computeinstance-e00zwxb37qam2hjxab public 195.242.28.175 private 10.0.0.76
+2026-10-13T04:17:19Z VM e computeinstance-e00pz1zyb0gfgrz6a6 public 195.242.29.180 private 10.0.0.13
+2026-10-13T04:17:57Z private network (a to b, c, d, e): ok after 5 s
+2026-10-13T04:17:59Z node-a: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T04:18:00Z node-b: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T04:18:02Z node-c: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T04:18:04Z node-d: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T04:18:05Z node-e: NVIDIA L40S, 580.173.02, 46068 MiB,8;Mem:              31           1          29           0           0          30;
+2026-10-13T04:18:57Z setup started on a b c d e
+2026-10-13T04:22:16Z budget: $0.97 spent of $12.0
+2026-10-13T04:24:17Z setup done on a b c d e
+2026-10-13T04:24:27Z the node guards on a: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+2026-10-13T04:24:27Z setup done; the node-a guards: PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released
+[2m2026-10-13T04:24:29.507832Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-13T04:24:29.507847Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-13T04:24:29.507849Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-13T04:24:29.507851Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-13T04:24:29.507852Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-13T04:24:29.507853Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-13T04:24:29.507854Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-13T04:24:29.507856Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-13T04:24:29.507857Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-13T04:24:29.507858Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+[2m2026-10-13T04:24:29.507859Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.crt
+[2m2026-10-13T04:24:29.507860Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-d.key
+[2m2026-10-13T04:24:29.507861Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.crt
+[2m2026-10-13T04:24:29.507863Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-e.key
+2026-10-13T04:24:37Z certs made on a, the other nodes' copied
+2026-10-13T04:24:42Z node-a versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 4df4aac 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T04:24:48Z node-b versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 4df4aac 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T04:24:53Z node-c versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 4df4aac 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T04:24:59Z node-d versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 4df4aac 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T04:25:04Z node-e versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c 4df4aac 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e 
+2026-10-13T04:25:04Z drains smoke on Qwen/Qwen3-1.7B, TP1 x PP3 over a b c, spares d:1 e:1, 4 sessions x 512 prompt, 16000 tokens, blocks 4256; leads node-b 20000 ms, node-c 120000 ms; commit 4df4aac, $1.44 spent
+2026-10-13T04:27:16Z budget: $1.80 spent of $12.0
+2026-10-13T04:30:45Z warm-up done; compile caches staged b to d and c to e, $2.38 spent
+2026-10-13T04:32:16Z budget: $2.63 spent of $12.0
+2026-10-13T04:33:31Z the engine up, both spares standing, both losses covered, $2.84 spent
+2026-10-13T04:34:33Z node-d and node-e cordoned and uncordoned; both losses covered again, $3.02 spent
+2026-10-13T04:34:37Z serving at step 50, $3.03 spent
+2026-10-13T04:34:54Z drains asked: node-b (20000 ms), node-c (120000 ms), node-b again (80000 ms), $3.07 spent
+2026-10-13T04:35:17Z coordinator restarted, $3.14 spent
+2026-10-13T04:35:33Z rank 2's set at epoch 1: covered, $3.18 spent
+2026-10-13T04:36:55Z both changes committed; the sessions run to their end, $3.41 spent
+2026-10-13T04:37:16Z budget: $3.47 spent of $12.0
+2026-10-13T04:39:33Z verdict: pass [], $3.85 spent
+2026-10-13T04:39:33Z drains.sh done: pass []
+2026-10-13T04:39:43Z collected into bench/runs/PLANNED/run3-smoke/run/attempt11/collect_final
+2026-10-13T04:41:23Z terminate computeinstance-e00twh48n86fs7y47g: {"deleted": "computeinstance-e00twh48n86fs7y47g", "disks": []}
+2026-10-13T04:41:23Z terminate computeinstance-e00sb8j6j46382kp3z: {"deleted": "computeinstance-e00sb8j6j46382kp3z", "disks": []}
+2026-10-13T04:41:24Z terminate computeinstance-e00zwxb37qam2hjxab: {"deleted": "computeinstance-e00zwxb37qam2hjxab", "disks": []}
+2026-10-13T04:41:24Z terminate computeinstance-e00j76qxa8eha4j5pd: {"deleted": "computeinstance-e00j76qxa8eha4j5pd", "disks": []}
+2026-10-13T04:41:25Z terminate computeinstance-e00pz1zyb0gfgrz6a6: {"deleted": "computeinstance-e00pz1zyb0gfgrz6a6", "disks": []}
+2026-10-13T04:41:26Z VMs released: []
+2026-10-13T10:15:03Z attempt 12 on 7a1587d, the confirmation repeat of attempt 11's pass on the user's word: a spare whose node holds its rank's replica restores there. One rental. Cap $12.
+2026-10-13T10:15:03Z run 3, the drains smoke, on Nebius eu-north1: five gpu-l40s-a 1gpu-8vcpu-32gb VMs, Qwen/Qwen3-1.7B @ 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e, TP1 x PP3 on a b c, spares on d (rank 1) and e (rank 2); commit 7a1587d; watchdog 60 min, budget cap $12.0 at $2.00/GPU-h
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00nf8agn8ygd8hbvc" over resource "computeinstance-e00cyga2hzt08dxq8n" to complete
+2026-10-13T10:20:47Z deploy b failed: RuntimeError: waiting for operation "computeoperation-e00nf8agn8ygd8hbvc" over resource "computeinstance-e00cyga2hzt08dxq8n" to complete
+2026-10-13T10:20:47Z deploy b attempt 1 failed; a half-made VM is deleted and the deploy retried in 60 s
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00kznamenzevtskhs" over resource "computeinstance-e00hsecna1vtekjm5j" to complete
+2026-10-13T10:20:48Z deploy d failed: RuntimeError: waiting for operation "computeoperation-e00kznamenzevtskhs" over resource "computeinstance-e00hsecna1vtekjm5j" to complete
+2026-10-13T10:20:48Z deploy d attempt 1 failed; a half-made VM is deleted and the deploy retried in 60 s
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00sv7xw615jf9tzg1" over resource "computeinstance-e00sp6cafp7nxa9jc3" to complete
+2026-10-13T10:20:48Z deploy c failed: RuntimeError: waiting for operation "computeoperation-e00sv7xw615jf9tzg1" over resource "computeinstance-e00sp6cafp7nxa9jc3" to complete
+2026-10-13T10:20:48Z deploy c attempt 1 failed; a half-made VM is deleted and the deploy retried in 60 s
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00bee3yt2193d3c0p" over resource "computeinstance-e00g01pxh0gp4ggw8c" to complete
+2026-10-13T10:20:48Z deploy e failed: RuntimeError: waiting for operation "computeoperation-e00bee3yt2193d3c0p" over resource "computeinstance-e00g01pxh0gp4ggw8c" to complete
+2026-10-13T10:20:48Z deploy e attempt 1 failed; a half-made VM is deleted and the deploy retried in 60 s
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00m03jsetsg9xax1z" over resource "computeinstance-e00eymtcw9c0vyvgzx" to complete
+2026-10-13T10:20:49Z deploy a failed: RuntimeError: waiting for operation "computeoperation-e00m03jsetsg9xax1z" over resource "computeinstance-e00eymtcw9c0vyvgzx" to complete
+2026-10-13T10:20:49Z deploy a attempt 1 failed; a half-made VM is deleted and the deploy retried in 60 s
+2026-10-13T10:21:04Z terminate computeinstance-e00eymtcw9c0vyvgzx: {"deleted": "computeinstance-e00eymtcw9c0vyvgzx", "disks": []}
+2026-10-13T10:21:05Z terminate computeinstance-e00cyga2hzt08dxq8n: {"deleted": "computeinstance-e00cyga2hzt08dxq8n", "disks": []}
+2026-10-13T10:21:05Z terminate computeinstance-e00g01pxh0gp4ggw8c: {"deleted": "computeinstance-e00g01pxh0gp4ggw8c", "disks": []}
+2026-10-13T10:21:06Z terminate computeinstance-e00sp6cafp7nxa9jc3: {"deleted": "computeinstance-e00sp6cafp7nxa9jc3", "disks": []}
+2026-10-13T10:21:06Z terminate computeinstance-e00hsecna1vtekjm5j: {"deleted": "computeinstance-e00hsecna1vtekjm5j", "disks": []}
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00p4fydxc8vve0st0" over resource "computeinstance-e00ke6d762jxbb0xy6" to complete
+2026-10-13T10:27:43Z deploy b failed: RuntimeError: waiting for operation "computeoperation-e00p4fydxc8vve0st0" over resource "computeinstance-e00ke6d762jxbb0xy6" to complete
+2026-10-13T10:27:43Z deploy b attempt 2 failed; a half-made VM is deleted and the deploy retried in 60 s
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00bd4w4rnv6j67s72" over resource "computeinstance-e00mefccn3dpcxv2hs" to complete
+2026-10-13T10:27:43Z deploy e failed: RuntimeError: waiting for operation "computeoperation-e00bd4w4rnv6j67s72" over resource "computeinstance-e00mefccn3dpcxv2hs" to complete
+2026-10-13T10:27:43Z deploy e attempt 2 failed; a half-made VM is deleted and the deploy retried in 60 s
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00dxyhqv4my3g71re" over resource "computeinstance-e00jv6fcy7b3jedryq" to complete
+2026-10-13T10:27:45Z deploy c failed: RuntimeError: waiting for operation "computeoperation-e00dxyhqv4my3g71re" over resource "computeinstance-e00jv6fcy7b3jedryq" to complete
+2026-10-13T10:27:45Z deploy c attempt 2 failed; a half-made VM is deleted and the deploy retried in 60 s
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00qqe2m8w0khw318w" over resource "computeinstance-e00q2dep8txrm5adnh" to complete
+2026-10-13T10:27:46Z deploy d failed: RuntimeError: waiting for operation "computeoperation-e00qqe2m8w0khw318w" over resource "computeinstance-e00q2dep8txrm5adnh" to complete
+2026-10-13T10:27:46Z deploy d attempt 2 failed; a half-made VM is deleted and the deploy retried in 60 s
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00qwzgbw6nc7x9xxz" over resource "computeinstance-e00b9mdev70v84czs2" to complete
+2026-10-13T10:27:46Z deploy a failed: RuntimeError: waiting for operation "computeoperation-e00qwzgbw6nc7x9xxz" over resource "computeinstance-e00b9mdev70v84czs2" to complete
+2026-10-13T10:27:46Z deploy a attempt 2 failed; a half-made VM is deleted and the deploy retried in 60 s
+2026-10-13T10:27:54Z terminate computeinstance-e00mefccn3dpcxv2hs: {"deleted": "computeinstance-e00mefccn3dpcxv2hs", "disks": []}
+2026-10-13T10:27:54Z terminate computeinstance-e00ke6d762jxbb0xy6: {"deleted": "computeinstance-e00ke6d762jxbb0xy6", "disks": []}
+2026-10-13T10:28:04Z terminate computeinstance-e00b9mdev70v84czs2: {"deleted": "computeinstance-e00b9mdev70v84czs2", "disks": []}
+2026-10-13T10:28:04Z terminate computeinstance-e00q2dep8txrm5adnh: {"deleted": "computeinstance-e00q2dep8txrm5adnh", "disks": []}
+2026-10-13T10:28:05Z terminate computeinstance-e00jv6fcy7b3jedryq: {"deleted": "computeinstance-e00jv6fcy7b3jedryq", "disks": []}
+2026-10-13T10:31:26Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00s62yknkqjx4yz81", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.79", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T10:31:26Z deploy everserve-e gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00s62yknkqjx4yz81", "name": "everserve-e", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.79", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-13T10:31:26Z VM e computeinstance-e00s62yknkqjx4yz81 up, watchdog at the start + 60 min
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00ejdv4wssp1dp4qy" over resource "computeinstance-e00n8zmawa283bpmrr" to complete
+2026-10-13T10:34:35Z deploy b failed: RuntimeError: waiting for operation "computeoperation-e00ejdv4wssp1dp4qy" over resource "computeinstance-e00n8zmawa283bpmrr" to complete
+2026-10-13T10:34:36Z deploy b attempt 3 failed; a half-made VM is deleted and the deploy retried in 60 s
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00hnym4jyg92ee22n" over resource "computeinstance-e00gt79wymdebagjk1" to complete
+2026-10-13T10:34:47Z deploy c failed: RuntimeError: waiting for operation "computeoperation-e00hnym4jyg92ee22n" over resource "computeinstance-e00gt79wymdebagjk1" to complete
+2026-10-13T10:34:47Z deploy c attempt 3 failed; a half-made VM is deleted and the deploy retried in 60 s
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00fggrsgxw2myzek3" over resource "computeinstance-e00xhn0e1d9h60bwxx" to complete
+2026-10-13T10:34:48Z deploy d failed: RuntimeError: waiting for operation "computeoperation-e00fggrsgxw2myzek3" over resource "computeinstance-e00xhn0e1d9h60bwxx" to complete
+2026-10-13T10:34:48Z deploy d attempt 3 failed; a half-made VM is deleted and the deploy retried in 60 s
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 348, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 290, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 151, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 84, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00qavfzn4dkvn2q8n" over resource "computeinstance-e00nceep40qrxz23xe" to complete
+2026-10-13T10:34:48Z deploy a failed: RuntimeError: waiting for operation "computeoperation-e00qavfzn4dkvn2q8n" over resource "computeinstance-e00nceep40qrxz23xe" to complete
+2026-10-13T10:34:48Z deploy a attempt 3 failed; a half-made VM is deleted and the deploy retried in 60 s
+2026-10-13T10:34:55Z terminate computeinstance-e00n8zmawa283bpmrr: {"deleted": "computeinstance-e00n8zmawa283bpmrr", "disks": []}
+2026-10-13T10:35:04Z terminate computeinstance-e00nceep40qrxz23xe: {"deleted": "computeinstance-e00nceep40qrxz23xe", "disks": []}
+2026-10-13T10:35:06Z terminate computeinstance-e00xhn0e1d9h60bwxx: {"deleted": "computeinstance-e00xhn0e1d9h60bwxx", "disks": []}
+2026-10-13T10:35:06Z terminate computeinstance-e00gt79wymdebagjk1: {"deleted": "computeinstance-e00gt79wymdebagjk1", "disks": []}
+2026-10-13T10:36:06Z a deploy failed; every VM released: 
+2026-10-13T10:37:47Z terminate computeinstance-e00s62yknkqjx4yz81: {"deleted": "computeinstance-e00s62yknkqjx4yz81", "disks": []}
+2026-10-13T10:37:48Z VMs released: []

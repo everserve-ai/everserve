@@ -1,0 +1,25 @@
+{
+ "streams": 1,
+ "tokens": 32,
+ "completed": 1,
+ "errors": [],
+ "short": [],
+ "max_gap_s": 0.078,
+ "per_stream": {
+  "0": {
+   "tokens": 32,
+   "start": 1792498685.737592,
+   "gap_s": 0.078,
+   "gap_at": 1792498686.133,
+   "error": null,
+   "workers": [
+    8518097562157291
+   ],
+   "first": 1792498686.111,
+   "usage_tokens": 32,
+   "last": 1792498686.222,
+   "end": 1792498686.222,
+   "text_chunks": 32
+  }
+ }
+}

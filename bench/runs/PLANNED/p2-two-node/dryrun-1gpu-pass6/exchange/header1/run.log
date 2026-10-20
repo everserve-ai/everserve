@@ -1,0 +1,28 @@
+2026-10-08T21:23:42Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: adapter; trials 5 (fault) / 3 (other); tree 5854fae + uncommitted
+2026-10-08T21:24:39Z nodes updated from the working tree (5854fae + uncommitted)
+2026-10-08T21:25:10Z iperf3 node-b -> node-a: 41.28 Gbit/s
+2026-10-08T21:25:21Z NCCL send node-a <-> node-b: "decode_pp_send_128KB: 0.18 ms per send, 0.73 GB/s;prefill_pp_send_268MB: 136.55 ms per send, 1.97 GB/s;replication_burst_650MB: 322.08 ms per send, 2.02 GB/s;"
+2026-10-08T21:25:36Z iperf3 node-c -> node-a: 42.26 Gbit/s
+2026-10-08T21:25:36Z fabric: slowest link to node-a 41.28 Gbit/s (floor 1)
+2026-10-08T21:26:02Z clock of node-b against node-a: {"host": "10.0.0.9", "at": 1791494762.9101334, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-08T21:26:24Z clock of node-c against node-a: {"host": "10.0.0.78", "at": 1791494784.5582676, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-08T21:26:27Z == adapter trial 1
+2026-10-08T21:27:04Z control plane up: coordinator on a at 10.0.0.14:7400, daemons linked on a b c, records exchanged
+2026-10-08T21:27:08Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-08T21:28:02Z end adapter_1 rc=0
+2026-10-08T21:29:10Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass6/exchange/header1/arms/adapter/trial1
+2026-10-08T21:29:18Z adapter_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+adapter trial 1: no control; figures only
+2026-10-08T21:29:28Z nodes a b c down
+2026-10-08T21:29:31Z == adapter trial 2
+2026-10-08T21:30:06Z control plane up: coordinator on a at 10.0.0.14:7400, daemons linked on a b c, records exchanged
+2026-10-08T21:30:11Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-08T21:30:56Z end adapter_2 rc=0
+2026-10-08T21:32:04Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass6/exchange/header1/arms/adapter/trial2
+2026-10-08T21:32:12Z adapter_2: rows for 0 sampled slots pulled from the kill-time file and both stores
+adapter trial 2: no control; figures only
+2026-10-08T21:32:21Z nodes a b c down
+adapter: 2 trials, green True, replica_lag_max_steps=0.0, replication_dropped_total=0.0, shadow_formation_s=5.527
+2026-10-08T21:32:47Z clock of node-b against node-a: {"host": "10.0.0.9", "at": 1791495167.746857, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-08T21:33:09Z clock of node-c against node-a: {"host": "10.0.0.78", "at": 1791495189.4007268, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-08T21:33:09Z battery done: adapter ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass6/exchange/header1

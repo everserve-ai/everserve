@@ -1,0 +1,65 @@
+# p1-kernels-4gpu battery on the exact replay: run log
+2026-10-05T23:54:41Z Tree de03e5d (pre-registration committed and pushed on eb67ad3, CI green). Pod heippwhi15marw, 5x A100-SXM4-80GB, NVLink NV12, driver 580.126.16 with cuda-compat-13-0, secure US, $7.95/h, shared with the build session (bench/runs/PLANNED/exact-replay-session). Session cap $8 from balance 8.29. /dev/shm 583G.
+2026-10-05T23:54:42Z spend [before stock_default] balance 5.88, spent since start $2.41, pod heippwhi15marw $7.95/h up 1161s
+2026-10-05T23:54:42Z pod: bash bench/harness/adapter_port.sh stock_default
+2026-10-05T23:54:44Z start stock_1: --arm stock --custom-all-reduce default
+2026-10-05T23:56:19Z end stock_1 rc=0: (MainProcess pid=15558) INFO 10-05 23:56:16 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T23:56:21Z start stock_2: --arm stock --custom-all-reduce default
+2026-10-05T23:57:02Z end stock_2 rc=0: (MainProcess pid=16721) INFO 10-05 23:56:59 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T23:57:04Z start stock_3: --arm stock --custom-all-reduce default
+2026-10-05T23:57:44Z end stock_3 rc=0: (MainProcess pid=17600) INFO 10-05 23:57:41 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T23:57:45Z spend [after stock_default] balance 5.88, spent since start $2.41, pod heippwhi15marw $7.95/h up 1323s
+2026-10-05T23:57:45Z spend [before nomirror] balance 5.88, spent since start $2.41, pod heippwhi15marw $7.95/h up 1323s
+2026-10-05T23:57:45Z pod: bash bench/harness/adapter_port.sh nomirror
+2026-10-05T23:57:48Z start adapter_nomirror_1: --arm adapter_nomirror
+2026-10-05T23:59:42Z end adapter_nomirror_1 rc=0: (MainProcess pid=18593) INFO 10-05 23:59:39 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T23:59:44Z start adapter_nomirror_2: --arm adapter_nomirror
+2026-10-06T00:00:44Z end adapter_nomirror_2 rc=0: (MainProcess pid=19802) INFO 10-06 00:00:41 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-06T00:00:46Z start adapter_nomirror_3: --arm adapter_nomirror
+2026-10-06T00:01:45Z end adapter_nomirror_3 rc=0: (MainProcess pid=20961) INFO 10-06 00:01:42 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-06T00:01:46Z spend [after nomirror] balance 5.22, spent since start $3.07, pod heippwhi15marw $7.95/h up 1565s
+2026-10-06T00:01:46Z spend [before adapter] balance 5.22, spent since start $3.07, pod heippwhi15marw $7.95/h up 1565s
+2026-10-06T00:01:46Z pod: bash bench/harness/adapter_port.sh adapter
+2026-10-06T00:01:49Z start adapter_1: --arm adapter
+2026-10-06T00:02:48Z end adapter_1 rc=0: (MainProcess pid=22138) INFO 10-06 00:02:45 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-06T00:02:50Z start adapter_2: --arm adapter
+2026-10-06T00:03:54Z end adapter_2 rc=0: (MainProcess pid=23300) INFO 10-06 00:03:51 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-06T00:03:56Z start adapter_3: --arm adapter
+2026-10-06T00:04:54Z end adapter_3 rc=0: (MainProcess pid=24464) INFO 10-06 00:04:52 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-06T00:04:55Z spend [after adapter] balance 4.54, spent since start $3.75, pod heippwhi15marw $7.95/h up 1775s
+2026-10-06T00:04:56Z spend [before replace] balance 4.54, spent since start $3.75, pod heippwhi15marw $7.95/h up 1775s
+2026-10-06T00:04:56Z pod: bash bench/harness/adapter_port.sh replace
+2026-10-06T00:04:58Z start replace_between_1: --arm replace --kill between
+2026-10-06T00:06:04Z end replace_between_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T00:06:06Z start replace_between_2: --arm replace --kill between
+2026-10-06T00:07:12Z end replace_between_2 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T00:07:14Z start replace_between_3: --arm replace --kill between
+2026-10-06T00:08:20Z end replace_between_3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T00:08:22Z start replace_mid_1: --arm replace --kill mid
+2026-10-06T00:09:27Z end replace_mid_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T00:09:29Z start replace_mid_2: --arm replace --kill mid
+2026-10-06T00:10:34Z end replace_mid_2 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T00:10:36Z start replace_mid_3: --arm replace --kill mid
+2026-10-06T00:11:40Z end replace_mid_3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T00:11:41Z spend [after replace] balance 3.88, spent since start $4.41, pod heippwhi15marw $7.95/h up 2177s
+2026-10-06T00:11:42Z spend [before notice_ref] balance 3.88, spent since start $4.41, pod heippwhi15marw $7.95/h up 2177s
+2026-10-06T00:11:42Z pod: bash bench/harness/adapter_port.sh notice_ref
+2026-10-06T00:11:45Z start notice_ref: --arm adapter --max-tokens 601 --max-model-len 2688
+2026-10-06T00:12:47Z end notice_ref rc=0: (MainProcess pid=32961) INFO 10-06 00:12:44 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-06T00:12:47Z spend [after notice_ref] balance 3.88, spent since start $4.41, pod heippwhi15marw $7.95/h up 2237s
+2026-10-06T00:12:48Z spend [before async_notice] balance 3.88, spent since start $4.41, pod heippwhi15marw $7.95/h up 2237s
+2026-10-06T00:12:48Z pod: bash bench/harness/adapter_port.sh async_notice
+2026-10-06T00:12:50Z start notice_1: --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-06T00:14:02Z end notice_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T00:14:05Z start notice_2: --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-06T00:15:13Z end notice_2 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T00:15:15Z start notice_3: --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-06T00:16:23Z end notice_3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T00:16:23Z spend [after async_notice] balance 3.21, spent since start $5.08, pod heippwhi15marw $7.95/h up 2440s
+2026-10-06T00:16:24Z pod: bash bench/harness/adapter_port.sh summary (results.json)
+2026-10-06T00:16:43Z outputs copied to data/ (tar over ssh; gitignored); the drills' to exact-replay-session/data/
+overlay         200G   30G  171G  15% /
+2026-10-06T00:16:45Z terminate heippwhi15marw: {"data": {"podTerminate": null}}
+2026-10-06T00:16:45Z weights and /dev/shm deleted; pod terminated; watchdog stopped
+2026-10-06T00:16:49Z balance 3.21
+2026-10-06T00:18:32Z results.json, RESULT.md written; flake/ copied; PREREGISTRATION.md unchanged since its commit; moved to bench/runs/2026-10-06-exact-replay-4gpu/

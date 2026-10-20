@@ -1,0 +1,268 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  python:
+    # format, lint, schema freshness and the fast tier: the quick verdict
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+        with:
+          enable-cache: true
+      - run: uv python install
+      - run: uv sync --all-packages --index https://download.pytorch.org/whl/cpu
+      - run: scripts/spdx-check.sh
+      - run: scripts/gen-proto.sh --check
+      - run: uv run ruff format --check .
+      - run: uv run ruff check .
+      - run: uv run pytest -m "not slow" --ignore=core/tests/test_mirror_client.py
+      # the generated code loads under the oldest protobuf runtime core declares, as it must in an
+      # engine image that carries that one
+      - run: >-
+          uv run --with protobuf==6.31.1 python -c "import google.protobuf as p;
+          assert p.__version__ == '6.31.1', p.__version__;
+          from everserve.proto import signals_pb2, coord_pb2, policy_pb2, spec_pb2, discovery_pb2, mirror_pb2"
+
+  python-store:
+    # the Python transport against the real store binary: rows through shared memory
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: dtolnay/rust-toolchain@e2a55d2ffb04f378e9626c28d38b36d230d1e12f # master, 2026-10
+        with:
+          toolchain: 1.97.1
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
+      - run: cargo build --release -p everserve-store
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+        with:
+          enable-cache: true
+      - run: uv python install
+      - run: uv sync --all-packages --index https://download.pytorch.org/whl/cpu
+      - run: uv run pytest core/tests/test_mirror_client.py
+        env:
+          EVERSERVE_STORE_BIN: target/release/everserve-store
+
+  python-slow:
+    # the multi-process torch suites, sharded so the wall time is the longest shard
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard:
+          - name: fault-ep
+            args: core/tests/test_runtime_fault.py -k "ep]"
+          - name: fault-tp
+            args: core/tests/test_runtime_fault.py -k "tp or shadow"
+          - name: groups
+            args: core/tests/test_world_reform.py core/tests/test_shadow.py core/tests/test_group_handle.py core/tests/test_collective.py
+    name: python-slow (${{ matrix.shard.name }})
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+        with:
+          enable-cache: true
+      - run: uv python install
+      - run: uv sync --all-packages --index https://download.pytorch.org/whl/cpu
+      - run: uv run pytest -m slow ${{ matrix.shard.args }}
+
+  proto:
+    # the wire schema's lint, and no change that breaks the wire or its JSON form against what
+    # was there before (buf.yaml): a pull request against its base, a push against the commit
+    # before it
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - name: buf
+        run: |
+          v=v1.74.0
+          curl -fsSL --retry 4 --retry-all-errors --max-time 120 -o /tmp/buf "https://github.com/bufbuild/buf/releases/download/$v/buf-Linux-x86_64"
+          echo "92326d957d613712669fb55f9e4340946a8142a92120e09008459118778273d2  /tmp/buf" | sha256sum -c -
+          sudo install /tmp/buf /usr/local/bin/buf
+      - run: buf lint
+      - name: breaking
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: buf breaking --against ".git#ref=$BASE,subdir=proto"
+
+  e2e:
+    # a worker node lost twice end to end, with no GPU: the real coordinator and daemons built from
+    # this tree, and the engine's head, node and spare processes speaking the real Python contract
+    # and cover protocol; only what needs a GPU is stood in for. Each side's own tests fake the
+    # other; this one does not
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: dtolnay/rust-toolchain@e2a55d2ffb04f378e9626c28d38b36d230d1e12f # master, 2026-10
+        with:
+          toolchain: 1.97.1
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
+      - run: sudo apt-get update && sudo apt-get install -y protobuf-compiler
+      - run: cargo build -p everserve-controller
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+        with:
+          enable-cache: true
+      - run: uv python install
+      - run: uv sync --all-packages --index https://download.pytorch.org/whl/cpu
+      # the binary named, so a build that left none fails the test rather than skipping it
+      - run: uv run pytest -m slow -rs adapters/vllm/tests/test_worker_loss_e2e.py
+        env:
+          EVERSERVE_CONTROLLER_BIN: target/debug/everserve-controller
+
+  adapter-vllm:
+    # the adapter's vLLM-gated tests against the pinned vLLM (the "engine" extra, adapters/vllm/PIN),
+    # which the other jobs skip for want of vLLM: the engine image runs them before each push of
+    # it, and this runs them on every change. vLLM imports on a host with no GPU; the tests that
+    # need one skip, by name
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      # vLLM and torch's CUDA libraries fill most of the runner's disk
+      - name: room on the disk
+        run: |
+          df -h /
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+        with:
+          enable-cache: true
+      - run: uv python install
+      # the lock's torch, as the engine image installs it, not the CPU index the other jobs use
+      - run: uv sync --all-packages --all-extras
+      - run: uv run python -c "import vllm; print('vllm', vllm.__version__)"
+      # the CUDA 13.0 driver stub a separate head's platform plugin loads in place of a driver
+      # (EVERSERVE_CUDA_STUB), as the engine image carries it; named to the test step alone, so
+      # every other test sees no driver at all
+      - name: CUDA driver stub
+        run: |
+          deb=cuda-driver-dev-13-0_13.0.96-1_amd64.deb
+          curl -fsSL --retry 4 --retry-all-errors --max-time 120 -o "/tmp/$deb" "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/$deb"
+          echo "a9726490d4797965b56a2e1dedb2c4cffd3f3463e11435fa4c500b3d147af08a  /tmp/$deb" | sha256sum -c -
+          dpkg-deb -x "/tmp/$deb" /tmp/cuda-stub
+      - run: uv run pytest -m "not slow" -rs adapters/vllm/tests
+        env:
+          EVERSERVE_CUDA_STUB: /tmp/cuda-stub/usr/local/cuda-13.0/targets/x86_64-linux/lib/stubs/libcuda.so
+
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      # the workspace's debug build and its test binaries fill the runner's disk: the toolchains
+      # this job never uses go first (the runner image's .NET, Android, Haskell and CodeQL)
+      - name: room on the disk
+        run: |
+          df -h /
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+      # the toolchain comes from rust-toolchain.toml, the same pin the local gate uses
+      - uses: dtolnay/rust-toolchain@e2a55d2ffb04f378e9626c28d38b36d230d1e12f # master, 2026-10
+        with:
+          toolchain: 1.97.1
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
+      # etcd-client's build generates etcd's gRPC types with protoc
+      - run: sudo apt-get update && sudo apt-get install -y protobuf-compiler
+      # the etcd lease tests start a real etcd (decision 0036); pinned, its checksum checked
+      - name: etcd
+        run: |
+          v=v3.7.2
+          curl -fsSL --retry 4 --retry-all-errors --max-time 120 -o /tmp/etcd.tgz "https://github.com/etcd-io/etcd/releases/download/$v/etcd-$v-linux-amd64.tar.gz"
+          echo "3a3679bc51a4ee9d30bccea1da7cd4fe62c6fc1d2ca1255068d2c53bf3026135  /tmp/etcd.tgz" | sha256sum -c -
+          tar xzf /tmp/etcd.tgz -C /tmp
+          sudo install "/tmp/etcd-$v-linux-amd64/etcd" /usr/local/bin/etcd
+      # the Kubernetes lease tests start envtest's kube-apiserver over that etcd; pinned, its
+      # checksum checked
+      - name: kube-apiserver
+        run: |
+          v=v1.37.0
+          # GitHub's release assets answer 500 at times: asked again, each try bounded, and the
+          # checksum below decides
+          for try in 1 2 3 4; do
+            timeout 120 gh release download "envtest-$v" -R kubernetes-sigs/controller-tools -p "envtest-$v-linux-amd64.tar.gz" -D /tmp --clobber && break
+            sleep $((try * 5))
+          done
+          echo "1d1c453633b72c161a5d5a886cde7ac850be1a2ac796a9e1d4ffacacc64868295bdd2d57aa66cd0c158f5ce510f5dfe3fbc61ac21bd3dcfb875bd70658aa663a  /tmp/envtest-$v-linux-amd64.tar.gz" | sha512sum -c -
+          tar xzf "/tmp/envtest-$v-linux-amd64.tar.gz" -C /tmp
+          sudo install /tmp/controller-tools/envtest/kube-apiserver /usr/local/bin/kube-apiserver
+          # the chart tests apply with the kubectl of the server's own release, found beside it
+          sudo install /tmp/controller-tools/envtest/kubectl /usr/local/bin/kubectl
+        env:
+          GH_TOKEN: ${{ github.token }}
+      # the chart tests render the chart with helm
+      - uses: azure/setup-helm@1a275c3b69536ee54be43f2070a358922e12c8d4 # v4
+        with:
+          version: v4.2.4
+      - run: cargo fmt --all --check
+      - run: cargo clippy --workspace --all-targets -- -D warnings
+      - run: cargo test --workspace
+      - run: cargo build -p everserve-controller -p everserve-store
+      - run: deploy/baremetal/smoke.sh target/debug
+      - run: cargo doc --workspace --no-deps
+        env:
+          RUSTDOCFLAGS: -Dwarnings
+
+  image:
+    # the control plane's image builds from the Dockerfile and both binaries run in it
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - run: docker build -t everserve:ci .
+      - run: docker run --rm everserve:ci --version
+      - run: docker run --rm --entrypoint /usr/local/bin/everserve-store everserve:ci --version
+      # what the image is made of, SPDX, kept with the run
+      - uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0
+        with:
+          image: everserve:ci
+          format: spdx-json
+          artifact-name: everserve-image.spdx.json
+
+  alerts:
+    # the alerting rules load in Prometheus, and raise what alerts.test.yml says over its series;
+    # promtool pinned, its checksum checked
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - run: |
+          v=3.15.0
+          curl -fsSL --retry 4 --retry-all-errors --max-time 120 -o /tmp/prometheus.tgz "https://github.com/prometheus/prometheus/releases/download/v$v/prometheus-$v.linux-amd64.tar.gz"
+          echo "2a542df32eac02ee17b9d844fb2aa1de00dafa5476579ba8a3ba862e9d572ea0  /tmp/prometheus.tgz" | sha256sum -c -
+          tar xzf /tmp/prometheus.tgz -C /tmp
+          sudo install "/tmp/prometheus-$v.linux-amd64/promtool" /usr/local/bin/promtool
+      - run: promtool check rules deploy/grafana/alerts.yml
+      - run: promtool test rules deploy/grafana/alerts.test.yml
+
+  supply-chain:
+    # what the code depends on (deny.toml): no dependency with a known vulnerability, unmaintained
+    # or yanked, every licence permissive, every crate from crates.io; and the Python
+    # dependencies uv.lock pins, audited against the advisories PyPI publishes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: EmbarkStudios/cargo-deny-action@3c6349835b2b7b196a839186cb8b78e02f7b5f25 # v2
+        with:
+          command: check
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+      # every exception names the advisory, why it does not reach us, and what ends it:
+      # PYSEC-2026-3447 (CVE-2026-59890, setuptools < 83): MANIFEST.in exclusions bypassed by an
+      #   NFD file name on macOS APFS/HFS+ when setuptools packs a source distribution. Nothing of
+      #   ours builds with setuptools (hatchling builds all three packages) and no serving process
+      #   packs a distribution. vLLM 0.31.0 caps setuptools below 81; the exception goes with the
+      #   first vLLM release whose cap admits 83.
+      - run: |
+          uv export --frozen --all-packages --no-emit-workspace -o "$RUNNER_TEMP/requirements.txt"
+          uvx pip-audit@2.10.1 -r "$RUNNER_TEMP/requirements.txt" --disable-pip --require-hashes \
+            --ignore-vuln PYSEC-2026-3447
+          # an exception does not outlive its cause: once the lock takes setuptools 83, it goes
+          python3 - "$RUNNER_TEMP/requirements.txt" <<'EOF'
+          import re, sys
+          pinned = re.search(r"^setuptools==(\d+)", open(sys.argv[1]).read(), re.M)
+          if pinned and int(pinned.group(1)) >= 83:
+              sys.exit("setuptools is 83 or later: remove PYSEC-2026-3447's exception")
+          EOF

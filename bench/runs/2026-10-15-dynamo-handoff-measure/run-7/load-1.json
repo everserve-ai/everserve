@@ -1,0 +1,625 @@
+{
+ "streams": 32,
+ "completed": 15,
+ "errors": [
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  }
+ ],
+ "max_gap_s": 7.618,
+ "per_stream": {
+  "0": {
+   "tokens": 6000,
+   "start": 1792171195.650437,
+   "gap_s": 0.099,
+   "gap_at": 1792171196.547,
+   "error": null,
+   "workers": [
+    4645388601827326
+   ],
+   "first": 1792171196.18,
+   "usage_tokens": 6000,
+   "last": 1792171224.816,
+   "end": 1792171224.819,
+   "text_chunks": 5999
+  },
+  "1": {
+   "tokens": 6000,
+   "start": 1792171195.65051,
+   "gap_s": 6.178,
+   "gap_at": 1792171218.699,
+   "error": null,
+   "workers": [
+    4645388601827326
+   ],
+   "first": 1792171196.268,
+   "usage_tokens": 6000,
+   "last": 1792171229.993,
+   "end": 1792171229.994,
+   "text_chunks": 6000
+  },
+  "2": {
+   "tokens": 1677,
+   "start": 1792171195.6505868,
+   "gap_s": 0.536,
+   "gap_at": 1792171206.532,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.055,
+   "last": 1792171206.532,
+   "end": 1792171207.068,
+   "text_chunks": 1677
+  },
+  "3": {
+   "tokens": 1657,
+   "start": 1792171195.650647,
+   "gap_s": 0.535,
+   "gap_at": 1792171206.532,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.178,
+   "last": 1792171206.532,
+   "end": 1792171207.067,
+   "text_chunks": 1657
+  },
+  "4": {
+   "tokens": 1659,
+   "start": 1792171195.650687,
+   "gap_s": 0.532,
+   "gap_at": 1792171206.536,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.172,
+   "last": 1792171206.536,
+   "end": 1792171207.068,
+   "text_chunks": 1659
+  },
+  "5": {
+   "tokens": 6000,
+   "start": 1792171195.650722,
+   "gap_s": 0.088,
+   "gap_at": 1792171196.548,
+   "error": null,
+   "workers": [
+    4645388601827326
+   ],
+   "first": 1792171196.27,
+   "usage_tokens": 6000,
+   "last": 1792171224.916,
+   "end": 1792171224.916,
+   "text_chunks": 5997
+  },
+  "6": {
+   "tokens": 6000,
+   "start": 1792171195.650757,
+   "gap_s": 2.413,
+   "gap_at": 1792171222.194,
+   "error": null,
+   "workers": [
+    4645388601827326
+   ],
+   "first": 1792171196.269,
+   "usage_tokens": 6000,
+   "last": 1792171226.911,
+   "end": 1792171226.912,
+   "text_chunks": 5993
+  },
+  "7": {
+   "tokens": 1655,
+   "start": 1792171195.65079,
+   "gap_s": 0.534,
+   "gap_at": 1792171206.533,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.178,
+   "last": 1792171206.533,
+   "end": 1792171207.067,
+   "text_chunks": 1655
+  },
+  "8": {
+   "tokens": 6000,
+   "start": 1792171195.6508229,
+   "gap_s": 4.426,
+   "gap_at": 1792171220.392,
+   "error": null,
+   "workers": [
+    4645388601827326
+   ],
+   "first": 1792171196.266,
+   "usage_tokens": 6000,
+   "last": 1792171228.389,
+   "end": 1792171228.39,
+   "text_chunks": 5996
+  },
+  "9": {
+   "tokens": 6000,
+   "start": 1792171195.6508548,
+   "gap_s": 0.096,
+   "gap_at": 1792171196.549,
+   "error": null,
+   "workers": [
+    4645388601827326
+   ],
+   "first": 1792171196.171,
+   "usage_tokens": 6000,
+   "last": 1792171224.758,
+   "end": 1792171224.761,
+   "text_chunks": 5995
+  },
+  "10": {
+   "tokens": 1601,
+   "start": 1792171195.650906,
+   "gap_s": 0.526,
+   "gap_at": 1792171206.538,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.172,
+   "last": 1792171206.538,
+   "end": 1792171207.064,
+   "text_chunks": 1601
+  },
+  "11": {
+   "tokens": 1639,
+   "start": 1792171195.6509461,
+   "gap_s": 0.532,
+   "gap_at": 1792171206.532,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.26,
+   "last": 1792171206.532,
+   "end": 1792171207.064,
+   "text_chunks": 1639
+  },
+  "12": {
+   "tokens": 1658,
+   "start": 1792171195.650978,
+   "gap_s": 0.528,
+   "gap_at": 1792171206.538,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.173,
+   "last": 1792171206.538,
+   "end": 1792171207.066,
+   "text_chunks": 1658
+  },
+  "13": {
+   "tokens": 6000,
+   "start": 1792171195.651009,
+   "gap_s": 0.085,
+   "gap_at": 1792171196.548,
+   "error": null,
+   "workers": [
+    4645388601827326
+   ],
+   "first": 1792171196.17,
+   "usage_tokens": 6000,
+   "last": 1792171224.761,
+   "end": 1792171224.761,
+   "text_chunks": 5883
+  },
+  "14": {
+   "tokens": 6000,
+   "start": 1792171195.651071,
+   "gap_s": 0.085,
+   "gap_at": 1792171196.305,
+   "error": null,
+   "workers": [
+    4645388601827326
+   ],
+   "first": 1792171196.182,
+   "usage_tokens": 6000,
+   "last": 1792171224.877,
+   "end": 1792171224.877,
+   "text_chunks": 5740
+  },
+  "15": {
+   "tokens": 6000,
+   "start": 1792171195.651157,
+   "gap_s": 0.089,
+   "gap_at": 1792171196.548,
+   "error": null,
+   "workers": [
+    4645388601827326
+   ],
+   "first": 1792171196.263,
+   "usage_tokens": 6000,
+   "last": 1792171224.912,
+   "end": 1792171224.914,
+   "text_chunks": 5995
+  },
+  "16": {
+   "tokens": 1643,
+   "start": 1792171195.651207,
+   "gap_s": 0.532,
+   "gap_at": 1792171206.533,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.178,
+   "last": 1792171206.533,
+   "end": 1792171207.065,
+   "text_chunks": 1643
+  },
+  "17": {
+   "tokens": 1649,
+   "start": 1792171195.6512508,
+   "gap_s": 0.524,
+   "gap_at": 1792171206.538,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.185,
+   "last": 1792171206.538,
+   "end": 1792171207.062,
+   "text_chunks": 1649
+  },
+  "18": {
+   "tokens": 6000,
+   "start": 1792171195.651308,
+   "gap_s": 0.087,
+   "gap_at": 1792171196.18,
+   "error": null,
+   "workers": [
+    4645388601827326
+   ],
+   "first": 1792171196.063,
+   "usage_tokens": 6000,
+   "last": 1792171224.541,
+   "end": 1792171224.544,
+   "text_chunks": 5887
+  },
+  "19": {
+   "tokens": 1666,
+   "start": 1792171195.6513522,
+   "gap_s": 0.527,
+   "gap_at": 1792171206.538,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.141,
+   "last": 1792171206.538,
+   "end": 1792171207.065,
+   "text_chunks": 1666
+  },
+  "20": {
+   "tokens": 6000,
+   "start": 1792171195.651382,
+   "gap_s": 0.085,
+   "gap_at": 1792171196.548,
+   "error": null,
+   "workers": [
+    4645388601827326
+   ],
+   "first": 1792171196.27,
+   "usage_tokens": 6000,
+   "last": 1792171224.877,
+   "end": 1792171224.879,
+   "text_chunks": 5999
+  },
+  "21": {
+   "tokens": 1672,
+   "start": 1792171195.6514099,
+   "gap_s": 0.53,
+   "gap_at": 1792171206.537,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.065,
+   "last": 1792171206.537,
+   "end": 1792171207.067,
+   "text_chunks": 1672
+  },
+  "22": {
+   "tokens": 6000,
+   "start": 1792171195.651437,
+   "gap_s": 0.283,
+   "gap_at": 1792171224.325,
+   "error": null,
+   "workers": [
+    4645388601827326
+   ],
+   "first": 1792171196.263,
+   "usage_tokens": 6000,
+   "last": 1792171225.108,
+   "end": 1792171225.108,
+   "text_chunks": 5887
+  },
+  "23": {
+   "tokens": 6000,
+   "start": 1792171195.651467,
+   "gap_s": 0.092,
+   "gap_at": 1792171196.547,
+   "error": null,
+   "workers": [
+    4645388601827326
+   ],
+   "first": 1792171196.178,
+   "usage_tokens": 6000,
+   "last": 1792171224.763,
+   "end": 1792171224.763,
+   "text_chunks": 5995
+  },
+  "24": {
+   "tokens": 1658,
+   "start": 1792171195.651495,
+   "gap_s": 0.529,
+   "gap_at": 1792171206.538,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.172,
+   "last": 1792171206.538,
+   "end": 1792171207.067,
+   "text_chunks": 1658
+  },
+  "25": {
+   "tokens": 6000,
+   "start": 1792171195.651547,
+   "gap_s": 7.618,
+   "gap_at": 1792171217.259,
+   "error": null,
+   "workers": [
+    4645388601827326
+   ],
+   "first": 1792171196.264,
+   "usage_tokens": 6000,
+   "last": 1792171231.345,
+   "end": 1792171231.345,
+   "text_chunks": 5841
+  },
+  "26": {
+   "tokens": 1657,
+   "start": 1792171195.651585,
+   "gap_s": 0.53,
+   "gap_at": 1792171206.532,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.178,
+   "last": 1792171206.532,
+   "end": 1792171207.062,
+   "text_chunks": 1657
+  },
+  "27": {
+   "tokens": 1235,
+   "start": 1792171195.651618,
+   "gap_s": 0.527,
+   "gap_at": 1792171206.538,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.172,
+   "last": 1792171206.538,
+   "end": 1792171207.065,
+   "text_chunks": 1235
+  },
+  "28": {
+   "tokens": 6000,
+   "start": 1792171195.651646,
+   "gap_s": 0.086,
+   "gap_at": 1792171196.548,
+   "error": null,
+   "workers": [
+    4645388601827326
+   ],
+   "first": 1792171196.27,
+   "usage_tokens": 6000,
+   "last": 1792171224.914,
+   "end": 1792171224.914,
+   "text_chunks": 5813
+  },
+  "29": {
+   "tokens": 1631,
+   "start": 1792171195.651677,
+   "gap_s": 0.535,
+   "gap_at": 1792171206.532,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.257,
+   "last": 1792171206.532,
+   "end": 1792171207.067,
+   "text_chunks": 1631
+  },
+  "30": {
+   "tokens": 1644,
+   "start": 1792171195.651705,
+   "gap_s": 0.529,
+   "gap_at": 1792171206.538,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.177,
+   "last": 1792171206.538,
+   "end": 1792171207.067,
+   "text_chunks": 1644
+  },
+  "31": {
+   "tokens": 1632,
+   "start": 1792171195.6517582,
+   "gap_s": 0.529,
+   "gap_at": 1792171206.533,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8921009085884656
+   ],
+   "first": 1792171196.266,
+   "last": 1792171206.533,
+   "end": 1792171207.062,
+   "text_chunks": 1632
+  }
+ }
+}

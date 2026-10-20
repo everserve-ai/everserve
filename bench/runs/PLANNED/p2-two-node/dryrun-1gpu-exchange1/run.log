@@ -1,0 +1,34 @@
+2026-10-08T18:10:07Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: stock adapter; trials 1 (fault) / 1 (other); tree 142de12 + uncommitted
+2026-10-08T18:10:22Z nodes updated from the working tree (142de12 + uncommitted)
+2026-10-08T18:10:53Z iperf3 node-b -> node-a: 41.28 Gbit/s
+2026-10-08T18:11:04Z NCCL send node-a <-> node-b: "decode_pp_send_128KB: 0.24 ms per send, 0.56 GB/s;prefill_pp_send_268MB: 137.31 ms per send, 1.95 GB/s;replication_burst_650MB: 336.86 ms per send, 1.93 GB/s;"
+2026-10-08T18:11:19Z iperf3 node-c -> node-a: 41.4 Gbit/s
+2026-10-08T18:11:19Z fabric: slowest link to node-a 41.28 Gbit/s (floor 1)
+2026-10-08T18:11:45Z clock of node-b against node-a: {"host": "10.0.0.60", "at": 1791483105.7960274, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-08T18:12:07Z clock of node-c against node-a: {"host": "10.0.0.10", "at": 1791483127.4103942, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-08T18:12:10Z == stock trial 1
+2026-10-08T18:12:47Z control plane up: coordinator on a at 10.0.0.7:7400, daemons linked on a b c, records exchanged
+2026-10-08T18:12:51Z node-b headless started: stock vLLM (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-08T18:13:31Z end stock_1 rc=0
+2026-10-08T18:15:21Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-exchange1/arms/stock/trial1
+stock trial 1: no control; figures only
+2026-10-08T18:15:33Z nodes a b c down
+stock: 1 trials, green True, replica_lag_max_steps=[None], replication_dropped_total=0
+2026-10-08T18:15:36Z == adapter trial 1
+2026-10-08T18:16:12Z control plane up: coordinator on a at 10.0.0.7:7400, daemons linked on a b c, records exchanged
+2026-10-08T18:16:17Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-08T18:17:03Z end adapter_1 rc=0
+2026-10-08T18:18:54Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-exchange1/arms/adapter/trial1
+adapter trial 1: no control; figures only
+2026-10-08T18:19:05Z nodes a b c down
+2026-10-08T18:19:08Z == adapter trial 2
+2026-10-08T18:19:44Z control plane up: coordinator on a at 10.0.0.7:7400, daemons linked on a b c, records exchanged
+2026-10-08T18:19:49Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-08T18:20:38Z end adapter_2 rc=0
+2026-10-08T18:22:28Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-exchange1/arms/adapter/trial2
+adapter trial 2: no control; figures only
+2026-10-08T18:22:40Z nodes a b c down
+adapter: 2 trials, green True, adapter_overhead_pct=26.915, replica_lag_max_steps=0.0, replication_dropped_total=0.0, shadow_formation_s=3.6310000000000002
+2026-10-08T18:23:05Z clock of node-b against node-a: {"host": "10.0.0.60", "at": 1791483785.8465736, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-08T18:23:27Z clock of node-c against node-a: {"host": "10.0.0.10", "at": 1791483807.4901743, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-08T18:23:27Z battery done: adapter stock ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-exchange1

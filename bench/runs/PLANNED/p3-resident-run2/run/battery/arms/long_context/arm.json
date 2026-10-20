@@ -1,0 +1,299 @@
+{
+  "arm": "long_context",
+  "trials": 3,
+  "figures": {
+    "compile_cache_consistent": {
+      "values": [
+        false,
+        false,
+        false
+      ],
+      "prediction": 6,
+      "median": false,
+      "worst": false,
+      "worst_over_median": null
+    },
+    "engine_down": {
+      "values": [
+        false,
+        false,
+        false
+      ],
+      "prediction": 2,
+      "median": false,
+      "worst": false,
+      "worst_over_median": null
+    },
+    "first_differing_position": {
+      "values": [
+        null,
+        null,
+        null
+      ],
+      "prediction": 3
+    },
+    "instrument_pause_s": {
+      "values": [
+        165.4594,
+        164.4791,
+        165.0953
+      ],
+      "prediction": null,
+      "median": 165.0953,
+      "worst": 165.4594,
+      "worst_over_median": 1.0
+    },
+    "long_context_gap_s": {
+      "values": [
+        22.0136,
+        30.0581,
+        27.9306
+      ],
+      "prediction": null,
+      "median": 27.9306,
+      "worst": 30.0581,
+      "worst_over_median": 1.08
+    },
+    "replica_lag_max_steps": {
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "prediction": null,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "prediction": null,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "requests_re_prefilled": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "prediction": 5,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "restore_coverage": {
+      "values": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "prediction": 4,
+      "median": 1.0,
+      "worst": 1.0,
+      "worst_over_median": 1.0
+    },
+    "restored_rows_mismatched": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "prediction": 3,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "resume_below_committed": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "prediction": 5,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "sessions_kept_identical": {
+      "values": [
+        "1/1",
+        "1/1",
+        "1/1"
+      ],
+      "prediction": 1
+    },
+    "shadow_formation_s": {
+      "values": [
+        0.453,
+        0.449,
+        0.454
+      ],
+      "prediction": 12,
+      "median": 0.453,
+      "worst": 0.454,
+      "worst_over_median": 1.0
+    },
+    "staged_wait_s": {
+      "values": [
+        6.9095,
+        6.3203,
+        4.5802
+      ],
+      "prediction": 11,
+      "median": 6.3203,
+      "worst": 6.9095,
+      "worst_over_median": 1.09
+    },
+    "stops_killed": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "prediction": 14,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "store_refusals_total": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "prediction": 6,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "take_identity_s": {
+      "values": [
+        0.002,
+        0.002,
+        0.002
+      ],
+      "prediction": null,
+      "median": 0.002,
+      "worst": 0.002,
+      "worst_over_median": 1.0
+    },
+    "take_kv_alloc_s": {
+      "values": [
+        0.003,
+        0.003,
+        0.003
+      ],
+      "prediction": null,
+      "median": 0.003,
+      "worst": 0.003,
+      "worst_over_median": 1.0
+    },
+    "take_kv_config_s": {
+      "values": [
+        3.07,
+        3.039,
+        3.053
+      ],
+      "prediction": 10,
+      "median": 3.053,
+      "worst": 3.07,
+      "worst_over_median": 1.01
+    },
+    "take_modules_s": {
+      "values": [
+        2.024,
+        2.035,
+        2.032
+      ],
+      "prediction": 10,
+      "median": 2.032,
+      "worst": 2.035,
+      "worst_over_median": 1.0
+    },
+    "take_restore_s": {
+      "values": [
+        1.3576,
+        1.1054,
+        1.1189
+      ],
+      "prediction": 11,
+      "median": 1.1189,
+      "worst": 1.3576,
+      "worst_over_median": 1.21
+    },
+    "take_s": {
+      "values": [
+        13.514,
+        13.383,
+        12.975
+      ],
+      "prediction": null,
+      "median": 13.383,
+      "worst": 13.514,
+      "worst_over_median": 1.01
+    },
+    "take_sizing_s": {
+      "values": [
+        0.019,
+        0.019,
+        0.019
+      ],
+      "prediction": null,
+      "median": 0.019,
+      "worst": 0.019,
+      "worst_over_median": 1.0
+    },
+    "take_warm_s": {
+      "values": [
+        5.255,
+        5.064,
+        5.066
+      ],
+      "prediction": 10,
+      "median": 5.066,
+      "worst": 5.255,
+      "worst_over_median": 1.04
+    },
+    "take_weights_s": {
+      "values": [
+        0.721,
+        0.72,
+        0.72
+      ],
+      "prediction": 10,
+      "median": 0.72,
+      "worst": 0.721,
+      "worst_over_median": 1.0
+    },
+    "take_written_beyond_baseline_bytes": {
+      "values": [
+        218259,
+        0,
+        180
+      ],
+      "prediction": 9,
+      "median": 180,
+      "worst": 218259,
+      "worst_over_median": 1212.55
+    },
+    "take_written_bytes": {
+      "values": [
+        4835351,
+        4617092,
+        4617272
+      ],
+      "prediction": null,
+      "median": 4617272,
+      "worst": 4835351,
+      "worst_over_median": 1.05
+    }
+  },
+  "failed": [],
+  "green": true
+}

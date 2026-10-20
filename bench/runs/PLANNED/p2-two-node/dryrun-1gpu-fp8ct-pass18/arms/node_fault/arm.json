@@ -1,0 +1,208 @@
+{
+  "arm": "node_fault",
+  "trials": 1,
+  "figures": {
+    "backup_coverage": {
+      "values": [
+        1.0
+      ],
+      "prediction": null,
+      "median": 1.0,
+      "worst": 1.0,
+      "worst_over_median": 1.0
+    },
+    "first_differing_position": {
+      "values": [
+        null
+      ],
+      "prediction": 5
+    },
+    "instrument_pause_s": {
+      "values": [
+        1.8494
+      ],
+      "prediction": null,
+      "median": 1.8494,
+      "worst": 1.8494,
+      "worst_over_median": 1.0
+    },
+    "node_fault_detection_s": {
+      "values": [
+        0.0112
+      ],
+      "prediction": 4,
+      "median": 0.0112,
+      "worst": 0.0112,
+      "worst_over_median": 1.0
+    },
+    "node_fault_gap_s": {
+      "values": [
+        6.8837
+      ],
+      "prediction": 4,
+      "median": 6.8837,
+      "worst": 6.8837,
+      "worst_over_median": 1.0
+    },
+    "replica_lag_max_steps": {
+      "values": [
+        0.0
+      ],
+      "prediction": 7,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0
+      ],
+      "prediction": 7,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "requests_re_prefilled": {
+      "values": [
+        0
+      ],
+      "prediction": 5,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "restore_coverage": {
+      "values": [
+        1.0
+      ],
+      "prediction": 6,
+      "median": 1.0,
+      "worst": 1.0,
+      "worst_over_median": 1.0
+    },
+    "restored_rows_mismatched": {
+      "values": [
+        0
+      ],
+      "prediction": 6,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "resume_below_committed": {
+      "values": [
+        0
+      ],
+      "prediction": 15,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "sessions_kept_identical": {
+      "values": [
+        "8/8"
+      ],
+      "prediction": 5
+    },
+    "shadow_formation_s": {
+      "values": [
+        0.3
+      ],
+      "prediction": 11,
+      "median": 0.3,
+      "worst": 0.3,
+      "worst_over_median": 1.0
+    },
+    "staged_wait_s": {
+      "values": [
+        0.0001
+      ],
+      "prediction": null,
+      "median": 0.0001,
+      "worst": 0.0001,
+      "worst_over_median": 1.0
+    },
+    "stops_killed": {
+      "values": [
+        0
+      ],
+      "prediction": null,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "store_refusals_total": {
+      "values": [
+        0
+      ],
+      "prediction": null,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "take_identity_s": {
+      "values": [
+        0.002
+      ],
+      "prediction": null,
+      "median": 0.002,
+      "worst": 0.002,
+      "worst_over_median": 1.0
+    },
+    "take_kv_config_s": {
+      "values": [
+        1.405
+      ],
+      "prediction": null,
+      "median": 1.405,
+      "worst": 1.405,
+      "worst_over_median": 1.0
+    },
+    "take_modules_s": {
+      "values": [
+        1.769
+      ],
+      "prediction": null,
+      "median": 1.769,
+      "worst": 1.769,
+      "worst_over_median": 1.0
+    },
+    "take_s": {
+      "values": [
+        5.742
+      ],
+      "prediction": null,
+      "median": 5.742,
+      "worst": 5.742,
+      "worst_over_median": 1.0
+    },
+    "take_warm_s": {
+      "values": [
+        2.03
+      ],
+      "prediction": null,
+      "median": 2.03,
+      "worst": 2.03,
+      "worst_over_median": 1.0
+    },
+    "take_weights_s": {
+      "values": [
+        0.085
+      ],
+      "prediction": null,
+      "median": 0.085,
+      "worst": 0.085,
+      "worst_over_median": 1.0
+    },
+    "take_written_bytes": {
+      "values": [
+        4398946
+      ],
+      "prediction": null,
+      "median": 4398946,
+      "worst": 4398946,
+      "worst_over_median": 1.0
+    }
+  },
+  "green": true
+}

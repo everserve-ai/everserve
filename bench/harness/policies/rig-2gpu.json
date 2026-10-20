@@ -1,0 +1,17 @@
+{
+  "version": "rig-2gpu-1",
+  "outcomesInOrder": ["OUTCOME_REPLACE", "OUTCOME_REBUILD"],
+  "spares": { "perEngine": 1, "loading": "LOADING_PRELOADED" },
+  "maxConcurrentLosses": 1,
+  "noticeMinMs": 2000,
+  "engines": [
+    {
+      "name": "rig",
+      "members": [{ "node": "rig", "device": 0 }, { "node": "rig", "device": 1 }],
+      "tensorParallel": 2,
+      "expertParallel": 1,
+      "pipelineParallel": 1,
+      "placementIndependentModel": false
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+# Landing 5 on the single-node path: run log
+2026-10-07T12:46:38Z the pipeline pieces (dfcddfd) changed member ids, slot rows and the collective's build on the single-node path too; a 5x cheap check (Qwen3-1.7B, TP4 + spare): kernel tests, adapter_1, replace_mid_1. Expect what the detection check gave: slot detection in ~45 ms, sessions exact.
+2026-10-07T13:18:32Z no 5-GPU supply among the usual cheap types in 30 min; polling again with RTX 3070 (8 GB, five for $0.65/h) and RTX PRO 4500 added
+2026-10-07T13:18:34Z deploy 3x NVIDIA RTX PRO 4500 Blackwell Server Edition: {"id": "knoya0tw6d7mps", "costPerHr": 3.6, "machine": {"gpuDisplayName": "RTX PRO 4500 SE", "location": "US"}}
+2026-10-07T13:18:34Z pod knoya0tw6d7mps (NVIDIA RTX PRO 4500 Blackwell Server Edition); watchdog terminates at +30 min
+NVIDIA RTX PRO 4500 Blackwell Server Edition, 580.178.04
+2026-10-07T13:19:00Z tree dfcddfd on the pod; setup, build and the Qwen3-1.7B download
+2026-10-07T13:25:01Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;    Finished `release` profile [optimized] target(s) in 12.59s -rwxr-xr-x 2 root root 9170472 Oct  7 13:24 /workspace/everserve/target/release/everserve-controller -rwxr-xr-x 2 root root 6805448 Oct  7 13:24 /workspace/everserve/target/release/everserve-store 
+PASSED core/tests/test_slotwatch.py::test_steps_that_end_keep_the_stall_rule_quiet
+PASSED core/tests/test_slotwatch.py::test_a_member_that_exits_with_no_step_in_flight_is_not_reported
+PASSED core/tests/test_p2p_probe.py::test_the_probe_answers_in_time_and_confirms_peer_to_peer_over_nvlink
+SKIPPED [1] core/tests/test_slot_kernel.py:158: the peer-to-peer variant needs NVLink: CUDA's peer access is not enough
+14 passed, 1 skipped in 8.05s
+2026-10-07T13:25:11Z kernel tests: 14 passed, 1 skipped in 8.05s
+2026-10-07T13:25:11Z pod: adapter_port.sh drill adapter_1 --arm adapter 
+2026-10-07T13:25:14Z start adapter_1: --arm adapter
+2026-10-07T13:27:41Z end adapter_1 rc=0: (MainProcess pid=10803) INFO 10-07 13:27:39 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-07T13:27:42Z adapter_1: detect {'steps': 3.0, 'floor_s': 0.03, 'step_s': 0.009, 'bound_s': 0.03} events [] exit_s None watch [{'reported': [], 'slow': []}, {'reported': [], 'slow': []}, {'reported': [], 'slow': []}, {'reported': [], 'slow': []}]
+2026-10-07T13:27:42Z pod: adapter_port.sh drill replace_mid_1 --arm replace --kill mid 
+2026-10-07T13:27:45Z start replace_mid_1: --arm replace --kill mid
+2026-10-07T13:28:23Z end replace_mid_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T13:28:24Z replace_mid_1: detect {'steps': 3.0, 'floor_s': 0.03, 'step_s': 0.00882, 'bound_s': 0.03} events [('rank_lost', 'slot', 0.048), ('exited', None, 0.253)] exit_s 0.002 watch [{'reported': [{'ranks': [2], 'detail': "slot row 0: no step ended for 31 ms; ranks [2]' processes [13033] are exiting", 'epoch': 0, 'at': 1791379693.2064586}], 'slow': [{'rank': 3, 'late_s': 0.017, 'at': 1791379692.182121}]}, {'reported': [{'ranks': [2], 'detail': "slot row 1: no step ended for 31 ms; ranks [2]' processes [13033] are exiting", 'epoch': 0, 'at': 1791379693.2080367}], 'slow': [{'rank': 3, 'late_s': 0.015, 'at': 1791379692.1813593}]}, {'reported': [], 'slow': []}, {'reported': [{'ranks': [2], 'detail': "slot row 3: no step ended for 31 ms; ranks [2]' processes [13033] are exiting", 'epoch': 0, 'at': 1791379693.2072508}], 'slow': []}]
+2026-10-07T13:28:26Z terminate knoya0tw6d7mps: {"data": {"podTerminate": null}}
+2026-10-07T13:28:26Z data copied; pod terminated

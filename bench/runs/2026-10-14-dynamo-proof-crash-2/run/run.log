@@ -1,0 +1,127 @@
+23:06:14Z the certificates, made here
+[2m2026-10-14T23:06:14.255226Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-21c/certs/ca.crt
+[2m2026-10-14T23:06:14.255284Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-21c/certs/ca.key
+[2m2026-10-14T23:06:14.255294Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-21c/certs/coordinator.crt
+[2m2026-10-14T23:06:14.255301Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-21c/certs/coordinator.key
+[2m2026-10-14T23:06:14.255308Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-21c/certs/operator-proof.crt
+[2m2026-10-14T23:06:14.255314Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-21c/certs/operator-proof.key
+23:06:14Z the cluster: 3 L40S nodes, released at the latest after 1.5 h
+2026-10-14T23:14:15Z up everserve-proof-1014230614 gpu-l40s-a/1gpu-8vcpu-32gb x3: {"cluster": "mk8scluster-e00wz3gjj45czjk782", "node_group": "mk8snodegroup-e00avb077ttgqjrrr1", "kubeconfig": "/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-21c/kubeconfig"}
+{"cluster": "mk8scluster-e00wz3gjj45czjk782", "node_group": "mk8snodegroup-e00avb077ttgqjrrr1", "kubeconfig": "/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-21c/kubeconfig"}
+NAME                                 GPU
+computeinstance-e00b63vq075k9ws6mc   1
+computeinstance-e00tsafwxzse86psnw   1
+computeinstance-e00wv9c04r8gtn44b0   1
+namespace/everserve created
+namespace/everserve labeled
+secret/nebius-cr created
+namespace/serving created
+namespace/serving labeled
+secret/nebius-cr created
+secret/everserve-tls created
+23:14:22Z Dynamo's platform 1.5.1, with Grove
+NAME: dynamo-platform
+LAST DEPLOYED: Wed Oct 14 19:14:28 2026
+NAMESPACE: dynamo-system
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+# SPDX-FileCopyrightText: Copyright (c) 2025-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+23:15:01Z the instance: the head, one node of the engine, 1 spare node(s)
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-21c/proof.k8s.json
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-21c/proof.engine.json
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-21c/proof.values.json
+23:15:01Z Everserve's chart
+NAME: everserve
+LAST DEPLOYED: Wed Oct 14 19:15:03 2026
+NAMESPACE: everserve
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+dynamographdeployment.nvidia.com/proof created
+service/proof-rendezvous created
+networkpolicy.networking.k8s.io/proof-engine created
+23:15:18Z waiting for the instance to serve
+NAME                     READY   STATUS    RESTARTS   AGE     IP            NODE                                 NOMINATED NODE   READINESS GATES
+proof-0-frontend-mbk5z   1/1     Running   0          8m36s   10.0.30.169   computeinstance-e00tsafwxzse86psnw   <none>           <none>
+proof-0-head-ssmjw       1/1     Running   0          8m36s   10.0.30.200   computeinstance-e00tsafwxzse86psnw   <none>           <none>
+proof-0-nodes-cp2hz      1/1     Running   0          8m36s   10.0.91.215   computeinstance-e00b63vq075k9ws6mc   <none>           <none>
+proof-0-nodes-s9wnw      1/1     Running   0          8m36s   10.0.97.252   computeinstance-e00wv9c04r8gtn44b0   <none>           <none>
+Forwarding from 127.0.0.1:18000 -> 8000
+Forwarding from [::1]:18000 -> 8000
+23:24:06Z the coordinator's API: its record decides when the loss is taken and whether it passed
+serviceaccount/proof-viewer created
+rolebinding.rbac.authorization.k8s.io/proof-viewer created
+Forwarding from 127.0.0.1:17443 -> 7443
+Forwarding from [::1]:17443 -> 7443
+23:24:11Z warm: one short completion
+Handling connection for 18000
+{"streams": 1, "completed": 1, "errors": [], "max_gap_s": 0.092}
+23:24:11Z loss 1 of 2: waiting for a formed set to cover the loss of rank 1
+Handling connection for 17443
+23:24:12Z cover: plan 2 at epoch 0: 0-R1@computeinstance-e00b63vq075k9ws6mc:0: 1 of 1 groups formed
+23:24:12Z the engine: Covered True (EveryLossCovered): every node's and position's loss has a formed set; the head's node holds [0], whose loss restarts the engine
+23:24:12Z loss 1 (crash): 8 streams of 6000 tokens (about 40 s each); proof-0-nodes-s9wnw, which holds rank 1 on computeinstance-e00wv9c04r8gtn44b0, taken away while they run
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+23:24:22Z loss 1: kill at 1792020262929 ms on the pod clock, 1 processes killed
+{"streams": 8, "completed": 8, "errors": [], "max_gap_s": 0.578}
+{"streams": 8, "completed": 8, "errors": [], "max_gap_s": 0.578}
+23:24:52Z loss 1: the coordinator's record of it
+Handling connection for 17443
+Handling connection for 17443
+23:24:53Z the change: epoch 1: replace of ranks [1] through covered set 0-R1@computeinstance-e00b63vq075k9ws6mc:0
+23:24:53Z who serves what: every node pod's answer, the one Grove made again included
+proof-0-nodes-cp2hz: told spare
+proof-0-nodes-s9wnw: told spare
+23:24:56Z loss 1: every stream finished without an error
+23:24:56Z loss 2 of 2: waiting for a formed set to cover the loss of rank 1
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+23:25:28Z cover: plan 4 at epoch 1: 0-R1@computeinstance-e00wv9c04r8gtn44b0:0: 1 of 1 groups formed
+23:25:28Z the engine: Covered True (EveryLossCovered): every node's and position's loss has a formed set; the head's node holds [0], whose loss restarts the engine
+23:25:29Z loss 2 (crash): 8 streams of 6000 tokens (about 40 s each); proof-0-nodes-cp2hz, which holds rank 1 on computeinstance-e00b63vq075k9ws6mc, taken away while they run
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+23:25:39Z loss 2: kill at 1792020339316 ms on the pod clock, 1 processes killed
+{"streams": 8, "completed": 0, "errors": [{"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}, {"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}, {"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}, {"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}, {"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}, {"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}, {"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}, {"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}], "max_gap_s": 0.093}
+{"streams": 8, "completed": 0, "errors": [{"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}, {"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}, {"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}, {"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}, {"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}, {"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}, {"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}, {"message": "Service temporarily unavailable", "type": "service_unavailable", "code": 503}], "max_gap_s": 0.093}
+23:25:39Z loss 2: the coordinator's record of it
+Handling connection for 17443
+Handling connection for 17443
+23:25:40Z the change: epoch 1: replace of ranks [1] through covered set 0-R1@computeinstance-e00b63vq075k9ws6mc:0; epoch 2 expected
+23:25:40Z who serves what: every node pod's answer, the one Grove made again included
+proof-0-nodes-cp2hz: told spare
+proof-0-nodes-s9wnw: told spare
+23:25:42Z loss 2: a stream ended in an error
+23:26:07Z taking the cluster down

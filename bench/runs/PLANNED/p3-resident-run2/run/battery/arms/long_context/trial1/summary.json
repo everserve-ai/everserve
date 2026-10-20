@@ -1,0 +1,509 @@
+{
+  "arm": "long_context",
+  "trial": 1,
+  "record": "bench/runs/PLANNED/p3-resident-run2/run/battery/arms/long_context/trial1/result.json",
+  "model": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic",
+  "sessions": 1,
+  "prompt_len": 32768,
+  "tok_s_steps_10_200": 32.45,
+  "clock_offsets": [
+    {
+      "node": "node-b",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.0",
+        "at": 1791657789.1254282,
+        "probes": 20,
+        "lost": 0,
+        "offset_s": 2.5e-05,
+        "rtt_s": 0.000131,
+        "error_s": 6.5e-05
+      }
+    },
+    {
+      "node": "node-c",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.1",
+        "at": 1791657791.1352315,
+        "probes": 20,
+        "lost": 0,
+        "offset_s": 5.1e-05,
+        "rtt_s": 0.000146,
+        "error_s": 7.3e-05
+      }
+    }
+  ],
+  "figures": {
+    "long_context_gap_s": {
+      "value": 22.0136,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "per_session": [
+        22.0136
+      ],
+      "median_over_sessions": 22.0136
+    },
+    "sessions_kept_identical": {
+      "value": "1/1",
+      "prediction": 1,
+      "predicted": "every session identical to the control's, arms 4 to 6 and the smoke, every trial",
+      "kill": "any mismatch, or any trial that ends without its record",
+      "verdict": "loss arm complete, exact vs control: changes 1, events ['rank_lost', 'step_refused', 'replaced'], identical prefix per session [512] of [512]",
+      "green": true
+    },
+    "restored_rows_mismatched": {
+      "value": 0,
+      "prediction": 3,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "restore_coverage": {
+      "value": 1.0,
+      "prediction": 4,
+      "predicted": 1.0,
+      "kill": "< 1.0"
+    },
+    "requests_re_prefilled": {
+      "value": 0,
+      "prediction": 5,
+      "predicted": 0,
+      "kill": "any first batch computing more than one token for a request",
+      "requests": []
+    },
+    "resume_below_committed": {
+      "value": 0,
+      "prediction": 5,
+      "predicted": "0 (one below only with its cause named)",
+      "kill": "any resume lower",
+      "requests": [],
+      "causes": {
+        "0-b90e1bd1": "at_committed"
+      }
+    },
+    "first_differing_position": {
+      "value": null,
+      "prediction": 3,
+      "predicted": "none on either rank",
+      "kill": "any differing position",
+      "comparable": true,
+      "reason": null,
+      "per_request": {
+        "0:0": null,
+        "1:0": null
+      }
+    },
+    "instrument_pause_s": {
+      "value": 165.4594,
+      "prediction": null,
+      "predicted": "after the gap",
+      "kill": null,
+      "step": 637
+    },
+    "take_s": {
+      "value": 13.514,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 7,
+      "cold": false
+    },
+    "take_weights_s": {
+      "value": 0.721,
+      "prediction": 10,
+      "predicted": "0.5 to 1.5",
+      "kill": "> 10",
+      "rank": "1",
+      "take_index": 7,
+      "cold": false
+    },
+    "take_modules_s": {
+      "value": 2.024,
+      "prediction": 10,
+      "predicted": "reported",
+      "kill": null,
+      "rank": "1",
+      "take_index": 7,
+      "cold": false
+    },
+    "take_kv_config_s": {
+      "value": 3.07,
+      "prediction": 10,
+      "predicted": "4 to 6, its parts reported",
+      "kill": "> 10, or a profiling run logged",
+      "rank": "1",
+      "take_index": 7,
+      "cold": false
+    },
+    "take_kv_alloc_s": {
+      "value": 0.003,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 7,
+      "cold": false
+    },
+    "take_sizing_s": {
+      "value": 0.019,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 7,
+      "cold": false
+    },
+    "take_warm_s": {
+      "value": 5.255,
+      "prediction": 10,
+      "predicted": "reported",
+      "kill": null,
+      "rank": "1",
+      "take_index": 7,
+      "cold": false
+    },
+    "take_identity_s": {
+      "value": 0.002,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 7,
+      "cold": false
+    },
+    "take_restore_s": {
+      "value": 1.3576,
+      "prediction": 11,
+      "predicted": "< 2 (long context, median of three)",
+      "kill": null,
+      "rank": "1",
+      "take_index": 7,
+      "cold": false
+    },
+    "staged_wait_s": {
+      "value": 6.9095,
+      "prediction": 11,
+      "predicted": "the staged copy finished before the spare asks (long context, median of three)",
+      "kill": "> 5 (long context)",
+      "rank": "1",
+      "take_index": 7,
+      "cold": false
+    },
+    "replica_lag_max_steps": {
+      "value": 0.0,
+      "prediction": null,
+      "predicted": null,
+      "kill": null
+    },
+    "store_refusals_total": {
+      "value": 0,
+      "prediction": 6,
+      "predicted": 0,
+      "kill": "any refusal for checksum or unchecked",
+      "by_reason": {},
+      "stores_read": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "replication_dropped_total": {
+      "value": 0,
+      "prediction": null,
+      "predicted": 0,
+      "kill": null
+    },
+    "take_written_bytes": {
+      "value": 4835351,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "files": 30,
+      "start": 18,
+      "roots": {
+        "/home/everserve/.humming/tmp": {
+          "files": 1,
+          "bytes": 0
+        },
+        "/home/everserve/.triton/cache": {
+          "files": 24,
+          "bytes": 218259
+        },
+        "/var/lib/landscape": {
+          "files": 1,
+          "bytes": 268
+        },
+        "/var/lib/nebius-observability-agent": {
+          "files": 3,
+          "bytes": 4616824
+        },
+        "/var/lib/update-notifier": {
+          "files": 1,
+          "bytes": 0
+        }
+      },
+      "dirs": [
+        {
+          "dir": "/var/lib/nebius-observability-agent",
+          "files": 3,
+          "bytes": 4616824
+        },
+        {
+          "dir": "/home/everserve/.triton/cache/ZEIQKONTVX2W3Z5TUQH6RQADL3LMNPTNWXE2XYIQ24ACBP253J5Q",
+          "files": 8,
+          "bytes": 82045
+        },
+        {
+          "dir": "/home/everserve/.triton/cache/RVU3PI5MFKZ5NU6ON5AYYGKYA2XROCE77GGD5WMLJYWUM4Z625VQ",
+          "files": 8,
+          "bytes": 70555
+        },
+        {
+          "dir": "/home/everserve/.triton/cache/VZQVTQ4OE6O5KMYF2W6LWKP2OD3AQ5TGJCUVIYUCGPDKTVJ7SWXA",
+          "files": 8,
+          "bytes": 65659
+        },
+        {
+          "dir": "/var/lib/landscape",
+          "files": 1,
+          "bytes": 268
+        },
+        {
+          "dir": "/home/everserve/.humming/tmp/lock",
+          "files": 1,
+          "bytes": 0
+        },
+        {
+          "dir": "/var/lib/update-notifier",
+          "files": 1,
+          "bytes": 0
+        }
+      ],
+      "take_index": 7,
+      "cold": false
+    },
+    "stops_killed": {
+      "value": 0,
+      "prediction": 14,
+      "predicted": 0,
+      "kill": "any of ours killed at its stop (stock's own processes excepted)",
+      "by_node": {
+        "a": "none",
+        "b": "none",
+        "c": "clean"
+      }
+    },
+    "take_written_beyond_baseline_bytes": {
+      "value": 218259,
+      "prediction": 9,
+      "predicted": "0 on the cold take",
+      "kill": "any byte on the cold take (zero-byte files listed, not counted)",
+      "files": 26,
+      "roots": {
+        "/home/everserve/.humming/tmp": {
+          "files": 1,
+          "bytes": 0
+        },
+        "/home/everserve/.triton/cache": {
+          "files": 24,
+          "bytes": 218259
+        },
+        "/var/lib/update-notifier": {
+          "files": 1,
+          "bytes": 0
+        }
+      },
+      "baseline_roots": [
+        "/var/lib/landscape",
+        "/var/lib/nebius-observability-agent"
+      ],
+      "take_index": 7,
+      "cold": false
+    },
+    "compile_cache_consistent": {
+      "value": false,
+      "prediction": 6,
+      "predicted": "true: readiness consistent, the taking spare's pair equal to its position's, no autotune result written",
+      "kill": "false (the failing check named)",
+      "checks": {
+        "readiness_consistent": true,
+        "spare_holds_position_s": false,
+        "no_autotune_written": true
+      },
+      "failing": [
+        "spare_holds_position_s"
+      ],
+      "autotune_files": []
+    },
+    "engine_down": {
+      "value": false,
+      "prediction": 2,
+      "predicted": false,
+      "kill": "true: a change failed or the engine was reported down in a trial (the cause named)",
+      "downs": {
+        "after": {
+          "at_ms": 1791662100319,
+          "cause": "stopped",
+          "detail": ""
+        }
+      },
+      "counted": []
+    },
+    "shadow_formation_s": {
+      "value": 0.453,
+      "prediction": 12,
+      "predicted": "< 30 at standing",
+      "kill": "median > 60"
+    }
+  },
+  "verdict": {
+    "green": true,
+    "line": "loss arm complete, exact vs control: changes 1, events ['rank_lost', 'step_refused', 'replaced'], identical prefix per session [512] of [512]"
+  },
+  "change": {
+    "ranks": [
+      1
+    ],
+    "faulted": [
+      1
+    ],
+    "epoch_committed": 1,
+    "wait_commit_s": 21.7792,
+    "boundary_s": 0.019,
+    "resume_s": 0.0073,
+    "n_replayed": 1,
+    "claim_to_commit": {
+      "coordinator": {
+        "reported_at": 1791661896.790246,
+        "delivered_at": 1791661896.790274,
+        "acknowledged_at": 1791661918.574919,
+        "committed_at": 1791661918.574919
+      },
+      "deliver_s": 2.8e-05,
+      "acknowledgements_s": 21.784645,
+      "commit_s": 0.0,
+      "heard_after_commit_s": 0.00049
+    },
+    "join_legs_s": {
+      "offers_out": 0.0037,
+      "answers_back": 0.0141,
+      "ring_subscribed": 0.0,
+      "ring_ready": 0.001,
+      "survivors_boundary": 0.0002
+    },
+    "spares": {
+      "1": {
+        "restore": {
+          "restore_s": 1.3576,
+          "staged": {
+            "epoch": 0,
+            "step": 613,
+            "s": 6.9095,
+            "polls": 1165
+          },
+          "counts": {
+            "0-b90e1bd1": 33074
+          },
+          "rows": 10583680,
+          "watermark": 613,
+          "dead": 1,
+          "heads": 8,
+          "catch_up": {
+            "since_step": 613,
+            "watermark": 613,
+            "rows": 0,
+            "counts_before": {
+              "0-b90e1bd1": 33074
+            },
+            "s": 0.0109,
+            "t_end": 1791661918.5905836
+          }
+        },
+        "join_s": 0.0129,
+        "attachment": {
+          "engine": "rig",
+          "rank": 1,
+          "stage": 1,
+          "sizing_s": 0.019,
+          "warm_s": 5.255,
+          "shard_copy_s": 2.745,
+          "weights_s": 0.721,
+          "kv_config_s": 3.07,
+          "kv_alloc_s": 0.003,
+          "kv_config_parts": {},
+          "take_s": 13.514,
+          "identity_s": 0.002,
+          "build_s": 0.273
+        }
+      }
+    },
+    "boundaries": {
+      "0": {
+        "tag": "change-1-1791661918.5788887",
+        "rank": 0,
+        "applied": false,
+        "moved": {
+          "members": "0-R1",
+          "rows": [
+            0
+          ],
+          "epoch": 1
+        },
+        "released": [
+          "fabric 0.533s",
+          "torch 1.018s"
+        ],
+        "releasing": [],
+        "leaked": 0,
+        "boundary_s": 0.0014,
+        "t_entered": 1791661918.5793974,
+        "release_times": {
+          "fabric": [
+            1791661896.791121,
+            1791661897.3237176
+          ],
+          "torch": [
+            1791661896.791776,
+            1791661897.8095043
+          ]
+        },
+        "ring_s": 0.0125
+      }
+    },
+    "replaced_after_kill_s": 21.8228,
+    "kill_in_step": {
+      "step": 306,
+      "into_s": 0.027,
+      "of_s": 0.0306,
+      "fraction": 0.884
+    }
+  },
+  "derived": {
+    "replica_lost_sessions": {
+      "value": 1
+    },
+    "replica_lost_prompt_tokens": {
+      "value": 32768
+    },
+    "replica_lost_generated_tokens": {
+      "value": 306,
+      "per_session": {
+        "0-b90e1bd1": 306
+      },
+      "client_had_at_kill": [
+        306
+      ]
+    },
+    "replica_restore_gpus": {
+      "value": 2
+    },
+    "take_gpus": {
+      "value": 1
+    }
+  },
+  "preregistration": "bench/runs/PLANNED/p3-resident-run2/PREREGISTRATION.md"
+}

@@ -1,0 +1,17 @@
+read at 2026-10-16T11:47:16Z, pod proof-0-nodes-s699f on computeinstance-e00pdcjne99023kprz
+== the pod's resources
+main {"limits":{"nvidia.com/gpu":"1"},"requests":{"nvidia.com/gpu":"1"}}
+== the node's allocatable
+{"cpu":"15900m","ephemeral-storage":"185136511078","hugepages-1Gi":"0","hugepages-2Mi":"0","memory":"194634720Ki","nvidia.com/gpu":"1","pods":"110"}
+== processes in the pod: pid, ppid, rss (KiB), cpu %, cpu time, command
+    PID    PPID   RSS %CPU     TIME COMMAND
+    248       1 3045752 22.2 00:00:47 VLLM::Worker_PP1
+    546       1 1557528 38.2 00:00:17 python3 -m dynamo.vllm --model Qwen/Qwen2.5-0.5B-Instruct --tensor-parallel-size 1 --pipeline-parallel-size 2 --max-model-len 8192 --gpu-memory-utilization 0.8 --num-gpu-blocks-overr
+      1       0 1112080 6.8 00:00:16 python3 -m everserve_vllm.node_main --engine proof --node computeinstance-e00pdcjne99023kprz --slot 1 --nnodes 2 --health-port 8090 --leave-within-s 60 --model Qwen/Qwen2.5-0.5B-Instr
+    700     546 1111208 67.4 00:00:14 VLLM::EngineCore
+    247       1 12744  0.0 00:00:00 /usr/bin/python3 -c from multiprocessing.resource_tracker import main;main(31)
+    699     546 12708  0.0 00:00:00 /usr/bin/python3 -c from multiprocessing.resource_tracker import main;main(65)
+    800       0  4008  0.0 00:00:00 ps -eo pid,ppid,rss,pcpu,time,args --sort=-rss
+== the container's memory use (cgroup)
+6029041664
+max

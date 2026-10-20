@@ -1,0 +1,4 @@
+{"version": "e2e-1", "outcomesInOrder": ["OUTCOME_REPLACE"],
+ "spares": {"perEngine": 2, "loading": "LOADING_PRELOADED"}, "maxConcurrentLosses": 1,
+ "noticeMinMs": 2000, "cover": {"enabled": true},
+ "engines": [{"name": "k", "tensorParallel": 2, "pipelineParallel": 2, "headOnDemand": false}]}

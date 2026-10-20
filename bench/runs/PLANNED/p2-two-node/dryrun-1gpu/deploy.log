@@ -1,0 +1,241 @@
+2026-10-08T15:24:38Z the battery's dry run on Nebius eu-north1: three single-GPU L40S VMs (gpu-l40s-a 1gpu-8vcpu-32gb), TP1 x PP2 with one spare on node-c: the script end to end, Qwen3-1.7B, every arm once; tree 95994c8
+2026-10-08T15:25:21Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00a4v6bfzp30c88rz", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.99", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:25:21Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00a4v6bfzp30c88rz", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.99", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:25:21Z VM a computeinstance-e00a4v6bfzp30c88rz public 89.169.121.79 private 10.0.0.99, watchdog at +180 min
+2026-10-08T15:25:22Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00fksdsmz7awvfsmz", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.31", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:25:22Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00fksdsmz7awvfsmz", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.31", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:25:22Z VM c computeinstance-e00fksdsmz7awvfsmz public 89.169.127.207 private 10.0.0.31, watchdog at +180 min
+2026-10-08T15:25:29Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00c6xde45vae8c196", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.43", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:25:29Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00c6xde45vae8c196", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.43", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:25:29Z VM b computeinstance-e00c6xde45vae8c196 public 89.169.102.33 private 10.0.0.43, watchdog at +180 min
+2026-10-08T15:26:06Z addresses: a=10.0.0.99 b=10.0.0.43 c=10.0.0.31
+2026-10-08T15:26:07Z private network (a to b and c): ok after 5 s
+2026-10-08T15:26:09Z node-a: NVIDIA L40S,8;Mem:              31           1          29           0           0          30;
+2026-10-08T15:26:41Z setup started on a b c
+2026-10-08T15:32:09Z setup done on a b c
+2026-10-08T15:32:32Z nodes updated from the working tree (95994c8 + uncommitted)
+[2m2026-10-08T15:32:34.301238Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-08T15:32:34.301254Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-08T15:32:34.301256Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-08T15:32:34.301258Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-08T15:32:34.301259Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-08T15:32:34.301260Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-08T15:32:34.301262Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-08T15:32:34.301263Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-08T15:32:34.301264Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-08T15:32:34.301265Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+2026-10-08T15:32:37Z certs made on a, the other nodes' copied
+bench/harness/twonode/battery.sh: line 43: count_of: command not found
+bench/harness/twonode/battery.sh: line 43: count_of: command not found
+bench/harness/twonode/battery.sh: line 43: count_of: command not found
+log: Unknown subcommand 'MEMBERS and SPARES name node-a, node-b and node-c'
+usage:
+    log <command>
+
+global options:
+    -?, --help
+    -q, --quiet
+    -v, --verbose
+
+commands:
+    collect         gather system logs into a log archive
+    config          view/change logging system settings
+    diagnose        diagnose an archive for a variety of issues
+    erase           delete system logging data
+    repack          repack a log archive using a predicate
+    show            view/search system logs
+    stream          watch live system logs
+    stats           show system logging statistics
+
+further help:
+    log help <command>
+    log help predicates
+    log help shorthand
+2026-10-08T15:32:37Z battery.sh exited 2
+2026-10-08T15:32:47Z nodes a b c down
+2026-10-08T15:34:30Z terminate computeinstance-e00a4v6bfzp30c88rz: {"deleted": "computeinstance-e00a4v6bfzp30c88rz", "disks": []}
+2026-10-08T15:36:08Z terminate computeinstance-e00fksdsmz7awvfsmz: {"deleted": "computeinstance-e00fksdsmz7awvfsmz", "disks": []}
+2026-10-08T15:37:53Z terminate computeinstance-e00c6xde45vae8c196: {"deleted": "computeinstance-e00c6xde45vae8c196", "disks": []}
+2026-10-08T15:37:53Z VMs released: []
+2026-10-08T15:42:44Z attempt 2 of the one-GPU dry run: battery.sh's preamble fixed (a quote in a :? message swallowed its functions; the long-context arm now carries its own policy); the first attempt cost ~12 min of three VMs
+2026-10-08T15:42:44Z the battery's dry run on Nebius eu-north1: three single-GPU L40S VMs (gpu-l40s-a 1gpu-8vcpu-32gb), TP1 x PP2 with one spare on node-c: the script end to end, Qwen3-1.7B, every arm once; tree 95994c8
+2026-10-08T15:43:25Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00q4rrsryxvbjw018", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.37", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:43:25Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00q4rrsryxvbjw018", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.37", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:43:25Z VM c computeinstance-e00q4rrsryxvbjw018 public 89.169.120.79 private 10.0.0.37, watchdog at +180 min
+2026-10-08T15:43:33Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00c867k3c4xaj4y8x", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.42", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:43:33Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00c867k3c4xaj4y8x", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.42", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:43:33Z VM a computeinstance-e00c867k3c4xaj4y8x public 89.169.121.158 private 10.0.0.42, watchdog at +180 min
+2026-10-08T15:43:35Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00dv15bpcdz33t7f8", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.75", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:43:35Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00dv15bpcdz33t7f8", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.75", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:43:35Z VM b computeinstance-e00dv15bpcdz33t7f8 public 89.169.99.68 private 10.0.0.75, watchdog at +180 min
+2026-10-08T15:44:11Z addresses: a=10.0.0.42 b=10.0.0.75 c=10.0.0.37
+2026-10-08T15:44:13Z private network (a to b and c): ok after 5 s
+2026-10-08T15:44:14Z node-a: NVIDIA L40S,8;Mem:              31           1          29           0           0          30;
+2026-10-08T15:44:46Z setup started on a b c
+2026-10-08T15:50:10Z setup done on a b c
+2026-10-08T15:50:26Z nodes updated from the working tree (95994c8 + uncommitted)
+[2m2026-10-08T15:50:28.163529Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-08T15:50:28.163544Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-08T15:50:28.163546Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-08T15:50:28.163548Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-08T15:50:28.163549Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-08T15:50:28.163550Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-08T15:50:28.163551Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-08T15:50:28.163553Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-08T15:50:28.163554Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-08T15:50:28.163555Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+2026-10-08T15:50:31Z certs made on a, the other nodes' copied
+2026-10-08T15:50:31Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: stock adapter mirror_off drain node_fault single_death notice_ref long_context shard_copy; trials 1 (fault) / 1 (other); tree 95994c8 + uncommitted
+2026-10-08T15:51:00Z fabric: slowest link to node-a 0 Gbit/s (floor 1)
+2026-10-08T15:51:00Z REFUSED: fabric 0 Gbit/s under the floor 1; no arm started (REFUSED.md)
+2026-10-08T15:51:00Z battery.sh exited 3
+2026-10-08T15:51:09Z nodes a b c down
+2026-10-08T15:52:45Z terminate computeinstance-e00dv15bpcdz33t7f8: {"deleted": "computeinstance-e00dv15bpcdz33t7f8", "disks": []}
+2026-10-08T15:54:25Z terminate computeinstance-e00c867k3c4xaj4y8x: {"deleted": "computeinstance-e00c867k3c4xaj4y8x", "disks": []}
+2026-10-08T15:55:58Z terminate computeinstance-e00q4rrsryxvbjw018: {"deleted": "computeinstance-e00q4rrsryxvbjw018", "disks": []}
+2026-10-08T15:55:59Z VMs released: []
+2026-10-08T15:56:23Z attempt 3: the fabric stage's iperf3 server died with its ssh session and bw.py had no out dir, so the floor refused the run; both fixed; the driver now holds the VMs on a battery failure instead of releasing
+2026-10-08T15:56:23Z the battery's dry run on Nebius eu-north1: three single-GPU L40S VMs (gpu-l40s-a 1gpu-8vcpu-32gb), TP1 x PP2 with one spare on node-c: the script end to end, Qwen3-1.7B, every arm once; tree 95994c8
+2026-10-08T15:57:02Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00n4k4drdqfgta7de", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.7", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:57:02Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00n4k4drdqfgta7de", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.7", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:57:02Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00fz0nazyjg358dbf", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.60", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:57:02Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00fz0nazyjg358dbf", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.60", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:57:02Z VM a computeinstance-e00n4k4drdqfgta7de public 89.169.113.111 private 10.0.0.7, watchdog at +180 min
+2026-10-08T15:57:02Z VM b computeinstance-e00fz0nazyjg358dbf public 89.169.96.57 private 10.0.0.60, watchdog at +180 min
+2026-10-08T15:57:11Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00az7fp666xxpmqa3", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.10", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:57:11Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00az7fp666xxpmqa3", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.10", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-08T15:57:12Z VM c computeinstance-e00az7fp666xxpmqa3 public 89.169.102.81 private 10.0.0.10, watchdog at +180 min
+2026-10-08T15:57:43Z addresses: a=10.0.0.7 b=10.0.0.60 c=10.0.0.10
+2026-10-08T15:57:44Z private network (a to b and c): ok after 5 s
+2026-10-08T15:57:46Z node-a: NVIDIA L40S,8;Mem:              31           1          29           0           0          30;
+2026-10-08T15:58:16Z setup started on a b c
+2026-10-08T16:03:43Z setup done on a b c
+2026-10-08T16:03:59Z nodes updated from the working tree (95994c8 + uncommitted)
+[2m2026-10-08T16:04:01.295120Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-08T16:04:01.295135Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-08T16:04:01.295137Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-08T16:04:01.295138Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-08T16:04:01.295140Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-08T16:04:01.295141Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-08T16:04:01.295142Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-08T16:04:01.295144Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-08T16:04:01.295145Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-08T16:04:01.295146Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+2026-10-08T16:04:04Z certs made on a, the other nodes' copied
+2026-10-08T16:04:04Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: stock adapter mirror_off drain node_fault single_death notice_ref long_context shard_copy; trials 1 (fault) / 1 (other); tree 95994c8 + uncommitted
+2026-10-08T16:04:42Z fabric: slowest link to node-a 0 Gbit/s (floor 1)
+2026-10-08T16:04:42Z REFUSED: fabric 0 Gbit/s under the floor 1; no arm started (REFUSED.md)
+2026-10-08T16:04:42Z battery.sh exited 3
+2026-10-08T16:04:42Z holding the VMs for a fix: touch /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/retry (reruns the battery from the working tree) or /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/stop (releases), within 90 min, after this line
+2026-10-08T16:10:12Z nodes a b c down
+2026-10-08T16:10:27Z nodes updated from the working tree (95994c8 + uncommitted)
+2026-10-08T16:10:28Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: stock adapter mirror_off drain node_fault single_death notice_ref long_context shard_copy; trials 1 (fault) / 1 (other); tree 95994c8 + uncommitted
+2026-10-08T16:12:08Z fabric: slowest link to node-a 41.35 Gbit/s (floor 1)
+2026-10-08T16:12:59Z == stock trial 1
+bench/harness/twonode/battery.sh: line 158: wait: pid 99840 is not a child of this shell
+2026-10-08T16:13:45Z stock_1 left no results (rc 127)
+2026-10-08T16:13:45Z stock trial 1 failed
+stock: 0 trials, green True, 
+2026-10-08T16:13:48Z == adapter trial 1
+bench/harness/twonode/battery.sh: line 158: wait: pid 375 is not a child of this shell
+2026-10-08T16:14:35Z adapter_1 left no results (rc 127)
+2026-10-08T16:14:35Z adapter trial 1 failed
+2026-10-08T16:14:39Z == adapter trial 2
+bench/harness/twonode/battery.sh: line 158: wait: pid 852 is not a child of this shell
+2026-10-08T16:15:25Z adapter_2 left no results (rc 127)
+2026-10-08T16:15:25Z adapter trial 2 failed
+adapter: 0 trials, green True, 
+2026-10-08T16:15:28Z == mirror_off trial 1
+bench/harness/twonode/battery.sh: line 158: wait: pid 1206 is not a child of this shell
+2026-10-08T16:16:14Z mirror_off_1 left no results (rc 127)
+2026-10-08T16:16:14Z mirror_off trial 1 failed
+mirror_off: 0 trials, green True, 
+2026-10-08T16:16:14Z == drain trial 1: control
+bench/harness/twonode/battery.sh: line 185: wait: pid 1548 is not a child of this shell
+2026-10-08T16:16:55Z control for drain trial 1 left no results
+2026-10-08T16:16:55Z drain trial 1: no control; the arm stops
+drain: 0 trials, green True, 
+2026-10-08T16:16:55Z == node_fault trial 1: control
+bench/harness/twonode/battery.sh: line 185: wait: pid 1858 is not a child of this shell
+2026-10-08T16:17:36Z control for node_fault trial 1 left no results
+2026-10-08T16:17:36Z node_fault trial 1: no control; the arm stops
+node_fault: 0 trials, green True, 
+2026-10-08T16:17:36Z == single_death trial 1: control
+bench/harness/twonode/battery.sh: line 185: wait: pid 2156 is not a child of this shell
+2026-10-08T16:18:18Z control for single_death trial 1 left no results
+2026-10-08T16:18:18Z single_death trial 1: no control; the arm stops
+single_death: 0 trials, green True, 
+2026-10-08T16:18:21Z == notice_ref trial 1
+bench/harness/twonode/battery.sh: line 158: wait: pid 2507 is not a child of this shell
+2026-10-08T16:19:08Z notice_ref_1 left no results (rc 127)
+2026-10-08T16:19:08Z notice_ref trial 1 failed
+notice_ref: 0 trials, green True, 
+2026-10-08T16:19:28Z == long_context trial 1: control
+bench/harness/twonode/battery.sh: line 185: wait: pid 2947 is not a child of this shell
+2026-10-08T16:20:09Z control for long_context trial 1 left no results
+2026-10-08T16:20:09Z long_context trial 1: no control; the arm stops
+long_context: 0 trials, green True, 
+2026-10-08T16:20:27Z == shard_copy trial 1
+2026-10-08T16:20:56Z shard copy: {"model_dir": "/workspace/models/Qwen3-1.7B", "files": 2, "model_bytes": 4063515592, "shard_bytes": 4063515592, "tp": 1, "n": 5, "copy_s": [6.1586, 4.3782, 4.381, 4.3836, 4.3783], "median_s": 4.381, "worst_s": 6.1586, "gb_s_median": 0.93}
+shard_copy: 0 trials, green True, 
+2026-10-08T16:21:44Z battery done: adapter drain long_context mirror_off node_fault notice_ref shard_copy single_death stock ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu
+2026-10-08T16:21:44Z battery.sh exited 0
+2026-10-08T16:21:53Z nodes a b c down
+2026-10-08T16:22:49Z the battery rerun by hand on the held VMs: the generated policy now copied to the nodes, the GPU list without BSD seq's trailing comma, STOCK exported for the stock arm, an arm with no trials not green
+2026-10-08T16:22:55Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: stock adapter mirror_off drain node_fault single_death notice_ref long_context shard_copy; trials 1 (fault) / 1 (other); tree 95994c8 + uncommitted
+2026-10-08T16:23:59Z fabric: slowest link to node-a 35.0 Gbit/s (floor 1)
+2026-10-08T16:24:51Z == stock trial 1
+bench/harness/twonode/battery.sh: line 159: wait: pid 5215 is not a child of this shell
+2026-10-08T16:25:37Z stock_1 left no results (rc 127)
+2026-10-08T16:25:37Z stock trial 1 failed
+stock: 0 trials, green False, 
+2026-10-08T16:25:40Z == adapter trial 1
+2026-10-08T16:26:29Z the battery rerun again: the drill's pid is the parent's to wait on (every rc 127 was wait on a subshell's job)
+2026-10-08T16:26:34Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: stock adapter mirror_off drain node_fault single_death notice_ref long_context shard_copy; trials 1 (fault) / 1 (other); tree 95994c8 + uncommitted
+2026-10-08T16:27:18Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: stock adapter mirror_off drain node_fault single_death notice_ref long_context shard_copy; trials 1 (fault) / 1 (other); tree 95994c8 + uncommitted
+2026-10-08T16:28:24Z fabric: slowest link to node-a 40.92 Gbit/s (floor 1)
+2026-10-08T16:29:15Z == stock trial 1
+2026-10-08T16:30:42Z stock_1 left no results (rc 0)
+2026-10-08T16:30:42Z stock trial 1 failed
+stock: 0 trials, green False, 
+2026-10-08T16:30:45Z == adapter trial 1
+adapter trial 1: no control; figures only
+2026-10-08T16:34:13Z == adapter trial 2
+adapter trial 2: no control; figures only
+adapter: 2 trials, green True, replica_lag_max_steps=0.0, replication_dropped_total=0.0, shadow_formation_s=6.9355
+2026-10-08T16:36:05Z == mirror_off trial 1
+mirror_off trial 1: no control; figures only
+mirror_off: 1 trials, green True, replica_lag_max_steps=0.0, replication_dropped_total=0, shadow_formation_s=11.218
+2026-10-08T16:38:04Z == drain trial 1: control
+2026-10-08T16:40:19Z == drain trial 1
+2026-10-08T16:48:21Z readiness: {"engine":"rig","epoch":1,"world_size":2,"members":[{"rank":1,"node":"node-c","class":"NVIDIA L40S","replicates_to":[]}],"spares":[],"lost":[],"nodes":[{"node":"node-c","ranks":[1],"reclaimable":false,"outcome":"rebuild","why":"no spare stands for every rank on the node and SHRINK is not allowed: th
+2026-10-08T16:48:21Z node-b's ranks have no replica target; the trial is not run
+2026-10-08T16:48:22Z drain trial 1 failed
+drain: 0 trials, green False, 
+2026-10-08T16:48:22Z == node_fault trial 1: control
+2026-10-08T16:50:17Z == node_fault trial 1
+2026-10-08T16:51:41Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":[]},{"rank":1,"node":"node-b","class":"NVIDIA L40S","replicates_to":["10.0.0.10:7402"]}],"spares":[{"rank":1,"node":"node-c","speed":1.0,"state":"warm"}],"lost":[],"nodes":[{"node":"no
+2026-10-08T16:51:44Z node_fault_1 armed: {"t_armed": 1791478299.9064922, "step": 100}
+node_fault trial 1: loss arm complete, DIVERGED vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 724, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+node_fault: 1 trials, green False, node_fault_detection_s=0.0101, node_fault_gap_s=3.6312, replica_lag_max_steps=0.0, replication_dropped_total=0, restored_rows_mismatched=112, sessions_kept_identical=['7/8'], shadow_formation_s=17.757
+2026-10-08T16:52:36Z == single_death trial 1: control
+2026-10-08T16:54:29Z == single_death trial 1
+2026-10-08T16:55:52Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":[]},{"rank":1,"node":"node-b","class":"NVIDIA L40S","replicates_to":["10.0.0.10:7402"]}],"spares":[{"rank":1,"node":"node-c","speed":1.0,"state":"warm"}],"lost":[],"nodes":[{"node":"no
+2026-10-08T16:55:55Z single_death_1 armed: {"t_armed": 1791478547.6961262, "step": 100}
+single_death trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+single_death: 1 trials, green True, replica_lag_max_steps=0.0, replication_dropped_total=0, restored_rows_mismatched=112, sessions_kept_identical=['8/8'], shadow_formation_s=15.342, single_death_detection_s=0.0092, single_death_gap_s=3.7675
+2026-10-08T16:56:48Z == notice_ref trial 1
+notice_ref trial 1: no control; figures only
+notice_ref: 1 trials, green True, replica_lag_max_steps=0.0, replication_dropped_total=0, shadow_formation_s=6.137
+2026-10-08T16:58:45Z == long_context trial 1: control
+2026-10-08T17:00:37Z control for long_context trial 1 left no results
+2026-10-08T17:00:37Z long_context trial 1: no control; the arm stops
+long_context: 0 trials, green False, 
+2026-10-08T17:00:45Z == shard_copy trial 1
+2026-10-08T17:01:13Z shard copy: {"model_dir": "/workspace/models/Qwen3-1.7B", "files": 2, "model_bytes": 4063515592, "shard_bytes": 4063515592, "tp": 1, "n": 5, "copy_s": [6.1292, 4.3816, 4.3902, 4.382, 4.3769], "median_s": 4.382, "worst_s": 6.1292, "gb_s_median": 0.93}
+shard_copy: 0 trials, green False, 
+2026-10-08T17:02:01Z battery done: adapter drain long_context mirror_off node_fault notice_ref shard_copy single_death stock ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu
+2026-10-08T18:58:41Z watchdog computeinstance-e00fz0nazyjg358dbf: {"deleted": "computeinstance-e00fz0nazyjg358dbf", "disks": []}
+2026-10-08T18:58:42Z watchdog computeinstance-e00n4k4drdqfgta7de: {"deleted": "computeinstance-e00n4k4drdqfgta7de", "disks": []}
+2026-10-08T18:58:51Z watchdog computeinstance-e00az7fp666xxpmqa3: {"deleted": "computeinstance-e00az7fp666xxpmqa3", "disks": []}
+2026-10-08T19:12:25Z the dry run's day: passes 1-4 and the exchange pass on three L40S 1-GPU VMs 15:57-18:57 UTC (the watchdogs released them), about $14 for this deploy and about $20 for the day's dry runs including the failed 2-GPU and the three aborted 1-GPU attempts; nothing running

@@ -1,0 +1,122 @@
+{
+  "arm": "repeat",
+  "trial": 1,
+  "record": "bench/runs/PLANNED/p2-two-node/dryrun-1gpu-fp8ct-pass17/arms/repeat/trial1/result.json",
+  "model": "/workspace/models/Qwen3-1.7B-FP8-dynamic",
+  "sessions": 8,
+  "prompt_len": 512,
+  "tok_s_steps_10_200": 1036.1,
+  "clock_offsets": [
+    {
+      "node": "node-b",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.4",
+        "at": 1791589084.2557032,
+        "probes": 20,
+        "lost": 0,
+        "offset_s": -0.001473,
+        "rtt_s": 0.000162,
+        "error_s": 8.1e-05
+      }
+    },
+    {
+      "node": "node-c",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.1",
+        "at": 1791589086.3212428,
+        "probes": 20,
+        "lost": 0,
+        "offset_s": 1.1e-05,
+        "rtt_s": 0.000136,
+        "error_s": 6.8e-05
+      }
+    }
+  ],
+  "figures": {
+    "runs_agree": {
+      "value": "8/8",
+      "prediction": null,
+      "predicted": "every session",
+      "kill": "any session differs (stop)",
+      "verdict": "repeat AGREES with the first run: changes 0, identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]",
+      "green": true
+    },
+    "replica_lag_max_steps": {
+      "value": 0.0,
+      "prediction": 7,
+      "predicted": "<= 2",
+      "kill": "> 8"
+    },
+    "store_refusals_total": {
+      "value": 0,
+      "prediction": null,
+      "predicted": 0,
+      "kill": "any checksum refusal",
+      "by_reason": {},
+      "stores_read": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "replication_dropped_total": {
+      "value": 0,
+      "prediction": 7,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "take_written_bytes": {
+      "value": 4489489,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "files": 5,
+      "start": 2,
+      "roots": {
+        "/home/everserve/.humming/tmp": {
+          "files": 1,
+          "bytes": 0
+        },
+        "/var/lib/landscape": {
+          "files": 1,
+          "bytes": 265
+        },
+        "/var/lib/nebius-observability-agent": {
+          "files": 3,
+          "bytes": 4489224
+        }
+      },
+      "dirs": [
+        {
+          "dir": "/var/lib/nebius-observability-agent",
+          "files": 3,
+          "bytes": 4489224
+        },
+        {
+          "dir": "/var/lib/landscape",
+          "files": 1,
+          "bytes": 265
+        },
+        {
+          "dir": "/home/everserve/.humming/tmp/lock",
+          "files": 1,
+          "bytes": 0
+        }
+      ]
+    },
+    "shadow_formation_s": {
+      "value": 0.306,
+      "prediction": 11,
+      "predicted": "< 60",
+      "kill": "formation fails"
+    }
+  },
+  "verdict": {
+    "green": true,
+    "line": "repeat AGREES with the first run: changes 0, identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]"
+  }
+}

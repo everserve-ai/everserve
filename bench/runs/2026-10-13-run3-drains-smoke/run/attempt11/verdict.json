@@ -1,0 +1,65 @@
+{
+  "verdict": "pass",
+  "predictions": {
+    "H1": {
+      "pass": true,
+      "why": "missing [], skipped/failed []"
+    },
+    "H2": {
+      "pass": true,
+      "why": "head registrations {'a': 2, 'b': 0, 'c': 0}, client registrations {'b': 2, 'c': 2}"
+    },
+    "H3": {
+      "pass": true,
+      "why": "head_conflict {'registered': None, 'final': None}, everserve_head_conflicts_total 0.0"
+    },
+    "R1": {
+      "pass": true,
+      "why": "released {'b': {'epoch': 1, 'at': 1791866100.4795234, 'how': 'killed', 'exitcode': -9, 'end_s': 0.1604}, 'c': {'epoch': 2, 'at': 1791866201.035143, 'how': 'killed', 'exitcode': -9, 'end_s': 0.1626}}"
+    },
+    "R2": {
+      "pass": true,
+      "why": "ended {'b': {'epoch': 1, 'at': 1791866100.4795234, 'how': 'killed', 'exitcode': -9, 'end_s': 0.1604}, 'c': {'epoch': 2, 'at': 1791866201.035143, 'how': 'killed', 'exitcode': -9, 'end_s': 0.1626}}, remaining {'b': '', 'c': ''}"
+    },
+    "R3": {
+      "pass": true,
+      "why": "exits reported lost {'b': [], 'c': []}, held at the end {1: 'node-d', 2: 'node-e'}"
+    },
+    "R4": {
+      "pass": true,
+      "why": "(holds nothing, exit) {'b': (True, '0'), 'c': (True, '0')}"
+    },
+    "R5": {
+      "pass": true,
+      "why": "session lengths [16000, 16000, 16000, 16000] of 16000, changes 2, drill exit 0"
+    },
+    "N1": {
+      "pass": true,
+      "why": "failed: []"
+    },
+    "N2": {
+      "pass": true,
+      "why": "failed: []"
+    },
+    "N3": {
+      "pass": true,
+      "why": "status 409, body 'node-b: its drain is underway (the notices went out); it cannot be withdrawn or moved', deadline 1791866098793, held 1791866098793"
+    },
+    "N4": {
+      "pass": true,
+      "why": "failed: []"
+    },
+    "N5": {
+      "pass": true,
+      "why": "(down, everserve_engine_down) by read {'committed': (None, 0.0), 'cordoned': (None, 0.0), 'covered_after_b': (None, 0.0), 'draining': (None, 0.0), 'final': (None, 0.0), 'recovered': (None, 0.0), 'registered': (None, 0.0), 'restarted': (None, 0.0), 'uncordoned': (None, 0.0)}; logged []"
+    },
+    "C1": {
+      "pass": true,
+      "why": "(rank 1, rank 2) covered {'registered': (True, True), 'recovered': (True, True)}"
+    },
+    "C2": {
+      "pass": true,
+      "why": "covered {'action': 'covered_after_b', 't': 1791866120.84967, 'rc': 0}, read True, node-c's deadline 1791866200466"
+    }
+  }
+}

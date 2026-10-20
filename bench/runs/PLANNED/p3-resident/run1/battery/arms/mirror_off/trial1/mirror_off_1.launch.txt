@@ -1,0 +1,1 @@
+adapter_drill.py --clock-offsets /workspace/out/clocks.json --arm adapter_nomirror --max-tokens 1792 (STOCK=0)

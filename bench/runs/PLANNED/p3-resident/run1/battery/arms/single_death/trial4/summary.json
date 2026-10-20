@@ -1,0 +1,580 @@
+{
+  "arm": "single_death",
+  "trial": 4,
+  "record": "bench/runs/PLANNED/p3-resident/run1/battery/arms/single_death/trial4/result.json",
+  "model": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic",
+  "sessions": 8,
+  "prompt_len": 2048,
+  "tok_s_steps_10_200": 243.42,
+  "clock_offsets": [
+    {
+      "node": "node-b",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.83",
+        "at": 1791631096.403011,
+        "probes": 20,
+        "lost": 0,
+        "offset_s": 1e-05,
+        "rtt_s": 0.000234,
+        "error_s": 0.000117
+      }
+    },
+    {
+      "node": "node-c",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.72",
+        "at": 1791631098.4509442,
+        "probes": 20,
+        "lost": 0,
+        "offset_s": 0.0,
+        "rtt_s": 0.00017,
+        "error_s": 8.5e-05
+      }
+    }
+  ],
+  "figures": {
+    "single_death_gap_s": {
+      "value": 17.0937,
+      "prediction": "4b",
+      "predicted": "0.5-1.5 (median of 5)",
+      "kill": "median > 4",
+      "per_session": [
+        17.0937,
+        17.0937,
+        17.0937,
+        17.0937,
+        17.0937,
+        17.0937,
+        17.0937,
+        17.0937
+      ],
+      "median_over_sessions": 17.0937
+    },
+    "single_death_detection_s": {
+      "value": 0.0105,
+      "prediction": "4b",
+      "predicted": "< 0.05",
+      "kill": "> 1"
+    },
+    "sessions_kept_identical": {
+      "value": "8/8",
+      "prediction": 5,
+      "predicted": "all",
+      "kill": "any lost or mismatched",
+      "verdict": "loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]",
+      "green": true
+    },
+    "restored_rows_mismatched": {
+      "value": 0,
+      "prediction": 6,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "restore_coverage": {
+      "value": 1.0,
+      "prediction": 6,
+      "predicted": 1.0,
+      "kill": "< 1"
+    },
+    "requests_re_prefilled": {
+      "value": 0,
+      "prediction": 5,
+      "predicted": 0,
+      "kill": "any",
+      "requests": []
+    },
+    "resume_below_committed": {
+      "value": 0,
+      "prediction": 15,
+      "predicted": "0 (at committed, or one below: the last sampled token died with the rank)",
+      "kill": "any",
+      "requests": [],
+      "causes": {
+        "0-b1495119": "at_committed",
+        "1-91fc7b66": "at_committed",
+        "2-8595f195": "at_committed",
+        "3-b76d6820": "at_committed",
+        "4-ba8f5da0": "at_committed",
+        "5-92a0687e": "at_committed",
+        "6-aaf1009d": "at_committed",
+        "7-ab6fb82b": "at_committed"
+      }
+    },
+    "first_differing_position": {
+      "value": null,
+      "prediction": 5,
+      "predicted": "none",
+      "kill": "any (a row differs)",
+      "comparable": true,
+      "reason": null,
+      "per_request": {
+        "0:0": null,
+        "0:1": null,
+        "0:2": null,
+        "0:3": null,
+        "0:4": null,
+        "0:5": null,
+        "0:6": null,
+        "0:7": null,
+        "1:0": null,
+        "1:1": null,
+        "1:2": null,
+        "1:3": null,
+        "1:4": null,
+        "1:5": null,
+        "1:6": null,
+        "1:7": null
+      }
+    },
+    "instrument_pause_s": {
+      "value": 48.2127,
+      "prediction": null,
+      "predicted": "after the gap",
+      "kill": null,
+      "step": 625
+    },
+    "take_s": {
+      "value": 12.904,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 10,
+      "cold": false
+    },
+    "take_weights_s": {
+      "value": 0.726,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 10,
+      "cold": false
+    },
+    "take_modules_s": {
+      "value": 2.779,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 10,
+      "cold": false
+    },
+    "take_kv_config_s": {
+      "value": 4.555,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 10,
+      "cold": false
+    },
+    "take_warm_s": {
+      "value": 4.235,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 10,
+      "cold": false
+    },
+    "take_identity_s": {
+      "value": 0.002,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 10,
+      "cold": false
+    },
+    "staged_wait_s": {
+      "value": 0.0001,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 10,
+      "cold": false
+    },
+    "replica_lag_max_steps": {
+      "value": 0.0,
+      "prediction": 7,
+      "predicted": "<= 2",
+      "kill": "> 8"
+    },
+    "store_refusals_total": {
+      "value": 0,
+      "prediction": null,
+      "predicted": 0,
+      "kill": "any checksum refusal",
+      "by_reason": {},
+      "stores_read": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "replication_dropped_total": {
+      "value": 0,
+      "prediction": 7,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "take_written_bytes": {
+      "value": 132132465,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "files": 10,
+      "start": 33,
+      "roots": {
+        "/home/everserve/.humming/tmp": {
+          "files": 1,
+          "bytes": 0
+        },
+        "/var/cache/apt": {
+          "files": 2,
+          "bytes": 122187030
+        },
+        "/var/lib/apt/periodic": {
+          "files": 1,
+          "bytes": 0
+        },
+        "/var/lib/landscape": {
+          "files": 1,
+          "bytes": 269
+        },
+        "/var/lib/nebius-observability-agent": {
+          "files": 3,
+          "bytes": 4575744
+        },
+        "/var/lib/ubuntu-advantage/apt-esm": {
+          "files": 2,
+          "bytes": 5369422
+        }
+      },
+      "dirs": [
+        {
+          "dir": "/var/cache/apt",
+          "files": 2,
+          "bytes": 122187030
+        },
+        {
+          "dir": "/var/lib/ubuntu-advantage/apt-esm/var/cache/apt",
+          "files": 2,
+          "bytes": 5369422
+        },
+        {
+          "dir": "/var/lib/nebius-observability-agent",
+          "files": 3,
+          "bytes": 4575744
+        },
+        {
+          "dir": "/var/lib/landscape",
+          "files": 1,
+          "bytes": 269
+        },
+        {
+          "dir": "/home/everserve/.humming/tmp/lock",
+          "files": 1,
+          "bytes": 0
+        },
+        {
+          "dir": "/var/lib/apt/periodic",
+          "files": 1,
+          "bytes": 0
+        }
+      ],
+      "take_index": 10,
+      "cold": false
+    },
+    "stops_killed": {
+      "value": 0,
+      "prediction": null,
+      "predicted": 0,
+      "kill": "any process killed at its stop",
+      "by_node": {
+        "a": "none",
+        "b": "clean",
+        "c": "clean"
+      }
+    },
+    "take_written_beyond_baseline_bytes": {
+      "value": 127556452,
+      "prediction": 8,
+      "predicted": 0,
+      "kill": "any byte (zero-byte files listed, not counted)",
+      "files": 6,
+      "roots": {
+        "/home/everserve/.humming/tmp": {
+          "files": 1,
+          "bytes": 0
+        },
+        "/var/cache/apt": {
+          "files": 2,
+          "bytes": 122187030
+        },
+        "/var/lib/apt/periodic": {
+          "files": 1,
+          "bytes": 0
+        },
+        "/var/lib/ubuntu-advantage/apt-esm": {
+          "files": 2,
+          "bytes": 5369422
+        }
+      },
+      "baseline_roots": [
+        "/var/lib/landscape",
+        "/var/lib/nebius-observability-agent"
+      ],
+      "take_index": 10,
+      "cold": false
+    },
+    "backup_coverage": {
+      "value": 1.0,
+      "prediction": null,
+      "predicted": 1.0,
+      "kill": "< 1.0 for either rank",
+      "per_rank": {
+        "0": 1.0,
+        "1": 1.0
+      },
+      "detail": {
+        "0": {
+          "rank": 0,
+          "holder": {
+            "epoch": 1,
+            "step": 3587,
+            "held": true,
+            "caught_up": false
+          },
+          "replica": {
+            "epoch": 1,
+            "step": 3587,
+            "held": true,
+            "caught_up": true
+          },
+          "scored_at_step": 3587,
+          "rows_due": 15360,
+          "rows_matching": 15360,
+          "coverage": 1.0
+        },
+        "1": {
+          "rank": 1,
+          "holder": {
+            "epoch": 1,
+            "step": 3585,
+            "held": true,
+            "caught_up": true
+          },
+          "replica": {
+            "epoch": 1,
+            "step": 3585,
+            "held": true,
+            "caught_up": true
+          },
+          "scored_at_step": 3585,
+          "rows_due": 15360,
+          "rows_matching": 15360,
+          "coverage": 1.0
+        }
+      }
+    },
+    "shadow_formation_s": {
+      "value": 78.655,
+      "prediction": 11,
+      "predicted": "< 60",
+      "kill": "formation fails"
+    }
+  },
+  "verdict": {
+    "green": true,
+    "line": "loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]"
+  },
+  "change": {
+    "ranks": [
+      1
+    ],
+    "faulted": [
+      1
+    ],
+    "epoch_committed": 1,
+    "wait_commit_s": 13.8177,
+    "boundary_s": 3.0704,
+    "resume_s": 0.0065,
+    "n_replayed": 8,
+    "claim_to_commit": {
+      "coordinator": {
+        "reported_at": 1791642837.406662,
+        "delivered_at": 1791642837.406686,
+        "acknowledged_at": 1791642851.244266,
+        "committed_at": 1791642851.244267
+      },
+      "deliver_s": 2.4e-05,
+      "acknowledgements_s": 13.83758,
+      "commit_s": 1e-06,
+      "heard_after_commit_s": 0.00084
+    },
+    "join_legs_s": {
+      "offers_out": 0.0036,
+      "answers_back": 3.0654,
+      "ring_subscribed": 0.0001,
+      "ring_ready": 0.0012,
+      "survivors_boundary": 0.0002
+    },
+    "spares": {
+      "1": {
+        "restore": {
+          "restore_s": 0.9298,
+          "staged": {
+            "epoch": 0,
+            "step": 601,
+            "s": 0.0001,
+            "polls": 1
+          },
+          "counts": {
+            "0-b1495119": 2348,
+            "1-91fc7b66": 2348,
+            "2-8595f195": 2348,
+            "3-b76d6820": 2348,
+            "4-ba8f5da0": 2348,
+            "5-92a0687e": 2348,
+            "6-aaf1009d": 2348,
+            "7-ab6fb82b": 2348
+          },
+          "rows": 6010880,
+          "watermark": 601,
+          "dead": 1,
+          "heads": 8,
+          "catch_up": {
+            "since_step": 601,
+            "watermark": 601,
+            "rows": 0,
+            "counts_before": {
+              "0-b1495119": 2348,
+              "1-91fc7b66": 2348,
+              "2-8595f195": 2348,
+              "3-b76d6820": 2348,
+              "4-ba8f5da0": 2348,
+              "5-92a0687e": 2348,
+              "6-aaf1009d": 2348,
+              "7-ab6fb82b": 2348
+            },
+            "s": 3.0613,
+            "t_end": 1791642854.310453
+          }
+        },
+        "join_s": 3.0636,
+        "attachment": {
+          "engine": "rig",
+          "rank": 1,
+          "stage": 1,
+          "sizing_s": 0.018,
+          "warm_s": 4.235,
+          "shard_copy_s": 3.505,
+          "weights_s": 0.726,
+          "kv_config_s": 4.555,
+          "kv_alloc_s": 0.003,
+          "take_s": 12.904,
+          "identity_s": 0.002,
+          "build_s": 0.326
+        }
+      }
+    },
+    "boundaries": {
+      "0": {
+        "tag": "change-1-1791642851.2484112",
+        "rank": 0,
+        "applied": false,
+        "moved": {
+          "members": "0-R1",
+          "rows": [
+            0
+          ],
+          "epoch": 1
+        },
+        "released": [
+          "fabric 0.528s",
+          "torch 1.017s"
+        ],
+        "releasing": [],
+        "leaked": 0,
+        "boundary_s": 0.0015,
+        "t_entered": 1791642851.2488651,
+        "release_times": {
+          "fabric": [
+            1791642837.407427,
+            1791642837.9351785
+          ],
+          "torch": [
+            1791642837.4084988,
+            1791642838.425713
+          ]
+        },
+        "ring_s": 3.0639
+      }
+    },
+    "replaced_after_kill_s": 16.9254
+  },
+  "derived": {
+    "replica_lost_sessions": {
+      "value": 8
+    },
+    "replica_lost_prompt_tokens": {
+      "value": 16384
+    },
+    "replica_lost_generated_tokens": {
+      "value": 2400,
+      "per_session": {
+        "0-b1495119": 300,
+        "1-91fc7b66": 300,
+        "2-8595f195": 300,
+        "3-b76d6820": 300,
+        "4-ba8f5da0": 300,
+        "5-92a0687e": 300,
+        "6-aaf1009d": 300,
+        "7-ab6fb82b": 300
+      },
+      "client_had_at_kill": [
+        301,
+        301,
+        301,
+        301,
+        301,
+        301,
+        301,
+        301
+      ]
+    },
+    "replica_redo_retry_s": {
+      "value": 11.245,
+      "how": "the prompts prefilled again, then the longest session's tokens decoded again",
+      "bound": "derived; understated where approximate; the replica's restore not included",
+      "stock_prefill_tok_s": 6844.9,
+      "stock_prefill_s": 2.3936,
+      "stock_prefill_tokens": 16384,
+      "stock_decode_step_s": 0.029504,
+      "stock_record": "bench/runs/PLANNED/p3-resident/run1/battery/arms/stock/trial1/result.json"
+    },
+    "replica_redo_continuation_s": {
+      "value": 2.744,
+      "how": "every prompt with its generated tokens prefilled again, nothing decoded again",
+      "bound": "derived; understated where approximate; the replica's restore not included",
+      "stock_prefill_tok_s": 6844.9,
+      "stock_prefill_s": 2.3936,
+      "stock_prefill_tokens": 16384,
+      "stock_decode_step_s": 0.029504,
+      "stock_record": "bench/runs/PLANNED/p3-resident/run1/battery/arms/stock/trial1/result.json"
+    },
+    "replica_restore_gpus": {
+      "value": 2
+    },
+    "take_gpus": {
+      "value": 1
+    }
+  }
+}

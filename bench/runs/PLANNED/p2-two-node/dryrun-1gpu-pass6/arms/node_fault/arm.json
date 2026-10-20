@@ -1,0 +1,114 @@
+{
+  "arm": "node_fault",
+  "trials": 2,
+  "figures": {
+    "first_differing_position": {
+      "values": [
+        1526,
+        1377
+      ],
+      "prediction": 5,
+      "median": 1451.5,
+      "worst": 1526,
+      "worst_over_median": 1.05
+    },
+    "instrument_pause_s": {
+      "values": [
+        1.5712,
+        1.5794
+      ],
+      "prediction": null,
+      "median": 1.5753,
+      "worst": 1.5794,
+      "worst_over_median": 1.0
+    },
+    "node_fault_detection_s": {
+      "values": [
+        0.0114,
+        0.0111
+      ],
+      "prediction": 4,
+      "median": 0.01125,
+      "worst": 0.0114,
+      "worst_over_median": 1.01
+    },
+    "node_fault_gap_s": {
+      "values": [
+        0.612,
+        0.6683
+      ],
+      "prediction": 4,
+      "median": 0.64015,
+      "worst": 0.6683,
+      "worst_over_median": 1.04
+    },
+    "replica_lag_max_steps": {
+      "values": [
+        0.0,
+        0.0
+      ],
+      "prediction": 7,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0,
+        0
+      ],
+      "prediction": 7,
+      "median": 0.0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "requests_re_prefilled": {
+      "values": [
+        0,
+        0
+      ],
+      "prediction": 5,
+      "median": 0.0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "restore_coverage": {
+      "values": [
+        1.0,
+        1.0
+      ],
+      "prediction": 6,
+      "median": 1.0,
+      "worst": 1.0,
+      "worst_over_median": 1.0
+    },
+    "restored_rows_mismatched": {
+      "values": [
+        0,
+        0
+      ],
+      "prediction": 6,
+      "median": 0.0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "sessions_kept_identical": {
+      "values": [
+        "8/8",
+        "8/8"
+      ],
+      "prediction": 5
+    },
+    "shadow_formation_s": {
+      "values": [
+        8.042,
+        6.712
+      ],
+      "prediction": 11,
+      "median": 7.377,
+      "worst": 8.042,
+      "worst_over_median": 1.09
+    }
+  },
+  "green": true
+}

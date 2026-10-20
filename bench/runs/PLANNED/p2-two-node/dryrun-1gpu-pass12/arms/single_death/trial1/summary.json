@@ -1,0 +1,318 @@
+{
+  "arm": "single_death",
+  "trial": 1,
+  "record": "bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass12/arms/single_death/trial1/result.json",
+  "model": "/workspace/models/Qwen3-1.7B",
+  "sessions": 8,
+  "prompt_len": 512,
+  "tok_s_steps_10_200": 903.61,
+  "clock_offsets": [
+    {
+      "node": "node-b",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.9",
+        "at": 1791556891.9540496,
+        "probes": 20,
+        "lost": 20,
+        "error": "[Errno 111] Connection refused"
+      }
+    },
+    {
+      "node": "node-c",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.53",
+        "at": 1791556893.5583372,
+        "probes": 20,
+        "lost": 20,
+        "error": "[Errno 111] Connection refused"
+      }
+    },
+    {
+      "node": "node-b",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.9",
+        "at": 1791559141.6788158,
+        "probes": 20,
+        "lost": 20,
+        "error": "[Errno 111] Connection refused"
+      }
+    },
+    {
+      "node": "node-c",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.53",
+        "at": 1791559143.2679563,
+        "probes": 20,
+        "lost": 20,
+        "error": "[Errno 111] Connection refused"
+      }
+    },
+    {
+      "node": "node-b",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.9",
+        "at": 1791561345.850969,
+        "probes": 20,
+        "lost": 20,
+        "error": "[Errno 111] Connection refused"
+      }
+    },
+    {
+      "node": "node-c",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.53",
+        "at": 1791561347.457209,
+        "probes": 20,
+        "lost": 20,
+        "error": "[Errno 111] Connection refused"
+      }
+    }
+  ],
+  "figures": {
+    "single_death_gap_s": {
+      "value": 11.2781,
+      "prediction": "4b",
+      "predicted": "0.5-1.5 (median of 5)",
+      "kill": "median > 4",
+      "per_session": [
+        11.2781,
+        11.2781,
+        11.2781,
+        11.2781,
+        11.2781,
+        11.2781,
+        11.2781,
+        11.2781
+      ],
+      "median_over_sessions": 11.2781
+    },
+    "single_death_detection_s": {
+      "value": 0.0097,
+      "prediction": "4b",
+      "predicted": "< 0.05",
+      "kill": "> 1"
+    },
+    "sessions_kept_identical": {
+      "value": "8/8",
+      "prediction": 5,
+      "predicted": "all",
+      "kill": "any lost or mismatched",
+      "verdict": "loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]",
+      "green": true
+    },
+    "restored_rows_mismatched": {
+      "value": 0,
+      "prediction": 6,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "restore_coverage": {
+      "value": 1.0,
+      "prediction": 6,
+      "predicted": 1.0,
+      "kill": "< 1"
+    },
+    "requests_re_prefilled": {
+      "value": 0,
+      "prediction": 5,
+      "predicted": 0,
+      "kill": "any",
+      "requests": []
+    },
+    "resume_below_committed": {
+      "value": 0,
+      "prediction": 15,
+      "predicted": "0 (at committed, or one below: the last sampled token died with the rank)",
+      "kill": "any",
+      "requests": [],
+      "causes": {
+        "0-81405dcb": "at_committed",
+        "1-94e1813d": "at_committed",
+        "2-8aefbb10": "at_committed",
+        "3-85147169": "at_committed",
+        "4-84f88251": "at_committed",
+        "5-87bed9ec": "at_committed",
+        "6-8846e732": "at_committed",
+        "7-8f70d4d9": "at_committed"
+      }
+    },
+    "first_differing_position": {
+      "value": null,
+      "prediction": 5,
+      "predicted": "none",
+      "kill": "any (a row differs)",
+      "comparable": true,
+      "reason": null,
+      "per_request": {
+        "0:0": null,
+        "0:1": null,
+        "0:2": null,
+        "0:3": null,
+        "0:4": null,
+        "0:5": null,
+        "0:6": null,
+        "0:7": null,
+        "1:0": null,
+        "1:1": null,
+        "1:2": null,
+        "1:3": null,
+        "1:4": null,
+        "1:5": null,
+        "1:6": null,
+        "1:7": null
+      }
+    },
+    "instrument_pause_s": {
+      "value": 1.5615,
+      "prediction": null,
+      "predicted": "after the gap",
+      "kill": null,
+      "step": 2315
+    },
+    "replica_lag_max_steps": {
+      "value": 0.0,
+      "prediction": 7,
+      "predicted": "<= 2",
+      "kill": "> 8"
+    },
+    "replication_dropped_total": {
+      "value": 0,
+      "prediction": 7,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "shadow_formation_s": {
+      "value": 0.305,
+      "prediction": 11,
+      "predicted": "< 60",
+      "kill": "formation fails"
+    }
+  },
+  "verdict": {
+    "green": true,
+    "line": "loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]"
+  },
+  "change": {
+    "ranks": [
+      1
+    ],
+    "faulted": [
+      1
+    ],
+    "epoch_committed": 1,
+    "wait_commit_s": 7.2917,
+    "boundary_s": 3.8771,
+    "resume_s": 0.0058,
+    "n_replayed": 8,
+    "claim_to_commit": {
+      "coordinator": {
+        "reported_at": 1791561902.669898,
+        "delivered_at": 1791561902.669922,
+        "acknowledged_at": 1791561909.97248,
+        "committed_at": 1791561909.972482
+      },
+      "deliver_s": 2.4e-05,
+      "acknowledgements_s": 7.302558,
+      "commit_s": 2e-06,
+      "heard_after_commit_s": 0.000708
+    },
+    "join_legs_s": {
+      "offers_out": 0.0154,
+      "answers_back": 3.8596,
+      "ring_subscribed": 0.0004,
+      "ring_ready": 0.0015,
+      "survivors_boundary": 0.0002
+    },
+    "spares": {
+      "1": {
+        "restore": {
+          "restore_s": 0.2182,
+          "staged": {
+            "epoch": 0,
+            "step": 2291,
+            "s": 0.0001,
+            "polls": 1
+          },
+          "counts": {
+            "0-81405dcb": 1657,
+            "1-94e1813d": 1657,
+            "2-8aefbb10": 1657,
+            "3-85147169": 1657,
+            "4-84f88251": 1657,
+            "5-87bed9ec": 1657,
+            "6-8846e732": 1657,
+            "7-8f70d4d9": 1657
+          },
+          "rows": 1484672,
+          "watermark": 2291,
+          "dead": 1,
+          "heads": 8,
+          "catch_up": {
+            "since_step": 2291,
+            "watermark": 2291,
+            "rows": 0,
+            "counts_before": {
+              "0-81405dcb": 1657,
+              "1-94e1813d": 1657,
+              "2-8aefbb10": 1657,
+              "3-85147169": 1657,
+              "4-84f88251": 1657,
+              "5-87bed9ec": 1657,
+              "6-8846e732": 1657,
+              "7-8f70d4d9": 1657
+            },
+            "s": 0.6711,
+            "t_end": 1791561910.6604645
+          }
+        },
+        "join_s": 0.673
+      }
+    },
+    "boundaries": {
+      "0": {
+        "tag": "change-1-1791561909.9883833",
+        "rank": 0,
+        "applied": false,
+        "moved": {
+          "members": "0-R1",
+          "rows": [
+            0
+          ],
+          "epoch": 1
+        },
+        "released": [
+          "fabric 0.524s",
+          "torch 1.019s"
+        ],
+        "releasing": [],
+        "leaked": 0,
+        "boundary_s": 0.0013,
+        "t_entered": 1791561909.9887667,
+        "release_times": {
+          "fabric": [
+            1791561902.6706753,
+            1791561903.1950443
+          ],
+          "torch": [
+            1791561902.6714532,
+            1791561903.690324
+          ]
+        },
+        "ring_s": 3.8583
+      }
+    },
+    "replaced_after_kill_s": 11.1955
+  }
+}

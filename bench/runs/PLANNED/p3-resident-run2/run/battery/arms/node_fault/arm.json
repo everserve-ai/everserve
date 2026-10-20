@@ -1,0 +1,379 @@
+{
+  "arm": "node_fault",
+  "trials": 5,
+  "figures": {
+    "backup_coverage": {
+      "values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "prediction": 4,
+      "median": 1.0,
+      "worst": 1.0,
+      "worst_over_median": 1.0
+    },
+    "compile_cache_consistent": {
+      "values": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "prediction": 6,
+      "median": false,
+      "worst": false,
+      "worst_over_median": null
+    },
+    "engine_down": {
+      "values": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "prediction": 2,
+      "median": false,
+      "worst": false,
+      "worst_over_median": null
+    },
+    "first_differing_position": {
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "prediction": 3
+    },
+    "instrument_pause_s": {
+      "values": [
+        48.835,
+        48.8651,
+        48.9529,
+        48.9154,
+        49.2761
+      ],
+      "prediction": null,
+      "median": 48.9154,
+      "worst": 49.2761,
+      "worst_over_median": 1.01
+    },
+    "node_fault_detection_s": {
+      "values": [
+        0.0121,
+        0.0119,
+        0.0121,
+        0.0119,
+        0.0119
+      ],
+      "prediction": null,
+      "median": 0.0119,
+      "worst": 0.0121,
+      "worst_over_median": 1.02
+    },
+    "node_fault_gap_s": {
+      "values": [
+        12.8201,
+        14.4637,
+        10.0307,
+        14.5792,
+        13.0609
+      ],
+      "prediction": 7,
+      "median": 13.0609,
+      "worst": 14.5792,
+      "worst_over_median": 1.12
+    },
+    "replica_lag_max_steps": {
+      "values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "prediction": null,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "prediction": null,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "requests_re_prefilled": {
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "prediction": 5,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "restore_coverage": {
+      "values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "prediction": 4,
+      "median": 1.0,
+      "worst": 1.0,
+      "worst_over_median": 1.0
+    },
+    "restored_rows_mismatched": {
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "prediction": 3,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "resume_below_committed": {
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "prediction": 5,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "sessions_kept_identical": {
+      "values": [
+        "8/8",
+        "8/8",
+        "8/8",
+        "8/8",
+        "8/8"
+      ],
+      "prediction": 1
+    },
+    "shadow_formation_s": {
+      "values": [
+        0.432,
+        0.461,
+        0.428,
+        0.46,
+        0.43
+      ],
+      "prediction": 12,
+      "median": 0.432,
+      "worst": 0.461,
+      "worst_over_median": 1.07
+    },
+    "staged_wait_s": {
+      "values": [
+        0.1181,
+        1.2221,
+        0.3208,
+        1.2893,
+        0.2974
+      ],
+      "prediction": 11,
+      "median": 0.3208,
+      "worst": 1.2893,
+      "worst_over_median": 4.02
+    },
+    "stops_killed": {
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "prediction": 14,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "store_refusals_total": {
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "prediction": 6,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "take_identity_s": {
+      "values": [
+        0.002,
+        0.002,
+        0.002,
+        0.002,
+        0.002
+      ],
+      "prediction": null,
+      "median": 0.002,
+      "worst": 0.002,
+      "worst_over_median": 1.0
+    },
+    "take_kv_alloc_s": {
+      "values": [
+        0.003,
+        0.003,
+        0.003,
+        0.003,
+        0.003
+      ],
+      "prediction": null,
+      "median": 0.003,
+      "worst": 0.003,
+      "worst_over_median": 1.0
+    },
+    "take_kv_config_s": {
+      "values": [
+        2.064,
+        2.069,
+        2.038,
+        2.034,
+        2.035
+      ],
+      "prediction": 10,
+      "median": 2.038,
+      "worst": 2.069,
+      "worst_over_median": 1.02
+    },
+    "take_modules_s": {
+      "values": [
+        1.973,
+        2.003,
+        1.923,
+        2.038,
+        1.911
+      ],
+      "prediction": 10,
+      "median": 1.973,
+      "worst": 2.038,
+      "worst_over_median": 1.03
+    },
+    "take_restore_s": {
+      "values": [
+        0.6873,
+        0.6913,
+        0.689,
+        0.6902,
+        0.7022
+      ],
+      "prediction": 11,
+      "median": 0.6902,
+      "worst": 0.7022,
+      "worst_over_median": 1.02
+    },
+    "take_s": {
+      "values": [
+        8.794,
+        9.325,
+        8.814,
+        9.317,
+        8.77
+      ],
+      "prediction": null,
+      "median": 8.814,
+      "worst": 9.325,
+      "worst_over_median": 1.06
+    },
+    "take_sizing_s": {
+      "values": [
+        0.018,
+        0.019,
+        0.018,
+        0.018,
+        0.018
+      ],
+      "prediction": null,
+      "median": 0.018,
+      "worst": 0.019,
+      "worst_over_median": 1.06
+    },
+    "take_warm_s": {
+      "values": [
+        3.474,
+        3.49,
+        3.47,
+        3.488,
+        3.454
+      ],
+      "prediction": 10,
+      "median": 3.474,
+      "worst": 3.49,
+      "worst_over_median": 1.0
+    },
+    "take_weights_s": {
+      "values": [
+        0.72,
+        0.722,
+        0.72,
+        0.72,
+        0.717
+      ],
+      "prediction": 10,
+      "median": 0.72,
+      "worst": 0.722,
+      "worst_over_median": 1.0
+    },
+    "take_written_beyond_baseline_bytes": {
+      "values": [
+        0,
+        0,
+        0,
+        122187030,
+        0
+      ],
+      "prediction": 9,
+      "median": 0,
+      "worst": 122187030,
+      "worst_over_median": null
+    },
+    "take_written_bytes": {
+      "values": [
+        4617092,
+        4617092,
+        4617092,
+        126804122,
+        4617092
+      ],
+      "prediction": null,
+      "median": 4617092,
+      "worst": 126804122,
+      "worst_over_median": 27.46
+    }
+  },
+  "failed": [],
+  "green": true
+}

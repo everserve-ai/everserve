@@ -1,0 +1,22 @@
+02:24:34Z join by vllm
+02:27:40Z vllm rank 0: id 30731b376c7c00000200b16f0a0013c800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+02:27:40Z vllm rank 1: 
+02:27:40Z join by blocking
+02:30:46Z blocking rank 0: id 303317727e7900000200aca90a0013c800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+02:30:46Z blocking rank 1: 
+02:30:46Z join by nonblocking
+02:32:29Z join by vllm
+02:32:41Z vllm rank 0: {"mode": "join", "how": "vllm", "rank": 0, "nccl": 22907, "state": 0, "formed_s": 5.186, "polls": 0, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "all_success": true}, "abort_rc": 0, "abort_s": 0.517}
+02:32:41Z vllm rank 1: {"mode": "join", "how": "vllm", "rank": 1, "nccl": 22907, "state": 0, "formed_s": 0.226, "polls": 0, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "all_success": true}, "abort_rc": 0, "abort_s": 0.512}
+02:32:41Z join by blocking
+02:32:52Z blocking rank 0: {"mode": "join", "how": "blocking", "rank": 0, "nccl": 22907, "init_rc": 0, "state": 0, "formed_s": 5.234, "polls": 1, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "all_success": true}, "abort_rc": 0, "abort_s": 0.51}
+02:32:52Z blocking rank 1: {"mode": "join", "how": "blocking", "rank": 1, "nccl": 22907, "init_rc": 0, "state": 0, "formed_s": 0.156, "polls": 1, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "all_success": true}, "abort_rc": 0, "abort_s": 0.51}
+02:32:52Z join by nonblocking
+02:33:04Z nonblocking rank 0: {"mode": "join", "how": "nonblocking", "rank": 0, "nccl": 22907, "init_rc": 7, "state": 0, "formed_s": 5.316, "polls": 529, "eager": {"sums_right": false, "rcs": [7, 4, 4, 4, 4], "all_success": false}, "graphed": {"sums_right": false, "rcs": [4, 4, 4, 4, 4, 4, 4, 4, 4, 4], "all_success": false}, "abort_rc": 0, "abort_s": 0.489}
+02:33:04Z nonblocking rank 1: {"mode": "join", "how": "nonblocking", "rank": 1, "nccl": 22907, "init_rc": 7, "state": 0, "formed_s": 0.163, "polls": 17, "eager": {"sums_right": false, "rcs": [7, 4, 4, 4, 4], "all_success": false}, "graphed": {"sums_right": false, "rcs": [4, 4, 4, 4, 4, 4, 4, 4, 4, 4], "all_success": false}, "abort_rc": 0, "abort_s": 0.489}
+02:33:04Z a1
+02:33:19Z a1: {"mode": "missing", "as": 0, "nccl": 22907, "init_rc": 7, "state": 7, "waited_s": 10.007, "polls": 995, "abort_rc": 0, "abort_s": 0.001, "device_ok": true}
+02:33:41Z a2: {"mode": "missing", "as": 1, "nccl": 22907, "init_rc": 7, "state": 7, "waited_s": 10.004, "polls": 995, "abort_rc": 0, "abort_s": 0.653, "device_ok": true}
+02:34:53Z join by nonblocking-polled
+02:35:05Z nonblocking-polled rank 0: {"mode": "join", "how": "nonblocking-polled", "rank": 0, "nccl": 22907, "init_rc": 7, "state": 0, "formed_s": 4.984, "polls": 496, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "polled": 5, "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "polled": 10, "all_success": true}, "abort_rc": 0, "abort_s": 0.51}
+02:35:05Z nonblocking-polled rank 1: {"mode": "join", "how": "nonblocking-polled", "rank": 1, "nccl": 22907, "init_rc": 7, "state": 0, "formed_s": 0.174, "polls": 18, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "polled": 5, "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "polled": 10, "all_success": true}, "abort_rc": 0, "abort_s": 0.51}

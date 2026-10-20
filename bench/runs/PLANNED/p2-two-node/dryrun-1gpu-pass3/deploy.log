@@ -1,0 +1,23 @@
+2026-10-08T17:24:26Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: node_fault long_context; trials 2 (fault) / 1 (other); tree 95994c8 + uncommitted
+2026-10-08T17:25:38Z fabric: slowest link to node-a 41.2 Gbit/s (floor 1)
+2026-10-08T17:26:25Z == node_fault trial 1: control
+2026-10-08T17:30:05Z == node_fault trial 1
+2026-10-08T17:31:14Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":[]},{"rank":1,"node":"node-b","class":"NVIDIA L40S","replicates_to":["10.0.0.10:7402"]}],"spares":[{"rank":1,"node":"node-c","speed":1.0,"state":"warm"}],"lost":[],"nodes":[{"node":"no
+2026-10-08T17:31:18Z node_fault_1 armed: {"t_armed": 1791480674.5117676, "step": 100}
+2026-10-08T17:33:49Z node_fault_1: rows for 12 sampled slots pulled from the kill-time file and both stores
+node_fault trial 1: loss arm complete, DIVERGED vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 692, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+2026-10-08T17:33:58Z == node_fault trial 2: control
+2026-10-08T17:37:32Z == node_fault trial 2
+2026-10-08T17:38:41Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":[]},{"rank":1,"node":"node-b","class":"NVIDIA L40S","replicates_to":["10.0.0.10:7402"]}],"spares":[{"rank":1,"node":"node-c","speed":1.0,"state":"warm"}],"lost":[],"nodes":[{"node":"no
+2026-10-08T17:38:45Z node_fault_2 armed: {"t_armed": 1791481120.6055105, "step": 100}
+2026-10-08T17:41:16Z node_fault_2: rows for 12 sampled slots pulled from the kill-time file and both stores
+node_fault trial 2: loss arm complete, DIVERGED vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 786, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+node_fault: 2 trials, green False, node_fault_detection_s=0.010499999999999999, node_fault_gap_s=2.2174, replica_lag_max_steps=0.0, replication_dropped_total=0.0, restored_rows_mismatched=112.0, sessions_kept_identical=['7/8', '7/8'], shadow_formation_s=1.27
+2026-10-08T17:41:40Z == long_context trial 1: control
+2026-10-08T17:45:05Z == long_context trial 1
+2026-10-08T17:46:29Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":[]},{"rank":1,"node":"node-b","class":"NVIDIA L40S","replicates_to":["10.0.0.10:7402"]}],"spares":[{"rank":1,"node":"node-c","speed":1.0,"state":"warm"}],"lost":[],"nodes":[{"node":"no
+2026-10-08T17:46:48Z long_context_1 armed: {"t_armed": 1791481605.275998, "step": 100}
+2026-10-08T17:49:20Z long_context_1: rows for 3 sampled slots pulled from the kill-time file and both stores
+long_context trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [512] of [512]
+long_context: 1 trials, green True, long_context_gap_s=18.8846, replica_lag_max_steps=0.0, replication_dropped_total=0, restored_rows_mismatched=112, sessions_kept_identical=['1/1'], shadow_formation_s=16.583
+2026-10-08T17:50:33Z battery done: long_context node_fault ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass3

@@ -1,0 +1,229 @@
+{
+  "note": "diagnostic runs taken while fixing; no pre-registration",
+  "host": "Apple M-series Mac, 14 cores, 36 GiB",
+  "size": 5000,
+  "runs": [
+    {
+      "code": "31789ed (S1) with the harness's feed timing",
+      "measured": {
+        "api_node_list_s": 0.1526315,
+        "bytes_received_per_change": [
+          593,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617
+        ],
+        "change_s": {
+          "max": 0.002789208,
+          "n": 20,
+          "p50": 0.00168825,
+          "p99": 0.002789208
+        },
+        "connections_refused": 4465,
+        "cpu_s": {
+          "changes": 0.1100000000000001,
+          "link": 1.25
+        },
+        "daemons_sent_to_per_change": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "engines": 2500,
+        "feed_refresh_s": 0.322969791,
+        "gpus": 40000,
+        "link_s": 0.516993083,
+        "node_views_s": 0.088889916,
+        "nodes": 5000,
+        "nodes_per_engine": 2,
+        "readiness_s": 0.03023775,
+        "rss_bytes": {
+          "after_changes": 263585792,
+          "idle": 11304960,
+          "linked": 262569984
+        }
+      }
+    },
+    {
+      "code": "+ linear reads (engine index, devices grouped by node)",
+      "measured": {
+        "api_node_list_s": 0.058058,
+        "bytes_received_per_change": [
+          593,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617
+        ],
+        "change_s": {
+          "max": 0.002102292,
+          "n": 20,
+          "p50": 0.001490959,
+          "p99": 0.002102292
+        },
+        "connections_refused": 4431,
+        "cpu_s": {
+          "changes": 0.08000000000000007,
+          "link": 1.21
+        },
+        "daemons_sent_to_per_change": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "engines": 2500,
+        "feed_refresh_s": 0.126905167,
+        "gpus": 40000,
+        "link_s": 0.52025325,
+        "node_views_s": 0.006871083,
+        "nodes": 5000,
+        "nodes_per_engine": 2,
+        "readiness_s": 0.01006275,
+        "rss_bytes": {
+          "after_changes": 263274496,
+          "idle": 11714560,
+          "linked": 262537216
+        }
+      }
+    },
+    {
+      "code": "+ typed comparison in the feed",
+      "measured": {
+        "api_node_list_s": 0.02678825,
+        "bytes_received_per_change": [
+          593,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617
+        ],
+        "change_s": {
+          "max": 0.001783708,
+          "n": 20,
+          "p50": 0.001270125,
+          "p99": 0.001783708
+        },
+        "connections_refused": 4437,
+        "cpu_s": {
+          "changes": 0.07000000000000006,
+          "link": 1.19
+        },
+        "daemons_sent_to_per_change": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "engines": 2500,
+        "feed_refresh_s": 0.056138459,
+        "gpus": 40000,
+        "link_s": 0.519575583,
+        "node_views_s": 0.007577083,
+        "nodes": 5000,
+        "nodes_per_engine": 2,
+        "readiness_s": 0.014183625,
+        "rss_bytes": {
+          "after_changes": 263307264,
+          "idle": 11616256,
+          "linked": 262537216
+        }
+      }
+    }
+  ]
+}

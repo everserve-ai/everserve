@@ -1,0 +1,86 @@
+2026-10-09T23:36:39Z battery on RedHatAI/Qwen3-1.7B-FP8-dynamic, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400, long context 65536, store budget 8000000000, node-b's first layer 14, KV heads 8, row bytes 512; arms: repeat node_fault single_death; trials 1 (fault) / 3 (other); commit 865a0ba
+2026-10-09T23:36:55Z nodes at 865a0ba, the binaries and kernels built at it
+2026-10-09T23:37:30Z iperf3 node-b -> node-a: 37.18 Gbit/s
+2026-10-09T23:37:41Z NCCL send node-a <-> node-b: "decode_pp_send_128KB: 0.20 ms per send, 0.66 GB/s;prefill_pp_send_268MB: 135.69 ms per send, 1.98 GB/s;replication_burst_650MB: 324.85 ms per send, 2.00 GB/s;"
+2026-10-09T23:37:57Z iperf3 node-c -> node-a: 41.88 Gbit/s
+2026-10-09T23:37:57Z fabric: slowest link to node-a 37.18 Gbit/s (floor 1)
+2026-10-09T23:38:04Z clock of node-b against node-a: {"host": "10.0.0.4", "at": 1791589084.2557032, "probes": 20, "lost": 0, "offset_s": -0.001473, "rtt_s": 0.000162, "error_s": 8.1e-05}
+2026-10-09T23:38:06Z clock of node-c against node-a: {"host": "10.0.0.1", "at": 1791589086.3212428, "probes": 20, "lost": 0, "offset_s": 1.1e-05, "rtt_s": 0.000136, "error_s": 6.8e-05}
+2026-10-09T23:38:06Z == repeat trial 1: control
+2026-10-09T23:38:51Z control plane up: coordinator on a at 10.0.0.17:7400, daemons linked on a b c, records exchanged
+2026-10-09T23:38:56Z node-b headless started: the node role (RedHatAI/Qwen3-1.7B-FP8-dynamic, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T23:41:12Z end control_repeat_1 rc=0
+2026-10-09T23:41:19Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-fp8ct-pass17/arms/repeat/trial1/control
+2026-10-09T23:41:39Z control_repeat_1 running: written since the start: a=4793 files 106725533 bytes (start 1, takes 0, exit None) b=4967 files 119288668 bytes (start 1, takes 0, exit None) c=2915 files 43687354 bytes (start 1, takes 0, exit None) 
+2026-10-09T23:42:01Z nodes a b c down: a=none b=clean c=clean 
+2026-10-09T23:42:05Z control_repeat_1 stopped: written since the start: a=4793 files 106725533 bytes (start 1, takes 0, exit none) b=4967 files 119288668 bytes (start 1, takes 0, exit clean) c=2915 files 43687354 bytes (start 1, takes 0, exit clean) 
+2026-10-09T23:42:09Z == repeat trial 1
+2026-10-09T23:42:54Z control plane up: coordinator on a at 10.0.0.17:7400, daemons linked on a b c, records exchanged
+2026-10-09T23:42:59Z node-b headless started: the node role (RedHatAI/Qwen3-1.7B-FP8-dynamic, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T23:43:39Z end repeat_1 rc=0
+2026-10-09T23:43:53Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-fp8ct-pass17/arms/repeat/trial1
+2026-10-09T23:44:04Z repeat_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-09T23:44:09Z repeat_1 running: written since the start: a=86 files 5123768 bytes (start 2, takes 0, exit None) b=5 files 4382609 bytes (start 2, takes 0, exit None) c=5 files 4489489 bytes (start 2, takes 0, exit None) 
+2026-10-09T23:44:31Z nodes a b c down: a=none b=clean c=clean 
+2026-10-09T23:44:35Z repeat_1 stopped: written since the start: a=86 files 5123768 bytes (start 2, takes 0, exit none) b=5 files 4382609 bytes (start 2, takes 0, exit clean) c=5 files 4489489 bytes (start 2, takes 0, exit clean) 
+repeat trial 1: repeat AGREES with the first run: changes 0, identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+repeat: 1 trials, green True, replica_lag_max_steps=0.0, replication_dropped_total=0, runs_agree=['8/8'], shadow_formation_s=0.306, store_refusals_total=0, take_written_bytes=4489489
+2026-10-09T23:44:35Z == node_fault trial 1: control
+2026-10-09T23:45:21Z control plane up: coordinator on a at 10.0.0.17:7400, daemons linked on a b c, records exchanged
+2026-10-09T23:45:25Z node-b headless started: the node role (RedHatAI/Qwen3-1.7B-FP8-dynamic, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T23:46:17Z end control_node_fault_1 rc=0
+2026-10-09T23:46:25Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-fp8ct-pass17/arms/node_fault/trial1/control
+2026-10-09T23:46:30Z control_node_fault_1 running: written since the start: a=5 files 4211273 bytes (start 3, takes 0, exit None) b=300 files 18200367 bytes (start 3, takes 0, exit None) c=4 files 4247825 bytes (start 3, takes 0, exit None) 
+2026-10-09T23:46:52Z nodes a b c down: a=none b=clean c=clean 
+2026-10-09T23:46:57Z control_node_fault_1 stopped: written since the start: a=6 files 4428361 bytes (start 3, takes 0, exit none) b=301 files 18401071 bytes (start 3, takes 0, exit clean) c=5 files 4489489 bytes (start 3, takes 0, exit clean) 
+2026-10-09T23:47:00Z == node_fault trial 1
+2026-10-09T23:47:29Z compile cache staged from node-b onto node-c: b=dbf7373253:5d88a8ce2a4f c=dbf7373253:5d88a8ce2a4f 
+2026-10-09T23:48:15Z control plane up: coordinator on a at 10.0.0.17:7400, daemons linked on a b c, records exchanged
+2026-10-09T23:48:20Z node-b headless started: the node role (RedHatAI/Qwen3-1.7B-FP8-dynamic, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T23:48:49Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":["10.0.0.4:7402"],"compile_cache":{"key":"e5708731757e56ba13a4414bb6862def0290642f9ede8dbb6b89c437f99006b3","digest":"48063f7cf3df595c01083d674f259a1f04059a77408638a0ffe64a4ea4659922"}
+pool 1 of 1 wanted (any position: 1 ); members 2 of 2
+replication targets {0: ['10.0.0.4:7402'], 1: ['10.0.0.17:7402']}
+compile key e5708731757e56ba13a4414bb6862def0290642f9ede8dbb6b89c437f99006b3 consistent True per rank {0: ('e5708731757e56ba13a4414bb6862def0290642f9ede8dbb6b89c437f99006b3', '48063f7cf3df'), 1: ('e5708731757e56ba13a4414bb6862def0290642f9ede8dbb6b89c437f99006b3', '6be52a277b91')} spares {}
+2026-10-09T23:48:52Z node_fault_1 armed: {"t_armed": 1791589727.5354378, "step": 100}
+2026-10-09T23:48:57Z node-b lost at 1791589735.771145960 (daemon and workers killed)
+2026-10-09T23:49:02Z node_fault_1: committed at epoch 1; no native stacks taken
+2026-10-09T23:49:21Z end node_fault_1 rc=0
+2026-10-09T23:49:54Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-fp8ct-pass17/arms/node_fault/trial1
+2026-10-09T23:50:06Z node_fault_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-09T23:50:19Z node_fault_1: backup after the take: {"0": {"rank": 0, "holder": {"epoch": 1, "step": 3587, "held": true, "caught_up": false}, "replica": {"epoch": 1, "step": 3587, "held": true, "caught_up": true}, "scored_at_step": 3587, "rows_due": 9216, "rows_matching": 9216, "coverage": 1.0},"1": {"rank": 1, "holder": {"epoch": 1, "step": 3586, "held": true, "caught_up": true}, "replica": {"epoch": 1, "step": 3586, "held": true, "caught_up": tru
+2026-10-09T23:50:24Z node_fault_1 running: written since the start: a=6 files 4217401 bytes (start 4, takes 0, exit None) b=6 files 4183478 bytes (start 4, takes 0, exit None) c=1585 files 37926808 bytes (start 4, takes 1, exit None) 
+2026-10-09T23:50:55Z nodes a b c down: a=none b=none c=killed 
+2026-10-09T23:51:00Z node_fault_1 stopped: written since the start: a=7 files 4434489 bytes (start 4, takes 0, exit none) b=7 files 4384182 bytes (start 4, takes 0, exit none) c=1585 files 37926808 bytes (start 4, takes 1, exit killed) 
+node_fault trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+node_fault: 1 trials, green True, backup_coverage=1.0, first_differing_position=[None], instrument_pause_s=1.777, node_fault_detection_s=0.0129, node_fault_gap_s=10.7301, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8'], shadow_formation_s=0.294, staged_wait_s=0.0001, store_refusals_total=0, take_identity_s=0.002, take_kv_config_s=1.66, take_modules_s=4.371, take_s=9.575, take_warm_s=3.003, take_weights_s=0.084, take_written_bytes=37926808
+2026-10-09T23:51:00Z == single_death trial 1: control
+2026-10-09T23:51:46Z control plane up: coordinator on a at 10.0.0.17:7400, daemons linked on a b c, records exchanged
+2026-10-09T23:51:51Z node-b headless started: the node role (RedHatAI/Qwen3-1.7B-FP8-dynamic, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T23:52:29Z end control_single_death_1 rc=0
+2026-10-09T23:53:01Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-fp8ct-pass17/arms/single_death/trial1/control
+2026-10-09T23:53:05Z control_single_death_1 running: written since the start: a=5 files 4214371 bytes (start 5, takes 0, exit None) b=4 files 4181905 bytes (start 5, takes 0, exit None) c=5 files 4489489 bytes (start 5, takes 1, exit None) 
+2026-10-09T23:53:28Z nodes a b c down: a=none b=clean c=clean 
+2026-10-09T23:53:32Z control_single_death_1 stopped: written since the start: a=5 files 4214371 bytes (start 5, takes 0, exit none) b=4 files 4181905 bytes (start 5, takes 0, exit clean) c=5 files 4489489 bytes (start 5, takes 1, exit clean) 
+2026-10-09T23:53:36Z == single_death trial 1
+2026-10-09T23:54:09Z compile cache staged from node-b onto node-c: b=dbf7373253:5d88a8ce2a4f c=dbf7373253:5d88a8ce2a4f 
+2026-10-09T23:54:54Z control plane up: coordinator on a at 10.0.0.17:7400, daemons linked on a b c, records exchanged
+2026-10-09T23:54:59Z node-b headless started: the node role (RedHatAI/Qwen3-1.7B-FP8-dynamic, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T23:55:28Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":["10.0.0.4:7402"],"compile_cache":{"key":"e5708731757e56ba13a4414bb6862def0290642f9ede8dbb6b89c437f99006b3","digest":"48063f7cf3df595c01083d674f259a1f04059a77408638a0ffe64a4ea4659922"}
+pool 1 of 1 wanted (any position: 1 ); members 2 of 2
+replication targets {0: ['10.0.0.4:7402'], 1: ['10.0.0.17:7402']}
+compile key e5708731757e56ba13a4414bb6862def0290642f9ede8dbb6b89c437f99006b3 consistent True per rank {0: ('e5708731757e56ba13a4414bb6862def0290642f9ede8dbb6b89c437f99006b3', '48063f7cf3df'), 1: ('e5708731757e56ba13a4414bb6862def0290642f9ede8dbb6b89c437f99006b3', '6be52a277b91')} spares {}
+2026-10-09T23:55:31Z single_death_1 armed: {"t_armed": 1791590127.3052325, "step": 100}
+2026-10-09T23:55:38Z node-b's worker for rank 1 (pid 18250) killed at 1791590136.188089609
+2026-10-09T23:55:42Z single_death_1: committed at epoch 1; no native stacks taken
+2026-10-09T23:55:58Z end single_death_1 rc=0
+2026-10-09T23:56:56Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-fp8ct-pass17/arms/single_death/trial1
+2026-10-09T23:57:07Z single_death_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-09T23:57:21Z single_death_1: backup after the take: {"0": {"rank": 0, "holder": {"epoch": 1, "step": 3585, "held": true, "caught_up": false}, "replica": {"epoch": 1, "step": 3585, "held": true, "caught_up": true}, "scored_at_step": 3585, "rows_due": 9216, "rows_matching": 9216, "coverage": 1.0},"1": {"rank": 1, "holder": {"epoch": 1, "step": 3583, "held": true, "caught_up": true}, "replica": {"epoch": 1, "step": 3583, "held": true, "caught_up": tru
+2026-10-09T23:57:26Z single_death_1 running: written since the start: a=6 files 4433008 bytes (start 6, takes 0, exit None) b=5 files 4382609 bytes (start 6, takes 0, exit None) c=5 files 4489489 bytes (start 6, takes 2, exit None) 
+2026-10-09T23:57:57Z nodes a b c down: a=none b=clean c=killed 
+2026-10-09T23:58:02Z single_death_1 stopped: written since the start: a=6 files 4433008 bytes (start 6, takes 0, exit none) b=5 files 4382609 bytes (start 6, takes 0, exit clean) c=5 files 4489489 bytes (start 6, takes 2, exit killed) 
+single_death trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+single_death: 1 trials, green True, backup_coverage=1.0, first_differing_position=[None], instrument_pause_s=1.7562, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8'], shadow_formation_s=0.295, single_death_detection_s=0.0034, single_death_gap_s=6.9277, staged_wait_s=0.0001, store_refusals_total=0, take_identity_s=0.002, take_kv_config_s=1.409, take_modules_s=1.787, take_s=5.741, take_warm_s=2.013, take_weights_s=0.086, take_written_bytes=4489489
+2026-10-09T23:58:09Z clock of node-b against node-a: {"host": "10.0.0.4", "at": 1791590289.1669056, "probes": 20, "lost": 0, "offset_s": -0.001275, "rtt_s": 0.000241, "error_s": 0.000121}
+2026-10-09T23:58:11Z clock of node-c against node-a: {"host": "10.0.0.1", "at": 1791590291.2810366, "probes": 20, "lost": 0, "offset_s": -0.0002, "rtt_s": 0.000154, "error_s": 7.7e-05}
+2026-10-09T23:58:11Z battery done: node_fault repeat single_death ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-fp8ct-pass17

@@ -1,0 +1,94 @@
+# Shared-memory data plane run: run log
+2026-10-05T12:37:51Z Standing permission (pasted brief). Tree 47b8e36 (preflight green, CI green). reconcile_on_recover=False (adapters/vllm/everserve_vllm/worker.py). Estimate ~$1.70 (40 min x $2.45/h). Balance 45.98; hard stop at $10 spent.
+2026-10-05T12:37:52Z deploy 5x NVIDIA A40 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:37:52Z deploy 5x NVIDIA A40 SECURE: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:39:52Z deploy 5x NVIDIA A40 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:39:52Z deploy 5x NVIDIA A40 SECURE: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:41:53Z deploy 5x NVIDIA A40 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:41:53Z deploy 5x NVIDIA A40 SECURE: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:43:53Z deploy 5x NVIDIA A40 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:43:54Z deploy 5x NVIDIA A40 SECURE: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:45:54Z deploy 5x NVIDIA A40 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:45:54Z deploy 5x NVIDIA A40 SECURE: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:47:55Z deploy 5x NVIDIA A40 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:47:55Z deploy 5x NVIDIA A40 SECURE: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:49:55Z deploy 5x NVIDIA A40 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:49:55Z deploy 5x NVIDIA A40 SECURE: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:51:56Z deploy 5x NVIDIA A40 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:51:56Z deploy 5x NVIDIA A40 SECURE: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:53:56Z deploy 5x NVIDIA A40 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:53:57Z deploy 5x NVIDIA A40 SECURE: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:55:57Z deploy 5x NVIDIA A40 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:55:57Z deploy 5x NVIDIA A40 SECURE: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:57:58Z deploy 5x NVIDIA A40 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:57:58Z deploy 5x NVIDIA A40 SECURE: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:59:58Z deploy 5x NVIDIA A40 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T12:59:58Z deploy 5x NVIDIA A40 SECURE: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T13:00:07Z A40 polling stopped after 24 attempts with no supply; per the user's decision (mentor's advice): use 5x A100 at the same cap if 5x A40 is unavailable, stating the GPU and a pause prediction for it in the pre-registration before the run.
+2026-10-05T13:03:11Z tree now 1418c10 (pre-registration amended for A100 before any run; preflight green, CI green)
+2026-10-05T13:03:11Z deploy 5x NVIDIA A100-SXM4-80GB COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T13:03:12Z deploy 5x NVIDIA A100-SXM4-80GB SECURE: {"data": {"podFindAndDeployOnDemand": {"id": "ivwa29yn1yec58", "costPerHr": 7.95, "machine": {"gpuDisplayName": "A100 SXM", "location": "US"}}}}
+2026-10-05T13:03:20Z pod ivwa29yn1yec58 5x A100 SXM 80GB secure US $7.95/h (community: no supply); laptop watchdog terminates at 2026-10-05T14:13:20Z (+70 min, ~$9.30)
+2026-10-05T13:03:39Z df -h /dev/shm: shm             583G     0  583G   0% /dev/shm
+2026-10-05T13:07:21Z host: 5x A100-SXM4-80GB, driver 580.126.16, NVLink NV12 all pairs (unused: NCCL_P2P_DISABLE=1), 128 CPUs, 2 TB RAM; /dev/shm 583 GB -> MDATA=/dev/shm/everserve as pre-registered. pod: hf download (bg); rsync repo at 1418c10; setup && build (bg)
+2026-10-05T13:10:15Z pod: setup done (vllm pin, torch 2.13.0+cu130, NCCL 2.29.7, cuda-compat-13-0; pod tests passed); release build 15 s. pod: adapter_port.sh smoke (dev, not scored)
+2026-10-05T13:12:42Z smoke (dev, not scored): REPLACE recovered, epochs 1, restore check 48/48, spare restore 0.177 s; step-thread commit p50 3.4-3.7 ms; fence rank 2 0.36 s over 100 steps; backpressure 0. Starting scored arms in pre-registered order.
+2026-10-05T13:12:47Z spend [before stock] balance 45.29, spent since start $0.69, pod ivwa29yn1yec58 $7.95/h up 550s
+2026-10-05T13:12:47Z pod: bash bench/harness/adapter_port.sh stock
+2026-10-05T13:12:50Z start stock_1: --arm stock
+2026-10-05T13:14:31Z end stock_1 rc=0: (MainProcess pid=7638) WARNING 10-05 13:14:26 [multiproc_executor.py:486] [shutdown] Executor: workers still running after grace period; sending SIGTERM count=4
+2026-10-05T13:14:33Z start stock_2: --arm stock
+2026-10-05T13:15:18Z end stock_2 rc=0: (MainProcess pid=8793) WARNING 10-05 13:15:13 [multiproc_executor.py:486] [shutdown] Executor: workers still running after grace period; sending SIGTERM count=4
+2026-10-05T13:15:20Z start stock_3: --arm stock
+2026-10-05T13:16:06Z end stock_3 rc=0: (MainProcess pid=9654) WARNING 10-05 13:16:01 [multiproc_executor.py:486] [shutdown] Executor: workers still running after grace period; sending SIGTERM count=4
+2026-10-05T13:16:06Z spend [after stock] balance 44.63, spent since start $1.35, pod ivwa29yn1yec58 $7.95/h up 763s
+2026-10-05T13:16:07Z spend [before nomirror] balance 44.63, spent since start $1.35, pod ivwa29yn1yec58 $7.95/h up 763s
+2026-10-05T13:16:07Z pod: bash bench/harness/adapter_port.sh nomirror
+2026-10-05T13:16:10Z start adapter_nomirror_1: --arm adapter_nomirror
+2026-10-05T13:17:09Z end adapter_nomirror_1 rc=0: (MainProcess pid=10651) INFO 10-05 13:17:06 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T13:17:11Z start adapter_nomirror_2: --arm adapter_nomirror
+2026-10-05T13:18:07Z end adapter_nomirror_2 rc=0: (MainProcess pid=11830) INFO 10-05 13:18:04 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T13:18:09Z start adapter_nomirror_3: --arm adapter_nomirror
+2026-10-05T13:19:05Z end adapter_nomirror_3 rc=0: (MainProcess pid=12982) INFO 10-05 13:19:02 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T13:19:06Z spend [after nomirror] balance 43.96, spent since start $2.02, pod ivwa29yn1yec58 $7.95/h up 920s
+2026-10-05T13:19:07Z spend [before adapter] balance 43.96, spent since start $2.02, pod ivwa29yn1yec58 $7.95/h up 920s
+2026-10-05T13:19:07Z pod: bash bench/harness/adapter_port.sh adapter
+2026-10-05T13:19:09Z start adapter_1: --arm adapter
+2026-10-05T13:20:06Z end adapter_1 rc=0: (MainProcess pid=14142) INFO 10-05 13:20:03 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T13:20:08Z start adapter_2: --arm adapter
+2026-10-05T13:21:05Z end adapter_2 rc=0: (MainProcess pid=15281) INFO 10-05 13:21:02 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T13:21:07Z start adapter_3: --arm adapter
+2026-10-05T13:22:04Z end adapter_3 rc=0: (MainProcess pid=16424) INFO 10-05 13:22:01 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T13:22:05Z spend [after adapter] balance 43.96, spent since start $2.02, pod ivwa29yn1yec58 $7.95/h up 1118s
+2026-10-05T13:22:06Z spend [before replace] balance 43.96, spent since start $2.02, pod ivwa29yn1yec58 $7.95/h up 1118s
+2026-10-05T13:22:06Z pod: bash bench/harness/adapter_port.sh replace
+2026-10-05T13:22:08Z start replace_between_1: --arm replace --kill between
+2026-10-05T13:23:11Z end replace_between_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T13:23:13Z start replace_between_2: --arm replace --kill between
+2026-10-05T13:24:16Z end replace_between_2 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T13:24:18Z start replace_between_3: --arm replace --kill between
+2026-10-05T13:25:21Z end replace_between_3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T13:25:23Z start replace_mid_1: --arm replace --kill mid
+2026-10-05T13:26:26Z end replace_mid_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T13:26:29Z start replace_mid_2: --arm replace --kill mid
+2026-10-05T13:27:32Z end replace_mid_2 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T13:27:35Z start replace_mid_3: --arm replace --kill mid
+2026-10-05T13:28:38Z end replace_mid_3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T13:28:38Z spend [after replace] balance 42.63, spent since start $3.35, pod ivwa29yn1yec58 $7.95/h up 1518s
+2026-10-05T13:28:39Z spend [before async_notice] balance 42.63, spent since start $3.35, pod ivwa29yn1yec58 $7.95/h up 1518s
+2026-10-05T13:28:39Z pod: bash bench/harness/adapter_port.sh async_notice
+2026-10-05T13:28:42Z start notice_1: --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-05T13:30:44Z end notice_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T13:30:46Z start notice_2: --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-05T13:31:55Z end notice_2 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T13:31:57Z start notice_3: --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-05T13:33:03Z end notice_3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T13:33:04Z spend [after async_notice] balance 42.63, spent since start $3.35, pod ivwa29yn1yec58 $7.95/h up 1763s
+2026-10-05T13:33:04Z pod: bash bench/harness/adapter_port.sh summary (results.json)
+2026-10-05T13:33:16Z outputs copied to data/ (gitignored). pod: adapter_port.sh cleanup (weights deleted)
+overlay         200G   19G  182G  10% /
+ls: cannot access '/workspace/models': No such file or directory
+2026-10-05T13:33:17Z terminate ivwa29yn1yec58: {"data": {"podTerminate": null}}
+2026-10-05T13:33:17Z laptop watchdog stopped
+2026-10-05T13:33:22Z balance 41.98
+2026-10-05T13:34:59Z pod terminated 13:33:17Z; balance 41.98 (45.98 at start); uptime cost $3.99 (30.1 min x $7.95). RESULT.md, results.json, flake/ written; directory moved to bench/runs/2026-10-05-shm-commit-4gpu/.

@@ -1,0 +1,56 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+[project]
+name = "everserve-workspace"
+version = "0.0.0"
+description = "Workspace root. Not published. See core/ and adapters/."
+requires-python = ">=3.10"
+
+[tool.uv.workspace]
+members = ["core", "adapters/vllm", "integrations/dynamo"]
+
+[tool.uv]
+package = false
+# the platforms the packages are built and tested for: Linux GPU hosts, and Apple-silicon macOS
+# for development (torch ships no Intel-macOS wheels)
+environments = [
+  "sys_platform == 'linux' and platform_machine == 'x86_64'",
+  "sys_platform == 'linux' and platform_machine == 'aarch64'",
+  "sys_platform == 'darwin' and platform_machine == 'arm64'",
+]
+
+[dependency-groups]
+dev = [
+  # the generator is pinned: its protoc fixes the generated code's protobuf version (gencode
+  # 6.31.1), which every engine image our packages run in must carry a runtime at or above;
+  # Dynamo's vLLM runtime ships 6.33, vLLM 0.31 allows 5.29.6 and later
+  "grpcio-tools==1.80.0",
+  "jsonschema>=4",  # integrations/dynamo's tests: the rendered graph against Dynamo's schema
+  "pytest>=8",
+  "ruff>=0.14",
+]
+
+[tool.ruff]
+line-length = 100
+extend-exclude = ["core/everserve/proto"]
+target-version = "py310"
+src = ["core", "adapters/vllm", "integrations/dynamo"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "D"]
+ignore = ["D203", "D213"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["D"]
+
+[tool.pytest.ini_options]
+testpaths = ["core/tests", "adapters/vllm/tests", "integrations/dynamo/tests", "bench/harness/tests"]
+addopts = "-q --strict-markers"
+# a test still running after this long dumps every thread's stack into the log
+faulthandler_timeout = 600
+markers = [
+  "slow: spawns several torch processes; seconds to minutes. The inner loop skips these; the push gate and CI run them.",
+]

@@ -1,0 +1,65 @@
+{
+  "verdict": "fail",
+  "predictions": {
+    "H1": {
+      "pass": true,
+      "why": "missing [], skipped/failed []"
+    },
+    "H2": {
+      "pass": true,
+      "why": "head registrations {'a': 2, 'b': 0, 'c': 0}, client registrations {'b': 2, 'c': 2}"
+    },
+    "H3": {
+      "pass": true,
+      "why": "head_conflict {'registered': None, 'final': None}, everserve_head_conflicts_total 0.0"
+    },
+    "R1": {
+      "pass": false,
+      "why": "released {'b': {'epoch': 1, 'at': 1791852204.097498, 'how': 'killed', 'exitcode': -9, 'end_s': 0.1649}, 'c': None}"
+    },
+    "R2": {
+      "pass": false,
+      "why": "ended {'b': {'epoch': 1, 'at': 1791852204.097498, 'how': 'killed', 'exitcode': -9, 'end_s': 0.1649}, 'c': {}}, remaining {'b': '13051 sh -c cd /workspace/everserve && export PATH=/workspace/everserve/.venv/bin:$HOME/.local/bin:$HOME/.cargo/bin:/usr/local/cuda-13.0/bin:$PATH CUDA_HOME=/usr/local/cuda-13.0 LD_LIBRARY_PATH=/usr/local/cuda-13.0/compat:${LD_LIBRARY_PATH:-} PYTHONUNBUFFERED=1 TOKENIZERS_PARALLELISM=false NCCL_DEBUG=WARN NCCL_SOCKET_IFNAME=eth0 GLOO_SOCKET_IFNAME=eth0 VLLM_USE_FLASHINFER_SAMPLER=0 VLLM_ALLREDUCE_USE_FLASHINFER=0 VLLM_ALLREDUCE_USE_SYMM_MEM=0 NCCL_NVLS_ENABLE=0 EVERSERVE_GRAPH_SAFE=1 EVERSERVE_LAYOUT=1,3 && ulimit -c unlimited; export CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/workspace/everserve/bench/harness:/workspace/everserve/bench/harness/sitehooks:${PYTHONPATH:-} && .venv/bin/python -m everserve_vllm.node_main --engine rig --node node-b --policy /workspace/everserve/bench/harness/policies/drains.json --discovery-dir /workspace/disc --model /workspace/models/Qwen3-1.7B --tp 1 --pp 3 --max-model-len 16768 --max-num-seqs 4 --prompt-len 512 --gpu-util 0.85 --blocks 4256 --nnodes 3 --node-rank 1 --master-addr 10.0.0.98 --master-port 29501; echo \"==== node_main exited $?\"\\n13052 .venv/bin/python -m everserve_vllm.node_main --engine rig --node node-b --policy /workspace/everserve/bench/harness/policies/drains.json --discovery-dir /workspace/disc --model /workspace/models/Qwen3-1.7B --tp 1 --pp 3 --max-model-len 16768 --max-num-seqs 4 --prompt-len 512 --gpu-util 0.85 --blocks 4256 --nnodes 3 --node-rank 1 --master-addr 10.0.0.98 --master-port 29501', 'c': '12840 sh -c cd /workspace/everserve && export PATH=/workspace/everserve/.venv/bin:$HOME/.local/bin:$HOME/.cargo/bin:/usr/local/cuda-13.0/bin:$PATH CUDA_HOME=/usr/local/cuda-13.0 LD_LIBRARY_PATH=/usr/local/cuda-13.0/compat:${LD_LIBRARY_PATH:-} PYTHONUNBUFFERED=1 TOKENIZERS_PARALLELISM=false NCCL_DEBUG=WARN NCCL_SOCKET_IFNAME=eth0 GLOO_SOCKET_IFNAME=eth0 VLLM_USE_FLASHINFER_SAMPLER=0 VLLM_ALLREDUCE_USE_FLASHINFER=0 VLLM_ALLREDUCE_USE_SYMM_MEM=0 NCCL_NVLS_ENABLE=0 EVERSERVE_GRAPH_SAFE=1 EVERSERVE_LAYOUT=1,3 && ulimit -c unlimited; export CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/workspace/everserve/bench/harness:/workspace/everserve/bench/harness/sitehooks:${PYTHONPATH:-} && .venv/bin/python -m everserve_vllm.node_main --engine rig --node node-c --policy /workspace/everserve/bench/harness/policies/drains.json --discovery-dir /workspace/disc --model /workspace/models/Qwen3-1.7B --tp 1 --pp 3 --max-model-len 16768 --max-num-seqs 4 --prompt-len 512 --gpu-util 0.85 --blocks 4256 --nnodes 3 --node-rank 2 --master-addr 10.0.0.98 --master-port 29501; echo \"==== node_main exited $?\"\\n12841 .venv/bin/python -m everserve_vllm.node_main --engine rig --node node-c --policy /workspace/everserve/bench/harness/policies/drains.json --discovery-dir /workspace/disc --model /workspace/models/Qwen3-1.7B --tp 1 --pp 3 --max-model-len 16768 --max-num-seqs 4 --prompt-len 512 --gpu-util 0.85 --blocks 4256 --nnodes 3 --node-rank 2 --master-addr 10.0.0.98 --master-port 29501\\n12890 VLLM::Worker_PP2'}"
+    },
+    "R3": {
+      "pass": true,
+      "why": "exits reported lost {'b': [], 'c': []}, held at the end {1: 'node-d', 2: 'node-e'}"
+    },
+    "R4": {
+      "pass": false,
+      "why": "(holds nothing, exit) {'b': (False, None), 'c': (False, None)}"
+    },
+    "R5": {
+      "pass": true,
+      "why": "session lengths [16000, 16000, 16000, 16000] of 16000, changes 2, drill exit 0"
+    },
+    "N1": {
+      "pass": true,
+      "why": "failed: []"
+    },
+    "N2": {
+      "pass": true,
+      "why": "failed: []"
+    },
+    "N3": {
+      "pass": true,
+      "why": "status 409, body 'node-b: its drain is underway (the notices went out); it cannot be withdrawn or moved', deadline 1791852203887, held 1791852203887"
+    },
+    "N4": {
+      "pass": true,
+      "why": "failed: []"
+    },
+    "N5": {
+      "pass": true,
+      "why": "(down, everserve_engine_down) by read {'committed': (None, 0.0), 'cordoned': (None, 0.0), 'covered_after_b': (None, 0.0), 'draining': (None, 0.0), 'final': (None, 0.0), 'recovered': (None, 0.0), 'registered': (None, 0.0), 'restarted': (None, 0.0), 'uncordoned': (None, 0.0)}; logged []"
+    },
+    "C1": {
+      "pass": true,
+      "why": "(rank 1, rank 2) covered {'registered': (True, True), 'recovered': (True, True)}"
+    },
+    "C2": {
+      "pass": true,
+      "why": "covered {'action': 'covered_after_b', 't': 1791852265.201116, 'rc': 0}, read True, node-c's deadline 1791852305538"
+    }
+  }
+}

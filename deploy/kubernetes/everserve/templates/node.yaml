@@ -1,0 +1,197 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+{{- if .Values.node.enabled }}
+# The node daemon and its store, on every node an engine may run on (decision 0037). The pod holds
+# no certificate in its template: `node-cert` is issued this node's by the coordinator from the
+# pod's projected token, first as an init container, so the daemon and the store start on it,
+# then beside them, renewing it. Both directories of the pod contract (core/everserve/podcontract.py)
+# are the host's: an engine's pod on the node mounts the same paths.
+#
+# The node group (node.group, podcontract.NODE_GID) owns both host directories, mode 2770: the
+# daemon, the store and every engine process on the node are its members, and no one else. The
+# kubelet makes the directories root's; the first init container, root with no capabilities and a
+# member of the group, gives them to it, as an owner may. Everything else runs as a non-root user
+# whose group is the node's, every capability dropped, and makes what it makes the group's
+# (umask 007). The node's key is node-cert's alone, mode 0600, read by the daemon and the store as
+# the same user.
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ include "everserve.fullname" . }}-node
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+    app.kubernetes.io/component: node
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/component: node
+  updateStrategy:
+    # a node at a time: its engines' processes move by planned drains onto spares (0040)
+    rollingUpdate: {maxUnavailable: 1}
+  template:
+    metadata:
+      labels: {{- include "everserve.labels" . | nindent 8 }}
+        app.kubernetes.io/component: node
+    spec:
+      serviceAccountName: {{ include "everserve.fullname" . }}-node
+      {{- with .Values.node.priorityClassName }}
+      priorityClassName: {{ . }}
+      {{- end }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets: {{- toYaml . | nindent 8 }}
+      {{- end }}
+      terminationGracePeriodSeconds: {{ add .Values.node.gracefulShutdownSeconds 15 }}
+      {{- with .Values.node.nodeSelector }}
+      nodeSelector: {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.node.tolerations }}
+      tolerations: {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        runAsGroup: {{ .Values.node.group }}
+        supplementalGroups: [{{ .Values.node.group }}]
+        # the projected token's file is the node group's, which mode 0440 lets the pod read;
+        # fsGroup leaves the host directories to node-dirs
+        fsGroup: {{ .Values.node.group }}
+        seccompProfile: {type: RuntimeDefault}
+      initContainers:
+        - name: directories
+          image: {{ include "everserve.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args: [node-dirs, --group, {{ .Values.node.group | quote }}, /run/everserve, /dev/shm/everserve, /var/lib/everserve/vllm-cache]
+          securityContext:
+            runAsNonRoot: false
+            runAsUser: 0
+            {{- include "everserve.nodeContainerSecurity" . | nindent 12 }}
+          volumeMounts:
+            - {name: everserve-daemon, mountPath: /run/everserve}
+            - {name: everserve-shm, mountPath: /dev/shm/everserve}
+            - {name: everserve-cache, mountPath: /var/lib/everserve/vllm-cache}
+        - name: certificate
+          image: {{ include "everserve.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args: {{- include "everserve.nodeCertArgs" . | nindent 12 }}
+            - --once
+          env:
+            - {name: EVERSERVE_LOG_FORMAT, value: {{ .Values.logFormat | quote }}}
+          securityContext: {{- include "everserve.nodeContainerSecurity" . | nindent 12 }}
+          volumeMounts: {{- include "everserve.nodeCertMounts" . | nindent 12 }}
+        # renews this node's certificate beside the daemon and the store, for the pod's life
+        - name: certificate-renewal
+          image: {{ include "everserve.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          restartPolicy: Always
+          args: {{- include "everserve.nodeCertArgs" . | nindent 12 }}
+          env:
+            - {name: EVERSERVE_LOG_FORMAT, value: {{ .Values.logFormat | quote }}}
+          securityContext: {{- include "everserve.nodeContainerSecurity" . | nindent 12 }}
+          volumeMounts: {{- include "everserve.nodeCertMounts" . | nindent 12 }}
+      containers:
+        - name: daemon
+          image: {{ include "everserve.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args: [node]
+          env:
+            - {name: EVERSERVE_LOG_FORMAT, value: {{ .Values.logFormat | quote }}}
+            - name: POD_IP
+              valueFrom: {fieldRef: {fieldPath: status.podIP}}
+            - name: EVERSERVE_NODE
+              valueFrom: {fieldRef: {fieldPath: spec.nodeName}}
+            - name: EVERSERVE_SOCKET
+              value: /run/everserve/node.sock
+            - name: EVERSERVE_MIRROR_SOCKET
+              value: /run/everserve/mirror.sock
+            - name: EVERSERVE_MIRROR_REPLICA
+              value: "$(POD_IP):{{ .Values.node.store.replicaPort }}"
+            - name: EVERSERVE_LEASE_WATCH
+              value: "kubernetes://{{ .Release.Namespace }}/{{ .Values.coordinator.leaseName }}"
+            - name: EVERSERVE_COORDINATOR_NAME
+              value: {{ .Values.tls.coordinatorName | quote }}
+            - name: EVERSERVE_NOTICE_SOURCE
+              value: kubernetes
+            - name: EVERSERVE_NOTICE_LEAD_MS
+              value: {{ .Values.node.noticeLeadMs | quote }}
+            - name: EVERSERVE_HEARTBEAT_MS
+              value: {{ .Values.node.heartbeatMs | quote }}
+            - name: EVERSERVE_GRACEFUL_SHUTDOWN_SECS
+              value: {{ .Values.node.gracefulShutdownSeconds | quote }}
+            - name: EVERSERVE_METRICS_ADDR
+              value: "0.0.0.0:{{ .Values.node.metricsPort }}"
+            {{- include "everserve.nodeTls" . | nindent 12 }}
+          ports:
+            - {name: metrics, containerPort: {{ .Values.node.metricsPort }}}
+          readinessProbe:
+            httpGet: {path: /healthz, port: metrics}
+            periodSeconds: 5
+          resources: {{- toYaml .Values.node.resources | nindent 12 }}
+          securityContext: {{- include "everserve.nodeContainerSecurity" . | nindent 12 }}
+          volumeMounts:
+            - {name: everserve-daemon, mountPath: /run/everserve}
+            - {name: node-certificate, mountPath: /etc/everserve/node, readOnly: true}
+        - name: store
+          image: {{ include "everserve.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: [everserve-store]
+          env:
+            - {name: EVERSERVE_LOG_FORMAT, value: {{ .Values.logFormat | quote }}}
+            - name: EVERSERVE_STORE_SOCKET
+              value: /run/everserve/mirror.sock
+            - name: EVERSERVE_STORE_DATA_DIR
+              value: /dev/shm/everserve/store
+            - name: EVERSERVE_STORE_SLOTS
+              value: {{ required "node.store.slots: the engine's KV blocks times its block size" .Values.node.store.slots | quote }}
+            - name: EVERSERVE_STORE_BUDGET_BYTES
+              value: {{ required "node.store.budgetBytes: the store's row tables, in bytes" .Values.node.store.budgetBytes | quote }}
+            - name: EVERSERVE_STORE_REPLICA_LISTEN
+              value: "0.0.0.0:{{ .Values.node.store.replicaPort }}"
+            - name: EVERSERVE_STORE_METRICS_ADDR
+              value: "0.0.0.0:{{ .Values.node.store.metricsPort }}"
+            # the node's compile caches, which it serves to and fetches from other stores (0043)
+            - name: EVERSERVE_STORE_COMPILE_CACHE_DIR
+              value: /var/lib/everserve/vllm-cache
+            - name: EVERSERVE_STORE_COMPILE_CACHE_BYTES
+              value: {{ .Values.node.store.compileCacheBytes | int64 | quote }}
+            {{- include "everserve.nodeTls" . | nindent 12 }}
+          ports:
+            - {name: replica, containerPort: {{ .Values.node.store.replicaPort }}}
+            - {name: store-metrics, containerPort: {{ .Values.node.store.metricsPort }}}
+          readinessProbe:
+            httpGet: {path: /healthz, port: store-metrics}
+            periodSeconds: 5
+          {{- $memory := add (int64 .Values.node.store.budgetBytes) (int64 .Values.node.store.memoryOverheadBytes) }}
+          resources:
+            # the tables in shared memory count against this limit: the budget and the store's
+            # own room, request equal to limit
+            requests: {cpu: {{ .Values.node.store.cpu | quote }}, memory: {{ $memory | quote }}}
+            limits: {memory: {{ $memory | quote }}}
+          securityContext: {{- include "everserve.nodeContainerSecurity" . | nindent 12 }}
+          volumeMounts:
+            - {name: everserve-daemon, mountPath: /run/everserve}
+            - {name: everserve-shm, mountPath: /dev/shm/everserve}
+            - {name: everserve-cache, mountPath: /var/lib/everserve/vllm-cache}
+            - {name: node-certificate, mountPath: /etc/everserve/node, readOnly: true}
+      volumes:
+        # the pod contract's three host directories, made here if the node has none
+        - name: everserve-daemon
+          hostPath: {path: /run/everserve, type: DirectoryOrCreate}
+        - name: everserve-shm
+          hostPath: {path: /dev/shm/everserve, type: DirectoryOrCreate}
+        - name: everserve-cache
+          hostPath: {path: /var/lib/everserve/vllm-cache, type: DirectoryOrCreate}
+        # this node's key, certificate and CA: in memory, the pod's alone
+        - name: node-certificate
+          emptyDir: {medium: Memory, sizeLimit: 1Mi}
+        - name: deployment-ca
+          configMap: {name: {{ include "everserve.fullname" . }}-ca}
+        - name: token
+          projected:
+            defaultMode: 0440
+            sources:
+              - serviceAccountToken:
+                  audience: everserve
+                  expirationSeconds: 3600
+                  path: token
+{{- end }}

@@ -1,0 +1,124 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# Prometheus alerting rules for the control plane, over the series prometheus.yml scrapes. Each
+# says what is wrong in an operator's terms, and its runbook_url what to do (docs/RUNBOOK.md); the engine's events (GET /v1/engines/{engine}/events)
+# and readiness say why. The metrics they name are checked against the code by
+# controller/tests/dashboards.rs.
+groups:
+  - name: everserve-engines
+    rules:
+      - alert: EverserveEngineDown
+        # decision 0032: its head is lost or stopped, or a change failed; the framework's own
+        # recovery takes over
+        expr: everserve_engine_down == 1
+        labels: {severity: critical}
+        annotations:
+          summary: "engine {{ $labels.engine }} is down"
+          runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everserveenginedown"
+      - alert: EverserveChangeStuck
+        # a change commits in seconds; one in flight for minutes holds the engine's state at
+        # recovering, and the framework's own recovery with it
+        expr: everserve_engine_condition{type="Progressing", status="True"} == 1
+        for: 2m
+        labels: {severity: critical}
+        annotations:
+          summary: "engine {{ $labels.engine }} has had a change in flight for 2 minutes"
+          runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everservechangestuck"
+      - alert: EverserveChangeFailed
+        # a change that did not commit, other than one folded into the next
+        expr: increase(everserve_changes_total{result!~"committed|folded"}[15m]) > 0
+        labels: {severity: warning}
+        annotations:
+          summary: "engine {{ $labels.engine }}: a change ended {{ $labels.result }}"
+          runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everservechangefailed"
+      - alert: EverserveEngineDegraded
+        # ranks lost under SHRINK, a second head, or a refused spare: the condition's reason says
+        expr: everserve_engine_condition{type="Degraded", status="True"} == 1
+        for: 5m
+        labels: {severity: warning}
+        annotations:
+          summary: "engine {{ $labels.engine }} is degraded"
+          runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everserveenginedegraded"
+      - alert: EverserveEngineUncovered
+        # a loss no pre-formed set answers: the next such loss is a slower change or none
+        expr: everserve_engine_condition{type="Covered", status="False"} == 1
+        for: 10m
+        labels: {severity: warning}
+        annotations:
+          summary: "engine {{ $labels.engine }} has losses its cover does not answer"
+          runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everserveengineuncovered"
+      - alert: EverservePoolShort
+        expr: everserve_pool_deficit > 0
+        for: 15m
+        labels: {severity: warning}
+        annotations:
+          summary: "pool {{ $labels.pool }} has {{ $value }} fewer spares than it wants"
+          runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everservepoolshort"
+  - name: everserve-control-plane
+    rules:
+      - alert: EverserveDaemonUnlinked
+        # a node's daemon with no coordinator holds its reports; a loss on its node waits
+        expr: everserve_coordinator_linked == 0
+        for: 1m
+        labels: {severity: critical}
+        annotations:
+          summary: "the daemon on {{ $labels.instance }} has no coordinator"
+          runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everservedaemonunlinked"
+      - alert: EverserveReleaseLeaked
+        # a communicator's release ran past its bound in a serving process: it holds memory until
+        # the process ends, and the coordinator retires the process once a spare can take its rank
+        expr: increase(everserve_releases_leaked_total[15m]) > 0
+        labels: {severity: warning}
+        annotations:
+          summary: "{{ $labels.engine }} left a communicator release behind"
+          runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everservereleaseleaked"
+      - alert: EverserveCoordinatorDeposed
+        # a coordinator that learned a newer term acts no more and should have exited: one still
+        # running is not restarting
+        expr: everserve_coordinator_deposed == 1
+        for: 1m
+        labels: {severity: warning}
+        annotations:
+          summary: "a deposed coordinator on {{ $labels.instance }} is still running"
+          runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everservecoordinatordeposed"
+      - alert: EverserveCoordinatorUnreachable
+        # engines served before this coordinator and no daemon has reached it: it is the one cut
+        # off, and changes nothing until one does
+        expr: everserve_coordinator_unreachable == 1
+        labels: {severity: critical}
+        annotations:
+          summary: "the coordinator on {{ $labels.instance }} has heard no daemon since it started"
+          runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everservecoordinatorunreachable"
+      - alert: EverserveSpecWritesFenced
+        # the spec store refused a coordinator's writes as another's: two coordinators acted
+        expr: increase(everserve_spec_writes_total{result="fenced"}[15m]) > 0
+        labels: {severity: warning}
+        annotations:
+          summary: "spec writes were fenced: a deposed coordinator wrote"
+          runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everservespecwritesfenced"
+  - name: everserve-stores
+    rules:
+      - alert: EverserveReplicationDropped
+        # steps a replica target cannot take: the replica of those ranks is not exact
+        expr: increase(everserve_store_replication_dropped_total[10m]) > 0
+        labels: {severity: critical}
+        annotations:
+          summary: "store on {{ $labels.instance }} dropped steps for {{ $labels.engine }} to {{ $labels.target }}"
+          runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everservereplicationdropped"
+      - alert: EverserveStoreCorrupt
+        # rows whose checksums do not match, or that came without them (decision 0030): the
+        # store keeps none of them, and the ranks they belong to have no exact replica
+        expr: increase(everserve_store_refusals_total{reason=~"checksum|unchecked"}[10m]) > 0
+        labels: {severity: critical}
+        annotations:
+          summary: "store on {{ $labels.instance }} refused rows as {{ $labels.reason }}"
+          runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everservestorecorrupt"
+      - alert: EverserveStoreRefusing
+        # a prepare or a commit the store would not keep: tables larger than its budget, fewer
+        # slots than the engine writes, tables other than prepared, an I/O failure. The rank it was for is not kept.
+        # A stale epoch is the fence after a change and is not alerted on
+        expr: increase(everserve_store_refusals_total{reason!~"stale_epoch|checksum|unchecked"}[10m]) > 0
+        labels: {severity: warning}
+        annotations:
+          summary: "store on {{ $labels.instance }} refused writes as {{ $labels.reason }}"
+          runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everservestorerefusing"

@@ -1,0 +1,279 @@
+2026-10-09T16:52:51Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: stock_restart node_fault single_death; trials 1 (fault) / 3 (other); tree 634688b + uncommitted
+2026-10-09T16:53:02Z nodes updated from the working tree (9965323 + uncommitted)
+2026-10-09T16:53:37Z iperf3 node-b -> node-a: 37.14 Gbit/s
+2026-10-09T16:53:48Z NCCL send node-a <-> node-b: "decode_pp_send_128KB: 0.15 ms per send, 0.85 GB/s;prefill_pp_send_268MB: 130.93 ms per send, 2.05 GB/s;replication_burst_650MB: 315.16 ms per send, 2.06 GB/s;"
+2026-10-09T16:54:03Z iperf3 node-c -> node-a: 41.28 Gbit/s
+2026-10-09T16:54:03Z fabric: slowest link to node-a 37.14 Gbit/s (floor 1)
+2026-10-09T16:54:09Z clock of node-b against node-a: {"host": "10.0.0.9", "at": 1791564849.7689836, "probes": 20, "lost": 20, "error": "[Errno 111] Connection refused"}
+2026-10-09T16:54:11Z clock of node-c against node-a: {"host": "10.0.0.86", "at": 1791564851.3451598, "probes": 20, "lost": 20, "error": "[Errno 111] Connection refused"}
+2026-10-09T16:54:14Z == stock_restart trial 1
+2026-10-09T16:54:49Z control plane up: coordinator on a at 10.0.0.56:7400, daemons linked on a b c, records exchanged
+2026-10-09T16:54:54Z node-b headless started: stock vLLM (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T16:56:23Z stock_restart_1 armed: {"t_armed": 1791564979.4095802, "step": 100}
+2026-10-09T16:56:28Z node-b lost at 1791564986.648630565 (daemon and workers killed)
+2026-10-09T16:58:35Z stock_restart_1: no change committed in 30 s; native stacks
+2026-10-09T16:58:38Z native stacks of node-a's and node-b's engine processes requested for stock_restart_1
+2026-10-09T17:01:37Z end stock_restart_1 rc=1
+2026-10-09T17:01:37Z stock_restart_1: the stock engine exited 0 after node-b's loss; relaunching it
+2026-10-09T17:02:14Z control plane up: coordinator on a at 10.0.0.56:7400, daemons linked on a b c, records exchanged
+2026-10-09T17:02:19Z node-b headless started: stock vLLM (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T17:03:00Z end stock_restart_1_restart rc=0
+2026-10-09T17:03:06Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass13/arms/stock_restart/trial1
+stock_restart trial 1: stock_restart_first_token_s=378.272, stock_restart_relaunch_latency_s=312.47, stock_restart_engine_ready_s=16.716, sessions_kept_identical=0/8, requests_re_prefilled=8
+2026-10-09T17:03:16Z nodes a b c down
+stock_restart: 1 trials, green True, requests_re_prefilled=8, sessions_kept_identical=['0/8'], stock_restart_engine_ready_s=16.716, stock_restart_first_token_s=378.272, stock_restart_relaunch_latency_s=312.47
+2026-10-09T17:03:16Z == node_fault trial 1: control
+2026-10-09T17:03:51Z control plane up: coordinator on a at 10.0.0.56:7400, daemons linked on a b c, records exchanged
+2026-10-09T17:03:56Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T17:05:49Z end control_node_fault_1 rc=0
+2026-10-09T17:05:56Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass13/arms/node_fault/trial1/control
+2026-10-09T17:06:05Z nodes a b c down
+2026-10-09T17:06:09Z == node_fault trial 1
+2026-10-09T17:06:41Z compile cache staged from node-b onto node-c: b=49d4cf3c60:d9c4e8a46276,f964ea4030:fe569729123d c=49d4cf3c60:d9c4e8a46276,f964ea4030:fe569729123d 
+2026-10-09T17:07:17Z control plane up: coordinator on a at 10.0.0.56:7400, daemons linked on a b c, records exchanged
+2026-10-09T17:07:21Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T17:08:05Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":["10.0.0.9:7402"],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"97d3f117a880d5ff721fc6cc14ba4af9aa85106f728fd79069a0519c2d28014a"}
+pool 1 of 1 wanted (any position: 1 ); members 2 of 2
+replication targets {0: ['10.0.0.9:7402'], 1: ['10.0.0.56:7402']}
+compile key 35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1 consistent True per rank {0: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', '97d3f117a880'), 1: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', '61dd48b4ff96')} spares {}
+2026-10-09T17:08:08Z node_fault_1 armed: {"t_armed": 1791565683.177773, "step": 100}
+2026-10-09T17:08:13Z node-b lost at 1791565692.267785927 (daemon and workers killed)
+2026-10-09T17:08:18Z node_fault_1: committed at epoch 1; no native stacks taken
+2026-10-09T17:09:28Z end node_fault_1 rc=0
+2026-10-09T17:09:57Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass13/arms/node_fault/trial1
+2026-10-09T17:10:08Z node_fault_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+Traceback (most recent call last):
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 81, in <module>
+    sys.exit(main(sys.argv))
+             ^^^^^^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 76, in main
+    print(json.dumps(sample(a)))
+                     ^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 35, in sample
+    _e, _s, rows = client.rows(a.engine, a.rank, table, slots)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 206, in rows
+    reply = self._ask(
+            ^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 106, in _ask
+    raise MirrorError(reply.error)
+everserve.state.mirror.MirrorError: rank 0 of rig has no table 8 here
+Traceback (most recent call last):
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 81, in <module>
+    sys.exit(main(sys.argv))
+             ^^^^^^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 76, in main
+    print(json.dumps(sample(a)))
+                     ^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 35, in sample
+    _e, _s, rows = client.rows(a.engine, a.rank, table, slots)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 206, in rows
+    reply = self._ask(
+            ^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 106, in _ask
+    raise MirrorError(reply.error)
+everserve.state.mirror.MirrorError: rank 0 of rig has no table 8 here
+Traceback (most recent call last):
+  File "<tree>/bench/harness/twonode/backup_rows.py", line 81, in <module>
+    sys.exit(main(sys.argv))
+             ^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/twonode/backup_rows.py", line 73, in main
+    h, r = (json.loads(Path(p).read_text()) for p in a.compare)
+    ^^^^
+  File "<tree>/bench/harness/twonode/backup_rows.py", line 73, in <genexpr>
+    h, r = (json.loads(Path(p).read_text()) for p in a.compare)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 81, in <module>
+    sys.exit(main(sys.argv))
+             ^^^^^^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 76, in main
+    print(json.dumps(sample(a)))
+                     ^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 35, in sample
+    _e, _s, rows = client.rows(a.engine, a.rank, table, slots)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 206, in rows
+    reply = self._ask(
+            ^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 106, in _ask
+    raise MirrorError(reply.error)
+everserve.state.mirror.MirrorError: rank 1 of rig has no table 8 here
+Traceback (most recent call last):
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 81, in <module>
+    sys.exit(main(sys.argv))
+             ^^^^^^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 76, in main
+    print(json.dumps(sample(a)))
+                     ^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 35, in sample
+    _e, _s, rows = client.rows(a.engine, a.rank, table, slots)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 206, in rows
+    reply = self._ask(
+            ^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 106, in _ask
+    raise MirrorError(reply.error)
+everserve.state.mirror.MirrorError: rank 1 of rig has no table 8 here
+Traceback (most recent call last):
+  File "<tree>/bench/harness/twonode/backup_rows.py", line 81, in <module>
+    sys.exit(main(sys.argv))
+             ^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/twonode/backup_rows.py", line 73, in main
+    h, r = (json.loads(Path(p).read_text()) for p in a.compare)
+    ^^^^
+  File "<tree>/bench/harness/twonode/backup_rows.py", line 73, in <genexpr>
+    h, r = (json.loads(Path(p).read_text()) for p in a.compare)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-10-09T17:10:21Z node_fault_1: backup after the take: {"0": null,"1": null}
+node_fault trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+2026-10-09T17:10:30Z nodes a b c down
+node_fault: 1 trials, green True, backup_coverage=[None], first_differing_position=[None], instrument_pause_s=1.7328, node_fault_detection_s=0.0115, node_fault_gap_s=60.1322, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8'], shadow_formation_s=0.294
+2026-10-09T17:10:30Z == single_death trial 1: control
+2026-10-09T17:11:06Z control plane up: coordinator on a at 10.0.0.56:7400, daemons linked on a b c, records exchanged
+2026-10-09T17:11:11Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T17:11:51Z end control_single_death_1 rc=0
+2026-10-09T17:12:17Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass13/arms/single_death/trial1/control
+2026-10-09T17:12:26Z nodes a b c down
+2026-10-09T17:12:29Z == single_death trial 1
+2026-10-09T17:13:03Z compile cache staged from node-b onto node-c: b=49d4cf3c60:a7dc35a4be40,f964ea4030:65ace04dd53f c=49d4cf3c60:a7dc35a4be40,f964ea4030:65ace04dd53f 
+2026-10-09T17:13:39Z control plane up: coordinator on a at 10.0.0.56:7400, daemons linked on a b c, records exchanged
+2026-10-09T17:13:44Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T17:14:18Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":["10.0.0.9:7402"],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"97d3f117a880d5ff721fc6cc14ba4af9aa85106f728fd79069a0519c2d28014a"}
+pool 1 of 1 wanted (any position: 1 ); members 2 of 2
+replication targets {0: ['10.0.0.9:7402'], 1: ['10.0.0.56:7402']}
+compile key 35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1 consistent True per rank {0: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', '97d3f117a880'), 1: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', '61dd48b4ff96')} spares {}
+2026-10-09T17:14:21Z single_death_1 armed: {"t_armed": 1791566053.7713013, "step": 100}
+2026-10-09T17:14:27Z node-b's worker for rank 1 (pid 16375) killed at 1791566066.367661161
+2026-10-09T17:14:32Z single_death_1: committed at epoch 1; no native stacks taken
+2026-10-09T17:15:01Z end single_death_1 rc=0
+2026-10-09T17:15:47Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass13/arms/single_death/trial1
+2026-10-09T17:15:59Z single_death_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+Traceback (most recent call last):
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 81, in <module>
+    sys.exit(main(sys.argv))
+             ^^^^^^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 76, in main
+    print(json.dumps(sample(a)))
+                     ^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 35, in sample
+    _e, _s, rows = client.rows(a.engine, a.rank, table, slots)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 206, in rows
+    reply = self._ask(
+            ^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 106, in _ask
+    raise MirrorError(reply.error)
+everserve.state.mirror.MirrorError: rank 0 of rig has no table 8 here
+Traceback (most recent call last):
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 81, in <module>
+    sys.exit(main(sys.argv))
+             ^^^^^^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 76, in main
+    print(json.dumps(sample(a)))
+                     ^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 35, in sample
+    _e, _s, rows = client.rows(a.engine, a.rank, table, slots)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 206, in rows
+    reply = self._ask(
+            ^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 106, in _ask
+    raise MirrorError(reply.error)
+everserve.state.mirror.MirrorError: rank 0 of rig has no table 8 here
+Traceback (most recent call last):
+  File "<tree>/bench/harness/twonode/backup_rows.py", line 81, in <module>
+    sys.exit(main(sys.argv))
+             ^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/twonode/backup_rows.py", line 73, in main
+    h, r = (json.loads(Path(p).read_text()) for p in a.compare)
+    ^^^^
+  File "<tree>/bench/harness/twonode/backup_rows.py", line 73, in <genexpr>
+    h, r = (json.loads(Path(p).read_text()) for p in a.compare)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 81, in <module>
+    sys.exit(main(sys.argv))
+             ^^^^^^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 76, in main
+    print(json.dumps(sample(a)))
+                     ^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 35, in sample
+    _e, _s, rows = client.rows(a.engine, a.rank, table, slots)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 206, in rows
+    reply = self._ask(
+            ^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 106, in _ask
+    raise MirrorError(reply.error)
+everserve.state.mirror.MirrorError: rank 1 of rig has no table 8 here
+Traceback (most recent call last):
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 81, in <module>
+    sys.exit(main(sys.argv))
+             ^^^^^^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 76, in main
+    print(json.dumps(sample(a)))
+                     ^^^^^^^^^
+  File "/workspace/everserve/bench/harness/twonode/backup_rows.py", line 35, in sample
+    _e, _s, rows = client.rows(a.engine, a.rank, table, slots)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 206, in rows
+    reply = self._ask(
+            ^^^^^^^^^^
+  File "/workspace/everserve/core/everserve/state/mirror.py", line 106, in _ask
+    raise MirrorError(reply.error)
+everserve.state.mirror.MirrorError: rank 1 of rig has no table 8 here
+Traceback (most recent call last):
+  File "<tree>/bench/harness/twonode/backup_rows.py", line 81, in <module>
+    sys.exit(main(sys.argv))
+             ^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/twonode/backup_rows.py", line 73, in main
+    h, r = (json.loads(Path(p).read_text()) for p in a.compare)
+    ^^^^
+  File "<tree>/bench/harness/twonode/backup_rows.py", line 73, in <genexpr>
+    h, r = (json.loads(Path(p).read_text()) for p in a.compare)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-10-09T17:16:11Z single_death_1: backup after the take: {"0": null,"1": null}
+single_death trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+2026-10-09T17:16:21Z nodes a b c down
+single_death: 1 trials, green True, backup_coverage=[None], first_differing_position=[None], instrument_pause_s=1.8476, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8'], shadow_formation_s=0.295, single_death_detection_s=0.0063, single_death_gap_s=21.6778
+2026-10-09T17:16:26Z clock of node-b against node-a: {"host": "10.0.0.9", "at": 1791566186.8408651, "probes": 20, "lost": 20, "error": "[Errno 111] Connection refused"}
+2026-10-09T17:16:28Z clock of node-c against node-a: {"host": "10.0.0.86", "at": 1791566188.4614289, "probes": 20, "lost": 20, "error": "[Errno 111] Connection refused"}
+2026-10-09T17:16:28Z battery done: node_fault single_death stock_restart ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass13

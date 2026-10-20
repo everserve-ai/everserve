@@ -1,0 +1,41 @@
+# Commit-path session 2 (REPLACE on main, the spare's catch-up, then the p1-frontier-commit-path battery): run log
+2026-10-06T04:28:04Z Pasted brief, standing permission. Main c63daa2; local 2cef8db. Cap $30. Balance 35.18.
+2026-10-06T04:28:04Z deploy 5x NVIDIA H100 80GB HBM3 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-06T04:28:05Z deploy 5x NVIDIA H100 80GB HBM3 SECURE: {"data": {"podFindAndDeployOnDemand": {"id": "q1u8bne5jeacvk", "costPerHr": 17.45, "machine": {"gpuDisplayName": "H100 SXM", "location": "US"}}}}
+2026-10-06T04:28:16Z pod q1u8bne5jeacvk 5x H100 SXM secure US $17.45/h (deployed 04:28:05Z); watchdog terminates at 06:06:05Z (~$28.50, cap $30)
+2026-10-06T04:28:20Z tree c63daa2 on the pod
+0, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+1, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+2, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+3, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+4, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+	[4mGPU0	GPU1	GPU2	GPU3	GPU4	NIC0	NIC1	NIC2	NIC3	NIC4	NIC5	NIC6	NIC7	NIC8	NIC9	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+GPU0	 X 	NV18	NV18	NV18	NV18	PIX	NODE	NODE	NODE	NODE	NODE	SYS	SYS	SYS	SYS	0-51,104-155	0		N/A
+GPU1	NV18	 X 	NV18	NV18	NV18	NODE	NODE	PIX	NODE	NODE	NODE	SYS	SYS	SYS	SYS	0-51,104-155	0		N/A
+GPU2	NV18	NV18	 X 	NV18	NV18	NODE	NODE	NODE	NODE	NODE	PIX	SYS	SYS	SYS	SYS	0-51,104-155	0		N/A
+GPU3	NV18	NV18	NV18	 X 	NV18	SYS	SYS	SYS	SYS	SYS	SYS	PIX	NODE	NODE	NODE	52-103,156-207	1		N/A
+GPU4	NV18	NV18	NV18	NV18	 X 	SYS	SYS	SYS	SYS	SYS	SYS	NODE	NODE	NODE	PIX	52-103,156-207	1		N/A
+shm             586G     0  586G   0% /dev/shm
+overlay         250G   25M  250G   1% /
+2026-10-06T04:28:22Z setup, build and model download started (Llama 3.3 70B Instruct first, else Qwen2.5 72B Instruct)
+2026-10-06T04:40:57Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;-rwxr-xr-x 2 root root 7359520 Oct  6 04:40 /workspace/everserve/target/release/everserve-controller;Qwen/Qwen2.5-72B-Instruct;136G	/workspace/models/Qwen2.5-72B-Instruct;shm             586G  8.1M  586G   1% /dev/shm;
+2026-10-06T04:40:58Z pod (step 1, c63daa2): adapter_port.sh drill adapter_1 --arm adapter
+2026-10-06T04:41:01Z start adapter_1: --arm adapter
+2026-10-06T04:43:23Z end adapter_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T04:43:23Z pod (step 1, c63daa2): adapter_port.sh drill replace_mid_1 --arm replace --kill mid
+2026-10-06T04:43:26Z start replace_mid_1: --arm replace --kill mid
+2026-10-06T04:44:57Z end replace_mid_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T04:45:14Z step 1 on c63daa2: REPLACE mid completed, 8/8 identical to adapter_1, kv and first-step checks pass. The hang is in the catch-up wiring. Step 2: tree 2cef8db (catch-up + store log), store rebuilt, notice drill with stacks dumped if it stalls.
+-rwxr-xr-x 2 root root 4189600 Oct  6 04:40 /workspace/everserve/target/release/everserve-store
+INFO:__main__:built everserve_kernels at /root/.cache/torch_extensions/py312_cu130/everserve_kernels/everserve_kernels.so
+2026-10-06T04:46:17Z pod (step 2): notice_ref, then notice_1 with a stall watcher
+2026-10-06T04:46:20Z start notice_ref: --arm adapter --max-tokens 601 --max-model-len 2688
+2026-10-06T04:48:28Z end notice_ref rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T04:54:21Z step 2: the catch-up notice drill stalled again after the swap (GPUs idle). Stacks: rank 0's step thread in vLLM copy_to_uva (sampler staged writes in add_requests); rank 0's mirror sender blocked reading the store's reply to a commit; ranks 1, 3 and the spare waiting for their next RPC. The store idle (threads asleep, counters still). Registration (Prepare) took 708-816 ms per rank. Run killed; owner asked how to proceed.
+2026-10-06T04:54:21Z spend [after step 2] balance 27.82, spent since start $7.36, pod q1u8bne5jeacvk $17.45/h up 1548s
+2026-10-06T04:55:35Z owner: stop the pod. Data copied (tar over ssh; gitignored).
+overlay         250G   26G  225G  11% /
+2026-10-06T04:55:39Z terminate q1u8bne5jeacvk: {"data": {"podTerminate": null}}
+2026-10-06T04:55:39Z weights and /dev/shm deleted; pod terminated; watchdog stopped
+2026-10-06T04:55:44Z balance 27.82
+2026-10-06T04:56:06Z NOTE.md written; pre-registration kept as DRAFT, NOT RUN; catch-up commits on local branch catchup-wip2

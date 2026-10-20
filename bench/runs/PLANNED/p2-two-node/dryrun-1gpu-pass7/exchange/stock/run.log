@@ -1,0 +1,20 @@
+2026-10-09T00:30:28Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: stock; trials 5 (fault) / 3 (other); tree 0a53c55 + uncommitted
+2026-10-09T00:32:20Z nodes updated from the working tree (0a53c55 + uncommitted)
+2026-10-09T00:32:56Z iperf3 node-b -> node-a: 37.49 Gbit/s
+2026-10-09T00:33:07Z NCCL send node-a <-> node-b: "decode_pp_send_128KB: 0.18 ms per send, 0.74 GB/s;prefill_pp_send_268MB: 137.26 ms per send, 1.96 GB/s;replication_burst_650MB: 347.78 ms per send, 1.87 GB/s;"
+2026-10-09T00:33:23Z iperf3 node-c -> node-a: 41.4 Gbit/s
+2026-10-09T00:33:23Z fabric: slowest link to node-a 37.49 Gbit/s (floor 1)
+2026-10-09T00:33:49Z clock of node-b against node-a: {"host": "10.0.0.44", "at": 1791506029.0721266, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-09T00:34:10Z clock of node-c against node-a: {"host": "10.0.0.41", "at": 1791506050.6418626, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-09T00:34:13Z == stock trial 1
+2026-10-09T00:34:50Z control plane up: coordinator on a at 10.0.0.17:7400, daemons linked on a b c, records exchanged
+2026-10-09T00:34:54Z node-b headless started: stock vLLM (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T00:36:32Z end stock_1 rc=0
+2026-10-09T00:36:42Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass7/exchange/stock/arms/stock/trial1
+2026-10-09T00:36:50Z stock_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+stock trial 1: no control; figures only
+2026-10-09T00:36:59Z nodes a b c down
+stock: 1 trials, green True, replica_lag_max_steps=[None], replication_dropped_total=0
+2026-10-09T00:37:25Z clock of node-b against node-a: {"host": "10.0.0.44", "at": 1791506245.5473723, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-09T00:37:47Z clock of node-c against node-a: {"host": "10.0.0.41", "at": 1791506267.143376, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-09T00:37:47Z battery done: stock ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass7/exchange/stock

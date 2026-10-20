@@ -1,0 +1,5 @@
+    PID    PPID COMMAND
+      1       0 python3 -m everserve_vllm.node_main --engine proof --node computeinstance-e00gdq11amv5ep4ja7 --slot 1 --nnodes 2 --master-addr proof-rendezvous.serving.svc --master-port 29500 --health-port 8090 --leave-within-s 60 --model Qwen/Qwen2.5-0.5B-Instruct --tensor-parallel-size 1 --pipeline-parallel-size 2 --max-model-len 8192 --gpu-memory-utilization 0.8 --num-gpu-blocks-override 4096 --block-size 16 --additional-config {"consolidator_endpoints":null}
+    245       1 /usr/bin/python3 -c from multiprocessing.resource_tracker import main;main(31)
+    246       1 VLLM::Worker_PP1
+    531       0 ps -eo pid,ppid,args

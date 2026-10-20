@@ -1,0 +1,2 @@
+{"node":"node-b","deadline_ms":1791837891885,"waiting":false,"engines":[{"engine":"rig","ranks":[1],"outcome":"replace"}]}
+HTTP 202

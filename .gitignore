@@ -1,0 +1,33 @@
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+# rust
+target/
+# a run's raw output never lands in git; what a record keeps is bench/harness/record.py's rule
+bench/runs/**/data*/
+bench/runs/**/out/
+bench/runs/**/logs/
+bench/runs/**/captures/
+bench/runs/**/*.log
+!bench/runs/**/run.log
+!bench/runs/**/deploy.log
+bench/runs/**/*.bak
+bench/runs/**/*.kill
+bench/runs/**/*.armed
+bench/runs/**/*.start
+bench/runs/**/*.err
+# a run's credentials never land in git: the harness keeps them out of the record, and these
+# catch a record made before it did
+bench/runs/**/certs/
+bench/runs/**/kubeconfig
+bench/runs/**/*.key
+bench/runs/**/*.token
+# local
+.scratch/
+.DS_Store

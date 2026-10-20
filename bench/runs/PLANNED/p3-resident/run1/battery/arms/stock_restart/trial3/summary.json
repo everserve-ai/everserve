@@ -1,0 +1,58 @@
+{
+  "arm": "stock_restart",
+  "trial": 3,
+  "record": "bench/runs/PLANNED/p3-resident/run1/battery/arms/stock_restart/trial3/result.json",
+  "model": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic",
+  "sessions": 8,
+  "prompt_len": 2048,
+  "kill": {
+    "t_kill": 1791634750.1634362,
+    "mode": "node-b lost"
+  },
+  "clock": {
+    "offset_s": 1e-05,
+    "source": "probe at start",
+    "error_s": 0.000117,
+    "rtt_s": 0.000234
+  },
+  "figures": {
+    "stock_restart_first_token_s": {
+      "value": 404.428,
+      "prediction": null,
+      "predicted": "minutes (the baseline)",
+      "kill": null,
+      "t_kill_node_a": 1791634750.1634262,
+      "t_first_token": 1791635154.5915964
+    },
+    "stock_restart_relaunch_latency_s": {
+      "value": 317.036,
+      "prediction": null,
+      "predicted": "the supervisor's",
+      "kill": null
+    },
+    "stock_restart_engine_ready_s": {
+      "value": 25.856,
+      "prediction": null,
+      "predicted": "the engine's own load",
+      "kill": null
+    },
+    "sessions_kept_identical": {
+      "value": "0/8",
+      "prediction": 5,
+      "predicted": "all",
+      "kill": "any lost or mismatched",
+      "verdict": "stock keeps no session across a lost rank: every request prefilled again",
+      "green": false
+    },
+    "requests_re_prefilled": {
+      "value": 8,
+      "prediction": 5,
+      "predicted": 0,
+      "kill": "any"
+    }
+  },
+  "verdict": {
+    "green": true,
+    "line": "the baseline: measured, not scored"
+  }
+}

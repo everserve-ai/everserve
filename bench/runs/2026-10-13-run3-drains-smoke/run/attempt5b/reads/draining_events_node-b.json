@@ -1,0 +1,1 @@
+[{"at_ms":1791838975616,"severity":"Normal","reason":"SpecWritten","message":"generation 1 by operator api: cordoned, drained by 1791838995613 ms (nodes.sh drain)"},{"at_ms":1791838975616,"severity":"Normal","reason":"DrainStarted","message":"ranks {\"rig\": [1]} leave at 1791838995613 ms"}]

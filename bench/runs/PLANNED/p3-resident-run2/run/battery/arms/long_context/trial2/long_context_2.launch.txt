@@ -1,0 +1,1 @@
+adapter_drill.py --clock-offsets /workspace/out/clocks.json --arm replace --kill external --max-tokens 512 --stacks-after 3 --kv-digest --logprobs 2 (STOCK=0)

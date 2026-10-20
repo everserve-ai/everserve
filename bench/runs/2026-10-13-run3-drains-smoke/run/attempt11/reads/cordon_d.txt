@@ -1,0 +1,2 @@
+{"node":"node-d","generation":1,"unschedulable":true,"drain_by_ms":null,"reason":"nodes.sh cordon","written_by":"operator api","written_at_ms":1791866026366}
+HTTP 200

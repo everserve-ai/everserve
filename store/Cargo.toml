@@ -1,0 +1,43 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+[package]
+name = "everserve-store"
+description = "Everserve KV mirror: holds committed KV off-GPU so a dead rank's sessions can be restored."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[lib]
+name = "everserve_store"
+path = "src/lib.rs"
+
+[[bin]]
+name = "everserve-store"
+path = "src/main.rs"
+
+[dependencies]
+everserve-telemetry = { path = "../telemetry" }
+everserve-wire = { path = "../wire" }
+memmap2 = "0.9"
+crc32c = "0.6"
+clap = { version = "4", features = ["derive", "env"] }
+prost = "0.14"
+ring = "0.17"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["rt-multi-thread", "net", "io-util", "sync", "macros", "time", "signal", "fs"] }
+tokio-util = { version = "0.7" }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[dev-dependencies]
+everserve-telemetry = { path = "../telemetry" }
+serde_json = "1"
+tempfile = "3"
+
+[lints]
+workspace = true

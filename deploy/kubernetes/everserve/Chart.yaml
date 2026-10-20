@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+apiVersion: v2
+name: everserve
+description: The Everserve control plane on Kubernetes (decisions 0036, 0037)
+type: application
+version: 0.0.1
+appVersion: "0.0.1"

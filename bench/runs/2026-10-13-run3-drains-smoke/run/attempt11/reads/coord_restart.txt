@@ -1,0 +1,2 @@
+2026-10-13T04:34:54Z coordinator killed
+2026-10-13T04:35:04Z coordinator restarted: daemons linked again

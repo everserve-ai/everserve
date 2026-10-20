@@ -1,0 +1,73 @@
+19:11:38Z the certificates, made here; each node's is issued in the cluster
+[2m2026-10-14T19:11:39.030415Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/e2e-5d/certs/ca.crt
+[2m2026-10-14T19:11:39.030476Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/e2e-5d/certs/ca.key
+[2m2026-10-14T19:11:39.030487Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/e2e-5d/certs/coordinator.crt
+[2m2026-10-14T19:11:39.030495Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/e2e-5d/certs/coordinator.key
+[2m2026-10-14T19:11:39.030501Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/e2e-5d/certs/operator-e2e.crt
+[2m2026-10-14T19:11:39.030508Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/e2e-5d/certs/operator-e2e.key
+19:11:39Z the cluster: CPU nodes, released at the latest after 0.75 h
+2026-10-14T19:18:53Z up everserve-e2e-1014191138 cpu-d3/8vcpu-32gb x3: {"cluster": "mk8scluster-e04fbsa81vst03k9jq", "node_group": "mk8snodegroup-e04e2jdk5q9rv33a71", "kubeconfig": "/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/e2e-5d/kubeconfig"}
+{"cluster": "mk8scluster-e04fbsa81vst03k9jq", "node_group": "mk8snodegroup-e04e2jdk5q9rv33a71", "kubeconfig": "/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/e2e-5d/kubeconfig"}
+namespace/everserve created
+namespace/everserve labeled
+secret/nebius-cr created
+namespace/everserve-e2e created
+namespace/everserve-e2e labeled
+secret/nebius-cr created
+secret/everserve-tls created
+19:18:57Z the chart
+NAME: everserve
+LAST DEPLOYED: Wed Oct 14 15:18:59 2026
+NAMESPACE: everserve
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NAME                                     READY   STATUS    RESTARTS   AGE   IP             NODE                                 NOMINATED NODE   READINESS GATES
+everserve-coordinator-7d8ff8b459-p2h9c   1/1     Running   0          43s   10.78.7.99     computeinstance-e04pr6ee89ta52ggjx   <none>           <none>
+everserve-node-lzxtw                     3/3     Running   0          43s   10.72.42.164   computeinstance-e04kae7cs69m3z3p4c   <none>           <none>
+everserve-node-t9j2p                     3/3     Running   0          43s   10.72.60.187   computeinstance-e04etr9awpt2j3qgf2   <none>           <none>
+everserve-node-xws4d                     3/3     Running   0          43s   10.78.7.158    computeinstance-e04pr6ee89ta52ggjx   <none>           <none>
+19:19:46Z the probes: node 0's, and a group of three asking by ordinal
+statefulset.apps/probe-head created
+statefulset.apps/probe-nodes created
+statefulset.apps/probe-odd created
+19:19:49Z 1. every stage is served by exactly one probe, and the rest stand
+{
+ "failed": "a probe asked for stage [0, 1]",
+ "seen": {
+  "probe-head-0": {},
+  "probe-nodes-0": {},
+  "probe-nodes-1": {},
+  "probe-nodes-2": {}
+ }
+}
+{
+ "failed": "a probe asked for stage [0, 1]",
+ "seen": {
+  "probe-head-0": {},
+  "probe-nodes-0": {},
+  "probe-nodes-1": {},
+  "probe-nodes-2": {}
+ }
+}
+{"decided": {"probe-head-0": [[0, 1], "worker"], "probe-nodes-0": [[2, 3], "spare"], "probe-nodes-1": [[2, 3], "spare"], "probe-nodes-2": [[2, 3], "worker"]}}
+19:20:09Z 2. every probe hears every rank placed, by its serving probe's host
+{"placed": {"0": "10.78.7.114", "1": "10.78.7.114", "2": "10.78.7.137", "3": "10.78.7.137"}}
+19:20:13Z 3. the stage of probe-nodes-2, which never loads, is given again to the pod that replaces it
+pod "probe-nodes-2" deleted from everserve-e2e namespace
+{"reserved": "probe-nodes-2", "stage": [2, 3]}
+19:20:32Z 4. the coordinator restarts and keeps its decisions: a fifth probe asking for a served stage stands
+pod "everserve-coordinator-7d8ff8b459-p2h9c" deleted from everserve namespace
+Waiting for deployment "everserve-coordinator" rollout to finish: 0 of 1 updated replicas are available...
+deployment "everserve-coordinator" successfully rolled out
+statefulset.apps/probe-nodes scaled
+{"stood": "probe-nodes-3", "stage": [2, 3]}
+19:20:43Z 5. a pod that steps otherwise than its engine is refused before it is told anything, and exits 2
+statefulset.apps/probe-odd scaled
+{"refused": "probe-odd-0", "why": "probe is \"other\" here, \"probe\" on the engine"}
+{"exited": "probe-odd-0", "code": 2}
+{"exited": "probe-odd-0", "code": 2}
+19:20:49Z passed
+19:20:49Z taking the cluster down
+2026-10-14T19:31:30Z down: {"down": "everserve-e2e-1014191138", "cluster": "mk8scluster-e04fbsa81vst03k9jq"}

@@ -1,0 +1,321 @@
+{
+  "arm": "single_death",
+  "trials": 3,
+  "figures": {
+    "backup_coverage": {
+      "values": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "prediction": 4,
+      "median": 1.0,
+      "worst": 1.0,
+      "worst_over_median": 1.0
+    },
+    "compile_cache_consistent": {
+      "values": [
+        false,
+        false,
+        false
+      ],
+      "prediction": 6,
+      "median": false,
+      "worst": false,
+      "worst_over_median": null
+    },
+    "engine_down": {
+      "values": [
+        false,
+        false,
+        false
+      ],
+      "prediction": 2,
+      "median": false,
+      "worst": false,
+      "worst_over_median": null
+    },
+    "first_differing_position": {
+      "values": [
+        null,
+        null,
+        null
+      ],
+      "prediction": 3
+    },
+    "instrument_pause_s": {
+      "values": [
+        49.048,
+        49.5201,
+        48.6565
+      ],
+      "prediction": null,
+      "median": 49.048,
+      "worst": 49.5201,
+      "worst_over_median": 1.01
+    },
+    "replica_lag_max_steps": {
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "prediction": null,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "prediction": null,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "requests_re_prefilled": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "prediction": 5,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "restore_coverage": {
+      "values": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "prediction": 4,
+      "median": 1.0,
+      "worst": 1.0,
+      "worst_over_median": 1.0
+    },
+    "restored_rows_mismatched": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "prediction": 3,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "resume_below_committed": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "prediction": 5,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "sessions_kept_identical": {
+      "values": [
+        "8/8",
+        "8/8",
+        "8/8"
+      ],
+      "prediction": 1
+    },
+    "shadow_formation_s": {
+      "values": [
+        0.425,
+        0.421,
+        0.43
+      ],
+      "prediction": 12,
+      "median": 0.425,
+      "worst": 0.43,
+      "worst_over_median": 1.01
+    },
+    "single_death_detection_s": {
+      "values": [
+        0.0017,
+        0.0105,
+        0.0065
+      ],
+      "prediction": null,
+      "median": 0.0065,
+      "worst": 0.0105,
+      "worst_over_median": 1.62
+    },
+    "single_death_gap_s": {
+      "values": [
+        9.8303,
+        12.4752,
+        12.4977
+      ],
+      "prediction": 8,
+      "median": 12.4752,
+      "worst": 12.4977,
+      "worst_over_median": 1.0
+    },
+    "staged_wait_s": {
+      "values": [
+        0.0001,
+        0.0001,
+        0.1669
+      ],
+      "prediction": 11,
+      "median": 0.0001,
+      "worst": 0.1669,
+      "worst_over_median": 1669.0
+    },
+    "stops_killed": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "prediction": 14,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "store_refusals_total": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "prediction": 6,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "take_identity_s": {
+      "values": [
+        0.002,
+        0.002,
+        0.002
+      ],
+      "prediction": null,
+      "median": 0.002,
+      "worst": 0.002,
+      "worst_over_median": 1.0
+    },
+    "take_kv_alloc_s": {
+      "values": [
+        0.071,
+        0.003,
+        0.003
+      ],
+      "prediction": null,
+      "median": 0.003,
+      "worst": 0.071,
+      "worst_over_median": 23.67
+    },
+    "take_kv_config_s": {
+      "values": [
+        2.055,
+        1.998,
+        1.994
+      ],
+      "prediction": 10,
+      "median": 1.998,
+      "worst": 2.055,
+      "worst_over_median": 1.03
+    },
+    "take_modules_s": {
+      "values": [
+        2.117,
+        1.923,
+        1.832
+      ],
+      "prediction": 10,
+      "median": 1.923,
+      "worst": 2.117,
+      "worst_over_median": 1.1
+    },
+    "take_restore_s": {
+      "values": [
+        0.6908,
+        0.6881,
+        0.6705
+      ],
+      "prediction": 11,
+      "median": 0.6881,
+      "worst": 0.6908,
+      "worst_over_median": 1.0
+    },
+    "take_s": {
+      "values": [
+        8.948,
+        8.523,
+        8.502
+      ],
+      "prediction": null,
+      "median": 8.523,
+      "worst": 8.948,
+      "worst_over_median": 1.05
+    },
+    "take_sizing_s": {
+      "values": [
+        0.019,
+        0.017,
+        0.018
+      ],
+      "prediction": null,
+      "median": 0.018,
+      "worst": 0.019,
+      "worst_over_median": 1.06
+    },
+    "take_warm_s": {
+      "values": [
+        3.427,
+        3.369,
+        3.394
+      ],
+      "prediction": 10,
+      "median": 3.394,
+      "worst": 3.427,
+      "worst_over_median": 1.01
+    },
+    "take_weights_s": {
+      "values": [
+        0.719,
+        0.717,
+        0.715
+      ],
+      "prediction": 10,
+      "median": 0.717,
+      "worst": 0.719,
+      "worst_over_median": 1.0
+    },
+    "take_written_beyond_baseline_bytes": {
+      "values": [
+        127556452,
+        0,
+        0
+      ],
+      "prediction": 9,
+      "median": 0,
+      "worst": 127556452,
+      "worst_over_median": null
+    },
+    "take_written_bytes": {
+      "values": [
+        132173544,
+        4617092,
+        4617092
+      ],
+      "prediction": null,
+      "median": 4617092,
+      "worst": 132173544,
+      "worst_over_median": 28.63
+    }
+  },
+  "failed": [],
+  "green": true
+}

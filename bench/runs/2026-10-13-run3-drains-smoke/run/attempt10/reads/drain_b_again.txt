@@ -1,0 +1,2 @@
+node-b: its drain is underway (the notices went out); it cannot be withdrawn or moved
+HTTP 409

@@ -1,0 +1,59 @@
+{
+  "arm": "stock_restart",
+  "trials": 3,
+  "figures": {
+    "requests_re_prefilled": {
+      "values": [
+        8,
+        8,
+        8
+      ],
+      "prediction": 5,
+      "median": 8,
+      "worst": 8,
+      "worst_over_median": 1.0
+    },
+    "sessions_kept_identical": {
+      "values": [
+        "0/8",
+        "0/8",
+        "0/8"
+      ],
+      "prediction": 5
+    },
+    "stock_restart_engine_ready_s": {
+      "values": [
+        25.433,
+        24.769,
+        25.856
+      ],
+      "prediction": null,
+      "median": 25.433,
+      "worst": 25.856,
+      "worst_over_median": 1.02
+    },
+    "stock_restart_first_token_s": {
+      "values": [
+        403.29,
+        402.643,
+        404.428
+      ],
+      "prediction": null,
+      "median": 403.29,
+      "worst": 404.428,
+      "worst_over_median": 1.0
+    },
+    "stock_restart_relaunch_latency_s": {
+      "values": [
+        316.151,
+        316.907,
+        317.036
+      ],
+      "prediction": null,
+      "median": 316.907,
+      "worst": 317.036,
+      "worst_over_median": 1.0
+    }
+  },
+  "green": true
+}

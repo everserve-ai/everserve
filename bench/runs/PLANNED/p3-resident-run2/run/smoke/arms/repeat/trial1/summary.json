@@ -1,0 +1,178 @@
+{
+  "arm": "repeat",
+  "trial": 1,
+  "record": "bench/runs/PLANNED/p3-resident-run2/run/smoke/arms/repeat/trial1/result.json",
+  "model": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic",
+  "sessions": 8,
+  "prompt_len": 2048,
+  "tok_s_steps_10_200": 267.56,
+  "clock_offsets": [
+    {
+      "node": "node-b",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.0",
+        "at": 1791656487.3652499,
+        "probes": 20,
+        "lost": 0,
+        "offset_s": -5.1e-05,
+        "rtt_s": 0.000111,
+        "error_s": 5.6e-05
+      }
+    },
+    {
+      "node": "node-c",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.1",
+        "at": 1791656489.3790581,
+        "probes": 20,
+        "lost": 0,
+        "offset_s": -2.3e-05,
+        "rtt_s": 0.000173,
+        "error_s": 8.7e-05
+      }
+    }
+  ],
+  "figures": {
+    "runs_agree": {
+      "value": "8/8",
+      "prediction": null,
+      "predicted": "every session (the smoke's repeat)",
+      "kill": "any session differs (the battery stops)",
+      "verdict": "repeat AGREES with the first run: changes 0, identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]",
+      "green": true
+    },
+    "replica_lag_max_steps": {
+      "value": 0.0,
+      "prediction": null,
+      "predicted": null,
+      "kill": null
+    },
+    "store_refusals_total": {
+      "value": 0,
+      "prediction": 6,
+      "predicted": 0,
+      "kill": "any refusal for checksum or unchecked",
+      "by_reason": {},
+      "stores_read": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "replication_dropped_total": {
+      "value": 0,
+      "prediction": null,
+      "predicted": 0,
+      "kill": null
+    },
+    "take_written_bytes": {
+      "value": 4617092,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "files": 5,
+      "start": 2,
+      "roots": {
+        "/home/everserve/.humming/tmp": {
+          "files": 1,
+          "bytes": 0
+        },
+        "/var/lib/landscape": {
+          "files": 1,
+          "bytes": 268
+        },
+        "/var/lib/nebius-observability-agent": {
+          "files": 3,
+          "bytes": 4616824
+        }
+      },
+      "dirs": [
+        {
+          "dir": "/var/lib/nebius-observability-agent",
+          "files": 3,
+          "bytes": 4616824
+        },
+        {
+          "dir": "/var/lib/landscape",
+          "files": 1,
+          "bytes": 268
+        },
+        {
+          "dir": "/home/everserve/.humming/tmp/lock",
+          "files": 1,
+          "bytes": 0
+        }
+      ]
+    },
+    "stops_killed": {
+      "value": 0,
+      "prediction": 14,
+      "predicted": 0,
+      "kill": "any of ours killed at its stop (stock's own processes excepted)",
+      "by_node": {
+        "a": "none",
+        "b": "clean",
+        "c": "clean"
+      }
+    },
+    "take_written_beyond_baseline_bytes": {
+      "value": 0,
+      "prediction": 9,
+      "predicted": "0 on the cold take",
+      "kill": "any byte on the cold take (zero-byte files listed, not counted)",
+      "files": 1,
+      "roots": {
+        "/home/everserve/.humming/tmp": {
+          "files": 1,
+          "bytes": 0
+        }
+      },
+      "baseline_roots": [
+        "/var/lib/landscape",
+        "/var/lib/nebius-observability-agent"
+      ]
+    },
+    "compile_cache_consistent": {
+      "value": true,
+      "prediction": 6,
+      "predicted": "true: readiness consistent, the taking spare's pair equal to its position's, no autotune result written",
+      "kill": "false (the failing check named)",
+      "checks": {
+        "readiness_consistent": null,
+        "spare_holds_position_s": null,
+        "no_autotune_written": true
+      },
+      "failing": [],
+      "autotune_files": []
+    },
+    "engine_down": {
+      "value": false,
+      "prediction": 2,
+      "predicted": false,
+      "kill": "true: a change failed or the engine was reported down in a trial (the cause named)",
+      "downs": {
+        "after": {
+          "at_ms": 1791657004175,
+          "cause": "stopped",
+          "detail": ""
+        }
+      },
+      "counted": []
+    },
+    "shadow_formation_s": {
+      "value": 0.517,
+      "prediction": 12,
+      "predicted": "< 30 at standing",
+      "kill": "median > 60"
+    }
+  },
+  "verdict": {
+    "green": true,
+    "line": "repeat AGREES with the first run: changes 0, identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]"
+  },
+  "preregistration": "bench/runs/PLANNED/p3-resident-run2/PREREGISTRATION.md"
+}

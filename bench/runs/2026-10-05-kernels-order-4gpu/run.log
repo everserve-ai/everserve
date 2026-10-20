@@ -1,0 +1,65 @@
+# p1-kernels-4gpu re-run: run log
+2026-10-05T22:13:55Z Tree 72729ed (pre-registration committed and pushed; landings 1-4 CI green). Pod aj84thxtvfu0yf, 5x A100-SXM4-80GB, NVLink NV12, driver 595.91.07, secure US, $7.95/h, shared with the build session (kernels-order-session). Run spend counted from balance 17.82; cap $10. /dev/shm 274G. Kernels rebuilt on the tree.
+2026-10-05T22:14:02Z spend [before stock_default] balance 17.82, spent since start $0.00, pod aj84thxtvfu0yf $7.95/h up 2239s
+2026-10-05T22:14:02Z pod: bash bench/harness/adapter_port.sh stock_default
+2026-10-05T22:14:05Z start stock_1: --arm stock --custom-all-reduce default
+2026-10-05T22:15:32Z end stock_1 rc=0: (MainProcess pid=26412) INFO 10-05 22:15:29 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T22:15:34Z start stock_2: --arm stock --custom-all-reduce default
+2026-10-05T22:16:12Z end stock_2 rc=0: (MainProcess pid=27711) INFO 10-05 22:16:10 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T22:16:15Z start stock_3: --arm stock --custom-all-reduce default
+2026-10-05T22:16:52Z end stock_3 rc=0: (MainProcess pid=28724) INFO 10-05 22:16:49 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T22:16:52Z spend [after stock_default] balance 17.82, spent since start $0.00, pod aj84thxtvfu0yf $7.95/h up 2406s
+2026-10-05T22:16:53Z spend [before nomirror] balance 17.82, spent since start $0.00, pod aj84thxtvfu0yf $7.95/h up 2406s
+2026-10-05T22:16:53Z pod: bash bench/harness/adapter_port.sh nomirror
+2026-10-05T22:16:56Z start adapter_nomirror_1: --arm adapter_nomirror
+2026-10-05T22:17:51Z end adapter_nomirror_1 rc=0: (MainProcess pid=29938) INFO 10-05 22:17:48 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T22:17:53Z start adapter_nomirror_2: --arm adapter_nomirror
+2026-10-05T22:18:49Z end adapter_nomirror_2 rc=0: (MainProcess pid=31323) INFO 10-05 22:18:46 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T22:18:51Z start adapter_nomirror_3: --arm adapter_nomirror
+2026-10-05T22:19:46Z end adapter_nomirror_3 rc=0: (MainProcess pid=32695) INFO 10-05 22:19:43 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T22:19:46Z spend [after nomirror] balance 17.16, spent since start $0.66, pod aj84thxtvfu0yf $7.95/h up 2581s
+2026-10-05T22:19:47Z spend [before adapter] balance 17.16, spent since start $0.66, pod aj84thxtvfu0yf $7.95/h up 2581s
+2026-10-05T22:19:47Z pod: bash bench/harness/adapter_port.sh adapter
+2026-10-05T22:19:50Z start adapter_1: --arm adapter
+2026-10-05T22:20:46Z end adapter_1 rc=0: (MainProcess pid=34088) INFO 10-05 22:20:43 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T22:20:48Z start adapter_2: --arm adapter
+2026-10-05T22:21:45Z end adapter_2 rc=0: (MainProcess pid=35472) INFO 10-05 22:21:42 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T22:21:47Z start adapter_3: --arm adapter
+2026-10-05T22:22:42Z end adapter_3 rc=0: (MainProcess pid=36864) INFO 10-05 22:22:39 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T22:22:42Z spend [after adapter] balance 17.16, spent since start $0.66, pod aj84thxtvfu0yf $7.95/h up 2738s
+2026-10-05T22:22:43Z spend [before replace] balance 17.16, spent since start $0.66, pod aj84thxtvfu0yf $7.95/h up 2738s
+2026-10-05T22:22:43Z pod: bash bench/harness/adapter_port.sh replace
+2026-10-05T22:22:46Z start replace_between_1: --arm replace --kill between
+2026-10-05T22:23:49Z end replace_between_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T22:23:51Z start replace_between_2: --arm replace --kill between
+2026-10-05T22:24:53Z end replace_between_2 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T22:24:55Z start replace_between_3: --arm replace --kill between
+2026-10-05T22:25:57Z end replace_between_3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T22:25:59Z start replace_mid_1: --arm replace --kill mid
+2026-10-05T22:27:02Z end replace_mid_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T22:27:04Z start replace_mid_2: --arm replace --kill mid
+2026-10-05T22:28:04Z end replace_mid_2 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T22:28:07Z start replace_mid_3: --arm replace --kill mid
+2026-10-05T22:29:07Z end replace_mid_3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T22:29:08Z spend [after replace] balance 15.83, spent since start $1.99, pod aj84thxtvfu0yf $7.95/h up 3119s
+2026-10-05T22:29:09Z spend [before notice_ref] balance 15.83, spent since start $1.99, pod aj84thxtvfu0yf $7.95/h up 3119s
+2026-10-05T22:29:09Z pod: bash bench/harness/adapter_port.sh notice_ref
+2026-10-05T22:29:12Z start notice_ref: --arm adapter --max-tokens 601 --max-model-len 2688
+2026-10-05T22:30:10Z end notice_ref rc=0: (MainProcess pid=46964) INFO 10-05 22:30:07 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T22:30:11Z spend [after notice_ref] balance 15.83, spent since start $1.99, pod aj84thxtvfu0yf $7.95/h up 3205s
+2026-10-05T22:30:12Z spend [before async_notice] balance 15.83, spent since start $1.99, pod aj84thxtvfu0yf $7.95/h up 3205s
+2026-10-05T22:30:12Z pod: bash bench/harness/adapter_port.sh async_notice
+2026-10-05T22:30:15Z start notice_1: --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-05T22:31:20Z end notice_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T22:31:22Z start notice_2: --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-05T22:32:27Z end notice_2 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T22:32:29Z start notice_3: --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-05T22:33:35Z end notice_3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T22:33:35Z spend [after async_notice] balance 15.17, spent since start $2.65, pod aj84thxtvfu0yf $7.95/h up 3388s
+2026-10-05T22:33:37Z pod: bash bench/harness/adapter_port.sh summary (results.json)
+2026-10-05T22:33:48Z outputs copied to data/ (tar over ssh; gitignored); the build session's dev outputs to kernels-order-session/data/
+overlay         200G   26G  175G  13% /
+2026-10-05T22:33:51Z terminate aj84thxtvfu0yf: {"data": {"podTerminate": null}}
+2026-10-05T22:33:51Z weights and /dev/shm deleted; pod terminated; watchdog stopped
+2026-10-05T22:33:56Z balance 15.17
+2026-10-05T22:35:33Z results.json, RESULT.md written; flake/ copied; PREREGISTRATION.md unchanged since 72729ed; moved to bench/runs/2026-10-05-kernels-order-4gpu/

@@ -1,0 +1,80 @@
+{
+   "fincore": [
+      {
+         "res": 4819902464,
+         "pages": 1176734,
+         "size": 4819901056,
+         "file": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic/model-00001-of-00015.safetensors"
+      },{
+         "res": 4984012800,
+         "pages": 1216800,
+         "size": 4984010552,
+         "file": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic/model-00002-of-00015.safetensors"
+      },{
+         "res": 4900114432,
+         "pages": 1196317,
+         "size": 4900112736,
+         "file": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic/model-00003-of-00015.safetensors"
+      },{
+         "res": 4900106240,
+         "pages": 1196315,
+         "size": 4900104792,
+         "file": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic/model-00004-of-00015.safetensors"
+      },{
+         "res": 4900106240,
+         "pages": 1196315,
+         "size": 4900104792,
+         "file": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic/model-00005-of-00015.safetensors"
+      },{
+         "res": 4984012800,
+         "pages": 1216800,
+         "size": 4984010640,
+         "file": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic/model-00006-of-00015.safetensors"
+      },{
+         "res": 4900114432,
+         "pages": 1196317,
+         "size": 4900112760,
+         "file": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic/model-00007-of-00015.safetensors"
+      },{
+         "res": 4900106240,
+         "pages": 1196315,
+         "size": 4900104792,
+         "file": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic/model-00008-of-00015.safetensors"
+      },{
+         "res": 4900106240,
+         "pages": 1196315,
+         "size": 4900104792,
+         "file": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic/model-00009-of-00015.safetensors"
+      },{
+         "res": 4984012800,
+         "pages": 1216800,
+         "size": 4984010640,
+         "file": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic/model-00010-of-00015.safetensors"
+      },{
+         "res": 4900114432,
+         "pages": 1196317,
+         "size": 4900112760,
+         "file": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic/model-00011-of-00015.safetensors"
+      },{
+         "res": 4900106240,
+         "pages": 1196315,
+         "size": 4900104792,
+         "file": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic/model-00012-of-00015.safetensors"
+      },{
+         "res": 4900106240,
+         "pages": 1196315,
+         "size": 4900104792,
+         "file": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic/model-00013-of-00015.safetensors"
+      },{
+         "res": 4984012800,
+         "pages": 1216800,
+         "size": 4984010640,
+         "file": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic/model-00014-of-00015.safetensors"
+      },{
+         "res": 3813044224,
+         "pages": 930919,
+         "size": 3813044168,
+         "file": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic/model-00015-of-00015.safetensors"
+      }
+   ]
+}

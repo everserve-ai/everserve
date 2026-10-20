@@ -1,0 +1,230 @@
+{
+  "arm": "node_fault",
+  "trial": 2,
+  "record": "bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass6/arms/node_fault/trial2/result.json",
+  "model": "/workspace/models/Qwen3-1.7B",
+  "sessions": 8,
+  "prompt_len": 512,
+  "tok_s_steps_10_200": 1195.55,
+  "clock_offsets": [
+    {
+      "node": "node-b",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.9",
+        "at": 1791496946.2497544,
+        "probes": 20,
+        "lost": 20,
+        "error": "no reply"
+      }
+    },
+    {
+      "node": "node-c",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.78",
+        "at": 1791496967.8780713,
+        "probes": 20,
+        "lost": 20,
+        "error": "no reply"
+      }
+    }
+  ],
+  "figures": {
+    "node_fault_gap_s": {
+      "value": 0.6683,
+      "prediction": 4,
+      "predicted": "0.5-1.5 (median of 5)",
+      "kill": "median > 4",
+      "per_session": [
+        0.6683,
+        0.6683,
+        0.6683,
+        0.6683,
+        0.6683,
+        0.6683,
+        0.6683,
+        0.6683
+      ],
+      "median_over_sessions": 0.6683
+    },
+    "node_fault_detection_s": {
+      "value": 0.0111,
+      "prediction": 4,
+      "predicted": "< 0.1",
+      "kill": "> 0.5"
+    },
+    "sessions_kept_identical": {
+      "value": "8/8",
+      "prediction": 5,
+      "predicted": "all",
+      "kill": "any lost or mismatched",
+      "verdict": "loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]",
+      "green": true
+    },
+    "restored_rows_mismatched": {
+      "value": 0,
+      "prediction": 6,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "restore_coverage": {
+      "value": 1.0,
+      "prediction": 6,
+      "predicted": 1.0,
+      "kill": "< 1"
+    },
+    "requests_re_prefilled": {
+      "value": 0,
+      "prediction": 5,
+      "predicted": 0,
+      "kill": "any",
+      "requests": []
+    },
+    "first_differing_position": {
+      "value": 1377,
+      "prediction": 5,
+      "predicted": "none",
+      "kill": "any (a row differs)",
+      "comparable": true,
+      "reason": null,
+      "per_request": {
+        "0:0": null,
+        "0:1": null,
+        "0:2": null,
+        "0:3": null,
+        "0:4": null,
+        "0:5": null,
+        "0:6": null,
+        "0:7": null,
+        "1:0": 1379,
+        "1:1": 1404,
+        "1:2": 1386,
+        "1:3": 1380,
+        "1:4": 1383,
+        "1:5": 1389,
+        "1:6": 1377,
+        "1:7": 1378
+      }
+    },
+    "instrument_pause_s": {
+      "value": 1.5794,
+      "prediction": null,
+      "predicted": "after the gap",
+      "kill": null,
+      "step": 1755
+    },
+    "replica_lag_max_steps": {
+      "value": 0.0,
+      "prediction": 7,
+      "predicted": "<= 2",
+      "kill": "> 8"
+    },
+    "replication_dropped_total": {
+      "value": 0,
+      "prediction": 7,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "shadow_formation_s": {
+      "value": 6.712,
+      "prediction": 11,
+      "predicted": "< 60",
+      "kill": "formation fails"
+    }
+  },
+  "verdict": {
+    "green": true,
+    "line": "loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]"
+  },
+  "change": {
+    "ranks": [
+      1
+    ],
+    "faulted": [
+      1
+    ],
+    "epoch_committed": 1,
+    "wait_commit_s": 0.1797,
+    "boundary_s": 0.3276,
+    "resume_s": 0.009,
+    "n_replayed": 8,
+    "claim_to_commit": {
+      "coordinator": {
+        "reported_at": 1791497576.2046,
+        "delivered_at": 1791497576.204604,
+        "acknowledged_at": 1791497576.402506,
+        "committed_at": 1791497576.402507
+      },
+      "deliver_s": 4e-06,
+      "acknowledgements_s": 0.197902,
+      "commit_s": 1e-06,
+      "heard_after_commit_s": 0.000275
+    },
+    "spares": {
+      "1": {
+        "restore": {
+          "restore_s": 0.1948,
+          "counts": {
+            "0-b66cabcc": 1377,
+            "1-82dfdff3": 1377,
+            "2-af2fee62": 1377,
+            "3-a3889324": 1377,
+            "4-a42ef841": 1377,
+            "5-b54a2ff6": 1377,
+            "6-9d18bbcf": 1377,
+            "7-a63930bb": 1377
+          },
+          "rows": 1233792,
+          "watermark": 1731,
+          "dead": 1,
+          "heads": 8,
+          "catch_up": {
+            "since_step": 1731,
+            "watermark": 1731,
+            "rows": 0,
+            "counts_before": {
+              "0-b66cabcc": 1377,
+              "1-82dfdff3": 1377,
+              "2-af2fee62": 1377,
+              "3-a3889324": 1377,
+              "4-a42ef841": 1377,
+              "5-b54a2ff6": 1377,
+              "6-9d18bbcf": 1377,
+              "7-a63930bb": 1377
+            },
+            "s": 0.0019,
+            "t_end": 1791497576.4190698
+          }
+        },
+        "join_s": 0.0038
+      }
+    },
+    "boundaries": {
+      "0": {
+        "tag": "change-1-1791497576.4153605",
+        "rank": 0,
+        "applied": false,
+        "moved": {
+          "members": "0-R1",
+          "rows": [
+            0
+          ],
+          "epoch": 1
+        },
+        "released": [
+          "fabric 0.518s"
+        ],
+        "releasing": [
+          "torch"
+        ],
+        "leaked": 0,
+        "boundary_s": 0.0011,
+        "ring_s": 0.0007
+      }
+    },
+    "replaced_after_kill_s": 0.5455
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "arm": "node_fault",
+  "trial": 1,
+  "record": "bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass7/arms/node_fault/trial1/result.json",
+  "model": "/workspace/models/Qwen3-1.7B",
+  "sessions": 8,
+  "prompt_len": 512,
+  "tok_s_steps_10_200": 1180.66,
+  "clock_offsets": [
+    {
+      "node": "node-b",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.44",
+        "at": 1791508080.1612263,
+        "probes": 20,
+        "lost": 20,
+        "error": "no reply"
+      }
+    },
+    {
+      "node": "node-c",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.41",
+        "at": 1791508101.8067162,
+        "probes": 20,
+        "lost": 20,
+        "error": "no reply"
+      }
+    }
+  ],
+  "figures": {
+    "node_fault_gap_s": {
+      "value": 1.3329,
+      "prediction": 4,
+      "predicted": "0.5-1.5 (median of 5)",
+      "kill": "median > 4",
+      "per_session": [
+        1.3329,
+        1.3329,
+        1.3329,
+        1.3329,
+        1.3329,
+        1.3329,
+        1.3329,
+        1.3329
+      ],
+      "median_over_sessions": 1.3329
+    },
+    "node_fault_detection_s": {
+      "value": 0.0111,
+      "prediction": 4,
+      "predicted": "< 0.1",
+      "kill": "> 0.5"
+    },
+    "sessions_kept_identical": {
+      "value": "8/8",
+      "prediction": 5,
+      "predicted": "all",
+      "kill": "any lost or mismatched",
+      "verdict": "loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]",
+      "green": true
+    },
+    "restored_rows_mismatched": {
+      "value": 0,
+      "prediction": 6,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "restore_coverage": {
+      "value": 1.0,
+      "prediction": 6,
+      "predicted": 1.0,
+      "kill": "< 1"
+    },
+    "requests_re_prefilled": {
+      "value": 0,
+      "prediction": 5,
+      "predicted": 0,
+      "kill": "any",
+      "requests": []
+    },
+    "resume_below_committed": {
+      "value": 0,
+      "prediction": 15,
+      "predicted": "0 (at committed, or one below: the last sampled token died with the rank)",
+      "kill": "any",
+      "requests": [],
+      "causes": {
+        "0-913371c7": "at_committed",
+        "1-8742b3c9": "at_committed",
+        "2-bf60408d": "at_committed",
+        "3-b96c6330": "at_committed",
+        "4-96d04ee3": "at_committed",
+        "5-8b1f73c6": "at_committed",
+        "6-99593983": "at_committed",
+        "7-8fdb7729": "at_committed"
+      }
+    },
+    "first_differing_position": {
+      "value": null,
+      "prediction": 5,
+      "predicted": "none",
+      "kill": "any (a row differs)",
+      "comparable": true,
+      "reason": null,
+      "per_request": {
+        "0:0": null,
+        "0:1": null,
+        "0:2": null,
+        "0:3": null,
+        "0:4": null,
+        "0:5": null,
+        "0:6": null,
+        "0:7": null,
+        "1:0": null,
+        "1:1": null,
+        "1:2": null,
+        "1:3": null,
+        "1:4": null,
+        "1:5": null,
+        "1:6": null,
+        "1:7": null
+      }
+    },
+    "instrument_pause_s": {
+      "value": 1.5793,
+      "prediction": null,
+      "predicted": "after the gap",
+      "kill": null,
+      "step": 2367
+    },
+    "replica_lag_max_steps": {
+      "value": 0.0,
+      "prediction": 7,
+      "predicted": "<= 2",
+      "kill": "> 8"
+    },
+    "replication_dropped_total": {
+      "value": 0,
+      "prediction": 7,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "shadow_formation_s": {
+      "value": 2.882,
+      "prediction": 11,
+      "predicted": "< 60",
+      "kill": "formation fails"
+    }
+  },
+  "verdict": {
+    "green": true,
+    "line": "loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]"
+  },
+  "change": {
+    "ranks": [
+      1
+    ],
+    "faulted": [
+      1
+    ],
+    "epoch_committed": 1,
+    "wait_commit_s": 0.2088,
+    "boundary_s": 0.3005,
+    "resume_s": 0.1077,
+    "n_replayed": 8,
+    "claim_to_commit": {
+      "coordinator": {
+        "reported_at": 1791508332.216318,
+        "delivered_at": 1791508332.216323,
+        "acknowledged_at": 1791508332.441804,
+        "committed_at": 1791508332.441804
+      },
+      "deliver_s": 5e-06,
+      "acknowledgements_s": 0.225481,
+      "commit_s": 0.0,
+      "heard_after_commit_s": 0.000285
+    },
+    "spares": {
+      "1": {
+        "restore": {
+          "restore_s": 0.2225,
+          "counts": {
+            "0-913371c7": 1683,
+            "1-8742b3c9": 1683,
+            "2-bf60408d": 1683,
+            "3-b96c6330": 1683,
+            "4-96d04ee3": 1683,
+            "5-8b1f73c6": 1683,
+            "6-99593983": 1683,
+            "7-8fdb7729": 1683
+          },
+          "rows": 1507968,
+          "watermark": 2343,
+          "dead": 1,
+          "heads": 8,
+          "catch_up": {
+            "since_step": 2343,
+            "watermark": 2343,
+            "rows": 0,
+            "counts_before": {
+              "0-913371c7": 1683,
+              "1-8742b3c9": 1683,
+              "2-bf60408d": 1683,
+              "3-b96c6330": 1683,
+              "4-96d04ee3": 1683,
+              "5-8b1f73c6": 1683,
+              "6-99593983": 1683,
+              "7-8fdb7729": 1683
+            },
+            "s": 0.0022,
+            "t_end": 1791508332.4643793
+          }
+        },
+        "join_s": 0.004
+      }
+    },
+    "boundaries": {
+      "0": {
+        "tag": "change-1-1791508332.4616468",
+        "rank": 0,
+        "applied": false,
+        "moved": {
+          "members": "0-R1",
+          "rows": [
+            0
+          ],
+          "epoch": 1
+        },
+        "released": [
+          "fabric 0.519s"
+        ],
+        "releasing": [
+          "torch"
+        ],
+        "leaked": 0,
+        "boundary_s": 0.0012,
+        "ring_s": 0.0007
+      }
+    },
+    "replaced_after_kill_s": 0.6447
+  }
+}

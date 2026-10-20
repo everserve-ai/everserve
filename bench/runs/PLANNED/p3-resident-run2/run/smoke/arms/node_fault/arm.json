@@ -1,0 +1,263 @@
+{
+  "arm": "node_fault",
+  "trials": 1,
+  "figures": {
+    "backup_coverage": {
+      "values": [
+        1.0
+      ],
+      "prediction": 4,
+      "median": 1.0,
+      "worst": 1.0,
+      "worst_over_median": 1.0
+    },
+    "compile_cache_consistent": {
+      "values": [
+        false
+      ],
+      "prediction": 6,
+      "median": false,
+      "worst": false,
+      "worst_over_median": null
+    },
+    "engine_down": {
+      "values": [
+        false
+      ],
+      "prediction": 2,
+      "median": false,
+      "worst": false,
+      "worst_over_median": null
+    },
+    "first_differing_position": {
+      "values": [
+        null
+      ],
+      "prediction": 3
+    },
+    "instrument_pause_s": {
+      "values": [
+        49.4543
+      ],
+      "prediction": null,
+      "median": 49.4543,
+      "worst": 49.4543,
+      "worst_over_median": 1.0
+    },
+    "node_fault_detection_s": {
+      "values": [
+        0.0124
+      ],
+      "prediction": null,
+      "median": 0.0124,
+      "worst": 0.0124,
+      "worst_over_median": 1.0
+    },
+    "node_fault_gap_s": {
+      "values": [
+        13.1575
+      ],
+      "prediction": 7,
+      "median": 13.1575,
+      "worst": 13.1575,
+      "worst_over_median": 1.0
+    },
+    "replica_lag_max_steps": {
+      "values": [
+        0.0
+      ],
+      "prediction": null,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0
+      ],
+      "prediction": null,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "requests_re_prefilled": {
+      "values": [
+        0
+      ],
+      "prediction": 5,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "restore_coverage": {
+      "values": [
+        1.0
+      ],
+      "prediction": 4,
+      "median": 1.0,
+      "worst": 1.0,
+      "worst_over_median": 1.0
+    },
+    "restored_rows_mismatched": {
+      "values": [
+        0
+      ],
+      "prediction": 3,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "resume_below_committed": {
+      "values": [
+        0
+      ],
+      "prediction": 5,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "sessions_kept_identical": {
+      "values": [
+        "8/8"
+      ],
+      "prediction": 1
+    },
+    "shadow_formation_s": {
+      "values": [
+        0.466
+      ],
+      "prediction": 12,
+      "median": 0.466,
+      "worst": 0.466,
+      "worst_over_median": 1.0
+    },
+    "staged_wait_s": {
+      "values": [
+        0.0001
+      ],
+      "prediction": 11,
+      "median": 0.0001,
+      "worst": 0.0001,
+      "worst_over_median": 1.0
+    },
+    "stops_killed": {
+      "values": [
+        0
+      ],
+      "prediction": 14,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "store_refusals_total": {
+      "values": [
+        0
+      ],
+      "prediction": 6,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "take_identity_s": {
+      "values": [
+        0.002
+      ],
+      "prediction": null,
+      "median": 0.002,
+      "worst": 0.002,
+      "worst_over_median": 1.0
+    },
+    "take_kv_alloc_s": {
+      "values": [
+        0.003
+      ],
+      "prediction": null,
+      "median": 0.003,
+      "worst": 0.003,
+      "worst_over_median": 1.0
+    },
+    "take_kv_config_s": {
+      "values": [
+        2.096
+      ],
+      "prediction": 10,
+      "median": 2.096,
+      "worst": 2.096,
+      "worst_over_median": 1.0
+    },
+    "take_modules_s": {
+      "values": [
+        2.213
+      ],
+      "prediction": 10,
+      "median": 2.213,
+      "worst": 2.213,
+      "worst_over_median": 1.0
+    },
+    "take_restore_s": {
+      "values": [
+        0.7309
+      ],
+      "prediction": 11,
+      "median": 0.7309,
+      "worst": 0.7309,
+      "worst_over_median": 1.0
+    },
+    "take_s": {
+      "values": [
+        9.183
+      ],
+      "prediction": null,
+      "median": 9.183,
+      "worst": 9.183,
+      "worst_over_median": 1.0
+    },
+    "take_sizing_s": {
+      "values": [
+        0.018
+      ],
+      "prediction": null,
+      "median": 0.018,
+      "worst": 0.018,
+      "worst_over_median": 1.0
+    },
+    "take_warm_s": {
+      "values": [
+        3.554
+      ],
+      "prediction": 10,
+      "median": 3.554,
+      "worst": 3.554,
+      "worst_over_median": 1.0
+    },
+    "take_weights_s": {
+      "values": [
+        0.722
+      ],
+      "prediction": 10,
+      "median": 0.722,
+      "worst": 0.722,
+      "worst_over_median": 1.0
+    },
+    "take_written_beyond_baseline_bytes": {
+      "values": [
+        0
+      ],
+      "prediction": 9,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "take_written_bytes": {
+      "values": [
+        4617092
+      ],
+      "prediction": null,
+      "median": 4617092,
+      "worst": 4617092,
+      "worst_over_median": 1.0
+    }
+  },
+  "failed": [],
+  "green": true
+}

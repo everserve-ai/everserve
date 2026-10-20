@@ -1,0 +1,1 @@
+[{"at_ms":1791852203453,"severity":"Normal","reason":"DrainWaiting","message":"2 positions would move at once, the policy allows 1"},{"at_ms":1791852204085,"severity":"Normal","reason":"DrainStarted","message":"ranks {\"rig\": [2]} leave at 1791852305538 ms"}]

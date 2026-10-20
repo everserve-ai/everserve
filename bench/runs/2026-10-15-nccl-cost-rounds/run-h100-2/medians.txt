@@ -1,0 +1,12 @@
+== rank 0: all_success=True split={'rc': 0, 'state': 0, 's': 0.01, 'polls': 9, 'child': True} aborts={'C': {'rc': 0, 's': 0.509}, 'P': {'rc': 0, 's': 0.509}} error=None
+gpu {'name': 'NVIDIA H100 80GB HBM3', 'driver_version': '580.173.02', 'clocks.sm': '1980 MHz', 'clocks.max.sm': '1980 MHz', 'clocks_locked': False} after {'name': 'NVIDIA H100 80GB HBM3', 'driver_version': '580.173.02', 'clocks.sm': '1980 MHz', 'clocks.max.sm': '1980 MHz', 'clocks_locked': False}
+  896 eager: V 147.72 (iqr 5.36, 3.6%) | P 164.73 (+11.5%, iqr 4.15) | C 164.67 (+11.5%, iqr 6.53) | W 148.48 (+0.5%, iqr 3.18)
+  896 replay: V 150.95 (iqr 3.83, 2.5%) | P 167.09 (+10.7%, iqr 7.63) | C 162.84 (+7.9%, iqr 11.04)
+  7168 eager: V 217.76 (iqr 9.97, 4.6%) | P 244.23 (+12.2%, iqr 16.58) | C 238.21 (+9.4%, iqr 12.68) | W 224.06 (+2.9%, iqr 7.63)
+  7168 replay: V 220.05 (iqr 5.63, 2.6%) | P 243.89 (+10.8%, iqr 7.46) | C 238.68 (+8.5%, iqr 3.32)
+== rank 1: all_success=True split={'rc': 0, 'state': 0, 's': 0.01, 'polls': 9, 'child': True} aborts={'C': {'rc': 0, 's': 0.509}, 'P': {'rc': 0, 's': 0.509}} error=None
+gpu {'name': 'NVIDIA H100 80GB HBM3', 'driver_version': '580.173.02', 'clocks.sm': '1980 MHz', 'clocks.max.sm': '1980 MHz', 'clocks_locked': False} after {'name': 'NVIDIA H100 80GB HBM3', 'driver_version': '580.173.02', 'clocks.sm': '1980 MHz', 'clocks.max.sm': '1980 MHz', 'clocks_locked': False}
+  896 eager: V 147.69 (iqr 5.4, 3.7%) | P 164.83 (+11.6%, iqr 4.16) | C 164.6 (+11.4%, iqr 6.53) | W 148.5 (+0.5%, iqr 3.03)
+  896 replay: V 150.93 (iqr 3.83, 2.5%) | P 167.1 (+10.7%, iqr 7.58) | C 162.81 (+7.9%, iqr 11.08)
+  7168 eager: V 217.68 (iqr 10.08, 4.6%) | P 244.21 (+12.2%, iqr 16.32) | C 238.22 (+9.4%, iqr 12.56) | W 223.97 (+2.9%, iqr 7.59)
+  7168 replay: V 220.07 (iqr 5.58, 2.5%) | P 243.88 (+10.8%, iqr 7.68) | C 238.61 (+8.4%, iqr 3.4)

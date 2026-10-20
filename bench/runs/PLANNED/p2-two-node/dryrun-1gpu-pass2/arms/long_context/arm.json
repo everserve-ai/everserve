@@ -1,0 +1,67 @@
+{
+  "arm": "long_context",
+  "trials": 1,
+  "figures": {
+    "adapter_overhead_pct": {
+      "values": [
+        92.05
+      ],
+      "prediction": 1,
+      "median": 92.05,
+      "worst": 92.05,
+      "worst_over_median": 1.0
+    },
+    "long_context_gap_s": {
+      "values": [
+        19.3592
+      ],
+      "prediction": null,
+      "median": 19.3592,
+      "worst": 19.3592,
+      "worst_over_median": 1.0
+    },
+    "replica_lag_max_steps": {
+      "values": [
+        0.0
+      ],
+      "prediction": 7,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0
+      ],
+      "prediction": 7,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "restored_rows_mismatched": {
+      "values": [
+        112
+      ],
+      "prediction": 6,
+      "median": 112,
+      "worst": 112,
+      "worst_over_median": 1.0
+    },
+    "sessions_kept_identical": {
+      "values": [
+        "1/1"
+      ],
+      "prediction": 5
+    },
+    "shadow_formation_s": {
+      "values": [
+        14.734
+      ],
+      "prediction": 11,
+      "median": 14.734,
+      "worst": 14.734,
+      "worst_over_median": 1.0
+    }
+  },
+  "green": true
+}

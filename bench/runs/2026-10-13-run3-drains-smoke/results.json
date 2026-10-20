@@ -1,0 +1,160 @@
+{
+ "verdict": "pass",
+ "tree": "4df4aac",
+ "attempt": 11,
+ "shape": {
+  "model": "Qwen/Qwen3-1.7B",
+  "tp": 1,
+  "pp": 3,
+  "vms": 5,
+  "vm": "gpu-l40s-a 1gpu-8vcpu-32gb",
+  "region": "eu-north1",
+  "sessions": 4,
+  "prompt_tokens": 512,
+  "max_tokens": 16000
+ },
+ "predictions": {
+  "H1": {
+   "pass": true,
+   "why": "missing [], skipped/failed []"
+  },
+  "H2": {
+   "pass": true,
+   "why": "head registrations {'a': 2, 'b': 0, 'c': 0}, client registrations {'b': 2, 'c': 2}"
+  },
+  "H3": {
+   "pass": true,
+   "why": "head_conflict {'registered': None, 'final': None}, everserve_head_conflicts_total 0.0"
+  },
+  "R1": {
+   "pass": true,
+   "why": "released {'b': {'epoch': 1, 'at': 1791866100.4795234, 'how': 'killed', 'exitcode': -9, 'end_s': 0.1604}, 'c': {'epoch': 2, 'at': 1791866201.035143, 'how': 'killed', 'exitcode': -9, 'end_s': 0.1626}}"
+  },
+  "R2": {
+   "pass": true,
+   "why": "ended {'b': {'epoch': 1, 'at': 1791866100.4795234, 'how': 'killed', 'exitcode': -9, 'end_s': 0.1604}, 'c': {'epoch': 2, 'at': 1791866201.035143, 'how': 'killed', 'exitcode': -9, 'end_s': 0.1626}}, remaining {'b': '', 'c': ''}"
+  },
+  "R3": {
+   "pass": true,
+   "why": "exits reported lost {'b': [], 'c': []}, held at the end {1: 'node-d', 2: 'node-e'}"
+  },
+  "R4": {
+   "pass": true,
+   "why": "(holds nothing, exit) {'b': (True, '0'), 'c': (True, '0')}"
+  },
+  "R5": {
+   "pass": true,
+   "why": "session lengths [16000, 16000, 16000, 16000] of 16000, changes 2, drill exit 0"
+  },
+  "N1": {
+   "pass": true,
+   "why": "failed: []"
+  },
+  "N2": {
+   "pass": true,
+   "why": "failed: []"
+  },
+  "N3": {
+   "pass": true,
+   "why": "status 409, body 'node-b: its drain is underway (the notices went out); it cannot be withdrawn or moved', deadline 1791866098793, held 1791866098793"
+  },
+  "N4": {
+   "pass": true,
+   "why": "failed: []"
+  },
+  "N5": {
+   "pass": true,
+   "why": "(down, everserve_engine_down) by read {'committed': (None, 0.0), 'cordoned': (None, 0.0), 'covered_after_b': (None, 0.0), 'draining': (None, 0.0), 'final': (None, 0.0), 'recovered': (None, 0.0), 'registered': (None, 0.0), 'restarted': (None, 0.0), 'uncordoned': (None, 0.0)}; logged []"
+  },
+  "C1": {
+   "pass": true,
+   "why": "(rank 1, rank 2) covered {'registered': (True, True), 'recovered': (True, True)}"
+  },
+  "C2": {
+   "pass": true,
+   "why": "covered {'action': 'covered_after_b', 't': 1791866120.84967, 'rc': 0}, read True, node-c's deadline 1791866200466"
+  }
+ },
+ "changes": [
+  {
+   "ranks": [
+    1
+   ],
+   "epoch": 1,
+   "claim_to_commit": {
+    "coordinator": {
+     "reported_at": 1791866098.794518,
+     "delivered_at": 1791866098.794715,
+     "acknowledged_at": 1791866100.467255,
+     "committed_at": 1791866100.467255
+    },
+    "deliver_s": 0.000197,
+    "acknowledgements_s": 1.67254,
+    "commit_s": 0.0,
+    "heard_after_commit_s": 0.000533
+   },
+   "boundary_s": 0.0122,
+   "resume_s": 0.0055,
+   "spare_staged_s": 1.4813,
+   "spare_restore_s": 0.1871,
+   "spare_rows": 1129592
+  },
+  {
+   "ranks": [
+    2
+   ],
+   "epoch": 2,
+   "claim_to_commit": {
+    "coordinator": {
+     "reported_at": 1791866200.46779,
+     "delivered_at": 1791866200.467935,
+     "acknowledged_at": 1791866201.030946,
+     "committed_at": 1791866201.030947
+    },
+    "deliver_s": 0.000145,
+    "acknowledgements_s": 0.563011,
+    "commit_s": 1e-06,
+    "heard_after_commit_s": 0.000554
+   },
+   "boundary_s": 0.029,
+   "resume_s": 0.0099,
+   "spare_staged_s": 0.0001,
+   "spare_restore_s": 0.5584,
+   "spare_rows": 3559680
+  }
+ ],
+ "longest_step_gaps_s": [
+  1.682,
+  0.594
+ ],
+ "tok_s_steps_10_200": 673.89,
+ "session_tokens": [
+  16000,
+  16000,
+  16000,
+  16000
+ ],
+ "spend_usd": {
+  "attempt_11": 4.0,
+  "attempts_1_to_12": 60.0,
+  "per_attempt": {
+   "1": 0.5,
+   "2": 4.3,
+   "3": 7.8,
+   "4": 3.7,
+   "5_and_5b": 7.2,
+   "6": 3.9,
+   "7": 6.6,
+   "8": 4.2,
+   "9": 10.2,
+   "10": 7.0,
+   "11": 4.0,
+   "12": 0.8
+  }
+ },
+ "sha256": {
+  "run/attempt11/verdict.json": "a88d1f06f7b817e1e0cd6bdbd33137f5072da681c46aa3db49b2c7a379073bc1",
+  "run/attempt11/run.log": "40d0546a2bd727e66d972a24d879256c6e20198664cb6d261a70f7660442c41c",
+  "run/attempt11/collect_final/a/out/drains.json": "27378fb13b7a0dab4f3ff68afee7adef675e7afed072f37d590cb014e5b71f1a"
+ }
+}

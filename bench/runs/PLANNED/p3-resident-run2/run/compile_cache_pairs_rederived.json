@@ -1,0 +1,243 @@
+{
+  "note": "Run 2, prediction 6 check (b) re-derived after the run with the corrected check: the taking\nspare's registered pair (readiness once the change committed) against its position's (readiness\nbefore the trial), as the coordinator enforces them (rank_digest, PRIVATE-INTERNALS A40).",
+  "rederived": "2026-10-10, after the run; it never replaces the scored figure",
+  "trials": [
+    {
+      "run": "smoke",
+      "arm": "node_fault",
+      "trial": "trial1",
+      "position": {
+        "node": "node-b",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "spare": {
+        "node": "node-c",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "equal": true,
+      "readiness_consistent": true
+    },
+    {
+      "run": "battery",
+      "arm": "node_fault",
+      "trial": "trial1",
+      "position": {
+        "node": "node-b",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "spare": {
+        "node": "node-c",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "equal": true,
+      "readiness_consistent": true
+    },
+    {
+      "run": "battery",
+      "arm": "node_fault",
+      "trial": "trial2",
+      "position": {
+        "node": "node-b",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "spare": {
+        "node": null,
+        "pair": null
+      },
+      "equal": null,
+      "readiness_consistent": true
+    },
+    {
+      "run": "battery",
+      "arm": "node_fault",
+      "trial": "trial3",
+      "position": {
+        "node": "node-b",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "spare": {
+        "node": "node-c",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "equal": true,
+      "readiness_consistent": true
+    },
+    {
+      "run": "battery",
+      "arm": "node_fault",
+      "trial": "trial4",
+      "position": {
+        "node": "node-b",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "spare": {
+        "node": null,
+        "pair": null
+      },
+      "equal": null,
+      "readiness_consistent": true
+    },
+    {
+      "run": "battery",
+      "arm": "node_fault",
+      "trial": "trial5",
+      "position": {
+        "node": "node-b",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "spare": {
+        "node": "node-c",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "equal": true,
+      "readiness_consistent": true
+    },
+    {
+      "run": "battery",
+      "arm": "long_context",
+      "trial": "trial1",
+      "position": {
+        "node": "node-b",
+        "pair": [
+          "c0e474376f996ccbeb65358535eaaed1e30007bf65ba1deac728d36bdc2c87c2",
+          "70b807530f132b6853a461bec140e2f63833aff92bb13e30c042cbccb9208c5c"
+        ]
+      },
+      "spare": {
+        "node": null,
+        "pair": null
+      },
+      "equal": null,
+      "readiness_consistent": true
+    },
+    {
+      "run": "battery",
+      "arm": "long_context",
+      "trial": "trial2",
+      "position": {
+        "node": "node-b",
+        "pair": [
+          "c0e474376f996ccbeb65358535eaaed1e30007bf65ba1deac728d36bdc2c87c2",
+          "70b807530f132b6853a461bec140e2f63833aff92bb13e30c042cbccb9208c5c"
+        ]
+      },
+      "spare": {
+        "node": null,
+        "pair": null
+      },
+      "equal": null,
+      "readiness_consistent": true
+    },
+    {
+      "run": "battery",
+      "arm": "long_context",
+      "trial": "trial3",
+      "position": {
+        "node": "node-b",
+        "pair": [
+          "c0e474376f996ccbeb65358535eaaed1e30007bf65ba1deac728d36bdc2c87c2",
+          "70b807530f132b6853a461bec140e2f63833aff92bb13e30c042cbccb9208c5c"
+        ]
+      },
+      "spare": {
+        "node": null,
+        "pair": null
+      },
+      "equal": null,
+      "readiness_consistent": true
+    },
+    {
+      "run": "battery",
+      "arm": "single_death",
+      "trial": "trial1",
+      "position": {
+        "node": "node-b",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "spare": {
+        "node": "node-c",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "equal": true,
+      "readiness_consistent": true
+    },
+    {
+      "run": "battery",
+      "arm": "single_death",
+      "trial": "trial2",
+      "position": {
+        "node": "node-b",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "spare": {
+        "node": "node-c",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "equal": true,
+      "readiness_consistent": true
+    },
+    {
+      "run": "battery",
+      "arm": "single_death",
+      "trial": "trial3",
+      "position": {
+        "node": "node-b",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "spare": {
+        "node": "node-c",
+        "pair": [
+          "02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434",
+          "b8d71a3169b77debff8c7758bc19430ed9c38c31cc33472b924ffc42eff6b4ab"
+        ]
+      },
+      "equal": true,
+      "readiness_consistent": true
+    }
+  ]
+}

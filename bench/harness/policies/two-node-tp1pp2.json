@@ -1,0 +1,18 @@
+{
+  "version": "two-node-tp1pp2-drill",
+  "outcomesInOrder": ["OUTCOME_REPLACE", "OUTCOME_REBUILD"],
+  "spares": { "perEngine": 1, "loading": "LOADING_PRELOADED", "allowMismatched": false, "maxDegradePercent": 0 },
+  "maxConcurrentLosses": 1,
+  "noticeMinMs": 2000,
+  "engines": [
+    {
+      "name": "rig",
+      "members": [ { "node": "node-a", "device": 0 }, { "node": "node-b", "device": 0 } ],
+      "tensorParallel": 1,
+      "expertParallel": 1,
+      "pipelineParallel": 2,
+      "placementIndependentModel": false,
+      "spareNodes": []
+    }
+  ]
+}

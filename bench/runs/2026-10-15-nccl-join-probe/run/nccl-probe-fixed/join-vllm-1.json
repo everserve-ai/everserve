@@ -1,0 +1,1 @@
+{"mode": "join", "how": "vllm", "rank": 1, "nccl": 22907, "state": 0, "formed_s": 0.226, "polls": 0, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "all_success": true}, "abort_rc": 0, "abort_s": 0.512}

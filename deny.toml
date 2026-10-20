@@ -1,0 +1,41 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# What the Rust crates may depend on, checked by `cargo deny check` in CI: no dependency with a
+# known vulnerability or yanked from its registry, every licence on the allow-list, every crate
+# from crates.io. Adding a dependency that fails this is a decision made here, in review, never a
+# check routed around.
+
+[graph]
+all-features = false
+
+[advisories]
+version = 2
+# every RustSec advisory against a dependency fails the check, unmaintained ones included
+yanked = "deny"
+unmaintained = "all"
+ignore = []
+
+[licenses]
+version = 2
+# permissive licences only: nothing that obliges more than Apache-2.0 asks of this repository's own source
+allow = [
+    "Apache-2.0",
+    "BSD-3-Clause",
+    "ISC",
+    "MIT",
+    "Unicode-3.0",
+    "Unlicense",
+    "Zlib",
+]
+confidence-threshold = 0.9
+
+[bans]
+multiple-versions = "allow"
+wildcards = "deny"
+# the workspace's own crates name each other by path: their version is the workspace's
+allow-wildcard-paths = true
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]

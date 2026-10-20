@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# buf's lint and breaking-change checks over the wire schema (proto/), as CI runs them.
+version: v2
+modules:
+  - path: proto
+lint:
+  use:
+    - STANDARD
+  except:
+    # the files live at proto/everserve/proto/ so protoc emits package-qualified Python imports
+    # (`from everserve.proto import signals_pb2`; scripts/gen-proto.sh), not in a directory per
+    # package
+    - PACKAGE_DIRECTORY_MATCH
+    - DIRECTORY_SAME_PACKAGE
+  ignore_only:
+    # enums named before the check: renaming their values changes the Python names the engine's
+    # processes use, and lands with the adapter's refactor. New enums meet the rules.
+    ENUM_VALUE_PREFIX:
+      - proto/everserve/proto/coord.proto
+      - proto/everserve/proto/signals.proto
+    ENUM_ZERO_VALUE_SUFFIX:
+      - proto/everserve/proto/signals.proto
+breaking:
+  # the wire and its JSON form (the policy is written as protobuf JSON): a field number reused or
+  # retyped, a field or enum value removed or renamed in JSON, fails; a generated name alone may
+  # change
+  use:
+    - WIRE_JSON

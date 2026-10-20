@@ -1,0 +1,45 @@
+# Decision 0023's executor side on the single-node path: run log
+2026-10-07T13:35:56Z 61b8870 adds the change follower and the join guard to the REPLACE path; a 5x cheap check (Qwen3-1.7B, TP4 + spare): kernel tests, adapter_1, replace_mid_1. Expect the claim recorded at epoch 1 for rank 2, the join accepted, sessions exact.
+2026-10-07T13:35:58Z deploy 3x NVIDIA RTX PRO 4500 Blackwell Server Edition: {"id": "bsu0lb2uo18iho", "costPerHr": 3.6, "machine": {"gpuDisplayName": "RTX PRO 4500 SE", "location": "US"}}
+2026-10-07T13:35:58Z pod bsu0lb2uo18iho (NVIDIA RTX PRO 4500 Blackwell Server Edition); watchdog terminates at +30 min
+NVIDIA RTX PRO 4500 Blackwell Server Edition, 580.178.04
+2026-10-07T13:36:19Z tree 61b8870 on the pod; setup, build and the Qwen3-1.7B download
+2026-10-07T13:41:03Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;    Finished `release` profile [optimized] target(s) in 12.91s -rwxr-xr-x 2 root root 9259640 Oct  7 13:40 /workspace/everserve/target/release/everserve-controller -rwxr-xr-x 2 root root 6804216 Oct  7 13:40 /workspace/everserve/target/release/everserve-store 
+PASSED core/tests/test_slotwatch.py::test_steps_that_end_keep_the_stall_rule_quiet
+PASSED core/tests/test_slotwatch.py::test_a_member_that_exits_with_no_step_in_flight_is_not_reported
+PASSED core/tests/test_p2p_probe.py::test_the_probe_answers_in_time_and_confirms_peer_to_peer_over_nvlink
+SKIPPED [1] core/tests/test_slot_kernel.py:158: the peer-to-peer variant needs NVLink: CUDA's peer access is not enough
+14 passed, 1 skipped in 7.02s
+2026-10-07T13:41:12Z kernel tests: 14 passed, 1 skipped in 7.02s
+2026-10-07T13:41:12Z pod: adapter_port.sh drill adapter_1 --arm adapter 
+2026-10-07T13:41:14Z start adapter_1: --arm adapter
+2026-10-07T13:43:44Z end adapter_1 rc=0: (MainProcess pid=10727) INFO 10-07 13:43:41 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-07T13:43:45Z adapter_1: detect {'steps': 3.0, 'floor_s': 0.03, 'step_s': 0.00396, 'bound_s': 0.03} events [] exit_s None watch [{'reported': [], 'slow': []}, {'reported': [], 'slow': []}, {'reported': [], 'slow': []}, {'reported': [], 'slow': []}]
+2026-10-07T13:43:45Z pod: adapter_port.sh drill replace_mid_1 --arm replace --kill mid 
+2026-10-07T13:43:47Z start replace_mid_1: --arm replace --kill mid
+2026-10-07T13:44:25Z end replace_mid_1 rc=1:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T13:44:26Z replace_mid_1 left no results
+2026-10-07T13:44:27Z terminate bsu0lb2uo18iho: {"data": {"podTerminate": null}}
+2026-10-07T13:44:27Z data copied; pod terminated
+2026-10-07T13:47:28Z first attempt (pod bsu0lb2uo18iho, 5x RTX PRO 4500, ~$0.35): adapter_1 clean; replace_mid_1 completed its change, then the process sentinel fired after the change had cleared the dead set (the monitor waits up to 1 s for the exit code) and marked rank 2 lost again at the new epoch, which the coordinator could not fold; the next RPC raised. Also the coordinator's forwarded claim marked the rank before the executor's slot path did, which skipped that path's kill. Fixed: a sentinel from a replaced monitor generation records the exit and reports at the epoch the rank was lost; the slot path fences a marked rank whichever signal came first. Second attempt on the fix.
+2026-10-07T13:48:06Z deploy 3x NVIDIA RTX PRO 4500 Blackwell Server Edition: {"id": "2trlcn4xdre8b5", "costPerHr": 3.6, "machine": {"gpuDisplayName": "RTX PRO 4500 SE", "location": "US"}}
+2026-10-07T13:48:06Z pod 2trlcn4xdre8b5 (NVIDIA RTX PRO 4500 Blackwell Server Edition); watchdog terminates at +30 min
+NVIDIA RTX PRO 4500 Blackwell Server Edition, 580.178.04
+2026-10-07T13:48:32Z tree 01a1576 on the pod; setup, build and the Qwen3-1.7B download
+2026-10-07T13:53:00Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;    Finished `release` profile [optimized] target(s) in 15.46s -rwxr-xr-x 2 root root 9259640 Oct  7 13:52 /workspace/everserve/target/release/everserve-controller -rwxr-xr-x 2 root root 6804216 Oct  7 13:52 /workspace/everserve/target/release/everserve-store 
+PASSED core/tests/test_slotwatch.py::test_steps_that_end_keep_the_stall_rule_quiet
+PASSED core/tests/test_slotwatch.py::test_a_member_that_exits_with_no_step_in_flight_is_not_reported
+PASSED core/tests/test_p2p_probe.py::test_the_probe_answers_in_time_and_confirms_peer_to_peer_over_nvlink
+SKIPPED [1] core/tests/test_slot_kernel.py:158: the peer-to-peer variant needs NVLink: CUDA's peer access is not enough
+14 passed, 1 skipped in 7.77s
+2026-10-07T13:53:09Z kernel tests: 14 passed, 1 skipped in 7.77s
+2026-10-07T13:53:09Z pod: adapter_port.sh drill adapter_1 --arm adapter 
+2026-10-07T13:53:12Z start adapter_1: --arm adapter
+2026-10-07T13:55:37Z end adapter_1 rc=0: (MainProcess pid=10727) INFO 10-07 13:55:34 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-07T13:55:38Z adapter_1: detect {'steps': 3.0, 'floor_s': 0.03, 'step_s': 0.00719, 'bound_s': 0.03} events [] exit_s None watch [{'reported': [], 'slow': []}, {'reported': [], 'slow': []}, {'reported': [], 'slow': []}, {'reported': [], 'slow': []}]
+2026-10-07T13:55:38Z pod: adapter_port.sh drill replace_mid_1 --arm replace --kill mid 
+2026-10-07T13:55:41Z start replace_mid_1: --arm replace --kill mid
+2026-10-07T13:56:26Z end replace_mid_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T13:56:27Z replace_mid_1: detect {'steps': 3.0, 'floor_s': 0.03, 'step_s': 0.00733, 'bound_s': 0.03} events [('rank_lost', 'coordinator', 0.034), ('exited', None, 0.206)] exit_s 0.002 watch [{'reported': [{'ranks': [2], 'detail': "slot row 0: no step ended for 31 ms; ranks [2]' processes [12958] are exiting", 'epoch': 0, 'at': 1791381375.8261812}], 'slow': []}, {'reported': [{'ranks': [2], 'detail': "slot row 1: no step ended for 31 ms; ranks [2]' processes [12958] are exiting", 'epoch': 0, 'at': 1791381375.82633}], 'slow': []}, {'reported': [], 'slow': []}, {'reported': [{'ranks': [2], 'detail': "slot row 3: no step ended for 31 ms; ranks [2]' processes [12958] are exiting", 'epoch': 0, 'at': 1791381375.8253136}], 'slow': []}]
+2026-10-07T13:56:29Z terminate 2trlcn4xdre8b5: {"data": {"podTerminate": null}}
+2026-10-07T13:56:29Z data copied; pod terminated

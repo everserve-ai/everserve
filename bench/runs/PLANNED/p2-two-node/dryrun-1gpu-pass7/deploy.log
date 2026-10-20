@@ -1,0 +1,138 @@
+2026-10-09T00:19:15Z the battery's dry run on Nebius eu-north1: three single-GPU L40S VMs (gpu-l40s-a 1gpu-8vcpu-32gb), TP1 x PP2 with one spare on node-c: the script end to end, Qwen3-1.7B, every arm once; tree 0a53c55
+2026-10-09T00:19:58Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00a8gy4w4073rjepx", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.44", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T00:19:58Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00a8gy4w4073rjepx", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.44", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T00:19:58Z VM b computeinstance-e00a8gy4w4073rjepx public 195.242.13.172 private 10.0.0.44, watchdog at +180 min
+2026-10-09T00:20:07Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00f5sz15fhdtzb8bb", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.17", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T00:20:07Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00f5sz15fhdtzb8bb", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.17", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T00:20:07Z VM a computeinstance-e00f5sz15fhdtzb8bb public 89.169.120.66 private 10.0.0.17, watchdog at +180 min
+2026-10-09T00:20:09Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00c125tkkztnjv0jq", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.41", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T00:20:09Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00c125tkkztnjv0jq", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.41", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T00:20:09Z VM c computeinstance-e00c125tkkztnjv0jq public 195.242.13.184 private 10.0.0.41, watchdog at +180 min
+2026-10-09T00:20:43Z addresses: a=10.0.0.17 b=10.0.0.44 c=10.0.0.41
+2026-10-09T00:20:44Z private network (a to b and c): ok after 5 s
+2026-10-09T00:20:46Z node-a: NVIDIA L40S,8;Mem:              31           1          29           0           0          30;
+2026-10-09T00:22:49Z setup started on a b c
+2026-10-09T00:28:11Z setup done on a b c
+2026-10-09T00:30:02Z nodes updated from the working tree (0a53c55 + uncommitted)
+[2m2026-10-09T00:30:04.483825Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-09T00:30:04.483839Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-09T00:30:04.483841Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-09T00:30:04.483843Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-09T00:30:04.483844Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-09T00:30:04.483846Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-09T00:30:04.483847Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-09T00:30:04.483849Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-09T00:30:04.483850Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-09T00:30:04.483851Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+2026-10-09T00:30:08Z certs made on a, the other nodes' copied
+2026-10-09T00:30:28Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: stock; trials 5 (fault) / 3 (other); tree 0a53c55 + uncommitted
+2026-10-09T00:33:23Z fabric: slowest link to node-a 37.49 Gbit/s (floor 1)
+2026-10-09T00:34:13Z == stock trial 1
+2026-10-09T00:36:50Z stock_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+stock trial 1: no control; figures only
+stock: 1 trials, green True, replica_lag_max_steps=[None], replication_dropped_total=0
+2026-10-09T00:37:47Z battery done: stock ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass7/exchange/stock
+2026-10-09T00:37:47Z battery.sh (bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass7/exchange/stock: ARMS=stock) exited 0
+2026-10-09T00:38:08Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: adapter; trials 5 (fault) / 3 (other); tree 0a53c55 + uncommitted
+2026-10-09T00:41:01Z fabric: slowest link to node-a 41.5 Gbit/s (floor 1)
+2026-10-09T00:41:52Z == adapter trial 1
+2026-10-09T00:43:09Z adapter_1 left no results (rc 0)
+2026-10-09T00:43:09Z adapter trial 1 failed
+2026-10-09T00:43:12Z == adapter trial 2
+2026-10-09T00:43:43Z driver stopped by hand: deterministic mode fails the engine's compile; VMs held
+2026-10-09T00:45:29Z attempt 2: deterministic mode with combo kernels off; tree 0a53c55 + uncommitted; nodes down and updated
+2026-10-09T00:45:39Z nodes a b c down
+2026-10-09T00:47:34Z nodes updated from the working tree (0a53c55 + uncommitted)
+2026-10-09T00:47:55Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: adapter; trials 5 (fault) / 3 (other); tree 0a53c55 + uncommitted
+2026-10-09T00:50:45Z fabric: slowest link to node-a 41.38 Gbit/s (floor 1)
+2026-10-09T00:51:36Z == adapter trial 1
+2026-10-09T00:54:46Z adapter_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+adapter trial 1: no control; figures only
+2026-10-09T00:54:58Z == adapter trial 2
+2026-10-09T00:56:57Z adapter_2: rows for 0 sampled slots pulled from the kill-time file and both stores
+adapter trial 2: no control; figures only
+adapter: 2 trials, green True, replica_lag_max_steps=0.0, replication_dropped_total=0.0, shadow_formation_s=14.403
+2026-10-09T00:57:54Z battery done: adapter ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass7/exchange/packed2
+2026-10-09T00:57:54Z battery.sh (bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass7/exchange/packed2: ARMS=adapter EXCHANGE_IN_FLIGHT=2 PIPELINE_PACKED=1) exited 0
+2026-10-09T00:58:15Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: mirror_off; trials 5 (fault) / 3 (other); tree 90014bf + uncommitted
+2026-10-09T01:01:00Z fabric: slowest link to node-a 37.09 Gbit/s (floor 1)
+2026-10-09T01:01:51Z == mirror_off trial 1
+2026-10-09T01:03:35Z mirror_off_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+mirror_off trial 1: no control; figures only
+mirror_off: 1 trials, green True, replica_lag_max_steps=0.0, replication_dropped_total=0, shadow_formation_s=4.553
+2026-10-09T01:04:32Z battery done: mirror_off ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass7/exchange/packed2_mirror_off
+2026-10-09T01:04:32Z battery.sh (bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass7/exchange/packed2_mirror_off: ARMS=mirror_off EXCHANGE_IN_FLIGHT=2 PIPELINE_PACKED=1) exited 0
+2026-10-09T01:04:53Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: node_fault; trials 2 (fault) / 3 (other); tree 90014bf + uncommitted
+2026-10-09T01:07:34Z fabric: slowest link to node-a 37.03 Gbit/s (floor 1)
+2026-10-09T01:08:21Z == node_fault trial 1: control
+2026-10-09T01:10:17Z == node_fault trial 1
+2026-10-09T01:12:07Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":[],"compile_cache":null},{"rank":1,"node":"node-b","class":"NVIDIA L40S","replicates_to":["10.0.0.41:7402"],"compile_cache":null}],"spares":[{"rank":1,"node":"node-c","speed":1.0,"stat
+2026-10-09T01:12:10Z node_fault_1 armed: {"t_armed": 1791508323.6726937, "step": 100}
+2026-10-09T01:13:18Z node_fault_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+node_fault trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+2026-10-09T01:13:28Z == node_fault trial 2: control
+2026-10-09T01:15:44Z == node_fault trial 2
+2026-10-09T01:17:49Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":[],"compile_cache":null},{"rank":1,"node":"node-b","class":"NVIDIA L40S","replicates_to":["10.0.0.41:7402"],"compile_cache":null}],"spares":[{"rank":1,"node":"node-c","speed":1.0,"stat
+2026-10-09T01:17:53Z node_fault_2 armed: {"t_armed": 1791508668.7308695, "step": 100}
+2026-10-09T01:19:39Z node_fault_2: rows for 0 sampled slots pulled from the kill-time file and both stores
+node_fault trial 2: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+node_fault: 2 trials, green True, first_differing_position=[None, None], instrument_pause_s=1.58225, node_fault_detection_s=0.0111, node_fault_gap_s=1.00065, replica_lag_max_steps=0.0, replication_dropped_total=0.0, requests_re_prefilled=0.0, restore_coverage=1.0, restored_rows_mismatched=0.0, resume_below_committed=0.0, sessions_kept_identical=['8/8', '8/8'], shadow_formation_s=7.3495
+2026-10-09T01:20:39Z battery done: node_fault ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass7
+2026-10-09T01:20:39Z battery.sh (bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass7: ARMS=node_fault TRIALS_FAULT=2 EXCHANGE_IN_FLIGHT=2 PIPELINE_PACKED=1) exited 0
+2026-10-09T01:21:01Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: single_death; trials 1 (fault) / 3 (other); tree 90014bf + uncommitted
+2026-10-09T01:24:29Z fabric: slowest link to node-a 41.81 Gbit/s (floor 1)
+2026-10-09T01:25:17Z == single_death trial 1: control
+2026-10-09T01:27:59Z == single_death trial 1
+2026-10-09T01:29:52Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":[],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"f2adf7d0ded89c889015c279df181562de21df76d17e455889824fa1357518cb"}},{"rank":1,"no
+2026-10-09T01:29:52Z the engine's members registered with different compile caches; the trial is not run
+bench/harness/twonode/battery.sh: line 197: 12101 Terminated: 15          $N_ drill "$name" --clock-offsets /workspace/out/clocks.json "$@" >> "$L" 2>&1
+2026-10-09T01:29:54Z single_death trial 1 failed
+single_death: 0 trials, green False, 
+2026-10-09T01:30:42Z battery done: node_fault single_death ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass7
+2026-10-09T01:30:42Z battery.sh (bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass7: ARMS=single_death TRIALS_FAULT=1 EXCHANGE_IN_FLIGHT=2 PIPELINE_PACKED=1) exited 0
+2026-10-09T01:30:52Z nodes a b c down
+2026-10-09T01:30:52Z attempt 2 done; the VMs are held for the release by hand (watchdogs at 03:19Z)
+2026-10-09T01:31:37Z single death rerun x1, the compile-cache consistency check bypassed (CACHE_CHECK=0): the rule compares every member to one pair while the artifact digest is per rank
+2026-10-09T01:31:58Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: single_death; trials 1 (fault) / 3 (other); tree 0ce9abc + uncommitted
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: 'bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass7/sd_rerun/setup/fabric.json'
+2026-10-09T01:42:52Z fabric: slowest link to node-a  Gbit/s (floor 1)
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ValueError: could not convert string to float: ''
+2026-10-09T01:42:52Z REFUSED: fabric  Gbit/s under the floor 1; no arm started (REFUSED.md)
+2026-10-09T01:42:52Z single death rerun exited 0
+bench/harness/twonode/nodes.sh: line 41: OUT_DIR: where to collect outputs
+2026-10-09T01:44:16Z single death rerun x1 (attempt 2; attempt 1 refused on a fabric stage with no output directory), the compile-cache consistency check bypassed (CACHE_CHECK=0): the rule compares every member to one pair while the artifact digest is per rank
+2026-10-09T01:44:40Z single death rerun x1 (attempt 2; attempt 1 refused on a fabric stage with no output directory), the compile-cache consistency check bypassed (CACHE_CHECK=0): the rule compares every member to one pair while the artifact digest is per rank
+2026-10-09T01:45:01Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: single_death; trials 1 (fault) / 3 (other); tree ea2848d + uncommitted
+2026-10-09T01:45:01Z update failed
+2026-10-09T01:45:01Z single death rerun exited 0
+bench/harness/twonode/nodes.sh: line 41: OUT_DIR: where to collect outputs
+2026-10-09T01:46:47Z single death rerun x1 (attempt 2; attempt 1 refused on a fabric stage with no output directory), the compile-cache consistency check bypassed (CACHE_CHECK=0): the rule compares every member to one pair while the artifact digest is per rank
+2026-10-09T01:47:07Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: single_death; trials 1 (fault) / 3 (other); tree ea2848d + uncommitted
+2026-10-09T01:47:07Z update failed
+2026-10-09T01:47:07Z single death rerun exited 0
+bench/harness/twonode/nodes.sh: line 41: OUT_DIR: where to collect outputs
+2026-10-09T01:48:42Z single death rerun x1 (attempt 2; attempt 1 refused on a fabric stage with no output directory), the compile-cache consistency check bypassed (CACHE_CHECK=0): the rule compares every member to one pair while the artifact digest is per rank
+2026-10-09T01:48:42Z single death rerun exited 0
+bench/harness/twonode/nodes.sh: line 41: OUT_DIR: where to collect outputs
+2026-10-09T01:49:51Z single death rerun x1 (attempt 2; attempt 1 refused on a fabric stage with no output directory), the compile-cache consistency check bypassed (CACHE_CHECK=0): the rule compares every member to one pair while the artifact digest is per rank
+2026-10-09T01:50:12Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: single_death; trials 1 (fault) / 3 (other); tree ea2848d + uncommitted
+2026-10-09T01:51:25Z fabric: slowest link to node-a 37.68 Gbit/s (floor 1)
+2026-10-09T01:52:13Z == single_death trial 1: control
+2026-10-09T01:55:58Z == single_death trial 1
+2026-10-09T01:57:45Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":[],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"415831d50b5d5e9082f837bda4bc35684f9f4eda130470b5936a307811ae3275"}},{"rank":1,"no
+2026-10-09T01:57:48Z single_death_1 armed: {"t_armed": 1791511064.8098774, "step": 100}
+2026-10-09T01:59:36Z single_death_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+single_death trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+single_death: 1 trials, green True, first_differing_position=[None], instrument_pause_s=1.5842, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8'], shadow_formation_s=1.023, single_death_detection_s=0.0072, single_death_gap_s=0.6651
+2026-10-09T02:00:33Z battery done: single_death ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass7/sd_rerun2
+2026-10-09T02:00:33Z single death rerun exited 0
+bench/harness/twonode/nodes.sh: line 41: OUT_DIR: where to collect outputs
+2026-10-09T02:00:43Z nodes a b c down
+2026-10-09T02:02:17Z terminate computeinstance-e00f5sz15fhdtzb8bb: {"deleted": "computeinstance-e00f5sz15fhdtzb8bb", "disks": []}
+2026-10-09T02:04:00Z terminate computeinstance-e00a8gy4w4073rjepx: {"deleted": "computeinstance-e00a8gy4w4073rjepx", "disks": []}
+2026-10-09T02:05:40Z terminate computeinstance-e00c125tkkztnjv0jq: {"deleted": "computeinstance-e00c125tkkztnjv0jq", "disks": []}
+2026-10-09T02:05:40Z VMs released by hand after the single-death rerun (exact, row-exact); pass 8 deploys fresh on the user's word

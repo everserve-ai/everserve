@@ -1,0 +1,64 @@
+{
+  "version": "two-node-1",
+  "outcomesInOrder": [
+    "OUTCOME_REPLACE",
+    "OUTCOME_REBUILD"
+  ],
+  "spares": {
+    "perEngine": 4,
+    "loading": "LOADING_PRELOADED",
+    "allowMismatched": false,
+    "maxDegradePercent": 0
+  },
+  "maxConcurrentLosses": 4,
+  "noticeMinMs": 2000,
+  "engines": [
+    {
+      "name": "k3-a",
+      "members": [
+        {
+          "node": "node-a",
+          "device": 0
+        },
+        {
+          "node": "node-a",
+          "device": 1
+        },
+        {
+          "node": "node-a",
+          "device": 2
+        },
+        {
+          "node": "node-a",
+          "device": 3
+        },
+        {
+          "node": "node-b",
+          "device": 0
+        },
+        {
+          "node": "node-b",
+          "device": 1
+        },
+        {
+          "node": "node-b",
+          "device": 2
+        },
+        {
+          "node": "node-b",
+          "device": 3
+        }
+      ],
+      "tensorParallel": 4,
+      "expertParallel": 1,
+      "pipelineParallel": 2,
+      "placementIndependentModel": false,
+      "spareNodes": [
+        "node-c"
+      ],
+      "replicaNodes": [
+        "node-c"
+      ]
+    }
+  ]
+}

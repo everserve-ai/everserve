@@ -1,0 +1,27 @@
+== bench/runs/2026-10-15-dynamo-proof-gated-join/run/engines-proof.json
+ok   serving               Serving True (Members); 2 of 2 positions held; head on computeinstance-e00h8q579gcdmej8a6
+ok   holder           0    computeinstance-e00h8q579gcdmej8a6
+no   covered          0    plan 5 at epoch 2: no set planned for the loss of rank 0
+ok   holder           1    computeinstance-e00gdq11amv5ep4ja7
+no   covered          1    plan 5 at epoch 2: no set planned for the loss of rank 1
+no   engine-covered   1    Covered False (LossUncovered): 1 losses without a formed set (0 planned and forming): [[1]]; the head's node holds [0], whose loss restarts the engine
+no   replaced         1 1  epoch 2: replace of ranks [1] through covered set 0-R1@computeinstance-e00gdq11amv5ep4ja7:0; epoch 1 expected
+ok   replaced         1 2  epoch 2: replace of ranks [1] through covered set 0-R1@computeinstance-e00gdq11amv5ep4ja7:0
+== bench/runs/2026-10-15-dynamo-proof-gated-join/run/engines-proof-loss-1.json
+ok   serving               Serving True (Members); 2 of 2 positions held; head on computeinstance-e00h8q579gcdmej8a6
+ok   holder           0    computeinstance-e00h8q579gcdmej8a6
+no   covered          0    plan 3 at epoch 1: no set planned for the loss of rank 0
+ok   holder           1    computeinstance-e00jh0j1ryxae786kr
+no   covered          1    plan 3 at epoch 1: no set planned for the loss of rank 1
+no   engine-covered   1    Covered False (LossUncovered): 1 losses without a formed set (0 planned and forming): [[1]]; the head's node holds [0], whose loss restarts the engine
+ok   replaced         1 1  epoch 1: replace of ranks [1] through covered set 0-R1@computeinstance-e00jh0j1ryxae786kr:0
+no   replaced         1 2  epoch 1: replace of ranks [1] through covered set 0-R1@computeinstance-e00jh0j1ryxae786kr:0; epoch 2 expected
+== bench/runs/2026-10-15-dynamo-proof-gated-join/run/engines-proof-loss-2.json
+ok   serving               Serving True (Members); 2 of 2 positions held; head on computeinstance-e00h8q579gcdmej8a6
+ok   holder           0    computeinstance-e00h8q579gcdmej8a6
+no   covered          0    plan 5 at epoch 2: no set planned for the loss of rank 0
+ok   holder           1    computeinstance-e00gdq11amv5ep4ja7
+no   covered          1    plan 5 at epoch 2: no set planned for the loss of rank 1
+no   engine-covered   1    Covered False (LossUncovered): 1 losses without a formed set (0 planned and forming): [[1]]; the head's node holds [0], whose loss restarts the engine
+no   replaced         1 1  epoch 2: replace of ranks [1] through covered set 0-R1@computeinstance-e00gdq11amv5ep4ja7:0; epoch 1 expected
+ok   replaced         1 2  epoch 2: replace of ranks [1] through covered set 0-R1@computeinstance-e00gdq11amv5ep4ja7:0

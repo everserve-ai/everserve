@@ -1,0 +1,26 @@
+# Decision 0021's stall rule, with the kill late in a step: run log
+2026-10-07T02:06:15Z the stack grab showed the slot misses a kill late in a step (0.9: survivors idle, waiting for the next RPC). Verify branch detection-stall (59f2173) on 5x A6000, Qwen3-1.7B TP4 + spare: adapter_1, replace at --mid-frac 0.85, 0.9, 0.95. Expect detection by the stall rule (slot_watch detail 'no step ended') under 0.1 s, steps_in_flight_at_end 0.
+2026-10-07T02:06:21Z deploy 3x NVIDIA RTX A6000: {"id": "jytbqwe0gj2adf", "costPerHr": 2.65, "machine": {"gpuDisplayName": "RTX A6000", "location": "SE"}}
+2026-10-07T02:06:21Z pod jytbqwe0gj2adf (NVIDIA RTX A6000); watchdog terminates at +30 min
+NVIDIA RTX A6000, 570.195.03
+2026-10-07T02:06:41Z tree 59f2173 on the pod; setup, build and the Qwen3-1.7B download
+2026-10-07T02:13:56Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;    Finished `release` profile [optimized] target(s) in 21.44s -rwxr-xr-x 2 root root 9170472 Oct  7 02:13 /workspace/everserve/target/release/everserve-controller -rwxr-xr-x 2 root root 6805448 Oct  7 02:13 /workspace/everserve/target/release/everserve-store 
+2026-10-07T02:13:56Z pod: adapter_port.sh drill adapter_1 --arm adapter
+2026-10-07T02:14:00Z start adapter_1: --arm adapter
+2026-10-07T02:15:55Z end adapter_1 rc=0: (MainProcess pid=10081) INFO 10-07 02:15:52 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-07T02:15:58Z adapter_1: events [] exit None watch [[], [], [], []] in_flight_end 0
+2026-10-07T02:15:58Z pod: adapter_port.sh drill replace_f85 --arm replace --kill mid --mid-frac 0.85
+2026-10-07T02:16:01Z start replace_f85: --arm replace --kill mid --mid-frac 0.85
+2026-10-07T02:16:52Z end replace_f85 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T02:16:54Z replace_f85: events [('rank_lost', 'slot', 0.042), ('exited', None, 0.233)] exit 0.002 watch [[{'ranks': [2], 'detail': "slot row 0: no step ended for 30 ms; ranks [2]' processes [12351] are exiting", 'epoch': 0, 'at': 1791339401.1811817}], [{'ranks': [2], 'detail': "slot row 1: no step ended for 32 ms; ranks [2]' processes [12351] are exiting", 'epoch': 0, 'at': 1791339401.181253}], [], [{'ranks': [2], 'detail': "slot row 3: no step ended for 31 ms; ranks [2]' processes [12351] are exiting", 'epoch': 0, 'at': 1791339401.1806338}]] in_flight_end 0
+2026-10-07T02:16:54Z pod: adapter_port.sh drill replace_f9 --arm replace --kill mid --mid-frac 0.9
+2026-10-07T02:16:58Z start replace_f9: --arm replace --kill mid --mid-frac 0.9
+2026-10-07T02:17:48Z end replace_f9 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T02:17:51Z replace_f9: events [('rank_lost', 'slot', 0.046), ('exited', None, 0.339)] exit 0.003 watch [[{'ranks': [2], 'detail': "slot row 0: no step ended for 32 ms; ranks [2]' processes [13647] are exiting", 'epoch': 0, 'at': 1791339457.541042}], [{'ranks': [2], 'detail': "slot row 1: no step ended for 30 ms; ranks [2]' processes [13647] are exiting", 'epoch': 0, 'at': 1791339457.5356581}], [], [{'ranks': [2], 'detail': "slot row 3: no step ended for 30 ms; ranks [2]' processes [13647] are exiting", 'epoch': 0, 'at': 1791339457.5352995}]] in_flight_end 0
+2026-10-07T02:17:51Z pod: adapter_port.sh drill replace_f95 --arm replace --kill mid --mid-frac 0.95
+2026-10-07T02:17:55Z start replace_f95: --arm replace --kill mid --mid-frac 0.95
+2026-10-07T02:18:52Z end replace_f95 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T02:18:55Z replace_f95: events [('rank_lost', 'slot', 0.041), ('exited', None, 0.325)] exit 0.002 watch [[{'ranks': [2], 'detail': "slot row 0: no step ended for 31 ms; ranks [2]' processes [14955] are exiting", 'epoch': 0, 'at': 1791339521.80959}], [{'ranks': [2], 'detail': "slot row 1: no step ended for 32 ms; ranks [2]' processes [14955] are exiting", 'epoch': 0, 'at': 1791339521.8098755}], [], [{'ranks': [2], 'detail': "slot row 3: no step ended for 32 ms; ranks [2]' processes [14955] are exiting", 'epoch': 0, 'at': 1791339521.810185}]] in_flight_end 0
+2026-10-07T02:19:00Z terminate jytbqwe0gj2adf: {"data": {"podTerminate": null}}
+2026-10-07T02:19:00Z data copied; pod terminated
+2026-10-07T02:19:18Z result (pod jytbqwe0gj2adf, 5x A6000 $2.65/h, 02:06:21-02:19:00, ~$0.56): every late kill found by the stall rule on all three survivors ('no step ended for 30-32 ms'): 0.85 in 42 ms (pause 0.877 s), 0.9 in 46 ms (1.155 s), 0.95 in 41 ms (0.750 s); 8/8 sessions identical, exactness passing, 56/56 tables, epochs matched; steps in flight at the end 0 in every run; adapter_1 no report.

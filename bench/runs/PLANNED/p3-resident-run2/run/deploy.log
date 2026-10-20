@@ -1,0 +1,208 @@
+2026-10-10T17:52:15Z the p3-resident run 2 rental on Nebius eu-north1: three gpu-h100-sxm 1gpu-16vcpu-200gb VMs, RedHatAI/Llama-3.3-70B-Instruct-FP8-dynamic @ f50dbad2c84590ca17dc51e207c34321b65ff14b, TP1 x PP2, node-c the shared spare (resident); the smoke, then stock, adapter, node fault x5, long context x3, single death x3; commit a6d07c3; cap $60 at $4.45/GPU-h (nebius.py budget), watchdog 247 min
+2026-10-10T17:52:51Z deploy everserve-b gpu-h100-sxm/1gpu-16vcpu-200gb: {"id": "computeinstance-e00v36xafazgk9n05p", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.0", "platform": "gpu-h100-sxm", "preset": "1gpu-16vcpu-200gb"}
+2026-10-10T17:52:51Z deploy everserve-b gpu-h100-sxm/1gpu-16vcpu-200gb: {"id": "computeinstance-e00v36xafazgk9n05p", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.0", "platform": "gpu-h100-sxm", "preset": "1gpu-16vcpu-200gb"}
+2026-10-10T17:52:51Z VM b computeinstance-e00v36xafazgk9n05p up, watchdog at the start + 247 min
+2026-10-10T17:52:55Z deploy everserve-c gpu-h100-sxm/1gpu-16vcpu-200gb: {"id": "computeinstance-e00g72hv1p9f6angxc", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.1", "platform": "gpu-h100-sxm", "preset": "1gpu-16vcpu-200gb"}
+2026-10-10T17:52:55Z deploy everserve-c gpu-h100-sxm/1gpu-16vcpu-200gb: {"id": "computeinstance-e00g72hv1p9f6angxc", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.1", "platform": "gpu-h100-sxm", "preset": "1gpu-16vcpu-200gb"}
+2026-10-10T17:52:55Z VM c computeinstance-e00g72hv1p9f6angxc up, watchdog at the start + 247 min
+2026-10-10T17:52:57Z deploy everserve-a gpu-h100-sxm/1gpu-16vcpu-200gb: {"id": "computeinstance-e00j557h6djf64fnh3", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.14", "platform": "gpu-h100-sxm", "preset": "1gpu-16vcpu-200gb"}
+2026-10-10T17:52:57Z deploy everserve-a gpu-h100-sxm/1gpu-16vcpu-200gb: {"id": "computeinstance-e00j557h6djf64fnh3", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.14", "platform": "gpu-h100-sxm", "preset": "1gpu-16vcpu-200gb"}
+2026-10-10T17:52:57Z VM a computeinstance-e00j557h6djf64fnh3 up, watchdog at the start + 247 min
+2026-10-10T17:52:57Z budget: 3 VMs, 3 GPUs at $4.45/GPU-h, cap $60.0
+2026-10-10T17:52:57Z budget: $0.16 spent of $60.0
+2026-10-10T17:52:58Z VM a computeinstance-e00j557h6djf64fnh3 public 89.169.111.144 private 10.0.0.14
+2026-10-10T17:52:58Z VM b computeinstance-e00v36xafazgk9n05p public 89.169.122.100 private 10.0.0.0
+2026-10-10T17:52:59Z VM c computeinstance-e00g72hv1p9f6angxc public 89.169.102.82 private 10.0.0.1
+2026-10-10T17:53:37Z private network (a to b and c): ok after 5 s
+2026-10-10T17:53:39Z node-a: NVIDIA H100 80GB HBM3, 580.173.02, 81559 MiB,16;Mem:             196           2         195           0           0         194;/dev/vda1       290G   18G  272G   7% /;
+2026-10-10T17:53:41Z node-b: NVIDIA H100 80GB HBM3, 580.173.02, 81559 MiB,16;Mem:             196           2         195           0           0         194;/dev/vda1       290G   18G  272G   7% /;
+2026-10-10T17:53:42Z node-c: NVIDIA H100 80GB HBM3, 580.173.02, 81559 MiB,16;Mem:             196           2         195           0           0         194;/dev/vda1       290G   18G  272G   7% /;
+2026-10-10T17:54:14Z setup started on a b c
+2026-10-10T18:02:57Z budget: $2.38 spent of $60.0
+2026-10-10T18:05:57Z setup done on a b c
+2026-10-10T18:06:07Z the node guards on a: -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-10-10T18:06:23Z nodes at a6d07c3, the binaries and kernels built at it
+[2m2026-10-10T18:06:25.633895Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-10T18:06:25.633910Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-10T18:06:25.633912Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-10T18:06:25.633913Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-10T18:06:25.633915Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-10T18:06:25.633916Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-10T18:06:25.633917Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-10T18:06:25.633918Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-10T18:06:25.633919Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-10T18:06:25.633920Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+2026-10-10T18:06:29Z certs made on a, the other nodes' copied
+2026-10-10T18:06:34Z node-a versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c a6d07c34d700a87525237675b0e48ab9c945fda7 f50dbad2c84590ca17dc51e207c34321b65ff14b 
+2026-10-10T18:06:39Z node-b versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c a6d07c34d700a87525237675b0e48ab9c945fda7 f50dbad2c84590ca17dc51e207c34321b65ff14b 
+2026-10-10T18:06:44Z node-c versions: 2.13.0+cu130 13.0 0.30.1rc1.dev606+g6e517b15c a6d07c34d700a87525237675b0e48ab9c945fda7 f50dbad2c84590ca17dc51e207c34321b65ff14b 
+bench/harness/twonode/battery.sh: line 78: PY: unbound variable
+2026-10-10T18:06:44Z battery.sh (bench/runs/PLANNED/p3-resident-run2/run/smoke: ARMS="repeat node_fault" TRIALS_FAULT=1) exited 1
+2026-10-10T18:06:44Z smoke failed: holding the VMs for a fix: write a pushed commit to /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/run2.commit and touch /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/retry (reruns the stage at that commit, or at the same one without it) or touch /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/twonode/stop (releases), within 20 min, after this line
+2026-10-10T18:12:57Z budget: $4.61 spent of $60.0
+2026-10-10T18:16:06Z intervention: the smoke's battery died before any measurement on PY unbound (an apostrophe in ${PREDICTIONS:?...} opened a quoted string, skipping the assignments to PY's); fixed and gated at c5bea92, pushed; the smoke reruns at that commit
+2026-10-10T18:16:15Z the stage reruns at c5bea92fa4b39b8289bd9c18eea1707a7023c5db
+2026-10-10T18:16:33Z nodes a b c down: a=none b=none c=none 
+    Finished `release` profile [optimized] target(s) in 13.15s
+INFO:__main__:built everserve_kernels at /home/everserve/.cache/torch_extensions/py312_cu130/everserve_kernels/everserve_kernels.so
+    Finished `release` profile [optimized] target(s) in 12.81s
+INFO:__main__:built everserve_kernels at /home/everserve/.cache/torch_extensions/py312_cu130/everserve_kernels/everserve_kernels.so
+    Finished `release` profile [optimized] target(s) in 13.14s
+INFO:__main__:built everserve_kernels at /home/everserve/.cache/torch_extensions/py312_cu130/everserve_kernels/everserve_kernels.so
+2026-10-10T18:19:37Z nodes at c5bea92, the binaries and kernels built at it
+2026-10-10T18:20:00Z battery on RedHatAI/Llama-3.3-70B-Instruct-FP8-dynamic, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 2048 prompt, 1792 tokens, blocks 2048, slots 32768, long context 32768, store budget 16000000000, node-b's first layer 40, KV heads 8, row bytes 512; arms: repeat node_fault; trials 1 (node fault) / 1 (single death) / 3 (other) / 2 (adapter); commit c5bea92, checkpoint revision f50dbad2c84590ca17dc51e207c34321b65ff14b
+2026-10-10T18:21:20Z fabric: slowest link to node-a 66.12 Gbit/s (floor 1)
+2026-10-10T18:22:54Z == repeat trial 1: control
+2026-10-10T18:22:58Z budget: $6.83 spent of $60.0
+2026-10-10T18:27:20Z == repeat trial 1, $7.81 spent
+2026-10-10T18:30:31Z repeat_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T18:30:32Z repeat_1: exact; its kill-time rows removed from node-b
+repeat trial 1: repeat AGREES with the first run: changes 0, identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+repeat: 1 trials (0 failed), green True, compile_cache_consistent=True, engine_down=False, replica_lag_max_steps=0.0, replication_dropped_total=0, runs_agree=['8/8'], shadow_formation_s=0.517, stops_killed=0, store_refusals_total=0, take_written_beyond_baseline_bytes=0, take_written_bytes=4617092
+2026-10-10T18:31:24Z == node_fault trial 1: control
+2026-10-10T18:32:58Z budget: $9.06 spent of $60.0
+2026-10-10T18:35:06Z == node_fault trial 1, $9.54 spent
+2026-10-10T18:37:16Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA H100 80GB HBM3","replicates_to":["10.0.0.0:7402"],"compile_cache":{"key":"02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434","digest":"aa1c9371af5b535e8f51a81e8a031830b5d1d13031126871350232d3
+2026-10-10T18:37:33Z node_fault_1 armed: {"t_armed": 1791657450.310191, "step": 100}
+2026-10-10T18:37:43Z node_fault_1: committed at epoch 1; no native stacks taken
+2026-10-10T18:40:03Z node_fault_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T18:40:04Z node_fault_1: exact; its kill-time rows removed from node-b
+2026-10-10T18:40:18Z node_fault_1: backup after the take: {"0": {"rank": 0, "holder": {"epoch": 1, "step": 3587, "held": true, "caught_up": false}, "replica": {"epoch": 1, "step": 3587, "held": true, "caught_up": true}, "scored_at_step": 3587, "rows_due": 15360, "rows_matching": 15360, "coverage": 1.0},"1": {"rank": 1, "holder": {"epoch": 1, "step": 3585, "held": true, "caught_up": true}, "replica": {"epoch": 1, "step": 3585, "held": true, "caught_up": t
+node_fault trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+node_fault: 1 trials (0 failed), green True, backup_coverage=1.0, compile_cache_consistent=False, engine_down=False, first_differing_position=[None], instrument_pause_s=49.4543, node_fault_detection_s=0.0124, node_fault_gap_s=13.1575, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8'], shadow_formation_s=0.466, staged_wait_s=0.0001, stops_killed=0, store_refusals_total=0, take_identity_s=0.002, take_kv_alloc_s=0.003, take_kv_config_s=2.096, take_modules_s=2.213, take_restore_s=0.7309, take_s=9.183, take_sizing_s=0.018, take_warm_s=3.554, take_weights_s=0.722, take_written_beyond_baseline_bytes=0, take_written_bytes=4617092
+2026-10-10T18:41:19Z battery done: node_fault repeat ; the record is bench/runs/PLANNED/p3-resident-run2/run/smoke
+2026-10-10T18:41:19Z battery.sh (bench/runs/PLANNED/p3-resident-run2/run/smoke: ARMS="repeat node_fault" TRIALS_FAULT=1) exited 0
+smoke: repeat green True, node fault green True, gap 13.1575 s, take cold True, bytes beyond the baseline 0: the battery runs
+2026-10-10T18:41:19Z the smoke passed; the battery
+2026-10-10T18:41:42Z battery on RedHatAI/Llama-3.3-70B-Instruct-FP8-dynamic, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 2048 prompt, 1792 tokens, blocks 2048, slots 32768, long context 32768, store budget 16000000000, node-b's first layer 40, KV heads 8, row bytes 512; arms: stock adapter node_fault long_context single_death; trials 5 (node fault) / 3 (single death) / 3 (other) / 1 (adapter); commit c5bea92, checkpoint revision f50dbad2c84590ca17dc51e207c34321b65ff14b
+2026-10-10T18:42:58Z budget: $11.29 spent of $60.0
+2026-10-10T18:43:02Z fabric: slowest link to node-a 58.49 Gbit/s (floor 1)
+2026-10-10T18:44:23Z == stock trial 1, $11.60 spent
+2026-10-10T18:47:58Z stock_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T18:48:00Z stock_1: exact; its kill-time rows removed from node-b
+stock trial 1: no control; figures only
+stock: 1 trials (0 failed), green True, compile_cache_consistent=True, replica_lag_max_steps=[None], replication_dropped_total=0, stock_stops_killed=1, stops_killed=0, store_refusals_total=0, take_written_beyond_baseline_bytes=0, take_written_bytes=4617092
+2026-10-10T18:48:55Z == adapter trial 1, $12.61 spent
+2026-10-10T18:51:56Z adapter_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T18:51:58Z adapter_1: exact; its kill-time rows removed from node-b
+adapter trial 1: no control; figures only
+adapter: 1 trials (0 failed), green True, adapter_overhead_pct=1.25, compile_cache_consistent=True, engine_down=False, replica_lag_max_steps=0.0, replication_dropped_total=0, shadow_formation_s=0.466, stops_killed=0, store_refusals_total=0, take_written_beyond_baseline_bytes=0, take_written_bytes=4617092
+2026-10-10T18:52:50Z == node_fault trial 1: control
+2026-10-10T18:52:58Z budget: $13.51 spent of $60.0
+2026-10-10T18:56:30Z == node_fault trial 1, $14.30 spent
+2026-10-10T18:59:02Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA H100 80GB HBM3","replicates_to":["10.0.0.0:7402"],"compile_cache":{"key":"02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434","digest":"aa1c9371af5b535e8f51a81e8a031830b5d1d13031126871350232d3
+2026-10-10T18:59:18Z node_fault_1 armed: {"t_armed": 1791658755.6327002, "step": 100}
+2026-10-10T18:59:28Z node_fault_1: committed at epoch 1; no native stacks taken
+2026-10-10T19:01:48Z node_fault_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T19:01:49Z node_fault_1: exact; its kill-time rows removed from node-b
+2026-10-10T19:02:03Z node_fault_1: backup after the take: {"0": {"rank": 0, "holder": {"epoch": 1, "step": 3587, "held": true, "caught_up": false}, "replica": {"epoch": 1, "step": 3587, "held": true, "caught_up": true}, "scored_at_step": 3587, "rows_due": 15360, "rows_matching": 15360, "coverage": 1.0},"1": {"rank": 1, "holder": {"epoch": 1, "step": 3585, "held": true, "caught_up": true}, "replica": {"epoch": 1, "step": 3585, "held": true, "caught_up": t
+node_fault trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+2026-10-10T19:02:57Z == node_fault trial 2: control
+2026-10-10T19:02:58Z budget: $15.74 spent of $60.0
+2026-10-10T19:06:40Z == node_fault trial 2, $16.56 spent
+2026-10-10T19:09:18Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA H100 80GB HBM3","replicates_to":["10.0.0.0:7402"],"compile_cache":{"key":"02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434","digest":"aa1c9371af5b535e8f51a81e8a031830b5d1d13031126871350232d3
+2026-10-10T19:09:35Z node_fault_2 armed: {"t_armed": 1791659372.2534797, "step": 100}
+2026-10-10T19:09:45Z node_fault_2: committed at epoch 1; no native stacks taken
+2026-10-10T19:12:06Z node_fault_2: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T19:12:08Z node_fault_2: exact; its kill-time rows removed from node-b
+2026-10-10T19:12:22Z node_fault_2: backup after the take: {"0": {"rank": 0, "holder": {"epoch": 1, "step": 3587, "held": true, "caught_up": false}, "replica": {"epoch": 1, "step": 3587, "held": true, "caught_up": true}, "scored_at_step": 3587, "rows_due": 15360, "rows_matching": 15360, "coverage": 1.0},"1": {"rank": 1, "holder": {"epoch": 1, "step": 3585, "held": true, "caught_up": true}, "replica": {"epoch": 1, "step": 3585, "held": true, "caught_up": t
+2026-10-10T19:12:58Z budget: $17.96 spent of $60.0
+node_fault trial 2: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+2026-10-10T19:13:16Z == node_fault trial 3: control
+2026-10-10T19:16:58Z == node_fault trial 3, $18.85 spent
+2026-10-10T19:19:27Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA H100 80GB HBM3","replicates_to":["10.0.0.0:7402"],"compile_cache":{"key":"02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434","digest":"aa1c9371af5b535e8f51a81e8a031830b5d1d13031126871350232d3
+2026-10-10T19:19:45Z node_fault_3 armed: {"t_armed": 1791659980.6777616, "step": 100}
+2026-10-10T19:19:55Z node_fault_3: committed at epoch 1; no native stacks taken
+2026-10-10T19:22:18Z node_fault_3: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T19:22:20Z node_fault_3: exact; its kill-time rows removed from node-b
+2026-10-10T19:22:34Z node_fault_3: backup after the take: {"0": {"rank": 0, "holder": {"epoch": 1, "step": 3587, "held": true, "caught_up": false}, "replica": {"epoch": 1, "step": 3587, "held": true, "caught_up": true}, "scored_at_step": 3587, "rows_due": 15360, "rows_matching": 15360, "coverage": 1.0},"1": {"rank": 1, "holder": {"epoch": 1, "step": 3585, "held": true, "caught_up": true}, "replica": {"epoch": 1, "step": 3585, "held": true, "caught_up": t
+2026-10-10T19:22:58Z budget: $20.19 spent of $60.0
+node_fault trial 3: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+2026-10-10T19:23:28Z == node_fault trial 4: control
+2026-10-10T19:27:15Z == node_fault trial 4, $21.14 spent
+2026-10-10T19:29:37Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA H100 80GB HBM3","replicates_to":["10.0.0.0:7402"],"compile_cache":{"key":"02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434","digest":"aa1c9371af5b535e8f51a81e8a031830b5d1d13031126871350232d3
+2026-10-10T19:29:57Z node_fault_4 armed: {"t_armed": 1791660594.5064163, "step": 100}
+2026-10-10T19:30:07Z node_fault_4: committed at epoch 1; no native stacks taken
+2026-10-10T19:32:33Z node_fault_4: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T19:32:35Z node_fault_4: exact; its kill-time rows removed from node-b
+2026-10-10T19:32:48Z node_fault_4: backup after the take: {"0": {"rank": 0, "holder": {"epoch": 1, "step": 3585, "held": true, "caught_up": false}, "replica": {"epoch": 1, "step": 3585, "held": true, "caught_up": true}, "scored_at_step": 3585, "rows_due": 15360, "rows_matching": 15360, "coverage": 1.0},"1": {"rank": 1, "holder": {"epoch": 1, "step": 3584, "held": true, "caught_up": true}, "replica": {"epoch": 1, "step": 3584, "held": true, "caught_up": t
+2026-10-10T19:32:58Z budget: $22.41 spent of $60.0
+node_fault trial 4: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'step_refused', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+2026-10-10T19:33:44Z == node_fault trial 5: control
+2026-10-10T19:37:30Z == node_fault trial 5, $23.42 spent
+2026-10-10T19:39:49Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA H100 80GB HBM3","replicates_to":["10.0.0.0:7402"],"compile_cache":{"key":"02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434","digest":"aa1c9371af5b535e8f51a81e8a031830b5d1d13031126871350232d3
+2026-10-10T19:40:11Z node_fault_5 armed: {"t_armed": 1791661207.5959501, "step": 100}
+2026-10-10T19:40:21Z node_fault_5: committed at epoch 1; no native stacks taken
+2026-10-10T19:42:43Z node_fault_5: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T19:42:45Z node_fault_5: exact; its kill-time rows removed from node-b
+2026-10-10T19:42:58Z budget: $24.64 spent of $60.0
+2026-10-10T19:42:59Z node_fault_5: backup after the take: {"0": {"rank": 0, "holder": {"epoch": 1, "step": 3587, "held": true, "caught_up": false}, "replica": {"epoch": 1, "step": 3587, "held": true, "caught_up": true}, "scored_at_step": 3587, "rows_due": 15360, "rows_matching": 15360, "coverage": 1.0},"1": {"rank": 1, "holder": {"epoch": 1, "step": 3585, "held": true, "caught_up": true}, "replica": {"epoch": 1, "step": 3585, "held": true, "caught_up": t
+node_fault trial 5: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+node_fault: 5 trials (0 failed), green True, backup_coverage=1.0, compile_cache_consistent=False, engine_down=False, first_differing_position=[None, None, None, None, None], instrument_pause_s=48.9154, node_fault_detection_s=0.0119, node_fault_gap_s=13.0609, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8', '8/8', '8/8', '8/8', '8/8'], shadow_formation_s=0.432, staged_wait_s=0.3208, stops_killed=0, store_refusals_total=0, take_identity_s=0.002, take_kv_alloc_s=0.003, take_kv_config_s=2.038, take_modules_s=1.973, take_restore_s=0.6902, take_s=8.814, take_sizing_s=0.018, take_warm_s=3.474, take_weights_s=0.72, take_written_beyond_baseline_bytes=0, take_written_bytes=4617092
+2026-10-10T19:44:16Z == long_context trial 1: control
+2026-10-10T19:48:14Z == long_context trial 1, $25.81 spent
+2026-10-10T19:50:55Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA H100 80GB HBM3","replicates_to":["10.0.0.0:7402"],"compile_cache":{"key":"c0e474376f996ccbeb65358535eaaed1e30007bf65ba1deac728d36bdc2c87c2","digest":"065f8447e5b85693b618dd3aa9ce7beea04dfdbb2367336f172f8281
+2026-10-10T19:51:33Z long_context_1 armed: {"t_armed": 1791661890.298155, "step": 100}
+2026-10-10T19:51:43Z long_context_1: committed at epoch 1; no native stacks taken
+2026-10-10T19:52:59Z budget: $26.86 spent of $60.0
+2026-10-10T19:55:39Z long_context_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T19:55:41Z long_context_1: exact; its kill-time rows removed from node-b
+long_context trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'step_refused', 'replaced'], identical prefix per session [512] of [512]
+2026-10-10T19:56:39Z == long_context trial 2: control
+2026-10-10T20:00:02Z == long_context trial 2, $28.44 spent
+2026-10-10T20:02:40Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA H100 80GB HBM3","replicates_to":["10.0.0.0:7402"],"compile_cache":{"key":"c0e474376f996ccbeb65358535eaaed1e30007bf65ba1deac728d36bdc2c87c2","digest":"065f8447e5b85693b618dd3aa9ce7beea04dfdbb2367336f172f8281
+2026-10-10T20:02:59Z budget: $29.09 spent of $60.0
+2026-10-10T20:03:17Z long_context_2 armed: {"t_armed": 1791662596.2887328, "step": 100}
+2026-10-10T20:03:27Z long_context_2: committed at epoch 1; no native stacks taken
+2026-10-10T20:07:24Z long_context_2: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T20:07:26Z long_context_2: exact; its kill-time rows removed from node-b
+long_context trial 2: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'step_refused', 'replaced'], identical prefix per session [512] of [512]
+2026-10-10T20:08:24Z == long_context trial 3: control
+2026-10-10T20:11:50Z == long_context trial 3, $31.06 spent
+2026-10-10T20:12:59Z budget: $31.31 spent of $60.0
+2026-10-10T20:14:35Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA H100 80GB HBM3","replicates_to":["10.0.0.0:7402"],"compile_cache":{"key":"c0e474376f996ccbeb65358535eaaed1e30007bf65ba1deac728d36bdc2c87c2","digest":"065f8447e5b85693b618dd3aa9ce7beea04dfdbb2367336f172f8281
+2026-10-10T20:15:13Z long_context_3 armed: {"t_armed": 1791663311.8728702, "step": 100}
+2026-10-10T20:15:24Z long_context_3: committed at epoch 1; no native stacks taken
+2026-10-10T20:19:22Z long_context_3: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T20:19:24Z long_context_3: exact; its kill-time rows removed from node-b
+long_context trial 3: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [512] of [512]
+long_context: 3 trials (0 failed), green True, compile_cache_consistent=False, engine_down=False, first_differing_position=[None, None, None], instrument_pause_s=165.0953, long_context_gap_s=27.9306, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['1/1', '1/1', '1/1'], shadow_formation_s=0.453, staged_wait_s=6.3203, stops_killed=0, store_refusals_total=0, take_identity_s=0.002, take_kv_alloc_s=0.003, take_kv_config_s=3.053, take_modules_s=2.032, take_restore_s=1.1189, take_s=13.383, take_sizing_s=0.019, take_warm_s=5.066, take_weights_s=0.72, take_written_beyond_baseline_bytes=180, take_written_bytes=4617272
+2026-10-10T20:20:42Z == single_death trial 1: control
+2026-10-10T20:22:59Z budget: $33.54 spent of $60.0
+2026-10-10T20:24:30Z == single_death trial 1, $33.88 spent
+2026-10-10T20:29:59Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA H100 80GB HBM3","replicates_to":["10.0.0.0:7402"],"compile_cache":{"key":"02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434","digest":"aa1c9371af5b535e8f51a81e8a031830b5d1d13031126871350232d3
+2026-10-10T20:30:16Z single_death_1 armed: {"t_armed": 1791664214.5472782, "step": 100}
+2026-10-10T20:30:28Z single_death_1: committed at epoch 1; no native stacks taken
+2026-10-10T20:32:54Z single_death_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T20:32:56Z single_death_1: exact; its kill-time rows removed from node-b
+2026-10-10T20:32:59Z budget: $35.77 spent of $60.0
+2026-10-10T20:33:09Z single_death_1: backup after the take: {"0": {"rank": 0, "holder": {"epoch": 1, "step": 3587, "held": true, "caught_up": false}, "replica": {"epoch": 1, "step": 3587, "held": true, "caught_up": true}, "scored_at_step": 3587, "rows_due": 15360, "rows_matching": 15360, "coverage": 1.0},"1": {"rank": 1, "holder": {"epoch": 1, "step": 3585, "held": true, "caught_up": true}, "replica": {"epoch": 1, "step": 3585, "held": true, "caught_up": t
+single_death trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+2026-10-10T20:34:07Z == single_death trial 2: control
+2026-10-10T20:38:00Z == single_death trial 2, $36.88 spent
+2026-10-10T20:40:57Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA H100 80GB HBM3","replicates_to":["10.0.0.0:7402"],"compile_cache":{"key":"02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434","digest":"aa1c9371af5b535e8f51a81e8a031830b5d1d13031126871350232d3
+2026-10-10T20:41:13Z single_death_2 armed: {"t_armed": 1791664871.0430768, "step": 100}
+2026-10-10T20:41:25Z single_death_2: committed at epoch 1; no native stacks taken
+2026-10-10T20:42:59Z budget: $37.99 spent of $60.0
+2026-10-10T20:43:51Z single_death_2: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T20:43:53Z single_death_2: exact; its kill-time rows removed from node-b
+2026-10-10T20:44:06Z single_death_2: backup after the take: {"0": {"rank": 0, "holder": {"epoch": 1, "step": 3587, "held": true, "caught_up": false}, "replica": {"epoch": 1, "step": 3587, "held": true, "caught_up": true}, "scored_at_step": 3587, "rows_due": 15360, "rows_matching": 15360, "coverage": 1.0},"1": {"rank": 1, "holder": {"epoch": 1, "step": 3585, "held": true, "caught_up": true}, "replica": {"epoch": 1, "step": 3585, "held": true, "caught_up": t
+single_death trial 2: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+2026-10-10T20:45:06Z == single_death trial 3: control
+2026-10-10T20:49:01Z == single_death trial 3, $39.33 spent
+2026-10-10T20:51:41Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA H100 80GB HBM3","replicates_to":["10.0.0.0:7402"],"compile_cache":{"key":"02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434","digest":"aa1c9371af5b535e8f51a81e8a031830b5d1d13031126871350232d3
+2026-10-10T20:52:00Z single_death_3 armed: {"t_armed": 1791665518.8592305, "step": 100}
+2026-10-10T20:52:11Z single_death_3: committed at epoch 1; no native stacks taken
+2026-10-10T20:52:59Z budget: $40.22 spent of $60.0
+2026-10-10T20:54:37Z single_death_3: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T20:54:39Z single_death_3: exact; its kill-time rows removed from node-b
+2026-10-10T20:54:53Z single_death_3: backup after the take: {"0": {"rank": 0, "holder": {"epoch": 1, "step": 3587, "held": true, "caught_up": false}, "replica": {"epoch": 1, "step": 3587, "held": true, "caught_up": true}, "scored_at_step": 3587, "rows_due": 15360, "rows_matching": 15360, "coverage": 1.0},"1": {"rank": 1, "holder": {"epoch": 1, "step": 3585, "held": true, "caught_up": true}, "replica": {"epoch": 1, "step": 3585, "held": true, "caught_up": t
+single_death trial 3: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+single_death: 3 trials (0 failed), green True, backup_coverage=1.0, compile_cache_consistent=False, engine_down=False, first_differing_position=[None, None, None], instrument_pause_s=49.048, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8', '8/8', '8/8'], shadow_formation_s=0.425, single_death_detection_s=0.0065, single_death_gap_s=12.4752, staged_wait_s=0.0001, stops_killed=0, store_refusals_total=0, take_identity_s=0.002, take_kv_alloc_s=0.003, take_kv_config_s=1.998, take_modules_s=1.923, take_restore_s=0.6881, take_s=8.523, take_sizing_s=0.018, take_warm_s=3.394, take_weights_s=0.717, take_written_beyond_baseline_bytes=0, take_written_bytes=4617092
+2026-10-10T20:56:04Z battery done: adapter long_context node_fault single_death stock ; the record is bench/runs/PLANNED/p3-resident-run2/run/battery
+2026-10-10T20:56:04Z battery.sh (bench/runs/PLANNED/p3-resident-run2/run/battery: ARMS="stock adapter node_fault long_context single_death" TRIALS_ADAPTER=1 TRIALS_FAULT=5 TRIALS_OTHER=3 TRIALS_SINGLE_DEATH=3) exited 0
+2026-10-10T20:56:23Z nodes a b c down: a=none b=none c=none 
+2026-10-10T20:58:03Z terminate computeinstance-e00v36xafazgk9n05p: {"deleted": "computeinstance-e00v36xafazgk9n05p", "disks": []}
+2026-10-10T20:59:38Z terminate computeinstance-e00g72hv1p9f6angxc: {"deleted": "computeinstance-e00g72hv1p9f6angxc", "disks": []}
+2026-10-10T21:01:23Z terminate computeinstance-e00j557h6djf64fnh3: {"deleted": "computeinstance-e00j557h6djf64fnh3", "disks": []}
+2026-10-10T21:01:23Z VMs released: []

@@ -1,0 +1,24 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# Scrape jobs the dashboard expects: the coordinator's metrics port, every node daemon's, every
+# store's (the EVERSERVE_*METRICS_ADDR settings). Replace the targets with the deployment's hosts;
+# the `instance` label is what the dashboard shows per node.
+scrape_configs:
+  - job_name: everserve-coord
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["coordinator.example.internal:9107"]
+  - job_name: everserve-node
+    scrape_interval: 5s
+    static_configs:
+      - targets:
+          - "node-a.example.internal:9108"
+          - "node-b.example.internal:9108"
+          - "node-c.example.internal:9108"
+  - job_name: everserve-store
+    scrape_interval: 5s
+    static_configs:
+      - targets:
+          - "node-a.example.internal:9109"
+          - "node-b.example.internal:9109"
+          - "node-c.example.internal:9109"

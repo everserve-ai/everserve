@@ -1,0 +1,104 @@
+03:23:28Z the certificates, made here
+[2m2026-10-15T03:23:28.650865Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-4/certs/ca.crt
+[2m2026-10-15T03:23:28.650919Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-4/certs/ca.key
+[2m2026-10-15T03:23:28.650932Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-4/certs/coordinator.crt
+[2m2026-10-15T03:23:28.650941Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-4/certs/coordinator.key
+[2m2026-10-15T03:23:28.650949Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-4/certs/operator-proof.crt
+[2m2026-10-15T03:23:28.650959Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-4/certs/operator-proof.key
+03:23:28Z the cluster: 3 L40S nodes, released at the latest after 1.5 h
+2026-10-15T03:28:55Z node-group create --async answered: 'opmk8snodegroup-e00rnve4kfwc64s1a5\n'
+2026-10-15T03:30:31Z up everserve-proof-1015032328 gpu-l40s-a/1gpu-8vcpu-32gb x3: {"cluster": "mk8scluster-e00w30367xv297rm5k", "node_group": "mk8snodegroup-e00awdqnxcvss2sz0p", "kubeconfig": "/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-4/kubeconfig"}
+{"cluster": "mk8scluster-e00w30367xv297rm5k", "node_group": "mk8snodegroup-e00awdqnxcvss2sz0p", "kubeconfig": "/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-4/kubeconfig"}
+NAME                                 GPU
+computeinstance-e00ff3ay66zg3zw8wr   <none>
+computeinstance-e00ham7z7fyfyq7ge2   <none>
+computeinstance-e00wa2j0dnj1nkm0ph   <none>
+03:30:33Z the nodes advertise no GPU: the GPU operator's device plugin, the drivers being the image's
+"nvidia" already exists with the same configuration, skipping
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "nvidia" chart repository
+Update Complete. ⎈Happy Helming!⎈
+NAME: gpu-operator
+LAST DEPLOYED: Wed Oct 14 23:30:37 2026
+NAMESPACE: gpu-operator
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+namespace/everserve created
+namespace/everserve labeled
+secret/nebius-cr created
+namespace/serving created
+namespace/serving labeled
+secret/nebius-cr created
+secret/everserve-tls created
+03:31:06Z Dynamo's platform 1.5.1, with Grove
+NAME: dynamo-platform
+LAST DEPLOYED: Wed Oct 14 23:31:11 2026
+NAMESPACE: dynamo-system
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+# SPDX-FileCopyrightText: Copyright (c) 2025-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+03:31:46Z the instance: the head, one node of the engine, 1 spare node(s)
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-4/proof.k8s.json
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-4/proof.engine.json
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-4/proof.values.json
+03:31:46Z Everserve's chart
+NAME: everserve
+LAST DEPLOYED: Wed Oct 14 23:31:49 2026
+NAMESPACE: everserve
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+dynamographdeployment.nvidia.com/proof created
+service/proof-rendezvous created
+networkpolicy.networking.k8s.io/proof-engine created
+03:32:05Z waiting for the instance to serve
+NAME                     READY   STATUS    RESTARTS   AGE     IP           NODE                                 NOMINATED NODE   READINESS GATES
+proof-0-frontend-kbhdj   1/1     Running   0          8m38s   10.1.1.169   computeinstance-e00ff3ay66zg3zw8wr   <none>           <none>
+proof-0-head-nnpp4       1/1     Running   0          8m38s   10.1.1.243   computeinstance-e00ff3ay66zg3zw8wr   <none>           <none>
+proof-0-nodes-q6t94      1/1     Running   0          8m38s   10.1.32.72   computeinstance-e00wa2j0dnj1nkm0ph   <none>           <none>
+proof-0-nodes-w9qmz      1/1     Running   0          8m38s   10.1.43.24   computeinstance-e00ham7z7fyfyq7ge2   <none>           <none>
+Forwarding from 127.0.0.1:18000 -> 8000
+Forwarding from [::1]:18000 -> 8000
+03:40:54Z the coordinator's API: its record decides when the loss is taken and whether it passed
+serviceaccount/proof-viewer created
+rolebinding.rbac.authorization.k8s.io/proof-viewer created
+Forwarding from 127.0.0.1:17443 -> 7443
+Forwarding from [::1]:17443 -> 7443
+03:40:59Z warm: one short completion
+Handling connection for 18000
+{"streams": 1, "completed": 1, "errors": [], "max_gap_s": 0.085}
+03:41:00Z passed: 0 losses of rank 1 under load, each taken by a spare
+03:41:01Z nccl probe: a group of two whose second member never comes (pod/proof-0-nodes-q6t94)
+03:41:17Z nccl probe: {"mode": "missing", "as": 0, "nccl": 22907, "init_rc": 7, "state": 7, "waited_s": 10.008, "polls": 995, "abort_rc": 0, "abort_s": 0.0, "device_ok": true}
+03:41:17Z nccl probe: a member whose server made its id and is gone (pod/proof-0-head-nnpp4)
+03:41:38Z nccl probe: {"mode": "missing", "as": 1, "nccl": 22907, "init_rc": 7, "state": 7, "waited_s": 10.008, "polls": 995, "abort_rc": 0, "abort_s": 0.653, "device_ok": true}
+03:41:38Z nccl probe: a group of two formed by vllm, then eager and graphed all-reduces (pod/proof-0-head-nnpp4, pod/proof-0-nodes-q6t94)
+03:41:50Z nccl probe: vllm rank 0: {"mode": "join", "how": "vllm", "rank": 0, "nccl": 22907, "state": 0, "formed_s": 5.264, "polls": 0, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "cost": {"896": {"eager_us": 219.7, "replay_us": 156.7, "all_success": true}, "7168": {"eager_us": 253.6, "replay_us": 227.1, "all_success": true}}, "abort_rc": 0, "abort_s": 0.51}
+03:41:50Z nccl probe: vllm rank 1: {"mode": "join", "how": "vllm", "rank": 1, "nccl": 22907, "state": 0, "formed_s": 0.221, "polls": 0, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "cost": {"896": {"eager_us": 220.2, "replay_us": 156.8, "all_success": true}, "7168": {"eager_us": 252.7, "replay_us": 227.3, "all_success": true}}, "abort_rc": 0, "abort_s": 0.51}
+03:41:50Z nccl probe: a group of two formed by split, then eager and graphed all-reduces (pod/proof-0-head-nnpp4, pod/proof-0-nodes-q6t94)
+03:42:03Z nccl probe: split rank 0: {"mode": "join", "how": "split", "rank": 0, "nccl": 22907, "init_rc": 7, "state": 0, "formed_s": 5.296, "polls": 527, "split": {"rc": 0, "state": 0, "s": 0.01, "polls": 9, "child": true}, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "cost": {"896": {"eager_us": 168.7, "replay_us": 156.4, "all_success": true}, "7168": {"eager_us": 272.5, "replay_us": 240.9, "all_success": true}}, "abort_rc": 0, "abort_s": 0.51, "parent_abort_rc": 0, "parent_abort_s": 0.543}
+03:42:03Z nccl probe: split rank 1: {"mode": "join", "how": "split", "rank": 1, "nccl": 22907, "init_rc": 7, "state": 0, "formed_s": 0.164, "polls": 17, "split": {"rc": 0, "state": 0, "s": 0.011, "polls": 10, "child": true}, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "cost": {"896": {"eager_us": 168.8, "replay_us": 156.4, "all_success": true}, "7168": {"eager_us": 272.6, "replay_us": 240.8, "all_success": true}}, "abort_rc": 0, "abort_s": 0.51, "parent_abort_rc": 0, "parent_abort_s": 0.543}
+03:42:03Z nccl probe: a group of two formed by split-missing, then eager and graphed all-reduces (pod/proof-0-head-nnpp4, pod/proof-0-nodes-q6t94)
+03:42:15Z nccl probe: split-missing rank 0: {"mode": "join", "how": "split-missing", "rank": 0, "nccl": 22907, "init_rc": 7, "state": 0, "formed_s": 5.357, "polls": 533, "split": {"rc": 0, "state": 0, "s": 0.576, "polls": 542, "child": true}, "eager": {"sums_right": false, "rcs": [4, 4, 4, 4, 4], "polled": 0, "all_success": false}, "graphed": {"sums_right": false, "rcs": [4, 4, 4, 4, 4, 4, 4, 4, 4, 4], "polled": 0, "all_success": false}, "abort_rc": 0, "abort_s": 0.0, "parent_abort_rc": 0, "parent_abort_s": 0.916}
+03:42:15Z nccl probe: split-missing rank 1: {"mode": "join", "how": "split-missing", "rank": 1, "nccl": 22907, "init_rc": 7, "state": 0, "formed_s": 0.163, "polls": 17, "left": "formed the parent and left without splitting"}
+03:42:40Z taking the cluster down
+2026-10-15T03:55:04Z down: {"down": "everserve-proof-1015032328", "cluster": "mk8scluster-e00w30367xv297rm5k"}

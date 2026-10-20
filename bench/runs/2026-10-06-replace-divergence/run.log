@@ -1,0 +1,38 @@
+# REPLACE divergence diagnostic: run log
+2026-10-05T22:57:29Z Pasted brief, standing permission. Tree 5f5b116. Balance 15.09; the two caps ($10 A100, $5 H100) together equal it, so each pod's watchdog sits under its cap.
+2026-10-05T22:57:34Z deploy 5x NVIDIA A100-SXM4-80GB COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T22:57:34Z deploy 5x NVIDIA A100-SXM4-80GB SECURE: {"data": {"podFindAndDeployOnDemand": {"id": "7apjm912t5n0rt", "costPerHr": 7.95, "machine": {"gpuDisplayName": "A100 SXM", "location": "US"}}}}
+2026-10-05T22:57:50Z pod 7apjm912t5n0rt 5x A100 SXM secure US $7.95/h (deployed 22:57:34Z); watchdog terminates at 23:42:34Z (~$5.96)
+2026-10-05T22:58:35Z tree HEAD (Bench: diagnostic instrumentation for the REPLACE divergence) on the pod
+bash: line 1: /workspace/compat.env: No such file or directory
+0, NVIDIA A100-SXM4-80GB, 580.126.16
+1, NVIDIA A100-SXM4-80GB, 580.126.16
+2, NVIDIA A100-SXM4-80GB, 580.126.16
+3, NVIDIA A100-SXM4-80GB, 580.126.16
+4, NVIDIA A100-SXM4-80GB, 580.126.16
+	[4mGPU0	GPU1	GPU2	GPU3	GPU4	NIC0	NIC1	NIC2	NIC3	NIC4	NIC5	NIC6	NIC7	NIC8	NIC9	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+GPU0	 X 	NV12	NV12	NV12	NV12	PXB	PXB	NODE	NODE	SYS	SYS	SYS	SYS	SYS	SYS	0-63	0		N/A
+GPU1	NV12	 X 	NV12	NV12	NV12	NODE	NODE	PXB	PXB	SYS	SYS	SYS	SYS	SYS	SYS	0-63	0		N/A
+GPU2	NV12	NV12	 X 	NV12	NV12	NODE	NODE	PXB	PXB	SYS	SYS	SYS	SYS	SYS	SYS	0-63	0		N/A
+GPU3	NV12	NV12	NV12	 X 	NV12	SYS	SYS	SYS	SYS	PXB	PXB	NODE	NODE	NODE	NODE	64-127	1		N/A
+GPU4	NV12	NV12	NV12	NV12	 X 	SYS	SYS	SYS	SYS	NODE	NODE	PXB	PXB	NODE	NODE	64-127	1		N/A
+2026-10-05T22:58:36Z models download, setup (toolkit, vllm pin, kernels, tests) and build started
+2026-10-05T23:07:29Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;57G	/workspace/models/Qwen3-30B-A3B;shm             583G  8.1M  583G   1% /dev/shm;
+2026-10-05T23:07:30Z pod: adapter_port.sh drill diag_ref_1 --arm adapter --diag --logprobs 20
+2026-10-05T23:07:33Z start diag_ref_1: --arm adapter --diag --logprobs 20
+2026-10-05T23:09:39Z end diag_ref_1 rc=0: (MainProcess pid=10042) INFO 10-05 23:09:37 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T23:09:39Z pod: adapter_port.sh drill diag_ref_2 --arm adapter --diag --logprobs 20
+2026-10-05T23:09:42Z start diag_ref_2: --arm adapter --diag --logprobs 20
+2026-10-05T23:10:42Z end diag_ref_2 rc=0: (MainProcess pid=11680) INFO 10-05 23:10:39 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T23:10:42Z pod: adapter_port.sh drill diag_replace --arm replace --kill between --diag --logprobs 20
+2026-10-05T23:10:45Z start diag_replace: --arm replace --kill between --diag --logprobs 20
+2026-10-05T23:11:53Z end diag_replace rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T23:11:53Z pod: adapter_port.sh drill eager_1 --arm adapter --enforce-eager --logprobs 20
+2026-10-05T23:11:55Z start eager_1: --arm adapter --enforce-eager --logprobs 20
+2026-10-05T23:12:58Z end eager_1 rc=0: (MainProcess pid=14163) INFO 10-05 23:12:55 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T23:16:54Z outputs copied to data/ (tar over ssh; gitignored)
+overlay         200G   26G  175G  13% /
+2026-10-05T23:16:55Z terminate 7apjm912t5n0rt: {"data": {"podTerminate": null}}
+2026-10-05T23:16:55Z weights and /dev/shm deleted; pod terminated; watchdog stopped
+2026-10-05T23:16:59Z balance 9.31
+2026-10-05T23:18:20Z NOTE.md and results.json written; committed

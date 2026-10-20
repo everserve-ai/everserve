@@ -1,0 +1,11 @@
+2026-10-08T18:10:07Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: stock adapter; trials 1 (fault) / 1 (other); tree 142de12 + uncommitted
+2026-10-08T18:11:19Z fabric: slowest link to node-a 41.28 Gbit/s (floor 1)
+2026-10-08T18:12:10Z == stock trial 1
+stock trial 1: no control; figures only
+stock: 1 trials, green True, replica_lag_max_steps=[None], replication_dropped_total=0
+2026-10-08T18:15:36Z == adapter trial 1
+adapter trial 1: no control; figures only
+2026-10-08T18:19:08Z == adapter trial 2
+adapter trial 2: no control; figures only
+adapter: 2 trials, green True, adapter_overhead_pct=26.915, replica_lag_max_steps=0.0, replication_dropped_total=0.0, shadow_formation_s=3.6310000000000002
+2026-10-08T18:23:27Z battery done: adapter stock ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-exchange1

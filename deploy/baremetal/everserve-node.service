@@ -1,0 +1,38 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# The node daemon: one per node, the coordinator's agent. Workers register with it over its Unix
+# socket; it watches the node's notice source and routes the coordinator's control requests to
+# the node's store.
+[Unit]
+Description=Everserve node daemon
+Documentation=file:///usr/share/doc/everserve/README.md
+After=network-online.target everserve-store.service
+Wants=network-online.target
+Requires=everserve-store.service
+
+[Service]
+Type=simple
+User=everserve
+Group=everserve
+EnvironmentFile=/etc/everserve/node.env
+ExecStart=/usr/local/bin/everserve-controller node
+RuntimeDirectory=everserve
+RuntimeDirectoryPreserve=yes
+KillSignal=SIGTERM
+# the graceful period (EVERSERVE_GRACEFUL_SHUTDOWN_SECS, 30 s) plus a margin
+TimeoutStopSec=45
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectControlGroups=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+SyslogIdentifier=everserve-node
+PrivateTmp=yes
+# the daemon lists the node's GPUs through nvidia-smi for its hello
+SupplementaryGroups=video
+
+[Install]
+WantedBy=multi-user.target

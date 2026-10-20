@@ -1,0 +1,235 @@
+01:28:24Z the certificates, made here
+[2m2026-10-16T01:28:25.274769Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.XdpokX/certs/ca.crt
+[2m2026-10-16T01:28:25.275015Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.XdpokX/certs/ca.key
+[2m2026-10-16T01:28:25.275025Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.XdpokX/certs/coordinator.crt
+[2m2026-10-16T01:28:25.275032Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.XdpokX/certs/coordinator.key
+[2m2026-10-16T01:28:25.275038Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.XdpokX/certs/operator-proof.crt
+[2m2026-10-16T01:28:25.275044Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.XdpokX/certs/operator-proof.key
+01:28:25Z the cluster: 4 gpu-h100-sxm 1gpu-16vcpu-200gb nodes, released at the latest after 1.5 h
+2026-10-16T01:33:39Z node-group create --async answered: 'opmk8snodegroup-e00qmpg2zyqjcyndjk\n'
+2026-10-16T01:35:31Z up everserve-proof-1016012824 gpu-h100-sxm/1gpu-16vcpu-200gb x4: {"cluster": "mk8scluster-e00g6q2502e6j9gbhp", "node_group": "mk8snodegroup-e00wxavr7exmc8dxkb", "kubeconfig": "$TMPDIR/everserve-proof-secrets.XdpokX/kubeconfig"}
+{"cluster": "mk8scluster-e00g6q2502e6j9gbhp", "node_group": "mk8snodegroup-e00wxavr7exmc8dxkb", "kubeconfig": "$TMPDIR/everserve-proof-secrets.XdpokX/kubeconfig"}
+NAME                                 GPU
+computeinstance-e00qyvw8ryhr6995hm   1
+computeinstance-e00scybs4vddbkrb05   1
+computeinstance-e00ypvpn7xzf5wvyzn   1
+computeinstance-e00z48393x2mbk55tc   <none>
+namespace/everserve created
+namespace/everserve labeled
+secret/nebius-cr created
+namespace/serving created
+namespace/serving labeled
+secret/nebius-cr created
+secret/everserve-tls created
+01:35:38Z Dynamo's platform 1.5.1, with Grove
+NAME: dynamo-platform
+LAST DEPLOYED: Thu Oct 15 21:35:43 2026
+NAMESPACE: dynamo-system
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+# SPDX-FileCopyrightText: Copyright (c) 2025-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+01:36:15Z the instance: its core on its own GPU nodes, the engine's two nodes, 1 spare node(s)
+01:36:15Z the second instance, proof-b: one GPU node, behind the same frontends
+<tree>/bench/runs/2026-10-15-dynamo-handoff-measure/run-2/proof.k8s.json
+<tree>/bench/runs/2026-10-15-dynamo-handoff-measure/run-2/proof.engine.json
+<tree>/bench/runs/2026-10-15-dynamo-handoff-measure/run-2/proof.values.json
+<tree>/bench/runs/2026-10-15-dynamo-handoff-measure/run-2/proof-b.k8s.json
+<tree>/bench/runs/2026-10-15-dynamo-handoff-measure/run-2/proof-b.engine.json
+<tree>/bench/runs/2026-10-15-dynamo-handoff-measure/run-2/proof-b.values.json
+01:36:15Z Everserve's chart
+NAME: everserve
+LAST DEPLOYED: Thu Oct 15 21:36:18 2026
+NAMESPACE: everserve
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+dynamographdeployment.nvidia.com/proof created
+networkpolicy.networking.k8s.io/proof-engine created
+networkpolicy.networking.k8s.io/proof-frontends created
+dynamographdeployment.nvidia.com/proof-b created
+service/proof-b-rendezvous created
+networkpolicy.networking.k8s.io/proof-b-engine created
+networkpolicy.networking.k8s.io/proof-b-frontends created
+01:36:36Z the coordinator's API: its record decides when the loss is taken and whether it passed
+serviceaccount/proof-viewer created
+rolebinding.rbac.authorization.k8s.io/proof-viewer created
+serviceaccount/proof-operator created
+rolebinding.rbac.authorization.k8s.io/proof-operator created
+Forwarding from 127.0.0.1:17443 -> 7443
+Forwarding from [::1]:17443 -> 7443
+01:36:43Z waiting for proof proof-b to serve
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+error: lost connection to pod
+Forwarding from 127.0.0.1:17443 -> 7443
+Forwarding from [::1]:17443 -> 7443
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+error: lost connection to pod
+Forwarding from 127.0.0.1:17443 -> 7443
+Forwarding from [::1]:17443 -> 7443
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+NAME                       READY   STATUS    RESTARTS   AGE     IP            NODE                                 NOMINATED NODE   READINESS GATES
+proof-0-frontend-ttqsk     1/1     Running   0          7m43s   10.6.13.188   computeinstance-e00z48393x2mbk55tc   <none>           <none>
+proof-0-nodes-869j8        1/1     Running   0          7m43s   10.0.63.124   computeinstance-e00scybs4vddbkrb05   <none>           <none>
+proof-0-nodes-clf6s        1/1     Running   0          7m43s   10.0.8.68     computeinstance-e00qyvw8ryhr6995hm   <none>           <none>
+proof-0-nodes-mgcxq        1/1     Running   0          7m43s   10.6.13.44    computeinstance-e00z48393x2mbk55tc   <none>           <none>
+proof-b-0-frontend-m49ss   1/1     Running   0          7m42s   10.6.13.108   computeinstance-e00z48393x2mbk55tc   <none>           <none>
+proof-b-0-head-ztk2t       1/1     Running   0          7m42s   10.0.4.16     computeinstance-e00ypvpn7xzf5wvyzn   <none>           <none>
+Forwarding from 127.0.0.1:18000 -> 8000
+Forwarding from [::1]:18000 -> 8000
+01:44:29Z warm: one short completion
+Handling connection for 18000
+{"streams": 1, "completed": 1, "errors": [], "max_gap_s": 0.082}
+Handling connection for 17443
+01:44:30Z notice 1: the core is on computeinstance-e00scybs4vddbkrb05, which holds rank(s) 1; waiting for them to be covered
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+01:59:39Z notice 1: rank 1 on computeinstance-e00scybs4vddbkrb05 never covered within 900 s: plan 2 at epoch 0: no set planned for the loss of rank 1
+02:00:11Z taking the cluster down
+2026-10-16T02:11:50Z down: {"down": "everserve-proof-1016012824", "cluster": "mk8scluster-e00g6q2502e6j9gbhp"}
+2026-10-16T02:58:25Z watchdog everserve-proof-1016012824: {"down": "everserve-proof-1016012824", "found": false}

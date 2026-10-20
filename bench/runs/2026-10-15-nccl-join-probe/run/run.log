@@ -1,0 +1,89 @@
+02:05:22Z the certificates, made here
+[2m2026-10-15T02:05:23.008076Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-2/certs/ca.crt
+[2m2026-10-15T02:05:23.008130Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-2/certs/ca.key
+[2m2026-10-15T02:05:23.008139Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-2/certs/coordinator.crt
+[2m2026-10-15T02:05:23.008146Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-2/certs/coordinator.key
+[2m2026-10-15T02:05:23.008153Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-2/certs/operator-proof.crt
+[2m2026-10-15T02:05:23.008160Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-2/certs/operator-proof.key
+02:05:23Z the cluster: 3 L40S nodes, released at the latest after 1.5 h
+2026-10-15T02:10:36Z node-group create --async answered: 'opmk8snodegroup-e00yzk5bke832b6xyd\n'
+2026-10-15T02:12:28Z up everserve-proof-1015020522 gpu-l40s-a/1gpu-8vcpu-32gb x3: {"cluster": "mk8scluster-e00yk525dvckm7seem", "node_group": "mk8snodegroup-e00kpba6kh556qn8xs", "kubeconfig": "/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-2/kubeconfig"}
+{"cluster": "mk8scluster-e00yk525dvckm7seem", "node_group": "mk8snodegroup-e00kpba6kh556qn8xs", "kubeconfig": "/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-2/kubeconfig"}
+NAME                                 GPU
+computeinstance-e00a4y2pkbe0mcj46z   <none>
+computeinstance-e00ff2r29ea13j6cpy   1
+computeinstance-e00s06q3a47qsyfmvv   1
+namespace/everserve created
+namespace/everserve labeled
+secret/nebius-cr created
+namespace/serving created
+namespace/serving labeled
+secret/nebius-cr created
+secret/everserve-tls created
+02:12:34Z Dynamo's platform 1.5.1, with Grove
+NAME: dynamo-platform
+LAST DEPLOYED: Wed Oct 14 22:12:39 2026
+NAMESPACE: dynamo-system
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+# SPDX-FileCopyrightText: Copyright (c) 2025-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+02:13:13Z the instance: the head, one node of the engine, 1 spare node(s)
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-2/proof.k8s.json
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-2/proof.engine.json
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-2/proof.values.json
+02:13:13Z Everserve's chart
+NAME: everserve
+LAST DEPLOYED: Wed Oct 14 22:13:15 2026
+NAMESPACE: everserve
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+dynamographdeployment.nvidia.com/proof created
+service/proof-rendezvous created
+networkpolicy.networking.k8s.io/proof-engine created
+02:13:32Z waiting for the instance to serve
+NAME                     READY   STATUS    RESTARTS   AGE     IP            NODE                                 NOMINATED NODE   READINESS GATES
+proof-0-frontend-swb6l   1/1     Running   0          8m22s   10.7.60.192   computeinstance-e00s06q3a47qsyfmvv   <none>           <none>
+proof-0-head-cmmns       1/1     Running   0          8m22s   10.0.19.200   computeinstance-e00a4y2pkbe0mcj46z   <none>           <none>
+proof-0-nodes-jshhd      1/1     Running   0          8m22s   10.7.51.180   computeinstance-e00ff2r29ea13j6cpy   <none>           <none>
+proof-0-nodes-jvdtm      1/1     Running   0          8m22s   10.7.60.166   computeinstance-e00s06q3a47qsyfmvv   <none>           <none>
+Forwarding from 127.0.0.1:18000 -> 8000
+Forwarding from [::1]:18000 -> 8000
+02:22:05Z the coordinator's API: its record decides when the loss is taken and whether it passed
+serviceaccount/proof-viewer created
+rolebinding.rbac.authorization.k8s.io/proof-viewer created
+Forwarding from 127.0.0.1:17443 -> 7443
+Forwarding from [::1]:17443 -> 7443
+02:22:09Z warm: one short completion
+Handling connection for 18000
+{"streams": 1, "completed": 1, "errors": [], "max_gap_s": 0.084}
+02:22:10Z passed: 0 losses of rank 1 under load, each taken by a spare
+02:22:11Z nccl probe: a group of two whose second member never comes (pod/proof-0-nodes-jshhd)
+02:22:27Z nccl probe: {"mode": "missing", "as": 0, "nccl": 22907, "init_rc": 7, "state": 7, "waited_s": 10.006, "polls": 995, "abort_rc": 0, "abort_s": 0.0, "device_ok": true}
+02:22:27Z nccl probe: a member whose server made its id and is gone (pod/proof-0-head-cmmns)
+02:22:48Z nccl probe: {"mode": "missing", "as": 1, "nccl": 22907, "init_rc": 7, "state": 7, "waited_s": 10.004, "polls": 994, "abort_rc": 0, "abort_s": 0.668, "device_ok": true}
+02:22:48Z nccl probe: a group of two formed by vllm, then eager and graphed all-reduces (pod/proof-0-head-cmmns, pod/proof-0-nodes-jshhd)
+02:25:54Z nccl probe: vllm rank 0: id b0734a8c277900000200d63f0a0013c800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+02:25:54Z nccl probe: vllm rank 1: 
+02:25:54Z nccl probe: a group of two formed by blocking, then eager and graphed all-reduces (pod/proof-0-head-cmmns, pod/proof-0-nodes-jshhd)
+02:29:00Z nccl probe: blocking rank 0: id 307399e2087100000200e8150a0013c800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+02:29:00Z nccl probe: blocking rank 1: 
+02:29:00Z nccl probe: a group of two formed by nonblocking, then eager and graphed all-reduces (pod/proof-0-head-cmmns, pod/proof-0-nodes-jshhd)
+2026-10-15T02:47:35Z down: {"down": "everserve-proof-1015020522", "cluster": "mk8scluster-e00yk525dvckm7seem"}

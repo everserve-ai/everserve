@@ -1,0 +1,86 @@
+{
+  "version": "rig-tp1pp2-managed",
+  "outcomesInOrder": [
+    "OUTCOME_REPLACE",
+    "OUTCOME_REBUILD"
+  ],
+  "spares": {
+    "perEngine": 1,
+    "loading": "LOADING_PRELOADED",
+    "allowMismatched": false,
+    "maxDegradePercent": 0
+  },
+  "maxConcurrentLosses": 1,
+  "noticeMinMs": 2000,
+  "engines": [
+    {
+      "name": "rig",
+      "members": [
+        {
+          "node": "node-a",
+          "device": 0
+        },
+        {
+          "node": "node-b",
+          "device": 0
+        }
+      ],
+      "tensorParallel": 1,
+      "expertParallel": 1,
+      "pipelineParallel": 2,
+      "placementIndependentModel": false,
+      "spares": [
+        {
+          "node": "node-c",
+          "device": 0,
+          "rank": 1
+        }
+      ],
+      "releaseBoundMs": 10000,
+      "spareLaunch": {
+        "command": [
+          "/usr/bin/env",
+          "PYTHONPATH=/workspace/everserve/bench/harness:/workspace/everserve/bench/harness/sitehooks",
+          "/workspace/everserve/.venv/bin/python",
+          "-m",
+          "everserve_vllm.spare_main",
+          "--engine",
+          "{engine}",
+          "--rank",
+          "{rank}",
+          "--node",
+          "{node}",
+          "--policy",
+          "/workspace/everserve/bench/harness/policies/battery.json",
+          "--discovery-dir",
+          "/workspace/disc",
+          "--model",
+          "/workspace/models/Qwen3-1.7B",
+          "--tp",
+          "1",
+          "--pp",
+          "2",
+          "--max-model-len",
+          "2560",
+          "--blocks",
+          "1400",
+          "--gpu-util",
+          "0.85",
+          "--prompt-len",
+          "512",
+          "--max-num-seqs",
+          "8"
+        ],
+        "env": {
+          "CUDA_VISIBLE_DEVICES": "{device}",
+          "EVERSERVE_GRAPH_SAFE": "1",
+          "EVERSERVE_LAYOUT": "1,2",
+          "EVERSERVE_EVENT_DIR": "/workspace/out/events_spare",
+          "PYTHONUNBUFFERED": "1",
+          "EVERSERVE_EXCHANGE_IN_FLIGHT": "1",
+          "EVERSERVE_PIPELINE_PACKED": "0"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+    raise RuntimeError(
+RuntimeError: no capacity for 3 x gpu-l40s-a 1gpu-8vcpu-32gb in eu-north1 after 900 s: the node group's last status was {"events": [{"first_occurred_at": "2026-10-15T07:23:27Z", "last_occurrence": {"code": "ComputeInstanceOperationFailed", "error": {"code": 8, "details": [{"@type": "type.googleapis.com/nebius.common.v1.ServiceError", "code": "NotEnoughResources", "not_enough_resources": {"violations": [{"message": "VM schedule timeout, most likely due to insufficient hardware resources, for more information see https://docs.nebius.com/compute/virtual-machines/not-enough-resources", "requested": "1gpu-8vcpu-32gb", "resource_type": "virtualMachine"}]}, "retry_type": "NOTHING", "service": "compute"}]}, "level": "E
+07:32:42Z taking the cluster down
+2026-10-15T07:37:41Z down: {"down": "everserve-proof-1015071149", "cluster": "mk8scluster-e00rf6dqr62xp16ncp"}
+
+[exited with code 1]

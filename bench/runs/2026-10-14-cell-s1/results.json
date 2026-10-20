@@ -1,0 +1,230 @@
+{
+  "preregistration": "PREREGISTRATION.md (4ce8921)",
+  "baseline": "../2026-10-14-cell-s0/results.json",
+  "host": "Apple M-series Mac, 14 cores, 36 GiB, ulimit -n 65536, kern.ipc.somaxconn 128",
+  "note": "link_s is read by a 500 ms poll: it bounds the link time, it does not resolve it",
+  "runs": [
+    {
+      "commit": "4ce8921",
+      "size": 1250,
+      "outcome": "linked; 20 of 20 changes committed",
+      "measured": {
+        "bytes_received_per_change": [
+          593,
+          601,
+          601,
+          601,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609
+        ],
+        "change_s": {
+          "max": 0.001935042,
+          "n": 20,
+          "p50": 0.000947583,
+          "p99": 0.001935042
+        },
+        "connections_refused": 960,
+        "cpu_s": {
+          "changes": 0.04999999999999999,
+          "link": 0.27
+        },
+        "daemons_sent_to_per_change": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "engines": 625,
+        "gpus": 10000,
+        "link_s": 0.513753875,
+        "node_views_s": 0.009241125,
+        "nodes": 1250,
+        "nodes_per_engine": 2,
+        "readiness_s": 0.006590917,
+        "rss_bytes": {
+          "after_changes": 70172672,
+          "idle": 5767168,
+          "linked": 69517312
+        }
+      }
+    },
+    {
+      "commit": "4ce8921",
+      "size": 2500,
+      "outcome": "linked; 20 of 20 changes committed",
+      "measured": {
+        "bytes_received_per_change": [
+          593,
+          601,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          617,
+          617,
+          617,
+          617
+        ],
+        "change_s": {
+          "max": 0.001867792,
+          "n": 20,
+          "p50": 0.001269625,
+          "p99": 0.001867792
+        },
+        "connections_refused": 2133,
+        "cpu_s": {
+          "changes": 0.07000000000000006,
+          "link": 0.57
+        },
+        "daemons_sent_to_per_change": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "engines": 1250,
+        "gpus": 20000,
+        "link_s": 0.521958541,
+        "node_views_s": 0.029892333,
+        "nodes": 2500,
+        "nodes_per_engine": 2,
+        "readiness_s": 0.014286625,
+        "rss_bytes": {
+          "after_changes": 133332992,
+          "idle": 7520256,
+          "linked": 132628480
+        }
+      }
+    },
+    {
+      "commit": "4ce8921",
+      "size": 5000,
+      "outcome": "linked; 20 of 20 changes committed",
+      "measured": {
+        "bytes_received_per_change": [
+          593,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617
+        ],
+        "change_s": {
+          "max": 0.005635584,
+          "n": 20,
+          "p50": 0.001588791,
+          "p99": 0.005635584
+        },
+        "connections_refused": 4463,
+        "cpu_s": {
+          "changes": 0.10999999999999988,
+          "link": 1.27
+        },
+        "daemons_sent_to_per_change": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "engines": 2500,
+        "gpus": 40000,
+        "link_s": 0.518349417,
+        "node_views_s": 0.090835416,
+        "nodes": 5000,
+        "nodes_per_engine": 2,
+        "readiness_s": 0.032917833,
+        "rss_bytes": {
+          "after_changes": 263651328,
+          "idle": 11223040,
+          "linked": 262946816
+        }
+      }
+    }
+  ]
+}

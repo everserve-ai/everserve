@@ -1,0 +1,46 @@
+# Exact replay session (decision 0013): build, drills, then the battery: run log
+2026-10-05T23:35:14Z Pasted brief, standing permission; owner capped the whole session at $8 (not $15 + $10). Base 851d165; local eb67ad3. Balance 8.29.
+2026-10-05T23:35:15Z deploy 5x NVIDIA A100-SXM4-80GB COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T23:35:15Z deploy 5x NVIDIA A100-SXM4-80GB SECURE: {"data": {"podFindAndDeployOnDemand": {"id": "heippwhi15marw", "costPerHr": 7.95, "machine": {"gpuDisplayName": "A100 SXM", "location": "US"}}}}
+2026-10-05T23:35:26Z pod heippwhi15marw 5x A100 SXM $7.95/h; watchdog terminates at +58 min (00:33:26Z, ~$7.69)
+2026-10-05T23:35:39Z tree eb67ad3 (Bench: the REPLACE and notice drills check decision 0013's e) on the pod
+bash: line 1: /workspace/compat.env: No such file or directory
+0, NVIDIA A100-SXM4-80GB, 580.126.16
+1, NVIDIA A100-SXM4-80GB, 580.126.16
+2, NVIDIA A100-SXM4-80GB, 580.126.16
+3, NVIDIA A100-SXM4-80GB, 580.126.16
+4, NVIDIA A100-SXM4-80GB, 580.126.16
+	[4mGPU0	GPU1	GPU2	GPU3	GPU4	NIC0	NIC1	NIC2	NIC3	NIC4	NIC5	NIC6	NIC7	NIC8	NIC9	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+GPU0	 X 	NV12	NV12	NV12	NV12	PXB	PXB	NODE	NODE	SYS	SYS	SYS	SYS	SYS	SYS	0-63	0		N/A
+GPU1	NV12	 X 	NV12	NV12	NV12	NODE	NODE	PXB	PXB	SYS	SYS	SYS	SYS	SYS	SYS	0-63	0		N/A
+GPU2	NV12	NV12	 X 	NV12	NV12	NODE	NODE	PXB	PXB	SYS	SYS	SYS	SYS	SYS	SYS	0-63	0		N/A
+GPU3	NV12	NV12	NV12	 X 	NV12	SYS	SYS	SYS	SYS	PXB	PXB	NODE	NODE	NODE	NODE	64-127	1		N/A
+GPU4	NV12	NV12	NV12	NV12	 X 	SYS	SYS	SYS	SYS	NODE	NODE	PXB	PXB	NODE	NODE	64-127	1		N/A
+2026-10-05T23:35:40Z models download, setup (toolkit, vllm pin, kernels, tests) and build started
+2026-10-05T23:44:35Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;shm             583G  8.1M  583G   1% /dev/shm;
+2026-10-05T23:44:35Z pod (drill): adapter_port.sh drill adapter_1 --arm adapter
+2026-10-05T23:44:38Z start adapter_1: --arm adapter
+2026-10-05T23:46:47Z end adapter_1 rc=0: (MainProcess pid=10026) INFO 10-05 23:46:44 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T23:46:47Z pod (drill): adapter_port.sh drill replace_between_1 --arm replace --kill between
+2026-10-05T23:46:50Z start replace_between_1: --arm replace --kill between
+2026-10-05T23:47:55Z end replace_between_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T23:47:55Z pod (drill): adapter_port.sh drill notice_ref --arm adapter --max-tokens 601 --max-model-len 2688
+2026-10-05T23:47:58Z start notice_ref: --arm adapter --max-tokens 601 --max-model-len 2688
+2026-10-05T23:49:53Z end notice_ref rc=0: (MainProcess pid=12946) INFO 10-05 23:49:50 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T23:49:53Z pod (drill): adapter_port.sh drill notice_1 --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-05T23:49:56Z start notice_1: --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-05T23:51:06Z end notice_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+determinism {'adapter/201': None, 'adapter/601': None}
+adapter_1 959.4 pause 0.012
+notice_1 960.2 pause 0.373 ref notice_ref match [True, True, True, True, True, True, True, True] first_token 0.31935739517211914
+   kv True {'0': [], '1': [], '2': [], '3': []}
+   first_step_back True re_added 0 per_rank {'0': {'cg_mode': 'FULL', 'num_scheduled_tokens': [1, 1, 1, 1, 1, 1, 1, 1], 'has_prefill': True}, '1': {'cg_mode': 'FULL', 'num_scheduled_tokens': [1, 1, 1, 1, 1, 1, 1, 1], 'has_prefill': True}, '2': {'cg_mode': 'FULL', 'num_scheduled_tokens': [1, 1, 1, 1, 1, 1, 1, 1], 'has_prefill': True}, '3': {'cg_mode': 'FULL', 'num_scheduled_tokens': [1, 1, 1, 1, 1, 1, 1, 1], 'has_prefill': True}}
+   sched [('0-90607930', [[2449, 1], [2450, 1], [2451, 1]]), ('1-8829de68', [[2449, 1], [2450, 1], [2451, 1]])] committed [2449, 2449]
+   logits True [None, None, None, None, None, None, None, None] ALL True
+notice_ref 952.0 pause 0.016
+replace_between_1 954.4 pause 1.359 ref adapter_1 match [True, True, True, True, True, True, True, True] first_token 0.11095690727233887
+   kv True {'0': [], '1': [], '2': [], '3': []}
+   first_step_back True re_added 0 per_rank {'0': {'cg_mode': 'FULL', 'num_scheduled_tokens': [1, 1, 1, 1, 1, 1, 1, 1], 'has_prefill': True}, '1': {'cg_mode': 'FULL', 'num_scheduled_tokens': [1, 1, 1, 1, 1, 1, 1, 1], 'has_prefill': True}, '2': {'cg_mode': 'FULL', 'num_scheduled_tokens': [1, 1, 1, 1, 1, 1, 1, 1], 'has_prefill': True}, '3': {'cg_mode': 'FULL', 'num_scheduled_tokens': [1, 1, 1, 1, 1, 1, 1, 1], 'has_prefill': True}}
+   sched [('0-97b43799', [[2149, 1], [2150, 1], [2151, 1]]), ('1-bd937a3d', [[2149, 1], [2150, 1], [2151, 1]])] committed [2149, 2149]
+   logits True [None, None, None, None, None, None, None, None] ALL True
+2026-10-05T23:51:24Z drills on eb67ad3 (REPLACE between, notice, with adapter_1 and notice_ref): all three exactness checks pass in both; 8/8 tokens and every logprob equal the references; first step back 1 token/request from 2149 (REPLACE) and 2449 (notice), FULL graph on every rank, nothing re-added.

@@ -1,0 +1,57 @@
+{
+  "arm": "stock_restart",
+  "trial": 1,
+  "record": "bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass13/arms/stock_restart/trial1/result.json",
+  "model": "/workspace/models/Qwen3-1.7B",
+  "sessions": 8,
+  "prompt_len": 512,
+  "kill": {
+    "t_kill": 1791564986.6486306,
+    "mode": "node-b lost"
+  },
+  "clock": {
+    "offset_s": 0.0,
+    "source": "no probe answered: the offset is taken as zero",
+    "error_s": null
+  },
+  "figures": {
+    "stock_restart_first_token_s": {
+      "value": 378.272,
+      "prediction": null,
+      "predicted": "minutes (the baseline)",
+      "kill": null,
+      "t_kill_node_a": 1791564986.6486306,
+      "t_first_token": 1791565364.9207716
+    },
+    "stock_restart_relaunch_latency_s": {
+      "value": 312.47,
+      "prediction": null,
+      "predicted": "the supervisor's",
+      "kill": null
+    },
+    "stock_restart_engine_ready_s": {
+      "value": 16.716,
+      "prediction": null,
+      "predicted": "the engine's own load",
+      "kill": null
+    },
+    "sessions_kept_identical": {
+      "value": "0/8",
+      "prediction": 5,
+      "predicted": "all",
+      "kill": "any lost or mismatched",
+      "verdict": "stock keeps no session across a lost rank: every request prefilled again",
+      "green": false
+    },
+    "requests_re_prefilled": {
+      "value": 8,
+      "prediction": 5,
+      "predicted": 0,
+      "kill": "any"
+    }
+  },
+  "verdict": {
+    "green": true,
+    "line": "the baseline: measured, not scored"
+  }
+}

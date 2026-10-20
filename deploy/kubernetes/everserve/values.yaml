@@ -1,0 +1,123 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# How every container writes its log lines to standard error: text for people, json for a log
+# pipeline (one object per line).
+logFormat: text
+# The control plane's image: the release's, at the chart's appVersion unless a tag is set
+# (a release publishes image and chart at one version); or one built from the repository's
+# Dockerfile and pushed to a registry of your own.
+image:
+  repository: ghcr.io/everserve-ai/everserve
+  tag: ""
+  pullPolicy: IfNotPresent
+# Secrets the kubelet pulls the image with, from a private registry: [{name: <secret>}]. Given to
+# the coordinator's pods and the node daemons'.
+imagePullSecrets: []
+
+coordinator:
+  # the coordinators' priority class; empty, the cluster's default. A class above the engines'
+  # keeps the control plane scheduled when a node is short
+  priorityClassName: ""
+  # one holds the lease and acts; the others stand by, on other nodes where the scheduler can
+  replicas: 2
+  # the coordination.k8s.io Lease the coordinators contend for and the daemons follow
+  leaseName: everserve-coordinator
+  # seconds a lease outlives its holder's last renewal: the longest a standby waits
+  leaseTtlSeconds: 10
+  # the spec store: the EverserveState objects (crds/) holding the specs and each engine's change
+  # in flight, named for it; a standby that takes the lease takes them (decision 0036)
+  specStore: everserve
+  # where daemons link to the coordinator, under TLS
+  port: 7000
+  # /metrics and /healthz
+  metricsPort: 9107
+  # the operator API, under TLS, every caller's rights reviewed by the cluster (decision 0039):
+  # bind everserve-viewer or everserve-operator to grant them
+  apiPort: 7443
+  # seconds in-flight changes get on a stop; the pod's grace period adds a margin
+  gracefulShutdownSeconds: 30
+  resources:
+    requests: {cpu: 100m, memory: 128Mi}
+    limits: {memory: 512Mi}
+  # The cluster's Nodes (decision 0041): which are spot, and which their provider is taking back.
+  nodes:
+    # follow them; the coordinator is granted get, list and watch on Nodes
+    follow: true
+    # key=value: a Node with this label is spot capacity ("" for none known); readiness says when
+    # an engine whose policy sets headOnDemand has its head on one
+    spotLabel: ""
+    # key=value: a Node with this label is being taken back and is drained; CoreWeave's spot pools
+    # label qos.coreweave.cloud/pending-preemption=true two minutes before their own drain
+    preemptionLabel: ""
+    preemptionLeadSeconds: 120
+
+# The Secret holding coordinator.crt, coordinator.key, ca.crt and, for the node daemons, ca.key, as
+# `everserve-controller certs` writes them: the coordinator signs each node's certificate with the
+# CA's key (decision 0037), and the Secret is the coordinator's to read alone.
+tls:
+  secretName: everserve-tls
+  # the name on coordinator.crt, which the daemons verify
+  coordinatorName: coordinator
+  # the CA's certificate (PEM), public: what a node verifies the coordinator by before it is
+  # issued its own; --set-file tls.caCertificate=certs/ca.crt. Required with node.enabled.
+  caCertificate: ""
+
+# The node daemons and their stores, a DaemonSet (decision 0037): each node's certificate issued
+# by the coordinator from the pod's projected token, renewed at half its life.
+node:
+  enabled: true
+  # where they run: every node an engine may run on
+  nodeSelector: {}
+  tolerations: []
+  # the node group: the daemon, the store and every engine process on the node are members, and
+  # the node's shared directories are its alone (core/everserve/podcontract.py NODE_GID)
+  group: 64000
+  # hours a node's certificate is valid; it is renewed at about half
+  certificateHours: 12
+  metricsPort: 9108
+  heartbeatMs: 500
+  # the lead a cordon gives before the node's engines are drained off it
+  noticeLeadMs: 30000
+  gracefulShutdownSeconds: 30
+  resources:
+    requests: {cpu: 100m, memory: 128Mi}
+    limits: {memory: 512Mi}
+  # the node DaemonSet's priority class; empty, the cluster's default. A node's daemon and store
+  # outlive the engines they protect only at a priority above theirs (system-node-critical where
+  # the cluster allows it in the release's namespace)
+  priorityClassName: ""
+  store:
+    # slot ids per layer table: the engine's KV blocks times its block size. Required.
+    slots: null
+    # the store's row tables, in bytes, in the node's shared memory (/dev/shm): the store refuses
+    # to start on a budget the node's /dev/shm has no room for. Required.
+    budgetBytes: null
+    replicaPort: 7100
+    metricsPort: 9109
+    # the store's memory is its budget and this: its tables live in the node's shared memory,
+    # which counts against its container's limit, so the limit is derived, request equal to it
+    # (the store refuses to start on a budget its limit does not hold)
+    memoryOverheadBytes: 536870912
+    cpu: 100m
+    # the most bytes of compile caches the node keeps on its disk (decision 0043): a spare's
+    # node fetches its rank's compile cache into the pod contract's cache directory, and a fetch
+    # past this is refused, the spare not standing. A rank's set is hundreds of megabytes.
+    compileCacheBytes: 17179869184
+
+# Who reaches the control plane's ports (templates/network-policy.yaml). The node daemons always
+# reach the coordinator's link and API, and each other's stores; these name everyone else, as
+# NetworkPolicy peers. A cluster whose network enforces no NetworkPolicy ignores them.
+networkPolicy:
+  enabled: true
+  # the operator API's callers besides the node daemons: every namespace, the API authenticating
+  # each caller itself (the cluster's RBAC, decision 0039); narrow it to the operators' namespaces
+  apiFrom:
+    - namespaceSelector: {}
+  # /metrics, which serves without authentication: the monitoring namespace's Prometheus
+  metricsFrom:
+    - namespaceSelector:
+        matchLabels: {kubernetes.io/metadata.name: monitoring}
+
+# The policy document, as protobuf JSON (proto/everserve/proto/policy.proto; examples in
+# docs/examples): engines, members, spares, outcomes. Required.
+policy: {}

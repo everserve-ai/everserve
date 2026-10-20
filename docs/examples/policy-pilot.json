@@ -1,0 +1,27 @@
+{
+  "version": "pilot-1",
+  "outcomesInOrder": ["OUTCOME_REPLACE", "OUTCOME_REBUILD"],
+  "spares": { "perEngine": 1, "loading": "LOADING_PRELOADED" },
+  "maxConcurrentLosses": 1,
+  "noticeMinMs": 5000,
+  "engines": [
+    {
+      "name": "k3-a",
+      "members": [
+        { "node": "n1", "device": 0 }, { "node": "n1", "device": 1 },
+        { "node": "n1", "device": 2 }, { "node": "n1", "device": 3 },
+        { "node": "n1", "device": 4 }, { "node": "n1", "device": 5 },
+        { "node": "n1", "device": 6 }, { "node": "n1", "device": 7 },
+        { "node": "n2", "device": 0 }, { "node": "n2", "device": 1 },
+        { "node": "n2", "device": 2 }, { "node": "n2", "device": 3 },
+        { "node": "n2", "device": 4 }, { "node": "n2", "device": 5 },
+        { "node": "n2", "device": 6 }, { "node": "n2", "device": 7 }
+      ],
+      "tensorParallel": 8,
+      "expertParallel": 16,
+      "dataParallel": 2,
+      "pipelineParallel": 1,
+      "placementIndependentModel": false
+    }
+  ]
+}

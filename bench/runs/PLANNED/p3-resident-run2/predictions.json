@@ -1,0 +1,156 @@
+{
+  "preregistration": "bench/runs/PLANNED/p3-resident-run2/PREREGISTRATION.md",
+  "note": "transcribed from the pre-registration's Predictions; a figure with n null is the harness's own check or reported, not scored",
+  "figures": {
+    "sessions_kept_identical": {
+      "n": 1,
+      "predicted": "every session identical to the control's, arms 4 to 6 and the smoke, every trial",
+      "kill": "any mismatch, or any trial that ends without its record"
+    },
+    "engine_down": {
+      "n": 2,
+      "predicted": false,
+      "kill": "true: a change failed or the engine was reported down in a trial (the cause named)"
+    },
+    "first_differing_position": {
+      "n": 3,
+      "predicted": "none on either rank",
+      "kill": "any differing position"
+    },
+    "restored_rows_mismatched": {
+      "n": 3,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "restore_coverage": {
+      "n": 4,
+      "predicted": 1.0,
+      "kill": "< 1.0"
+    },
+    "backup_coverage": {
+      "n": 4,
+      "predicted": 1.0,
+      "kill": "< 1.0 for either rank"
+    },
+    "requests_re_prefilled": {
+      "n": 5,
+      "predicted": 0,
+      "kill": "any first batch computing more than one token for a request"
+    },
+    "resume_below_committed": {
+      "n": 5,
+      "predicted": "0 (one below only with its cause named)",
+      "kill": "any resume lower"
+    },
+    "compile_cache_consistent": {
+      "n": 6,
+      "predicted": "true: readiness consistent, the taking spare's pair equal to its position's, no autotune result written",
+      "kill": "false (the failing check named)"
+    },
+    "store_refusals_total": {
+      "n": 6,
+      "predicted": 0,
+      "kill": "any refusal for checksum or unchecked"
+    },
+    "node_fault_gap_s": {
+      "n": 7,
+      "predicted": "10 to 25 (median of five warm takes)",
+      "kill": "median > 40; the cold take > 40"
+    },
+    "single_death_gap_s": {
+      "n": 8,
+      "predicted": "8 to 20 (median of three)",
+      "kill": "median > 40"
+    },
+    "take_written_beyond_baseline_bytes": {
+      "n": 9,
+      "predicted": "0 on the cold take",
+      "kill": "any byte on the cold take (zero-byte files listed, not counted)"
+    },
+    "take_weights_s": {
+      "n": 10,
+      "predicted": "0.5 to 1.5",
+      "kill": "> 10"
+    },
+    "take_kv_config_s": {
+      "n": 10,
+      "predicted": "4 to 6, its parts reported",
+      "kill": "> 10, or a profiling run logged"
+    },
+    "take_modules_s": {
+      "n": 10,
+      "predicted": "reported",
+      "kill": null
+    },
+    "take_warm_s": {
+      "n": 10,
+      "predicted": "reported",
+      "kill": null
+    },
+    "take_s": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "take_identity_s": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "staged_wait_s": {
+      "n": 11,
+      "predicted": "the staged copy finished before the spare asks (long context, median of three)",
+      "kill": "> 5 (long context)"
+    },
+    "take_restore_s": {
+      "n": 11,
+      "predicted": "< 2 (long context, median of three)",
+      "kill": null
+    },
+    "shadow_formation_s": {
+      "n": 12,
+      "predicted": "< 30 at standing",
+      "kill": "median > 60"
+    },
+    "adapter_overhead_pct": {
+      "n": 13,
+      "predicted": "within 5",
+      "kill": "> 10 under stock"
+    },
+    "stops_killed": {
+      "n": 14,
+      "predicted": 0,
+      "kill": "any of ours killed at its stop (stock's own processes excepted)"
+    },
+    "runs_agree": {
+      "n": null,
+      "predicted": "every session (the smoke's repeat)",
+      "kill": "any session differs (the battery stops)"
+    },
+    "take_written_bytes": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "replica_lag_max_steps": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "replication_dropped_total": {
+      "n": null,
+      "predicted": 0,
+      "kill": null
+    },
+    "instrument_pause_s": {
+      "n": null,
+      "predicted": "after the gap",
+      "kill": null
+    },
+    "stock_stops_killed": {
+      "n": null,
+      "predicted": "reported: stock's own processes",
+      "kill": null
+    }
+  }
+}

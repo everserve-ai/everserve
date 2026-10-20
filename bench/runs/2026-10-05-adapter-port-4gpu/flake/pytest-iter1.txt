@@ -1,0 +1,126 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-9.1.1, pluggy-1.6.0
+rootdir: <tree>
+configfile: pyproject.toml
+collected 10 items
+
+core/tests/test_runtime_fault.py ......F
+
+=================================== FAILURES ===================================
+________________ test_mid_step_kill_is_bit_identical[0.003-tp] _________________
+
+base = {'ep': ([[1, 66, 87, 31, 81, 66, ...], [50, 50, 50, 50, 50, 81, ...], [0, 24, 12, 50, 88, 24, ...], [26, 26, 66, 4, 42...a', ...], ['81a2fd17b05d', '0644c6f42b89', 'f4886a851da8', 'a40253ce1a38', 'abb1318eab6a', '91db78dc6cb5', ...], ...])}
+kind = 'tp', delay = 0.003
+
+    @pytest.mark.parametrize("kind", ["ep", "tp"])
+    @pytest.mark.parametrize("delay", [0.0, 0.003, 0.01])
+    def test_mid_step_kill_is_bit_identical(base, kind, delay):
+        ev = {}
+>       assert run(kind, ("mid", 12, delay), events=ev) == base[kind]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+core/tests/test_runtime_fault.py:279: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+core/tests/test_runtime_fault.py:237: in run
+    toks, digests = recv_all()
+                    ^^^^^^^^^^
+core/tests/test_runtime_fault.py:211: in recv_all
+    outs = [conns[r].recv() for r in alive]
+            ^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/multiprocessing/connection.py:250: in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/multiprocessing/connection.py:430: in _recv_bytes
+    buf = self._recv(4)
+          ^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <multiprocessing.connection.Connection object at 0x107276de0>, size = 4
+read = <built-in function read>
+
+    def _recv(self, size, read=_read):
+        buf = io.BytesIO()
+        handle = self._handle
+        remaining = size
+        while remaining > 0:
+            chunk = read(handle, remaining)
+            n = len(chunk)
+            if n == 0:
+                if remaining == size:
+>                   raise EOFError
+E                   EOFError
+
+../../.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/multiprocessing/connection.py:399: EOFError
+----------------------------- Captured stderr call -----------------------------
+Process SpawnProcess-42:
+Traceback (most recent call last):
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "<tree>/core/tests/test_runtime_fault.py", line 173, in worker
+    h = rt.run_step(lambda ids=ids, pos=pos: core.forward(ids, pos))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<tree>/core/everserve/comm/runtime.py", line 321, in run_step
+    out = fn()
+          ^^^^
+  File "<tree>/core/tests/test_runtime_fault.py", line 173, in <lambda>
+    h = rt.run_step(lambda ids=ids, pos=pos: core.forward(ids, pos))
+                                             ^^^^^^^^^^^^^^^^^^^^^^
+  File "<tree>/core/everserve/arith/cores.py", line 205, in forward
+    x = self._attention_block(layer, x, positions, decode)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<tree>/core/everserve/arith/cores.py", line 180, in _attention_block
+    self.runtime.all_reduce(slots)
+  File "<tree>/core/everserve/comm/runtime.py", line 157, in all_reduce
+    self.collective.all_reduce(t)
+  File "<tree>/core/everserve/comm/collective.py", line 125, in all_reduce
+    self.all_reduce_into(t, t)
+  File "<tree>/core/everserve/comm/collective.py", line 121, in all_reduce_into
+    current.all_reduce(out)
+  File "<tree>/core/everserve/comm/group.py", line 106, in all_reduce
+    dist.all_reduce(t, group=self.group)
+  File "<tree>/.venv/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 83, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "<tree>/.venv/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 3252, in all_reduce
+    work.wait()
+RuntimeError: [$HOME/work/pytorch/pytorch/third_party/gloo/gloo/transport/uv/unbound_buffer.cc:65] Timed out waiting 120000ms for recv operation to complete
+Process SpawnProcess-45:
+Traceback (most recent call last):
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "$HOME/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "<tree>/core/tests/test_runtime_fault.py", line 173, in worker
+    h = rt.run_step(lambda ids=ids, pos=pos: core.forward(ids, pos))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<tree>/core/everserve/comm/runtime.py", line 321, in run_step
+    out = fn()
+          ^^^^
+  File "<tree>/core/tests/test_runtime_fault.py", line 173, in <lambda>
+    h = rt.run_step(lambda ids=ids, pos=pos: core.forward(ids, pos))
+                                             ^^^^^^^^^^^^^^^^^^^^^^
+  File "<tree>/core/everserve/arith/cores.py", line 205, in forward
+    x = self._attention_block(layer, x, positions, decode)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<tree>/core/everserve/arith/cores.py", line 180, in _attention_block
+    self.runtime.all_reduce(slots)
+  File "<tree>/core/everserve/comm/runtime.py", line 157, in all_reduce
+    self.collective.all_reduce(t)
+  File "<tree>/core/everserve/comm/collective.py", line 125, in all_reduce
+    self.all_reduce_into(t, t)
+  File "<tree>/core/everserve/comm/collective.py", line 121, in all_reduce_into
+    current.all_reduce(out)
+  File "<tree>/core/everserve/comm/group.py", line 106, in all_reduce
+    dist.all_reduce(t, group=self.group)
+  File "<tree>/.venv/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 83, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "<tree>/.venv/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 3252, in all_reduce
+    work.wait()
+RuntimeError: [$HOME/work/pytorch/pytorch/third_party/gloo/gloo/transport/uv/unbound_buffer.cc:101] Timed out waiting 120000ms for send operation to complete
+=========================== short test summary info ============================
+FAILED core/tests/test_runtime_fault.py::test_mid_step_kill_is_bit_identical[0.003-tp]
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+=================== 1 failed, 6 passed in 209.20s (0:03:29) ====================

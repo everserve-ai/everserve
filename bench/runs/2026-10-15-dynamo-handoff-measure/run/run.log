@@ -1,0 +1,265 @@
+23:40:28Z the certificates, made here
+[2m2026-10-15T23:40:29.099624Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.gbWEjC/certs/ca.crt
+[2m2026-10-15T23:40:29.099757Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.gbWEjC/certs/ca.key
+[2m2026-10-15T23:40:29.099767Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.gbWEjC/certs/coordinator.crt
+[2m2026-10-15T23:40:29.099773Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.gbWEjC/certs/coordinator.key
+[2m2026-10-15T23:40:29.099779Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.gbWEjC/certs/operator-proof.crt
+[2m2026-10-15T23:40:29.099785Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.gbWEjC/certs/operator-proof.key
+23:40:29Z the cluster: 4 gpu-h100-sxm 1gpu-16vcpu-200gb nodes, released at the latest after 1.5 h
+2026-10-15T23:46:13Z node-group create --async answered: 'opmk8snodegroup-e00fn66h9mqcwyx98q\n'
+2026-10-15T23:48:06Z up everserve-proof-1015234028 gpu-h100-sxm/1gpu-16vcpu-200gb x4: {"cluster": "mk8scluster-e00w08bc3w33bn5rq8", "node_group": "mk8snodegroup-e00agfq5x4a0zepv31", "kubeconfig": "$TMPDIR/everserve-proof-secrets.gbWEjC/kubeconfig"}
+{"cluster": "mk8scluster-e00w08bc3w33bn5rq8", "node_group": "mk8snodegroup-e00agfq5x4a0zepv31", "kubeconfig": "$TMPDIR/everserve-proof-secrets.gbWEjC/kubeconfig"}
+NAME                                 GPU
+computeinstance-e00af4bwys6ead7vb9   <none>
+computeinstance-e00jtck728t9hqfr3z   <none>
+computeinstance-e00vetp7742q69j534   <none>
+computeinstance-e00w2j21vzcyrj6vye   <none>
+23:48:08Z the nodes advertise no GPU: the GPU operator's device plugin, the drivers being the image's
+"nvidia" already exists with the same configuration, skipping
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "nvidia" chart repository
+Update Complete. ⎈Happy Helming!⎈
+NAME: gpu-operator
+LAST DEPLOYED: Thu Oct 15 19:48:12 2026
+NAMESPACE: gpu-operator
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+namespace/everserve created
+namespace/everserve labeled
+secret/nebius-cr created
+namespace/serving created
+namespace/serving labeled
+secret/nebius-cr created
+secret/everserve-tls created
+23:48:42Z Dynamo's platform 1.5.1, with Grove
+NAME: dynamo-platform
+LAST DEPLOYED: Thu Oct 15 19:48:48 2026
+NAMESPACE: dynamo-system
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+# SPDX-FileCopyrightText: Copyright (c) 2025-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+23:49:21Z the instance: its core on its own GPU nodes, the engine's two nodes, 1 spare node(s)
+23:49:21Z the second instance, proof-b: one GPU node, behind the same frontends
+<tree>/bench/runs/2026-10-15-dynamo-handoff-measure/run/proof.k8s.json
+<tree>/bench/runs/2026-10-15-dynamo-handoff-measure/run/proof.engine.json
+<tree>/bench/runs/2026-10-15-dynamo-handoff-measure/run/proof.values.json
+<tree>/bench/runs/2026-10-15-dynamo-handoff-measure/run/proof-b.k8s.json
+<tree>/bench/runs/2026-10-15-dynamo-handoff-measure/run/proof-b.engine.json
+<tree>/bench/runs/2026-10-15-dynamo-handoff-measure/run/proof-b.values.json
+23:49:21Z Everserve's chart
+NAME: everserve
+LAST DEPLOYED: Thu Oct 15 19:49:25 2026
+NAMESPACE: everserve
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+dynamographdeployment.nvidia.com/proof created
+networkpolicy.networking.k8s.io/proof-engine created
+networkpolicy.networking.k8s.io/proof-frontends created
+dynamographdeployment.nvidia.com/proof-b created
+service/proof-b-rendezvous created
+networkpolicy.networking.k8s.io/proof-b-engine created
+networkpolicy.networking.k8s.io/proof-b-frontends created
+23:49:44Z the coordinator's API: its record decides when the loss is taken and whether it passed
+serviceaccount/proof-viewer created
+rolebinding.rbac.authorization.k8s.io/proof-viewer created
+serviceaccount/proof-operator created
+rolebinding.rbac.authorization.k8s.io/proof-operator created
+Forwarding from 127.0.0.1:17443 -> 7443
+Forwarding from [::1]:17443 -> 7443
+23:49:51Z waiting for proof proof-b to serve
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+error: lost connection to pod
+Forwarding from 127.0.0.1:17443 -> 7443
+Forwarding from [::1]:17443 -> 7443
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+error: lost connection to pod
+Forwarding from 127.0.0.1:17443 -> 7443
+Forwarding from [::1]:17443 -> 7443
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+curl: (22) The requested URL returned error: 404
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+NAME                       READY   STATUS    RESTARTS   AGE    IP            NODE                                 NOMINATED NODE   READINESS GATES
+proof-0-frontend-5vfhr     1/1     Running   0          8m1s   10.3.62.120   computeinstance-e00jtck728t9hqfr3z   <none>           <none>
+proof-0-nodes-4kj6w        1/1     Running   0          8m1s   10.0.54.108   computeinstance-e00vetp7742q69j534   <none>           <none>
+proof-0-nodes-9tm5l        1/1     Running   0          8m1s   10.3.62.140   computeinstance-e00jtck728t9hqfr3z   <none>           <none>
+proof-0-nodes-lwxql        0/1     Running   0          8m1s   10.3.123.60   computeinstance-e00w2j21vzcyrj6vye   <none>           <none>
+proof-b-0-frontend-v5g4t   1/1     Running   0          8m     10.3.123.91   computeinstance-e00w2j21vzcyrj6vye   <none>           <none>
+proof-b-0-head-8c8pm       1/1     Running   0          8m     10.0.65.51    computeinstance-e00af4bwys6ead7vb9   <none>           <none>
+Forwarding from 127.0.0.1:18000 -> 8000
+Forwarding from [::1]:18000 -> 8000
+23:57:54Z warm: one short completion
+Handling connection for 18000
+{"streams": 1, "completed": 1, "errors": [], "max_gap_s": 0.083}
+Handling connection for 17443
+23:57:55Z notice 1: the core is on computeinstance-e00vetp7742q69j534, which holds rank(s) none; waiting for them to be covered
+23:57:59Z notice 1: the operator drains computeinstance-e00vetp7742q69j534, its deadline in 120 s
+Handling connection for 17443
+Handling connection for 17443
+computeinstance-e00vetp7742q69j534: cordoned, drained by 1792108799968 ms, draining: Scheduled ranks {"proof": [1]} leave at the deadline (generation 1)
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+23:58:37Z notice 1: head on computeinstance-e00vetp7742q69j534, standby on computeinstance-e00jtck728t9hqfr3z; Covered False: 1 losses without a formed set (0 planned and forming): [[0]]; the head's node holds [1], whose loss restarts the engine (38 s after the notice)
+error: Internal error occurred: Internal error occurred: error executing command in container: failed to exec in container: failed to start exec "e9c0019e6ab36e315e31565f9a407f7508ae0775a824d255ec9f13f9ef05eac7": OCI runtime exec failed: exec failed: unable to start container process: error executing setns process: exit status 1: unknown
+23:58:42Z gpu read after-1: proof-0-nodes-lwxql answered nothing
+23:59:19Z notice 1: 32 streams of 6000 tokens, in flight when the ranks move and the core retires
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+{"streams": 32, "completed": 32, "errors": [], "max_gap_s": 9.483}
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+00:01:00Z notice 1: epoch None: None; head on computeinstance-e00vetp7742q69j534; down None
+stream 0: proof-0-nodes-4kj6w
+stream 1: proof-0-nodes-4kj6w
+stream 2: proof-b-0-head-8c8pm
+stream 3: proof-b-0-head-8c8pm
+stream 4: proof-b-0-head-8c8pm
+stream 5: proof-b-0-head-8c8pm
+stream 6: proof-b-0-head-8c8pm
+stream 7: proof-b-0-head-8c8pm
+stream 8: proof-b-0-head-8c8pm
+stream 9: proof-b-0-head-8c8pm
+stream 10: proof-b-0-head-8c8pm
+stream 11: proof-0-nodes-4kj6w
+stream 12: proof-0-nodes-4kj6w
+stream 13: proof-b-0-head-8c8pm
+stream 14: proof-b-0-head-8c8pm
+stream 15: proof-0-nodes-4kj6w
+stream 16: proof-0-nodes-4kj6w
+stream 17: proof-b-0-head-8c8pm
+stream 18: proof-b-0-head-8c8pm
+stream 19: proof-b-0-head-8c8pm
+stream 20: proof-0-nodes-4kj6w
+stream 21: proof-b-0-head-8c8pm
+stream 22: proof-b-0-head-8c8pm
+stream 23: proof-b-0-head-8c8pm
+stream 24: proof-0-nodes-4kj6w
+stream 25: proof-b-0-head-8c8pm
+stream 26: proof-0-nodes-4kj6w
+stream 27: proof-0-nodes-4kj6w
+stream 28: proof-0-nodes-4kj6w
+stream 29: proof-b-0-head-8c8pm
+stream 30: proof-b-0-head-8c8pm
+stream 31: proof-0-nodes-4kj6w
+00:01:07Z notice 1: streams all finished; 12 of 32 streams on the retired engine: 0 migrated, 12 finished, errors none (ends-1.json)
+00:01:07Z notice 1: the head did not change at epoch 2
+00:01:40Z taking the cluster down
+2026-10-16T00:13:39Z down: {"down": "everserve-proof-1015234028", "cluster": "mk8scluster-e00w08bc3w33bn5rq8"}
+2026-10-16T01:10:29Z watchdog everserve-proof-1015234028: {"down": "everserve-proof-1015234028", "found": false}

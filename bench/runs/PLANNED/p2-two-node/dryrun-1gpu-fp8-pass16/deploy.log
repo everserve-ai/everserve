@@ -1,0 +1,12 @@
+2026-10-09T22:02:54Z the battery's dry run on Nebius eu-north1: three single-GPU L40S VMs (gpu-l40s-a 1gpu-8vcpu-32gb), TP1 x PP2 with one spare on node-c: the script end to end, Qwen3-1.7B-FP8 (block FP8, the p3 pre-registration's prerequisite 3), node fault and single death once each; commit ef411a4
+2026-10-09T22:03:30Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00gcjey30x4t476me", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.10", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T22:03:30Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00gcjey30x4t476me", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.10", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T22:03:39Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00wkwqqs14r0z3xrq", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.42", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T22:03:39Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00wkwqqs14r0z3xrq", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.42", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T22:03:50Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00mqtqyzfh9nwzzkf", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.105", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T22:03:50Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00mqtqyzfh9nwzzkf", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.105", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T22:03:50Z a deploy failed; every VM released: 
+2026-10-09T22:05:28Z terminate computeinstance-e00mqtqyzfh9nwzzkf: {"deleted": "computeinstance-e00mqtqyzfh9nwzzkf", "disks": []}
+2026-10-09T22:07:09Z terminate computeinstance-e00gcjey30x4t476me: {"deleted": "computeinstance-e00gcjey30x4t476me", "disks": []}
+2026-10-09T22:08:54Z terminate computeinstance-e00wkwqqs14r0z3xrq: {"deleted": "computeinstance-e00wkwqqs14r0z3xrq", "disks": []}
+2026-10-09T22:08:55Z VMs released: []

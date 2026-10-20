@@ -1,0 +1,4 @@
+{"node": "node-b", "against": "node-a", "when": "start", "probe": {"host": "10.0.0.20", "at": 1791838855.301265, "probes": 20, "lost": 0, "offset_s": 0.000483, "rtt_s": 0.000111, "error_s": 5.6e-05}}
+{"node": "node-c", "against": "node-a", "when": "start", "probe": {"host": "10.0.0.63", "at": 1791838857.2998877, "probes": 20, "lost": 0, "offset_s": -0.000697, "rtt_s": 0.000128, "error_s": 6.4e-05}}
+{"node": "node-d", "against": "node-a", "when": "start", "probe": {"host": "10.0.0.96", "at": 1791838859.2792573, "probes": 20, "lost": 0, "offset_s": -0.000429, "rtt_s": 0.000107, "error_s": 5.3e-05}}
+{"node": "node-e", "against": "node-a", "when": "start", "probe": {"host": "10.0.0.0", "at": 1791838861.2910862, "probes": 20, "lost": 0, "offset_s": -0.000573, "rtt_s": 0.000138, "error_s": 6.9e-05}}

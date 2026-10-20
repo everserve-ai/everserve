@@ -1,0 +1,485 @@
+// SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+// SPDX-License-Identifier: Apache-2.0
+// The protocol between a node daemon and the coordinator (decision 0014). The coordinator is the
+// only writer of an engine's epoch; a daemon keeps the worker links on its node, reports what they
+// say, delivers the coordinator's changes to them and returns their acknowledgements. Every
+// message that concerns a change carries the epoch, and either side refuses one from an epoch it
+// has passed, so a partition pauses an engine and never splits it.
+syntax = "proto3";
+
+package everserve.coord.v1;
+
+import "everserve/proto/signals.proto";
+
+// What a daemon knows about one engine: sent in `DaemonHello` so a coordinator that starts or
+// takes the lease rebuilds its view from the daemons, which hold the truth.
+message EngineState {
+  string engine = 1;
+  // The last committed epoch this daemon heard.
+  uint64 epoch = 2;
+  // Ranks with a worker registered on this node.
+  repeated uint32 workers = 3;
+  // Ranks a spare on this node stands in for.
+  repeated uint32 spares = 4;
+  // Removed 2026-10-12 (a spare's position moved to its registration); never reused.
+  reserved 5;
+  reserved "spare_for", "to_spare";
+  uint32 world_size = 6;
+  // Devices on this node whose spare stands for any position (decision 0030).
+  repeated uint32 any_spares = 10;
+  // Ranks lost under SHRINK, in order.
+  repeated uint32 lost = 7;
+  // Workers whose connection dropped without a change, which a report must still find.
+  repeated uint32 departed = 8;
+  // The engine's slot-collective choice, as its client registered it on this node; absent until
+  // a client did.
+  everserve.signals.v1.SlotChoice slot = 9;
+  // Decision 0035: the highest plan generation this daemon saw for the engine, which a
+  // coordinator that starts or takes the lease plans above; and every group its processes hold
+  // formed, which stands as the engine's cover until the new coordinator's first plan.
+  uint64 plan_generation = 11;
+  repeated HeldGroup held = 12;
+  // Every spare standing on this node, as it registered: what a coordinator that starts or takes
+  // the lease derives the spares' admission and the engine's cover from (decisions 0034, 0036).
+  repeated WorkerEvent standing = 13;
+  // Every process serving a rank on this node, as it registered (a spare that took a rank, with
+  // the rank it took): what a coordinator that starts or takes the lease rebuilds each position's
+  // device, identity and compile pair from.
+  repeated WorkerEvent serving = 14;
+  // The last cover plan this daemon forwarded for the engine (decision 0035), ports and all: a
+  // restarted coordinator adopts the newest any daemon reports, so a restart changes nothing its
+  // processes hold.
+  everserve.signals.v1.CoverPlan plan = 15;
+  // Decision 0041: the undecided processes on this node, by rank and connection:
+  // a restarted coordinator keeps an assignment whose process is still here and releases one whose
+  // process is not.
+  repeated Undecided undecided = 16;
+  // Decisions 0032 and 0036: the engine's head on this node, as it registered: what a
+  // coordinator that starts or takes the lease learns it from, so a head lost after a takeover
+  // puts its engine down rather than going unnoticed.
+  repeated WorkerEvent heads = 17;
+  // The notices this node's processes reported whose deadlines are still ahead, for ranks the
+  // node still holds: a coordinator that starts or takes the lease arms each deadline again, so a
+  // notice outlives the coordinator it was reported to.
+  repeated everserve.signals.v1.Notice notices = 18;
+}
+
+// An undecided process on a node, by its connection.
+message Undecided {
+  uint32 rank = 1;
+  ConnectionRef connection = 2;
+}
+
+// A group a process on the node holds formed (decision 0035).
+message HeldGroup {
+  everserve.signals.v1.SetMember member = 1;
+  // The members the group spans, in rank order (0035, amended: a group is its scope and spans).
+  repeated everserve.signals.v1.SetMember spans = 2;
+  everserve.signals.v1.Scope scope = 3;
+  uint64 generation = 4;
+}
+
+// One GPU on a node, as the daemon found it (docs/MULTINODE.md section 1).
+message Device {
+  // The index the engine's CUDA_VISIBLE_DEVICES and `Member.device` use.
+  uint32 index = 1;
+  string uuid = 2;
+  // The product name as the driver reports it, e.g. "NVIDIA H100 80GB HBM3"; the class a Fit
+  // compares.
+  string class = 3;
+  uint64 memory_bytes = 4;
+  // The NVLink domain the device belongs to: the node's name until a wider domain is found.
+  string domain = 5;
+}
+
+// The first message on a daemon's connection, and the first after a reconnection.
+message DaemonHello {
+  string node = 1;
+  repeated EngineState engines = 2;
+  repeated Device devices = 3;
+  // Where other stores replicate into this node's store (`host:port` under TLS, or a Unix path
+  // on one node); empty when the store takes no replication.
+  string mirror_replica_address = 4;
+  // How often this daemon sends a Heartbeat; 0 means never. The coordinator takes the node as
+  // lost after the policy's count of missed heartbeats (decision 0023).
+  uint32 heartbeat_ms = 5;
+  // PROTOCOL_VERSION of the daemon (decision 0027).
+  uint32 protocol = 6;
+  // The address this node's processes rendezvous on, the daemon's `--advertise-host`; empty on
+  // a single node, where loopback serves (decision 0035).
+  string advertise_host = 7;
+  // The newest coordinator term this daemon has seen (decision 0036): a coordinator whose own
+  // term is older has been deposed.
+  uint64 term = 8;
+  // The oldest protocol this daemon serves (decision 0040); absent, `protocol` alone.
+  uint32 protocol_oldest = 9;
+}
+
+// The daemon is alive; sent every `heartbeat_ms`.
+message Heartbeat {}
+
+// The daemon stops on purpose (a restart, a shutdown): its ranks are not lost, and a report must
+// still find them when it is back. A link that ends without a Bye is a lost node.
+message Bye {}
+
+// A worker, spare or client connection came or went on this node.
+message WorkerEvent {
+  enum Kind {
+    KIND_UNSPECIFIED = 0;
+    WORKER_REGISTERED = 1;
+    WORKER_DEPARTED = 2;
+    SPARE_REGISTERED = 3;
+    SPARE_DEPARTED = 4;
+    // The engine's head (decision 0032).
+    HEAD_REGISTERED = 5;
+    HEAD_DEPARTED = 6;
+    // An undecided process's connection ended before it registered as what it was told
+    // (decision 0041); `rank` and `connection` name it.
+    UNDECIDED_DEPARTED = 7;
+    // Removed with the head handoff, 2026-10-19 (decision 0045).
+    reserved 8, 9;
+    reserved "HEAD_SPARE_REGISTERED", "HEAD_SPARE_DEPARTED";
+  }
+  string engine = 1;
+  Kind kind = 2;
+  uint32 rank = 3;
+  // The node's current view, so the coordinator never has to ask.
+  uint32 world_size = 4;
+  // The device index the worker or spare registered with.
+  uint32 device = 5;
+  // The compile cache the process reported in its registration (decision 0029); absent when it
+  // reported none, and on a departure.
+  everserve.signals.v1.CompileCache compile_cache = 6;
+  // The spare stands for any position (decision 0030); `rank` is unused for it.
+  bool any_rank = 7;
+  // The process's id, from the daemon socket's peer credentials, not from the process; 0 when
+  // the system did not say, and on a departure.
+  uint32 pid = 8;
+  // A head's launcher, as it registered (decision 0032).
+  uint32 launcher_pid = 9;
+  // Why a head departed: its goodbye's cause, or LOST without one.
+  everserve.signals.v1.StopCause cause = 10;
+  string detail = 11;
+  // The engine's epoch on this node when the event happened. A departure older than the rank's
+  // last change is about a process that no longer holds the rank: the coordinator ignores it.
+  uint64 epoch = 12;
+  // What the process runs, as it registered (decision 0034); absent on a departure.
+  everserve.signals.v1.SoftwareIdentity identity = 13;
+  // Decision 0041: an undecided process's connection, for `UNDECIDED_DEPARTED`.
+  ConnectionRef connection = 14;
+  // The address the process registered (`Register.host`).
+  string host = 15;
+}
+
+// A worker on this node reported a rank lost.
+message LostReport {
+  string engine = 1;
+  everserve.signals.v1.RankLost lost = 2;
+}
+
+// A client on this node delivered a notice.
+message NoticeReport {
+  string engine = 1;
+  everserve.signals.v1.Notice notice = 2;
+}
+
+// This node leaves at `deadline_ms`: a notice source on the daemon (a cloud's metadata endpoint,
+// a Kubernetes taint) said so. The coordinator drains the node: a notice to every rank on it and
+// one change per engine for the set at the deadline (docs/MULTINODE.md section 7).
+message NodeNotice {
+  int64 deadline_ms = 1;
+  everserve.signals.v1.Reason reason = 2;
+  // Which source: `aws`, `gcp`, `azure`, `kubernetes`.
+  string source = 3;
+  // What the source said, for the log.
+  string detail = 4;
+}
+
+// Deliver `change` to the named ranks on this node and to the spares standing in for
+// `to_spares`, collect their acknowledgements, and answer with `Delivered` carrying `request_id`.
+message Deliver {
+  uint64 request_id = 1;
+  string engine = 2;
+  everserve.signals.v1.Change change = 3;
+  repeated uint32 to_ranks = 4;
+  repeated uint32 to_spares = 5;
+  // The spares standing for any position on this node that take a lost rank (decision 0030):
+  // delivered the change by device.
+  repeated everserve.signals.v1.Take take = 6;
+}
+
+// The acknowledgements a `Deliver` collected, or why it could not be delivered.
+message Delivered {
+  uint64 request_id = 1;
+  string engine = 2;
+  uint64 epoch = 3;
+  repeated everserve.signals.v1.Ack acks = 4;
+  // Empty on success; a stale epoch or a rank this node does not hold.
+  string error = 5;
+}
+
+// The change at `membership.epoch` is committed: the daemon promotes each of its spares standing
+// in for a rank in `lost` to that rank's place under REPLACE, tells its clients, and records the
+// epoch.
+message Committed {
+  string engine = 1;
+  everserve.signals.v1.MembershipCommitted membership = 2;
+  everserve.signals.v1.Outcome outcome = 3;
+  repeated uint32 lost = 4;
+  // Which spare standing for any position took which rank (decision 0030): the daemon promotes
+  // the spare on that device to the rank's place.
+  repeated everserve.signals.v1.Take take = 5;
+}
+
+// Tell every worker and the spare of `engine` on this node about a notice.
+message ForwardNotice {
+  string engine = 1;
+  everserve.signals.v1.Notice notice = 2;
+  // Removed with the head handoff, 2026-10-19 (decision 0045).
+  reserved 3;
+  reserved "to_head";
+}
+
+// Have this node's store replicate `rank`'s tables to `targets` (decision 0016): the replica
+// addresses of the engine's spare nodes. An empty list stops replication.
+message ReplicateTargets {
+  string engine = 1;
+  uint32 rank = 2;
+  repeated string targets = 3;
+}
+
+// Coordinator to a target's daemon: its store takes rank `rank` of `engine` from `from_node`
+// and nobody else (decision 0026); empty `from_node` clears the expectation.
+message ExpectReplication {
+  string engine = 1;
+  uint32 rank = 2;
+  string from_node = 3;
+  // The engine's epoch when this was decided; the store fences the rank at it.
+  uint64 epoch = 4;
+}
+
+message DaemonToCoord {
+  oneof kind {
+    DaemonHello hello = 1;
+    WorkerEvent worker_event = 2;
+    LostReport lost_report = 3;
+    NoticeReport notice_report = 4;
+    Delivered delivered = 5;
+    NodeNotice node_notice = 6;
+    EngineSlot engine_slot = 7;
+    Heartbeat heartbeat = 8;
+    Bye bye = 9;
+    JoinReport join_report = 10;
+    StacksSent stacks_sent = 11;
+    // Decision 0035: a process's report of a group, forwarded as it came; or the daemon's own
+    // release of every group a process held when its connection ended.
+    CoverReport cover_report = 12;
+    // Decision 0041: an undecided process asks what it is.
+    RoleAsked role_asked = 13;
+    // Decision 0035, amended: a group's id, from its server member.
+    everserve.signals.v1.GroupId group_id = 14;
+    // Decision 0025, amended: a process's release left behind, named by its connection.
+    ReleaseLeakedAt release_leaked = 17;
+    // a spare's ask, with the asker named by its daemon; and the head's offer for one spare
+    // (decision 0044)
+    everserve.signals.v1.ReplayAsk replay_ask = 18;
+    everserve.signals.v1.ReplayOffer replay_offer = 19;
+  }
+  // Removed with the head handoff, 2026-10-19 (decision 0045).
+  reserved 15, 16;
+  reserved "head_taken", "copy_state";
+}
+
+// A process's `ReleaseLeaked`, with the connection it came on: the daemon names the process.
+message ReleaseLeakedAt {
+  ConnectionRef connection = 1;
+  everserve.signals.v1.ReleaseLeaked leak = 2;
+}
+
+// An undecided process's question, from its daemon (decision 0041). The process is named by its
+// connection, which the daemon numbers: never by its own word, and never by its pid, which repeats
+// across a node's pods and reads as 0 from a pod whose pid namespace the daemon cannot see.
+message RoleAsked {
+  uint64 request_id = 1;
+  string engine = 2;
+  uint32 rank = 3;
+  ConnectionRef connection = 4;
+  // Every rank the answer covers; empty, `rank` alone.
+  repeated uint32 stage = 5;
+  // The address the process is reached at (`Register.host`).
+  string host = 6;
+  // What it runs, as it registered: its step config is compared with the engine's before it is
+  // told anything.
+  everserve.signals.v1.SoftwareIdentity identity = 7;
+  // Removed with the head handoff, 2026-10-19 (decision 0045).
+  reserved 8;
+  reserved "head";
+}
+
+// A process's connection to its node's daemon, as the daemon names it: unique for the node,
+// across the daemon's restarts. `pid` is for people only.
+message ConnectionRef {
+  // Drawn at random when the daemon starts.
+  uint64 instance = 1;
+  // The daemon's count of its connections.
+  uint64 serial = 2;
+  uint32 pid = 3;
+}
+
+// The coordinator's answer to `RoleAsked`, on the link the question came on.
+message RoleAnswer {
+  uint64 request_id = 1;
+  string engine = 2;
+  uint32 rank = 3;
+  uint64 epoch = 4;
+  everserve.signals.v1.Role role = 5;
+  // Non-empty: the process may not serve this engine (`RoleAssigned.refusal`).
+  string refusal = 6;
+}
+
+// One process's report of a group, forwarded by its daemon.
+message CoverReport {
+  oneof kind {
+    everserve.signals.v1.GroupFormed formed = 1;
+    everserve.signals.v1.GroupFailed failed = 2;
+    everserve.signals.v1.GroupReleased released = 3;
+    everserve.signals.v1.GroupReady ready = 4;
+  }
+}
+
+// A client or a worker on this node sent a join payload. From a client it goes to the process in
+// the payload's rank position; from a worker it goes to the engine's clients.
+message JoinReport {
+  string engine = 1;
+  everserve.signals.v1.Join join = 2;
+  bool from_client = 3;
+}
+
+// The engine's client registered on this node with its slot-collective choice.
+message EngineSlot {
+  string engine = 1;
+  everserve.signals.v1.SlotChoice slot = 2;
+}
+
+message CoordToDaemon {
+  // The sending coordinator's lease term (decision 0036): a daemon refuses a message whose term
+  // is older than the newest it has seen, so a coordinator deposed without noticing moves
+  // nothing. 0 from a coordinator that holds no lease (a test, a single coordinator without one).
+  uint64 term = 20;
+  oneof kind {
+    Deliver deliver = 1;
+    Committed committed = 2;
+    ForwardNotice forward_notice = 3;
+    ReplicateTargets replicate_targets = 4;
+    LaunchSpare launch_spare = 5;
+    ForwardJoin forward_join = 6;
+    ExpectReplication expect_replication = 7;
+    Stacks stacks = 8;
+    Abandon abandon = 9;
+    // Decision 0035: the engine's newest cover plan, for every process of it on the node.
+    everserve.signals.v1.CoverPlan cover_plan = 10;
+    ForwardChange forward_change = 11;
+    RoleAnswer role_answer = 12;
+    // Decision 0041: an engine's policy, for the daemon to hand its processes; one per engine at
+    // the link.
+    everserve.signals.v1.EnginePolicy engine_policy = 13;
+    // Decision 0041: where an engine runs, for the daemon to hand its processes.
+    everserve.signals.v1.EnginePlacement engine_placement = 14;
+    // Decision 0041: an engine's instance state, for the daemon to hand its processes.
+    everserve.signals.v1.InstanceState instance_state = 15;
+    // Decision 0035, amended: a group's id, for the daemon to hand the group's members.
+    everserve.signals.v1.GroupId group_id = 16;
+    // a spare's ask, to the engine's head's daemon; the head's offer, to the asker's daemon
+    everserve.signals.v1.ReplayAsk replay_ask = 23;
+    everserve.signals.v1.ReplayOffer replay_offer = 24;
+  }
+  // Removed with the head handoff, 2026-10-19 (decision 0045).
+  reserved 17, 18, 19, 21, 22;
+  reserved "take_head", "copy_requests", "expect_requests", "copy_behind_kept", "start_head";
+}
+
+// A change's departing ranks on this node (protocol 9): their processes, still running, leave at
+// the change. The daemon passes them the Change and waits for no acknowledgement, since they are
+// outside its barrier; the commit's membership is what settles that they left.
+message ForwardChange {
+  string engine = 1;
+  everserve.signals.v1.Change change = 2;
+  repeated uint32 to_ranks = 3;
+}
+
+// A change that failed after its delivery (decision 0032): the engine is down. The daemon takes
+// `epoch` as spent, releases a spare it had taking a position for the change, and tells every
+// process of the engine on its node.
+message Abandon {
+  string engine = 1;
+  uint64 epoch = 2;
+  string detail = 3;
+}
+
+// Launch and keep a spare process for `rank` of `engine` on this node (decision 0024). The
+// command and environment are the policy's, placeholders already a matter for the daemon.
+message LaunchSpare {
+  // The engine it stands for; empty for a pool's spare, which registers with each of its pool's
+  // engines (decision 0031).
+  string engine = 1;
+  // Absent: a spare standing for any position (decision 0030); `{rank}` renders empty.
+  optional uint32 rank = 2;
+  uint32 device = 3;
+  repeated string command = 4;
+  map<string, string> env = 5;
+  // The pool it stands for, `{pool}` in the command; empty for an engine's own spare.
+  string pool = 6;
+  // The engines it registers with, `{engines}` in the command, comma-separated in the order the
+  // pool's spec names them: the pool's engines, or the one engine of an engine's own spare.
+  repeated string engines = 7;
+}
+
+// A join payload for the process in `rank`'s position on this node (`to_clients` false), or for
+// the engine's clients on this node (`to_clients` true). The payload is the adapters' own.
+message ForwardJoin {
+  string engine = 1;
+  everserve.signals.v1.Join join = 2;
+  bool to_clients = 3;
+}
+
+// Ask the process in a position of `engine` on this node to write every thread's stack to its own
+// log and go on (SIGUSR1, handed to faulthandler): a serving rank or the spare preloaded for
+// `rank`, or the spare standing for any position on `device`. The process is never stopped.
+message Stacks {
+  uint64 request_id = 1;
+  string engine = 2;
+  optional uint32 rank = 3;
+  optional uint32 device = 4;
+  // The engine's head (decision 0032): its engine core and its launcher are both asked.
+  bool head = 5;
+}
+
+// What a `Stacks` did: the process asked on its link, or why none was. `pid` is for people only.
+message StacksSent {
+  uint64 request_id = 1;
+  uint32 pid = 2;
+  // Empty on success.
+  string error = 3;
+  // Whether the process answered with its stacks in time; a build that writes them only to its
+  // own log does not.
+  bool answered = 4;
+  // Its stacks, when it answered.
+  string text = 5;
+}
+
+// The coordinator lease's record (decision 0036): who holds it, under which term, and where daemons
+// link to it. The holder writes it; every daemon reads it, read-only, raising its fence to the term
+// and linking to the address.
+message LeaseRecord {
+  // The holding coordinator, for logs: its host and process.
+  string holder = 1;
+  // The term this hold of the lease runs under.
+  uint64 term = 2;
+  // Where daemons link to the holder: `unix:/path` on one node, `host:port` across nodes. Empty
+  // once its holder let it go: daemons hold their reports until another holder publishes.
+  string address = 3;
+  // When the holder last renewed it, Unix milliseconds on its clock: for people. No daemon or
+  // contender compares it with its own clock (decision 0036: clocks are skewed; a contender times
+  // a lease by its own monotonic clock from when it last saw the record change).
+  int64 renewed_at_ms = 4;
+}

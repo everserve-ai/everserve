@@ -1,0 +1,44 @@
+{
+ "pod": {
+  "id": "u1uk92gg94we4h",
+  "gpus": "4x H100 80GB HBM3 SXM, NV18",
+  "cloud": "secure, IN",
+  "usd_per_h": 13.96,
+  "driver": "580.126.09",
+  "deployed": "2026-10-05T22:57:35Z",
+  "terminated": "2026-10-05T23:15:43Z"
+ },
+ "settings": {
+  "VLLM_ALLREDUCE_USE_FLASHINFER": "0",
+  "VLLM_ALLREDUCE_USE_SYMM_MEM": "0",
+  "NCCL_NVLS_ENABLE": "0",
+  "stock": "custom all-reduce on (default)"
+ },
+ "fixed_1_vs_fixed_2_first_difference": [
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null
+ ],
+ "identical": true,
+ "tps_10_200": {
+  "fixed_1": 1425.3,
+  "fixed_2": 1423.57,
+  "default": null
+ },
+ "default_baseline": "not measured: with vLLM's defaults FlashInfer's all-reduce JIT-compiles its kernel with nvcc; the stock-only setup had no CUDA toolkit, the install had not finished after 10 min, and the cap was reached",
+ "batch_invariant": "not run: the settings alone gave identical tokens",
+ "spend_usd": 4.22,
+ "cap_usd": 5,
+ "sha256": {
+  "default/default_1.log": "1bf54a7d739e34cc57f625dd61108fc1abc9c173d879e8bc601ff1d791d2df03",
+  "fixed/fixed_1.json": "9e0e1e6cdcda4ae5f5a76b4071415ba069ce0346cbb18bd002e3adecd7c155ab",
+  "fixed/fixed_1.log": "07aee1ef7a7a5b915707bd7da60a90d3c94e63ec3e66eacf0e319e154b0063fc",
+  "fixed/fixed_2.json": "673d7d9e548fca4175e95a251096e2bba544791693106643a159a01149903553",
+  "fixed/fixed_2.log": "ac5fe6a5b26dc220463ce31da5dc9bc3ce002ac5dd9c9b2b96c4ab8465dcfa1b"
+ }
+}

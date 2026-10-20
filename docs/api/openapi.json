@@ -1,0 +1,2716 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Everserve operator API",
+    "description": "Engines, nodes and pools, each a spec and a status. Every request is authenticated and authorized (decision 0039); the objects, their versions, watches and errors are decision 0042's.",
+    "license": {
+      "name": "Apache-2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "version": "0.0.1"
+  },
+  "paths": {
+    "/v1/engines": {
+      "get": {
+        "tags": [
+          "engines"
+        ],
+        "summary": "List the engines, or watch them.",
+        "operationId": "list_engines",
+        "parameters": [
+          {
+            "name": "watch",
+            "in": "query",
+            "description": "Stream changes, one JSON line each, rather than list.",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "resourceVersion",
+            "in": "query",
+            "description": "For a watch: the version to stream from. Absent, every object is sent as `ADDED` first.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "For a list: at most this many objects, with a `continue` token when there are more.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "continue",
+            "in": "query",
+            "description": "For a list: the token the previous page gave, to read the next one.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Every engine, or with `watch`, its changes as JSON lines",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/List_Engine"
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/WatchEvent"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "The watch's version is too old: list again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/engines/{engine}": {
+      "get": {
+        "tags": [
+          "engines"
+        ],
+        "summary": "Read an engine.",
+        "operationId": "get_engine",
+        "parameters": [
+          {
+            "name": "engine",
+            "in": "path",
+            "description": "The engine's name in the policy",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Engine"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/engines/{engine}/events": {
+      "get": {
+        "tags": [
+          "engines"
+        ],
+        "summary": "An engine's events, oldest first.",
+        "operationId": "engine_events",
+        "parameters": [
+          {
+            "name": "engine",
+            "in": "path",
+            "description": "The engine's name in the policy",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Event"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/engines/{engine}/stacks": {
+      "post": {
+        "tags": [
+          "engines"
+        ],
+        "summary": "Ask a process of an engine for its stacks: a serving rank (or the spare preloaded for it or\ntaking it), a spare standing for any position by its node and device, or the head.",
+        "operationId": "engine_stacks",
+        "parameters": [
+          {
+            "name": "engine",
+            "in": "path",
+            "description": "The engine's name in the policy",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StacksRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StacksTaken"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "The process's node did not answer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/nodes": {
+      "get": {
+        "tags": [
+          "nodes"
+        ],
+        "summary": "List the nodes, or watch them: every node whose daemon is linked, that has a spec, or that\nholds a member of an engine.",
+        "operationId": "list_nodes",
+        "parameters": [
+          {
+            "name": "watch",
+            "in": "query",
+            "description": "Stream changes, one JSON line each, rather than list.",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "resourceVersion",
+            "in": "query",
+            "description": "For a watch: the version to stream from. Absent, every object is sent as `ADDED` first.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "For a list: at most this many objects, with a `continue` token when there are more.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "continue",
+            "in": "query",
+            "description": "For a list: the token the previous page gave, to read the next one.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Every node, or with `watch`, its changes as JSON lines",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/List_Node"
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/WatchEvent"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "The watch's version is too old: list again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/nodes/{node}": {
+      "get": {
+        "tags": [
+          "nodes"
+        ],
+        "summary": "Read a node.",
+        "operationId": "get_node",
+        "parameters": [
+          {
+            "name": "node",
+            "in": "path",
+            "description": "The node's name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Node"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "nodes"
+        ],
+        "summary": "Write a node's spec: cordon it, drain it by a deadline, or withdraw either. What came of it\nis the node's status: its Draining condition says whether the drain is `Scheduled` or\n`Waiting` its turn.",
+        "operationId": "put_node",
+        "parameters": [
+          {
+            "name": "node",
+            "in": "path",
+            "description": "The node's name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Write_NodeSpec"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The node after the write",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Node"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "`Conflict`: the node changed since the version written against; `DrainUnderway`: the write moves or clears a drain whose notices went out",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/nodes/{node}/events": {
+      "get": {
+        "tags": [
+          "nodes"
+        ],
+        "summary": "A node's events, oldest first.",
+        "operationId": "node_events",
+        "parameters": [
+          {
+            "name": "node",
+            "in": "path",
+            "description": "The node's name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Event"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/nodes/{node}/release": {
+      "get": {
+        "tags": [
+          "nodes"
+        ],
+        "summary": "Whether a node may be given back now, and why not; with `wait_ms`, once it may\nor when the wait runs out.",
+        "operationId": "node_release",
+        "parameters": [
+          {
+            "name": "node",
+            "in": "path",
+            "description": "The node's name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "wait_ms",
+            "in": "query",
+            "description": "How long to wait for the node to become releasable, in milliseconds; absent, answer now.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NodeRelease"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/pools": {
+      "get": {
+        "tags": [
+          "pools"
+        ],
+        "summary": "List the pools, or watch them.",
+        "operationId": "list_pools",
+        "parameters": [
+          {
+            "name": "watch",
+            "in": "query",
+            "description": "Stream changes, one JSON line each, rather than list.",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "resourceVersion",
+            "in": "query",
+            "description": "For a watch: the version to stream from. Absent, every object is sent as `ADDED` first.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "For a list: at most this many objects, with a `continue` token when there are more.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "continue",
+            "in": "query",
+            "description": "For a list: the token the previous page gave, to read the next one.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Every pool, or with `watch`, its changes as JSON lines",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/List_Pool"
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/WatchEvent"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "The watch's version is too old: list again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/pools/{pool}": {
+      "get": {
+        "tags": [
+          "pools"
+        ],
+        "summary": "Read a pool.",
+        "operationId": "get_pool",
+        "parameters": [
+          {
+            "name": "pool",
+            "in": "path",
+            "description": "The pool's name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pool"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "pools"
+        ],
+        "summary": "Write a pool's spec; its launcher is kept as it is.",
+        "operationId": "put_pool",
+        "parameters": [
+          {
+            "name": "pool",
+            "in": "path",
+            "description": "The pool's name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Write_PoolSpec"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The pool after the write",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pool"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The pool changed since the version written against",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/pools/{pool}/events": {
+      "get": {
+        "tags": [
+          "pools"
+        ],
+        "summary": "A pool's events, oldest first.",
+        "operationId": "pool_events",
+        "parameters": [
+          {
+            "name": "pool",
+            "in": "path",
+            "description": "The pool's name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Event"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/pools/{pool}/launcher": {
+      "get": {
+        "tags": [
+          "pools"
+        ],
+        "summary": "Read how a pool's spares are launched.",
+        "operationId": "get_launcher",
+        "parameters": [
+          {
+            "name": "pool",
+            "in": "path",
+            "description": "The pool's name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Launcher"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "pools"
+        ],
+        "summary": "Write how a node's daemon launches one of the pool's spares: a command every node of the\npool runs, written under a grant of its own (`update pools/launcher`).",
+        "operationId": "put_launcher",
+        "parameters": [
+          {
+            "name": "pool",
+            "in": "path",
+            "description": "The pool's name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Launcher"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The launcher after the write",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Launcher"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The pool's spec was written meanwhile: write again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/topology": {
+      "get": {
+        "tags": [
+          "nodes"
+        ],
+        "summary": "Every device the daemons reported.",
+        "operationId": "topology",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Device"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AckStamp": {
+        "type": "object",
+        "description": "An acknowledgement and when its daemon received it, on that daemon's clock.",
+        "required": [
+          "rank",
+          "receivedAtUs"
+        ],
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The rank that acknowledged.",
+            "minimum": 0
+          },
+          "receivedAtUs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "When its daemon received it.",
+            "minimum": 0
+          }
+        }
+      },
+      "AnySpareReadiness": {
+        "type": "object",
+        "description": "One spare standing for any position (decision 0030).",
+        "required": [
+          "node",
+          "device",
+          "state"
+        ],
+        "properties": {
+          "device": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Its device.",
+            "minimum": 0
+          },
+          "node": {
+            "type": "string",
+            "description": "Its node."
+          },
+          "process": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ProcessReadiness",
+                "description": "The spare's process, as its node's daemon saw it register."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "state": {
+            "type": "string",
+            "description": "`standing` in the pool, or `taking` a rank in the change in flight."
+          }
+        }
+      },
+      "ApiError": {
+        "type": "object",
+        "description": "An error as the operator API answers it.",
+        "required": [
+          "code",
+          "reason",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The HTTP status.",
+            "minimum": 0
+          },
+          "message": {
+            "type": "string",
+            "description": "Why, for people."
+          },
+          "reason": {
+            "$ref": "#/components/schemas/Reason",
+            "description": "Why, for a client."
+          }
+        }
+      },
+      "ChangeReadiness": {
+        "type": "object",
+        "description": "A change in flight: the epoch it claimed and the ranks it takes.",
+        "required": [
+          "epoch",
+          "lost"
+        ],
+        "properties": {
+          "epoch": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The epoch the change claimed; readiness's `epoch` reaches it at the commit.",
+            "minimum": 0
+          },
+          "lost": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            },
+            "description": "The ranks it takes."
+          }
+        }
+      },
+      "CompileCacheReadiness": {
+        "type": "object",
+        "description": "The compiled-kernel cache a process reported running with (decision 0029).",
+        "required": [
+          "key",
+          "digest"
+        ],
+        "properties": {
+          "digest": {
+            "type": "string",
+            "description": "The digest over every file under it, the autotune results included."
+          },
+          "key": {
+            "type": "string",
+            "description": "vLLM's `torch_compile_cache` key."
+          }
+        }
+      },
+      "Condition": {
+        "type": "object",
+        "description": "One condition as status carries it.",
+        "required": [
+          "type",
+          "status",
+          "reason",
+          "message",
+          "lastTransitionMs"
+        ],
+        "properties": {
+          "lastTransitionMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "When its status last changed, Unix milliseconds on the coordinator's clock."
+          },
+          "message": {
+            "type": "string",
+            "description": "Why, in a sentence."
+          },
+          "reason": {
+            "type": "string",
+            "description": "Why, in one word."
+          },
+          "status": {
+            "$ref": "#/components/schemas/Truth",
+            "description": "Its status."
+          },
+          "type": {
+            "type": "string",
+            "description": "Its type."
+          }
+        }
+      },
+      "CoverReadiness": {
+        "type": "object",
+        "description": "An engine's cover plan, as readiness shows it (decision 0035).",
+        "required": [
+          "generation",
+          "epoch",
+          "sets",
+          "uncovered",
+          "failed"
+        ],
+        "properties": {
+          "epoch": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The committed epoch it is for.",
+            "minimum": 0
+          },
+          "failed": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FailedGroupReadiness"
+            },
+            "description": "Groups a member could not form under it."
+          },
+          "generation": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The plan's generation.",
+            "minimum": 0
+          },
+          "sets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CoverSetReadiness"
+            },
+            "description": "Its sets, in plan order."
+          },
+          "uncovered": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UncoveredReadiness"
+            },
+            "description": "The losses it holds no set for, with why."
+          }
+        }
+      },
+      "CoverSetReadiness": {
+        "type": "object",
+        "description": "One set of a cover plan.",
+        "required": [
+          "set",
+          "purpose",
+          "covered",
+          "groups",
+          "formed"
+        ],
+        "properties": {
+          "covered": {
+            "type": "boolean",
+            "description": "Every member of every one of its groups reported it formed."
+          },
+          "formed": {
+            "type": "integer",
+            "description": "Of those, the ones every member reported.",
+            "minimum": 0
+          },
+          "groups": {
+            "type": "integer",
+            "description": "Its groups.",
+            "minimum": 0
+          },
+          "purpose": {
+            "type": "string",
+            "description": "What it is for: `current`, or the loss it answers and how."
+          },
+          "set": {
+            "type": "string",
+            "description": "Its members, joined by `-`: a rank, or `R<rank>@<node>:<device>` for a spare."
+          }
+        }
+      },
+      "Device": {
+        "type": "object",
+        "description": "One GPU.",
+        "required": [
+          "node",
+          "index",
+          "uuid",
+          "class",
+          "memoryBytes",
+          "domain"
+        ],
+        "properties": {
+          "class": {
+            "type": "string",
+            "description": "The product name the driver reports; the class a fit compares."
+          },
+          "domain": {
+            "type": "string",
+            "description": "The domain it reaches at full speed (the node, until a wider domain is found)."
+          },
+          "index": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The index the engine's `CUDA_VISIBLE_DEVICES` and `Member.device` use.",
+            "minimum": 0
+          },
+          "memoryBytes": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Device memory in bytes.",
+            "minimum": 0
+          },
+          "node": {
+            "type": "string",
+            "description": "The node it sits in."
+          },
+          "uuid": {
+            "type": "string",
+            "description": "The driver's identity for it."
+          }
+        }
+      },
+      "DownReadiness": {
+        "type": "object",
+        "description": "Why an engine is down (decision 0032).",
+        "required": [
+          "atMs",
+          "cause",
+          "detail"
+        ],
+        "properties": {
+          "atMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Since when, Unix milliseconds on the coordinator's clock."
+          },
+          "cause": {
+            "type": "string",
+            "description": "`stopped`, `failed` or `lost` from the head's departure, or `change_failed` when a change\nfailed after its delivery."
+          },
+          "detail": {
+            "type": "string",
+            "description": "The head's goodbye, or the failed change's error."
+          }
+        }
+      },
+      "Drain": {
+        "type": "object",
+        "description": "A drain's deadline.",
+        "required": [
+          "deadlineMs"
+        ],
+        "properties": {
+          "deadlineMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "When the node goes, Unix milliseconds: a time, never a lead, so the same spec written\ntwice asks the same thing."
+          }
+        },
+        "additionalProperties": false
+      },
+      "Engine": {
+        "type": "object",
+        "description": "An engine: its spec is its entry in the policy, read-only here; its status, what a\nframework or a scheduler reads before it acts on the engine.",
+        "required": [
+          "metadata",
+          "spec",
+          "status"
+        ],
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata",
+            "description": "Its name and versions."
+          },
+          "spec": {
+            "type": "object",
+            "description": "Its entry in the policy, in the policy's protobuf JSON."
+          },
+          "status": {
+            "$ref": "#/components/schemas/EngineReadiness",
+            "description": "What the coordinator observes of it."
+          }
+        }
+      },
+      "EngineReadiness": {
+        "type": "object",
+        "description": "One engine as the scheduler sees it.",
+        "required": [
+          "engine",
+          "state",
+          "epoch",
+          "worldSize",
+          "members",
+          "spares",
+          "anySpares",
+          "lost",
+          "nodes",
+          "slots",
+          "guarantee",
+          "compileCacheConsistent"
+        ],
+        "properties": {
+          "anySpares": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnySpareReadiness"
+            },
+            "description": "Spares standing for any position of the engine (decision 0030): they hold the model in host\nmemory and take the shard of the rank a change names, so REPLACE is available for any rank\nwhile one is in the pool."
+          },
+          "change": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ChangeReadiness",
+                "description": "The change in flight, if one is (decision 0032)."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "compileCacheConsistent": {
+            "type": "boolean",
+            "description": "The engine has a key, every serving rank reported it, and every spare in the pool reported\nthe pair of the rank it stands in for (digests differ by rank on a pipeline engine, since\neach stage compiles its own graph). False means a spare's rows would not match its\nposition's, or a process reported none, so nothing holds it: a scheduler does not run an\nexact change on the engine either way."
+          },
+          "compileKey": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The compile cache key the engine's first registered process reported (decision 0029): one\nengine, one compiled artifact, which every later process must report; absent until one\ndid, and again once every process of the engine has gone, so a re-formed engine sets its\nown."
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            },
+            "description": "What its status means (decision 0036): Serving, Progressing, Covered, Degraded and Down,\neach with its reason and when it last changed."
+          },
+          "cover": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CoverReadiness",
+                "description": "The cover plan delivered for the engine and how much of it is formed (decision 0035);\nabsent while cover is not planned."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "down": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DownReadiness",
+                "description": "Why the engine is down and since when (decision 0032); absent while it is not. A down\nengine takes no change until its head registers again."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "engine": {
+            "type": "string",
+            "description": "The engine's name in the policy."
+          },
+          "epoch": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The last committed membership epoch. A change in flight shows in `change`, never here:\nbetween a change's claim and its commit the members it takes are gone from `members` and\nits spares are not yet in it.",
+            "minimum": 0
+          },
+          "guarantee": {
+            "type": "string",
+            "description": "The engine's guarantee class (decision 0030): `exact` or `continuous`."
+          },
+          "head": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/HeadReadiness",
+                "description": "The engine's head (decision 0032): the process that owns its scheduler and executor, and\nits launcher. Absent until it registered, and while the engine is down."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "headConflict": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/HeadReadiness",
+                "description": "A second head that registered on another node while the engine's head was alive, refused:\ntwo processes believe they own the engine, which an operator must resolve."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "lastChange": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/LastChange",
+                "description": "The last committed change's record: what it cost, and where the time went."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "lost": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            },
+            "description": "Ranks lost to SHRINK, still counted against the policy's concurrent losses."
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemberReadiness"
+            },
+            "description": "Ranks serving now."
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NodeReadiness"
+            },
+            "description": "Every node holding a member: whether it can be reclaimed, and how."
+          },
+          "refusedSpares": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RefusedSpareReadiness"
+            },
+            "description": "Spares kept out of the pool for what they run (decision 0034), with the field that\ndiffered: a spare an operator expects in the pool and does not find is here."
+          },
+          "slots": {
+            "type": "object",
+            "description": "The slot-collective variant the engine runs on each node and how it was decided, keyed by\nnode: an engine node's from its client, a spare node's from its spare (decision 0024);\nempty until one registered. `host` is the slower path a scheduler may want to know about.",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/SlotReadiness"
+            },
+            "propertyNames": {
+              "type": "string"
+            }
+          },
+          "spares": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SpareReadiness"
+            },
+            "description": "Spares standing behind the engine, each for one rank."
+          },
+          "state": {
+            "$ref": "#/components/schemas/InstanceState",
+            "description": "The instance's state in a framework's terms (decision 0041): what an integration reports\nto the framework that routes to the engine."
+          },
+          "worldSize": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Ranks the engine started with.",
+            "minimum": 0
+          }
+        }
+      },
+      "Event": {
+        "type": "object",
+        "description": "One event: what the controller decided or saw, and why.",
+        "required": [
+          "atMs",
+          "severity",
+          "reason",
+          "message"
+        ],
+        "properties": {
+          "atMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "When, Unix milliseconds on the coordinator's clock."
+          },
+          "message": {
+            "type": "string",
+            "description": "What, in a sentence."
+          },
+          "reason": {
+            "type": "string",
+            "description": "What, in one word: `ChangeCommitted`, `DrainWaiting`."
+          },
+          "severity": {
+            "$ref": "#/components/schemas/Severity",
+            "description": "Routine, or calls for attention."
+          }
+        }
+      },
+      "EventType": {
+        "type": "string",
+        "description": "What a watch's event says happened.",
+        "enum": [
+          "ADDED",
+          "MODIFIED",
+          "DELETED",
+          "BOOKMARK"
+        ]
+      },
+      "FailedGroupReadiness": {
+        "type": "object",
+        "description": "A group a member could not form.",
+        "required": [
+          "group",
+          "scope",
+          "member",
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Its error."
+          },
+          "group": {
+            "type": "string",
+            "description": "The members it spans, in rank order: a group is shared by every set that needs it."
+          },
+          "member": {
+            "type": "string",
+            "description": "The member that failed."
+          },
+          "scope": {
+            "type": "string",
+            "description": "`domain` or `fabric`."
+          }
+        }
+      },
+      "HeadReadiness": {
+        "type": "object",
+        "description": "An engine's head as its node's daemon saw it register (decision 0032).",
+        "required": [
+          "node",
+          "launcherPid",
+          "registeredAtMs"
+        ],
+        "properties": {
+          "host": {
+            "type": "string",
+            "description": "The address its engine core registered; empty when it named none. Front ends find the\ncore through their framework's own discovery; this is for people."
+          },
+          "launcherPid": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The process the operator launched, as the head reported it in its own pid namespace; the\nengine core's own when it runs in that process. For people: nothing is signalled by it.",
+            "minimum": 0
+          },
+          "node": {
+            "type": "string",
+            "description": "The node it runs on."
+          },
+          "pid": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "The engine core's process id, from the daemon socket's peer credentials; absent when the\ndaemon cannot see it, as a process in another pod on Kubernetes.",
+            "minimum": 0
+          },
+          "registeredAtMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "When it registered, Unix milliseconds on the coordinator's clock."
+          }
+        }
+      },
+      "IdentityReadiness": {
+        "type": "object",
+        "description": "What a process runs (decision 0034), as readiness reports it.",
+        "required": [
+          "engine",
+          "engineCommit",
+          "adapterCommit",
+          "adapterDirty",
+          "torchVersion",
+          "cudaVersion",
+          "driverVersion",
+          "ncclVersion",
+          "model",
+          "modelRevision",
+          "checkpointDigest",
+          "quantization",
+          "modelDtype",
+          "kvDtype",
+          "kvBlockSize",
+          "kvLayoutHash",
+          "layout"
+        ],
+        "properties": {
+          "adapterCommit": {
+            "type": "string",
+            "description": "The adapter's commit."
+          },
+          "adapterDirty": {
+            "type": "boolean",
+            "description": "Whether the adapter was built from a tree with uncommitted changes."
+          },
+          "checkpointDigest": {
+            "type": "string",
+            "description": "The digest over the checkpoint's snapshot."
+          },
+          "cudaVersion": {
+            "type": "string",
+            "description": "The CUDA runtime, major.minor."
+          },
+          "driverVersion": {
+            "type": "string",
+            "description": "The GPU driver."
+          },
+          "engine": {
+            "type": "string",
+            "description": "The engine, `vllm`."
+          },
+          "engineCommit": {
+            "type": "string",
+            "description": "The engine's source commit."
+          },
+          "kvBlockSize": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The KV's block size.",
+            "minimum": 0
+          },
+          "kvDtype": {
+            "type": "string",
+            "description": "The KV's dtype."
+          },
+          "kvLayoutHash": {
+            "type": "string",
+            "description": "The hash of the KV's layout for the position; empty for a spare standing for any position."
+          },
+          "layout": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            },
+            "description": "The parallel widths: tensor, pipeline, data, expert, context."
+          },
+          "model": {
+            "type": "string",
+            "description": "The model as served."
+          },
+          "modelDtype": {
+            "type": "string",
+            "description": "The model's compute dtype."
+          },
+          "modelRevision": {
+            "type": "string",
+            "description": "The checkpoint's snapshot commit."
+          },
+          "ncclVersion": {
+            "type": "string",
+            "description": "The NCCL version."
+          },
+          "quantization": {
+            "type": "string",
+            "description": "The quantization method, empty for none."
+          },
+          "torchVersion": {
+            "type": "string",
+            "description": "The torch version."
+          }
+        }
+      },
+      "InstanceState": {
+        "type": "string",
+        "description": "An instance's state in a framework's terms (decision 0041's second obligation), derived from\nits engine's view in one place, the first that holds.",
+        "enum": [
+          "failed",
+          "recovering",
+          "degraded",
+          "serving",
+          "starting"
+        ]
+      },
+      "JoinStamp": {
+        "type": "object",
+        "description": "A join payload through the coordinator.",
+        "required": [
+          "rank",
+          "epoch",
+          "fromClient",
+          "bytes",
+          "receivedAtUs",
+          "forwardedAtUs"
+        ],
+        "properties": {
+          "bytes": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Its payload's size.",
+            "minimum": 0
+          },
+          "epoch": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The epoch it is for.",
+            "minimum": 0
+          },
+          "forwardedAtUs": {
+            "type": "object",
+            "description": "Each node it was forwarded to, and when its forward was queued to that node's link.",
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0
+            },
+            "propertyNames": {
+              "type": "string"
+            }
+          },
+          "fromClient": {
+            "type": "boolean",
+            "description": "True for the executor's payload to the process, false for the process's answer back."
+          },
+          "rank": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The rank whose position it joins.",
+            "minimum": 0
+          },
+          "receivedAtUs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "When the coordinator read it from its node's daemon.",
+            "minimum": 0
+          }
+        }
+      },
+      "LastChange": {
+        "type": "object",
+        "description": "A committed change's record. Its moments are on the coordinator's clock, microseconds since\nthe Unix epoch, except each acknowledgement's, which is its daemon's.",
+        "required": [
+          "epoch",
+          "outcome",
+          "lost",
+          "reportedAtUs",
+          "deliveredAtUs",
+          "acknowledgedAtUs",
+          "committedAtUs",
+          "acks",
+          "joins"
+        ],
+        "properties": {
+          "acknowledgedAtUs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The last acknowledgement.",
+            "minimum": 0
+          },
+          "acks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AckStamp"
+            },
+            "description": "Every acknowledgement it waited on: which process the change waited for longest."
+          },
+          "committedAtUs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The commit.",
+            "minimum": 0
+          },
+          "cover": {
+            "type": "string",
+            "description": "How it used cover (decision 0035): through which covered set, or formed in the change;\nempty while cover is not planned."
+          },
+          "deliveredAtUs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Its delivery to the survivors and spares.",
+            "minimum": 0
+          },
+          "epoch": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The epoch it committed.",
+            "minimum": 0
+          },
+          "joins": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JoinStamp"
+            },
+            "description": "The join payloads routed for its epoch (decision 0024), at most 64, before or after its\ncommit: the control plane's share of a take's join and its answers."
+          },
+          "lost": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            },
+            "description": "The ranks it took."
+          },
+          "outcome": {
+            "type": "string",
+            "description": "`replace` or `shrink`."
+          },
+          "reportedAtUs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The report that moved it.",
+            "minimum": 0
+          }
+        }
+      },
+      "Launcher": {
+        "type": "object",
+        "description": "How a node's daemon starts one of a pool's spares: a command every node of the pool runs,\nso writing it is a grant apart from the pool's (`update pools/launcher`).",
+        "properties": {
+          "command": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The command and its arguments; empty, the daemons launch nothing."
+          },
+          "env": {
+            "type": "object",
+            "description": "The spares' environment.",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "propertyNames": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ListMetadata": {
+        "type": "object",
+        "description": "A list's version.",
+        "required": [
+          "resourceVersion"
+        ],
+        "properties": {
+          "continue": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The token for the next page of a paged list (`?limit=N`); absent on the last page."
+          },
+          "resourceVersion": {
+            "type": "string",
+            "description": "The version the list was read at: a watch from it misses no change. On every page of a\npaged list, the first page's."
+          }
+        }
+      },
+      "List_Engine": {
+        "type": "object",
+        "description": "Every object of a kind, in name order.",
+        "required": [
+          "metadata",
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "An engine: its spec is its entry in the policy, read-only here; its status, what a\nframework or a scheduler reads before it acts on the engine.",
+              "required": [
+                "metadata",
+                "spec",
+                "status"
+              ],
+              "properties": {
+                "metadata": {
+                  "$ref": "#/components/schemas/Metadata",
+                  "description": "Its name and versions."
+                },
+                "spec": {
+                  "type": "object",
+                  "description": "Its entry in the policy, in the policy's protobuf JSON."
+                },
+                "status": {
+                  "$ref": "#/components/schemas/EngineReadiness",
+                  "description": "What the coordinator observes of it."
+                }
+              }
+            },
+            "description": "The objects."
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/ListMetadata",
+            "description": "The list's version."
+          }
+        }
+      },
+      "List_Node": {
+        "type": "object",
+        "description": "Every object of a kind, in name order.",
+        "required": [
+          "metadata",
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "A node.",
+              "required": [
+                "metadata",
+                "spec",
+                "status"
+              ],
+              "properties": {
+                "metadata": {
+                  "$ref": "#/components/schemas/Metadata",
+                  "description": "Its name and versions."
+                },
+                "spec": {
+                  "$ref": "#/components/schemas/NodeSpec",
+                  "description": "What is asked of it."
+                },
+                "status": {
+                  "$ref": "#/components/schemas/NodeStatus",
+                  "description": "What the coordinator observes of it."
+                }
+              }
+            },
+            "description": "The objects."
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/ListMetadata",
+            "description": "The list's version."
+          }
+        }
+      },
+      "List_Pool": {
+        "type": "object",
+        "description": "Every object of a kind, in name order.",
+        "required": [
+          "metadata",
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "A pool.",
+              "required": [
+                "metadata",
+                "spec",
+                "status"
+              ],
+              "properties": {
+                "metadata": {
+                  "$ref": "#/components/schemas/Metadata",
+                  "description": "Its name and versions."
+                },
+                "spec": {
+                  "$ref": "#/components/schemas/PoolSpec",
+                  "description": "What is asked of it."
+                },
+                "status": {
+                  "$ref": "#/components/schemas/PoolStatus",
+                  "description": "What the coordinator observes of it."
+                }
+              }
+            },
+            "description": "The objects."
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/ListMetadata",
+            "description": "The list's version."
+          }
+        }
+      },
+      "MemberReadiness": {
+        "type": "object",
+        "description": "One serving rank.",
+        "required": [
+          "rank",
+          "node",
+          "replicatesTo"
+        ],
+        "properties": {
+          "class": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Its device class, when the node reported devices."
+          },
+          "compileCache": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CompileCacheReadiness",
+                "description": "The compile cache it reported (decision 0029); absent when it reported none."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "node": {
+            "type": "string",
+            "description": "Its node."
+          },
+          "process": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ProcessReadiness",
+                "description": "The process serving the rank, as its node's daemon saw it register."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "rank": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The rank.",
+            "minimum": 0
+          },
+          "replicatesTo": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The replica addresses its store sends every commit to."
+          }
+        }
+      },
+      "Metadata": {
+        "type": "object",
+        "description": "An object's name and versions.",
+        "required": [
+          "name",
+          "generation",
+          "resourceVersion"
+        ],
+        "properties": {
+          "generation": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Raised by each write of its spec; 0 for a spec never written through the API.",
+            "minimum": 0
+          },
+          "name": {
+            "type": "string",
+            "description": "The object's name: the engine's in the policy, the node's, the pool's."
+          },
+          "resourceVersion": {
+            "type": "string",
+            "description": "Raised by any change of the object as the API shows it, spec or status: what a write's\nprecondition and a watch name. Opaque: `<term>.<n>`, comparable only for equality."
+          },
+          "writtenAtMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "When its spec was last written, Unix milliseconds; 0 for a spec never written."
+          },
+          "writtenBy": {
+            "type": "string",
+            "description": "Who wrote its spec last, as the API authenticated them, or the notice that did."
+          }
+        }
+      },
+      "Node": {
+        "type": "object",
+        "description": "A node.",
+        "required": [
+          "metadata",
+          "spec",
+          "status"
+        ],
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata",
+            "description": "Its name and versions."
+          },
+          "spec": {
+            "$ref": "#/components/schemas/NodeSpec",
+            "description": "What is asked of it."
+          },
+          "status": {
+            "$ref": "#/components/schemas/NodeStatus",
+            "description": "What the coordinator observes of it."
+          }
+        }
+      },
+      "NodeEngine": {
+        "type": "object",
+        "description": "One engine's part of a node.",
+        "required": [
+          "engine",
+          "ranks",
+          "reclaimable",
+          "outcome",
+          "why"
+        ],
+        "properties": {
+          "engine": {
+            "type": "string",
+            "description": "The engine."
+          },
+          "outcome": {
+            "type": "string",
+            "description": "The outcome a loss of the node now would take."
+          },
+          "ranks": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            },
+            "description": "Its ranks on the node."
+          },
+          "reclaimable": {
+            "type": "boolean",
+            "description": "Whether a loss of the node now is replaced, not rebuilt."
+          },
+          "why": {
+            "type": "string",
+            "description": "Why, when it is not replaced."
+          }
+        }
+      },
+      "NodeReadiness": {
+        "type": "object",
+        "description": "Whether one node can be reclaimed now and what the engine would do.",
+        "required": [
+          "node",
+          "ranks",
+          "reclaimable",
+          "outcome",
+          "why",
+          "minNoticeMs"
+        ],
+        "properties": {
+          "expectedPauseMs": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "The last pause this coordinator measured for that outcome on this engine; absent until one\nwas.",
+            "minimum": 0
+          },
+          "minNoticeMs": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The shortest notice the policy treats as a notice rather than a fault.",
+            "minimum": 0
+          },
+          "node": {
+            "type": "string",
+            "description": "The node."
+          },
+          "outcome": {
+            "type": "string",
+            "description": "The outcome the policy would take: `replace`, `shrink` or `rebuild`."
+          },
+          "ranks": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            },
+            "description": "The engine's ranks on it."
+          },
+          "reclaimable": {
+            "type": "boolean",
+            "description": "Losing every rank on it keeps the engine serving."
+          },
+          "why": {
+            "type": "string",
+            "description": "Why it is not reclaimable; empty when it is."
+          }
+        }
+      },
+      "NodeRelease": {
+        "type": "object",
+        "description": "Whether a node may be given back now: it holds no position, nothing is staged\nonto or from it, and no change in flight touches it. What maintenance and reclaim tooling asks\nbefore it returns a node, rather than reading conditions and waiting for `DrainDone`.",
+        "required": [
+          "node",
+          "releasable",
+          "why"
+        ],
+        "properties": {
+          "node": {
+            "type": "string",
+            "description": "The node."
+          },
+          "releasable": {
+            "type": "boolean",
+            "description": "Whether it may be given back."
+          },
+          "why": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Why not, each reason in words; empty when it may."
+          }
+        }
+      },
+      "NodeSpec": {
+        "type": "object",
+        "description": "A node's spec: what an operator, a cloud's notice or a Node's label asks of it.",
+        "properties": {
+          "drain": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Drain",
+                "description": "Drained: every rank on it moved to a spare by the deadline, then the node released. A\ndrained node is cordoned."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "description": "Why, for people."
+          },
+          "unschedulable": {
+            "type": "boolean",
+            "description": "Cordoned: no spare takes a position on it; what it holds stays."
+          }
+        },
+        "additionalProperties": false
+      },
+      "NodeStatus": {
+        "type": "object",
+        "description": "What the coordinator observes of a node.",
+        "required": [
+          "linked",
+          "devices",
+          "engines",
+          "conditions"
+        ],
+        "properties": {
+          "conditions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            },
+            "description": "`Draining` (reason `Scheduled`: its notices went out; `Waiting`: other drains move as\nmany positions as the policy allows at once; `Blocked`: its change was refused; or\n`NotDraining`) and `Degraded` (`DrainBlocked`). A cordon is the spec's `unschedulable`."
+          },
+          "devices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Device"
+            },
+            "description": "Its devices, as its daemon reported them."
+          },
+          "engines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NodeEngine"
+            },
+            "description": "Each engine with ranks on it."
+          },
+          "linked": {
+            "type": "boolean",
+            "description": "Its daemon is linked to the coordinator."
+          },
+          "replicaAddress": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Where its store takes replicas; absent when it takes none."
+          }
+        }
+      },
+      "Pool": {
+        "type": "object",
+        "description": "A pool.",
+        "required": [
+          "metadata",
+          "spec",
+          "status"
+        ],
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata",
+            "description": "Its name and versions."
+          },
+          "spec": {
+            "$ref": "#/components/schemas/PoolSpec",
+            "description": "What is asked of it."
+          },
+          "status": {
+            "$ref": "#/components/schemas/PoolStatus",
+            "description": "What the coordinator observes of it."
+          }
+        }
+      },
+      "PoolSpec": {
+        "type": "object",
+        "description": "A pool's spec (decision 0031). Its launcher is written apart, under a grant of its own.",
+        "required": [
+          "engines",
+          "wants"
+        ],
+        "properties": {
+          "deviceClass": {
+            "type": "string",
+            "description": "The device class a spare must stand on; empty for any."
+          },
+          "domain": {
+            "type": "string",
+            "description": "The network domain a spare must stand in; empty for any."
+          },
+          "engines": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The engines it holds spares for, of one shape."
+          },
+          "reason": {
+            "type": "string",
+            "description": "Why, for people."
+          },
+          "wants": {
+            "type": "integer",
+            "format": "int32",
+            "description": "How many spares it wants standing.",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      },
+      "PoolStatus": {
+        "type": "object",
+        "description": "What the coordinator observes of a pool.",
+        "required": [
+          "standing",
+          "taking",
+          "warming",
+          "deficit",
+          "conditions"
+        ],
+        "properties": {
+          "conditions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            },
+            "description": "`Satisfied` and `ShapeAgrees`."
+          },
+          "deficit": {
+            "type": "integer",
+            "format": "int32",
+            "description": "`wants` less `standing` and `warming`: what its launches, or a scheduler, keep at zero.",
+            "minimum": 0
+          },
+          "standing": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Spares standing for any of its engines on an uncordoned node its selector admits, each\nprocess counted once.",
+            "minimum": 0
+          },
+          "taking": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Spares taking a position in a change in flight.",
+            "minimum": 0
+          },
+          "warming": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Spares launched for it that have not yet registered.",
+            "minimum": 0
+          }
+        }
+      },
+      "ProcessReadiness": {
+        "type": "object",
+        "description": "A process the control plane serves, as its node's daemon saw it register: the id is the\nsocket's peer credential, never the process's own word.",
+        "required": [
+          "registeredAtMs"
+        ],
+        "properties": {
+          "identity": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IdentityReadiness",
+                "description": "What it runs, as it registered (decision 0034); absent when it reported nothing."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "pid": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "The process id on its node; absent when the daemon cannot see it, as a process in another\npod on Kubernetes.",
+            "minimum": 0
+          },
+          "registeredAtMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "When it registered, Unix milliseconds on the coordinator's clock."
+          }
+        }
+      },
+      "Reason": {
+        "type": "string",
+        "description": "Why a request was not done, from a closed set a client matches on.",
+        "enum": [
+          "Unauthorized",
+          "Forbidden",
+          "NotFound",
+          "Conflict",
+          "DrainUnderway",
+          "Invalid",
+          "Gone",
+          "Timeout",
+          "Unavailable",
+          "Internal"
+        ]
+      },
+      "RefusedSpareReadiness": {
+        "type": "object",
+        "description": "A spare kept out of an engine's pool for what it runs (decision 0034).",
+        "required": [
+          "node",
+          "device",
+          "reason"
+        ],
+        "properties": {
+          "device": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Its device.",
+            "minimum": 0
+          },
+          "node": {
+            "type": "string",
+            "description": "Its node."
+          },
+          "rank": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "The rank it stood for; absent for a spare standing for any position.",
+            "minimum": 0
+          },
+          "reason": {
+            "type": "string",
+            "description": "Why: the field that differed, or the identity it did not report."
+          }
+        }
+      },
+      "Severity": {
+        "type": "string",
+        "description": "Whether an event is routine or calls for attention.",
+        "enum": [
+          "Normal",
+          "Warning"
+        ]
+      },
+      "SlotReadiness": {
+        "type": "object",
+        "description": "The engine's slot-collective choice.",
+        "required": [
+          "variant",
+          "how",
+          "detail",
+          "seconds"
+        ],
+        "properties": {
+          "detail": {
+            "type": "string",
+            "description": "What the probe found, for a human."
+          },
+          "how": {
+            "type": "string",
+            "description": "`override`, `nvml`, `cache` or `probe`."
+          },
+          "seconds": {
+            "type": "number",
+            "format": "double",
+            "description": "Seconds the decision took."
+          },
+          "variant": {
+            "type": "string",
+            "description": "`p2p` or `host`."
+          }
+        }
+      },
+      "SpareReadiness": {
+        "type": "object",
+        "description": "One spare in the pool.",
+        "required": [
+          "rank",
+          "node",
+          "speed",
+          "state"
+        ],
+        "properties": {
+          "compileCache": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CompileCacheReadiness",
+                "description": "The compile cache it reported (decision 0029); absent when it reported none."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "node": {
+            "type": "string",
+            "description": "Its node."
+          },
+          "process": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ProcessReadiness",
+                "description": "The spare's process, as its node's daemon saw it register."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "rank": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The rank it stands in for.",
+            "minimum": 0
+          },
+          "speed": {
+            "type": "number",
+            "format": "double",
+            "description": "Expected speed relative to the position's class (1.0: the same class)."
+          },
+          "state": {
+            "type": "string",
+            "description": "`warm`, `on_demand` or `mismatched` (docs/MULTINODE.md section 5)."
+          }
+        }
+      },
+      "StacksRequest": {
+        "type": "object",
+        "description": "What a stacks request names: a serving rank (or the spare preloaded for it or taking it), a\nspare standing for any position by its node and device, or the engine's head.",
+        "properties": {
+          "device": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "A spare standing for any position: its device.",
+            "minimum": 0
+          },
+          "head": {
+            "type": "boolean",
+            "description": "The engine's head, its launcher asked too (decision 0032)."
+          },
+          "node": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "A spare standing for any position: its node."
+          },
+          "rank": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "The serving rank.",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      },
+      "StacksTaken": {
+        "type": "object",
+        "description": "A stacks request done: the process asked on its link, on which node, and when.",
+        "required": [
+          "node",
+          "atMs"
+        ],
+        "properties": {
+          "answered": {
+            "type": "boolean",
+            "description": "Whether the process answered with its stacks in time; one that does not writes them to\nits own log only."
+          },
+          "atMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "When the daemon was asked, Unix milliseconds."
+          },
+          "node": {
+            "type": "string",
+            "description": "The node holding the process."
+          },
+          "pid": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "The process asked for its stacks; absent when its daemon cannot see its id, as another\npod's on Kubernetes.",
+            "minimum": 0
+          },
+          "stacks": {
+            "type": "string",
+            "description": "Its every thread's stack, as it answered; at most 1 MiB."
+          }
+        }
+      },
+      "Truth": {
+        "type": "string",
+        "description": "A condition's status.",
+        "enum": [
+          "True",
+          "False",
+          "Unknown"
+        ]
+      },
+      "UncoveredReadiness": {
+        "type": "object",
+        "description": "A loss a cover plan holds no set for.",
+        "required": [
+          "lost",
+          "why"
+        ],
+        "properties": {
+          "lost": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            },
+            "description": "The ranks lost together."
+          },
+          "why": {
+            "type": "string",
+            "description": "Why no set covers it."
+          }
+        }
+      },
+      "WatchEvent": {
+        "type": "object",
+        "description": "One line of a watch.",
+        "required": [
+          "type",
+          "object"
+        ],
+        "properties": {
+          "object": {
+            "type": "object",
+            "description": "The object as it is after the change; as it was last shown, for a deletion."
+          },
+          "type": {
+            "$ref": "#/components/schemas/EventType",
+            "description": "What happened."
+          }
+        }
+      },
+      "WriteMetadata": {
+        "type": "object",
+        "description": "The precondition a write may carry.",
+        "properties": {
+          "resourceVersion": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The object's `resourceVersion` as the writer read it: the write is refused, 409\n`Conflict`, if the object changed since. Absent, the write applies as it stands."
+          }
+        }
+      },
+      "Write_NodeSpec": {
+        "type": "object",
+        "description": "A write of an object's spec. An object read and sent back is a valid write: its `status` and\nits metadata other than `resourceVersion` are ignored.",
+        "required": [
+          "spec"
+        ],
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/WriteMetadata",
+            "description": "The write's precondition."
+          },
+          "spec": {
+            "type": "object",
+            "description": "A node's spec: what an operator, a cloud's notice or a Node's label asks of it.",
+            "properties": {
+              "drain": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Drain",
+                    "description": "Drained: every rank on it moved to a spare by the deadline, then the node released. A\ndrained node is cordoned."
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "reason": {
+                "type": "string",
+                "description": "Why, for people."
+              },
+              "unschedulable": {
+                "type": "boolean",
+                "description": "Cordoned: no spare takes a position on it; what it holds stays."
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "Write_PoolSpec": {
+        "type": "object",
+        "description": "A write of an object's spec. An object read and sent back is a valid write: its `status` and\nits metadata other than `resourceVersion` are ignored.",
+        "required": [
+          "spec"
+        ],
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/WriteMetadata",
+            "description": "The write's precondition."
+          },
+          "spec": {
+            "type": "object",
+            "description": "A pool's spec (decision 0031). Its launcher is written apart, under a grant of its own.",
+            "required": [
+              "engines",
+              "wants"
+            ],
+            "properties": {
+              "deviceClass": {
+                "type": "string",
+                "description": "The device class a spare must stand on; empty for any."
+              },
+              "domain": {
+                "type": "string",
+                "description": "The network domain a spare must stand in; empty for any."
+              },
+              "engines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "The engines it holds spares for, of one shape."
+              },
+              "reason": {
+                "type": "string",
+                "description": "Why, for people."
+              },
+              "wants": {
+                "type": "integer",
+                "format": "int32",
+                "description": "How many spares it wants standing.",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "A Kubernetes token; the cluster's RBAC grants its verbs on the everserve.ai group's resources"
+      },
+      "clientCertificate": {
+        "type": "mutualTLS",
+        "description": "A certificate from `everserve-controller certs --operator <name>`, its name one the coordinator's settings make an operator or a viewer"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    },
+    {
+      "clientCertificate": []
+    }
+  ]
+}

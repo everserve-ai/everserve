@@ -1,0 +1,50 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# What alerts.yml raises over given series: `promtool test rules deploy/grafana/alerts.test.yml`,
+# run by CI. A rule that parses but matches the wrong series fails here.
+rule_files:
+  - alerts.yml
+evaluation_interval: 1m
+tests:
+  # a store's refusals: a stale epoch is the fence after a change, a budget refusal is a rank
+  # not kept, and a checksum refusal is rows that are not what their source wrote
+  - interval: 1m
+    input_series:
+      - series: 'everserve_store_refusals_total{instance="node-a", reason="stale_epoch"}'
+        values: '0 1 2 3 4 5'
+      - series: 'everserve_store_refusals_total{instance="node-b", reason="budget"}'
+        values: '0 0 1 1 1 1'
+      - series: 'everserve_store_refusals_total{instance="node-c", reason="checksum"}'
+        values: '0 0 0 1 1 1'
+    alert_rule_test:
+      - eval_time: 5m
+        alertname: EverserveStoreRefusing
+        exp_alerts:
+          - exp_labels: {severity: warning, instance: node-b, reason: budget}
+            exp_annotations:
+              summary: "store on node-b refused writes as budget"
+              runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everservestorerefusing"
+      - eval_time: 5m
+        alertname: EverserveStoreCorrupt
+        exp_alerts:
+          - exp_labels: {severity: critical, instance: node-c, reason: checksum}
+            exp_annotations:
+              summary: "store on node-c refused rows as checksum"
+              runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everservestorecorrupt"
+  # a change that ended other than committed or folded is alerted; a committed one is not
+  - interval: 1m
+    input_series:
+      - series: 'everserve_changes_total{engine="e", result="committed"}'
+        values: '0 1 2 3'
+      - series: 'everserve_changes_total{engine="e", result="folded"}'
+        values: '0 1 1 1'
+      - series: 'everserve_changes_total{engine="e", result="survivor_departed"}'
+        values: '0 0 1 1'
+    alert_rule_test:
+      - eval_time: 3m
+        alertname: EverserveChangeFailed
+        exp_alerts:
+          - exp_labels: {severity: warning, engine: e, result: survivor_departed}
+            exp_annotations:
+              summary: "engine e: a change ended survivor_departed"
+              runbook_url: "https://github.com/everserve-ai/everserve/blob/main/docs/RUNBOOK.md#everservechangefailed"

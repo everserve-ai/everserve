@@ -1,0 +1,77 @@
+{
+  "arm": "stock",
+  "trials": 1,
+  "figures": {
+    "compile_cache_consistent": {
+      "values": [
+        true
+      ],
+      "prediction": 6,
+      "median": true,
+      "worst": true,
+      "worst_over_median": 1.0
+    },
+    "replica_lag_max_steps": {
+      "values": [
+        null
+      ],
+      "prediction": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0
+      ],
+      "prediction": null,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "stock_stops_killed": {
+      "values": [
+        1
+      ],
+      "prediction": null,
+      "median": 1,
+      "worst": 1,
+      "worst_over_median": 1.0
+    },
+    "stops_killed": {
+      "values": [
+        0
+      ],
+      "prediction": 14,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "store_refusals_total": {
+      "values": [
+        0
+      ],
+      "prediction": 6,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "take_written_beyond_baseline_bytes": {
+      "values": [
+        0
+      ],
+      "prediction": 9,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "take_written_bytes": {
+      "values": [
+        4617092
+      ],
+      "prediction": null,
+      "median": 4617092,
+      "worst": 4617092,
+      "worst_over_median": 1.0
+    }
+  },
+  "failed": [],
+  "green": true
+}

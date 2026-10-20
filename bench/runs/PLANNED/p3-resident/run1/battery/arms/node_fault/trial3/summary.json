@@ -1,0 +1,554 @@
+{
+  "arm": "node_fault",
+  "trial": 3,
+  "record": "bench/runs/PLANNED/p3-resident/run1/battery/arms/node_fault/trial3/result.json",
+  "model": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic",
+  "sessions": 8,
+  "prompt_len": 2048,
+  "tok_s_steps_10_200": 243.18,
+  "clock_offsets": [
+    {
+      "node": "node-b",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.83",
+        "at": 1791631096.403011,
+        "probes": 20,
+        "lost": 0,
+        "offset_s": 1e-05,
+        "rtt_s": 0.000234,
+        "error_s": 0.000117
+      }
+    },
+    {
+      "node": "node-c",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.72",
+        "at": 1791631098.4509442,
+        "probes": 20,
+        "lost": 0,
+        "offset_s": 0.0,
+        "rtt_s": 0.00017,
+        "error_s": 8.5e-05
+      }
+    }
+  ],
+  "figures": {
+    "node_fault_gap_s": {
+      "value": 13.7173,
+      "prediction": 4,
+      "predicted": "0.5-1.5 (median of 5)",
+      "kill": "median > 4",
+      "per_session": [
+        13.7173,
+        13.7173,
+        13.7173,
+        13.7173,
+        13.7173,
+        13.7173,
+        13.7173,
+        13.7173
+      ],
+      "median_over_sessions": 13.7173
+    },
+    "node_fault_detection_s": {
+      "value": 0.012,
+      "prediction": 4,
+      "predicted": "< 0.1",
+      "kill": "> 0.5"
+    },
+    "sessions_kept_identical": {
+      "value": "8/8",
+      "prediction": 5,
+      "predicted": "all",
+      "kill": "any lost or mismatched",
+      "verdict": "loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]",
+      "green": true
+    },
+    "restored_rows_mismatched": {
+      "value": 0,
+      "prediction": 6,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "restore_coverage": {
+      "value": 1.0,
+      "prediction": 6,
+      "predicted": 1.0,
+      "kill": "< 1"
+    },
+    "requests_re_prefilled": {
+      "value": 0,
+      "prediction": 5,
+      "predicted": 0,
+      "kill": "any",
+      "requests": []
+    },
+    "resume_below_committed": {
+      "value": 0,
+      "prediction": 15,
+      "predicted": "0 (at committed, or one below: the last sampled token died with the rank)",
+      "kill": "any",
+      "requests": [],
+      "causes": {
+        "0-8bf44e0b": "last_token_died",
+        "1-8d442f0c": "last_token_died",
+        "2-b0136831": "last_token_died",
+        "3-96ff98aa": "last_token_died",
+        "4-b9266418": "last_token_died",
+        "5-b6dcf7cd": "last_token_died",
+        "6-950443d9": "last_token_died",
+        "7-84199f2a": "last_token_died"
+      }
+    },
+    "first_differing_position": {
+      "value": null,
+      "prediction": 5,
+      "predicted": "none",
+      "kill": "any (a row differs)",
+      "comparable": true,
+      "reason": null,
+      "per_request": {
+        "0:0": null,
+        "0:1": null,
+        "0:2": null,
+        "0:3": null,
+        "0:4": null,
+        "0:5": null,
+        "0:6": null,
+        "0:7": null,
+        "1:0": null,
+        "1:1": null,
+        "1:2": null,
+        "1:3": null,
+        "1:4": null,
+        "1:5": null,
+        "1:6": null,
+        "1:7": null
+      }
+    },
+    "instrument_pause_s": {
+      "value": 47.0104,
+      "prediction": null,
+      "predicted": "after the gap",
+      "kill": null,
+      "step": 627
+    },
+    "take_s": {
+      "value": 12.555,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 4,
+      "cold": false
+    },
+    "take_weights_s": {
+      "value": 0.725,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 4,
+      "cold": false
+    },
+    "take_modules_s": {
+      "value": 2.9,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 4,
+      "cold": false
+    },
+    "take_kv_config_s": {
+      "value": 4.04,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 4,
+      "cold": false
+    },
+    "take_warm_s": {
+      "value": 4.238,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 4,
+      "cold": false
+    },
+    "take_identity_s": {
+      "value": 0.002,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 4,
+      "cold": false
+    },
+    "staged_wait_s": {
+      "value": 0.0001,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1",
+      "take_index": 4,
+      "cold": false
+    },
+    "replica_lag_max_steps": {
+      "value": 0.0,
+      "prediction": 7,
+      "predicted": "<= 2",
+      "kill": "> 8"
+    },
+    "store_refusals_total": {
+      "value": 0,
+      "prediction": null,
+      "predicted": 0,
+      "kill": "any checksum refusal",
+      "by_reason": {},
+      "stores_read": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "replication_dropped_total": {
+      "value": 0,
+      "prediction": 7,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "take_written_bytes": {
+      "value": 4631845,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "files": 6,
+      "start": 21,
+      "roots": {
+        "/home/everserve/.cache/vllm": {
+          "files": 1,
+          "bytes": 55832
+        },
+        "/home/everserve/.humming/tmp": {
+          "files": 1,
+          "bytes": 0
+        },
+        "/var/lib/landscape": {
+          "files": 1,
+          "bytes": 269
+        },
+        "/var/lib/nebius-observability-agent": {
+          "files": 3,
+          "bytes": 4575744
+        }
+      },
+      "dirs": [
+        {
+          "dir": "/var/lib/nebius-observability-agent",
+          "files": 3,
+          "bytes": 4575744
+        },
+        {
+          "dir": "/home/everserve/.cache/vllm/torch_compile_cache/torch_aot_compile/02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434/inductor_cache/triton/0/MIH4X24CEAJDWYGXCZ4EKW6DTWSUG2ZBSBPV7NGI62HAUKJ7F7BQ",
+          "files": 1,
+          "bytes": 55832
+        },
+        {
+          "dir": "/var/lib/landscape",
+          "files": 1,
+          "bytes": 269
+        },
+        {
+          "dir": "/home/everserve/.humming/tmp/lock",
+          "files": 1,
+          "bytes": 0
+        }
+      ],
+      "take_index": 4,
+      "cold": false
+    },
+    "stops_killed": {
+      "value": 0,
+      "prediction": null,
+      "predicted": 0,
+      "kill": "any process killed at its stop",
+      "by_node": {
+        "a": "none",
+        "b": "none",
+        "c": "clean"
+      }
+    },
+    "take_written_beyond_baseline_bytes": {
+      "value": 55832,
+      "prediction": 8,
+      "predicted": 0,
+      "kill": "any byte (zero-byte files listed, not counted)",
+      "files": 2,
+      "roots": {
+        "/home/everserve/.cache/vllm": {
+          "files": 1,
+          "bytes": 55832
+        },
+        "/home/everserve/.humming/tmp": {
+          "files": 1,
+          "bytes": 0
+        }
+      },
+      "baseline_roots": [
+        "/var/lib/landscape",
+        "/var/lib/nebius-observability-agent"
+      ],
+      "take_index": 4,
+      "cold": false
+    },
+    "backup_coverage": {
+      "value": 1.0,
+      "prediction": null,
+      "predicted": 1.0,
+      "kill": "< 1.0 for either rank",
+      "per_rank": {
+        "0": 1.0,
+        "1": 1.0
+      },
+      "detail": {
+        "0": {
+          "rank": 0,
+          "holder": {
+            "epoch": 1,
+            "step": 3587,
+            "held": true,
+            "caught_up": false
+          },
+          "replica": {
+            "epoch": 1,
+            "step": 3587,
+            "held": true,
+            "caught_up": true
+          },
+          "scored_at_step": 3587,
+          "rows_due": 15360,
+          "rows_matching": 15360,
+          "coverage": 1.0
+        },
+        "1": {
+          "rank": 1,
+          "holder": {
+            "epoch": 1,
+            "step": 3586,
+            "held": true,
+            "caught_up": true
+          },
+          "replica": {
+            "epoch": 1,
+            "step": 3586,
+            "held": true,
+            "caught_up": true
+          },
+          "scored_at_step": 3586,
+          "rows_due": 15360,
+          "rows_matching": 15360,
+          "coverage": 1.0
+        }
+      }
+    },
+    "shadow_formation_s": {
+      "value": 83.014,
+      "prediction": 11,
+      "predicted": "< 60",
+      "kill": "formation fails"
+    }
+  },
+  "verdict": {
+    "green": true,
+    "line": "loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]"
+  },
+  "change": {
+    "ranks": [
+      1
+    ],
+    "faulted": [
+      1
+    ],
+    "epoch_committed": 1,
+    "wait_commit_s": 13.5065,
+    "boundary_s": 0.0223,
+    "resume_s": 0.0063,
+    "n_replayed": 8,
+    "claim_to_commit": {
+      "coordinator": {
+        "reported_at": 1791637408.295239,
+        "delivered_at": 1791637408.295263,
+        "acknowledged_at": 1791637421.805876,
+        "committed_at": 1791637421.805877
+      },
+      "deliver_s": 2.4e-05,
+      "acknowledgements_s": 13.510613,
+      "commit_s": 1e-06,
+      "heard_after_commit_s": 0.00061
+    },
+    "join_legs_s": {
+      "offers_out": 0.0035,
+      "answers_back": 0.0176,
+      "ring_subscribed": 0.0,
+      "ring_ready": 0.001,
+      "survivors_boundary": 0.0001
+    },
+    "spares": {
+      "1": {
+        "restore": {
+          "restore_s": 0.9522,
+          "staged": {
+            "epoch": 0,
+            "step": 604,
+            "s": 0.0001,
+            "polls": 1
+          },
+          "counts": {
+            "0-8bf44e0b": 2350,
+            "1-8d442f0c": 2350,
+            "2-b0136831": 2350,
+            "3-96ff98aa": 2350,
+            "4-b9266418": 2350,
+            "5-b6dcf7cd": 2350,
+            "6-950443d9": 2350,
+            "7-84199f2a": 2350
+          },
+          "rows": 6016000,
+          "watermark": 604,
+          "dead": 1,
+          "heads": 8,
+          "catch_up": {
+            "since_step": 604,
+            "watermark": 604,
+            "rows": 0,
+            "counts_before": {
+              "0-8bf44e0b": 2350,
+              "1-8d442f0c": 2350,
+              "2-b0136831": 2350,
+              "3-96ff98aa": 2350,
+              "4-b9266418": 2350,
+              "5-b6dcf7cd": 2350,
+              "6-950443d9": 2350,
+              "7-84199f2a": 2350
+            },
+            "s": 0.0138,
+            "t_end": 1791637421.824587
+          }
+        },
+        "join_s": 0.016,
+        "attachment": {
+          "engine": "rig",
+          "rank": 1,
+          "stage": 1,
+          "sizing_s": 0.019,
+          "warm_s": 4.238,
+          "shard_copy_s": 3.625,
+          "weights_s": 0.725,
+          "kv_config_s": 4.04,
+          "kv_alloc_s": 0.003,
+          "take_s": 12.555,
+          "identity_s": 0.002,
+          "build_s": 0.357
+        }
+      }
+    },
+    "boundaries": {
+      "0": {
+        "tag": "change-1-1791637421.8097017",
+        "rank": 0,
+        "applied": false,
+        "moved": {
+          "members": "0-R1",
+          "rows": [
+            0
+          ],
+          "epoch": 1
+        },
+        "released": [
+          "fabric 0.181s",
+          "torch 1.018s"
+        ],
+        "releasing": [],
+        "leaked": 0,
+        "boundary_s": 0.0015,
+        "t_entered": 1791637421.8102274,
+        "release_times": {
+          "fabric": [
+            1791637408.2965212,
+            1791637408.4773571
+          ],
+          "torch": [
+            1791637408.2971365,
+            1791637409.314645
+          ]
+        },
+        "ring_s": 0.0159
+      }
+    },
+    "replaced_after_kill_s": 13.5515
+  },
+  "derived": {
+    "replica_lost_sessions": {
+      "value": 8
+    },
+    "replica_lost_prompt_tokens": {
+      "value": 16384
+    },
+    "replica_lost_generated_tokens": {
+      "value": 2416,
+      "per_session": {
+        "0-8bf44e0b": 302,
+        "1-8d442f0c": 302,
+        "2-b0136831": 302,
+        "3-96ff98aa": 302,
+        "4-b9266418": 302,
+        "5-b6dcf7cd": 302,
+        "6-950443d9": 302,
+        "7-84199f2a": 302
+      },
+      "client_had_at_kill": [
+        302,
+        302,
+        302,
+        302,
+        302,
+        302,
+        302,
+        302
+      ]
+    },
+    "replica_redo_retry_s": {
+      "value": 11.304,
+      "how": "the prompts prefilled again, then the longest session's tokens decoded again",
+      "bound": "derived; understated where approximate; the replica's restore not included",
+      "stock_prefill_tok_s": 6844.9,
+      "stock_prefill_s": 2.3936,
+      "stock_prefill_tokens": 16384,
+      "stock_decode_step_s": 0.029504,
+      "stock_record": "bench/runs/PLANNED/p3-resident/run1/battery/arms/stock/trial1/result.json"
+    },
+    "replica_redo_continuation_s": {
+      "value": 2.747,
+      "how": "every prompt with its generated tokens prefilled again, nothing decoded again",
+      "bound": "derived; understated where approximate; the replica's restore not included",
+      "stock_prefill_tok_s": 6844.9,
+      "stock_prefill_s": 2.3936,
+      "stock_prefill_tokens": 16384,
+      "stock_decode_step_s": 0.029504,
+      "stock_record": "bench/runs/PLANNED/p3-resident/run1/battery/arms/stock/trial1/result.json"
+    },
+    "replica_restore_gpus": {
+      "value": 2
+    },
+    "take_gpus": {
+      "value": 1
+    }
+  }
+}

@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+{{- if not .Values.policy }}
+{{- fail "set .Values.policy: the policy document the coordinator serves" }}
+{{- end }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "everserve.fullname" . }}-policy
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+data:
+  policy.json: {{ .Values.policy | toJson | quote }}

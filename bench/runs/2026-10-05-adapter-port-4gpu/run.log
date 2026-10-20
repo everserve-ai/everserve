@@ -1,0 +1,122 @@
+# Adapter port on the four-GPU rig: run log
+2026-10-04T22:34:10Z Budget approved by the user: target $5, hard cap $10. RunPod balance 52.03, no pods running. 5x A40 quote (graphql gpuTypes lowestPrice gpuCount 5): community $1.75/h (stock Medium), secure 0.49/GPU = $2.45/h.
+2026-10-04T22:35:50Z Part 1: PREREGISTRATION.md open items filled (checkpoint Qwen/Qwen3-30B-A3B at /workspace/models/Qwen3-30B-A3B; pod 5x A40); predictions unchanged.
+2026-10-04T23:37:47Z Part 2a: adapter port committed (preflight green: 94 passed, 1 skipped without vLLM; Rust daemon 6, store 3). Slow tier: test_runtime_fault flakes ~1/8 on both this tree and the clean parent (pre-existing timing test).
+2026-10-04T23:45:59Z balance 52.03
+2026-10-04T23:45:59Z deploy 5x NVIDIA A40 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-04T23:46:00Z deploy 5x NVIDIA A40 SECURE: {"data": {"podFindAndDeployOnDemand": {"id": "t8jgr7fvniodb6", "costPerHr": 2.45, "machine": {"gpuDisplayName": "A40", "location": "SE"}}}}
+2026-10-04T23:46:08Z pod t8jgr7fvniodb6 5x A40 secure SE $2.45/h (community: no supply). Start balance 52.03; hard stop at balance 42.03 ($10). Laptop watchdog terminates at 2026-10-05T03:41:00Z (+3h55m, ~$9.60).
+2026-10-04T23:47:26Z pod: hf download Qwen/Qwen3-30B-A3B -> /workspace/models (background, hf_transfer)
+2026-10-04T23:47:45Z rsync repo at 836416b (+ uncommitted bench/harness/runpod.py, catch_flake.sh) -> pod:/workspace/everserve
+2026-10-04T23:47:54Z weights downloaded (34 s). pod: bash bench/harness/adapter_port.sh setup && build (background)
+2026-10-04T23:49:53Z flake caught on the laptop at iteration 1 (836416b): core/tests/test_runtime_fault.py::test_mid_step_kill_is_bit_identical[0.003-tp]; rank 1 wrote no events, ranks 0 and 3 recovered then hit gloo's 120 s recv timeout on the recreated group. Saved under flake/; not retried, not skipped.
+2026-10-04T23:50:05Z pod: vllm 0.30.1rc1.dev606+g6e517b15c (pin), torch 2.13.0+cu130, NCCL 2.29.7, cuda-compat-13-0 installed (driver 580.159.04); cargo build --release -p everserve-store -p everserve-controller: 12.4 s
+2026-10-04T23:50:05Z spend [setup done] balance 52.03, spent since start $0.00, pod t8jgr7fvniodb6 $2.45/h up 235s
+2026-10-04T23:50:15Z pod: bash bench/harness/adapter_port.sh smoke (replace, between-step kill; dev run, not scored)
+2026-10-04T23:54:29Z smoke_replace: engine ready 104 s; kill at step 100; daemon refused the change: the killed worker's socket closed (unregistering rank 2) 0.2 s before the executor's RankLost -> 'rank 2 is not registered'. Daemon bug; fixing in controller (a dropped worker stays known as departed). Smoke stopped.
+2026-10-04T23:54:57Z fix committed c7a4fd2; rsync + cargo build --release; re-run smoke
+2026-10-04T23:55:06Z spend [smoke 2 start] balance 51.73, spent since start $0.30, pod t8jgr7fvniodb6 $2.45/h up 0s
+2026-10-04T23:59:00Z smoke 2: daemon committed REPLACE epoch 1 at +1.2 s after the report (spare restore included); survivors' boundary RPC failed: sys._getframe(1) is boundary_except, not the WorkerProc (my bug). Fixed by walking to the WorkerProc frame; re-run smoke.
+2026-10-04T23:59:05Z spend [smoke 3 start] balance 51.52, spent since start $0.51, pod t8jgr7fvniodb6 $2.45/h up 779s
+2026-10-05T00:02:27Z smoke 3 failed at start: workers of smoke 2 still held ~19 GB/GPU (vLLM renames worker processes; pkill by name missed them). Killed by nvidia-smi pid; adapter_port.sh now frees GPUs by pid before and after each run.
+2026-10-05T00:07:22Z smoke 4: rank 2 killed, reported, change sent; two survivors' processes exited silently during on_fault before acking ('rank 3 did not acknowledge'). Executor monitor now sees every death (it stopped after the first); drill exports NCCL_DEBUG=WARN, PYTHONFAULTHANDLER=1. Re-run smoke.
+2026-10-05T00:07:27Z spend [smoke 5 start] balance 51.31, spent since start $0.72, pod t8jgr7fvniodb6 $2.45/h up 1274s
+2026-10-05T00:11:23Z smoke 5 (dev, not scored): REPLACE end to end. pause 2.31 s (detect 0.25, change 0.04, restore 1.14, resume 0.03, first token 0.85), commit->resume 30 ms, epochs 1/1/1/1, restore check 48/48 tables equal, replay from 2149 tokens (none re-prefilled), 8/8 sessions. tps 285.8 (week-5 stock 475); mirror commit p50 17.7 ms/step. Earlier silent survivor exits did not recur. Starting scored arms: stock x3, adapter x3, replace between x3, replace mid x3, notice x3.
+2026-10-05T00:11:34Z pod: smoke files moved to /workspace/out/dev (not scored)
+2026-10-05T00:11:35Z spend [before stock] balance 51.10, spent since start $0.93, pod t8jgr7fvniodb6 $2.45/h up 1521s
+2026-10-05T00:11:35Z pod: bash bench/harness/adapter_port.sh stock
+2026-10-05T00:11:39Z start stock_1: --arm stock
+2026-10-05T00:13:19Z end stock_1 rc=0: (MainProcess pid=10602) WARNING 10-05 00:13:15 [multiproc_executor.py:486] [shutdown] Executor: workers still running after grace period; sending SIGTERM count=4
+2026-10-05T00:13:21Z start stock_2: --arm stock
+2026-10-05T00:14:08Z end stock_2 rc=0: (MainProcess pid=11605) WARNING 10-05 00:14:04 [multiproc_executor.py:486] [shutdown] Executor: workers still running after grace period; sending SIGTERM count=4
+2026-10-05T00:14:10Z start stock_3: --arm stock
+2026-10-05T00:14:57Z end stock_3 rc=0: (MainProcess pid=12279) WARNING 10-05 00:14:53 [multiproc_executor.py:486] [shutdown] Executor: workers still running after grace period; sending SIGTERM count=4
+2026-10-05T00:14:58Z spend [after stock] balance 50.90, spent since start $1.13, pod t8jgr7fvniodb6 $2.45/h up 1720s
+2026-10-05T00:14:59Z spend [before adapter] balance 50.90, spent since start $1.13, pod t8jgr7fvniodb6 $2.45/h up 1720s
+2026-10-05T00:14:59Z pod: bash bench/harness/adapter_port.sh adapter
+2026-10-05T00:15:03Z start adapter_1: --arm adapter
+2026-10-05T00:16:06Z end adapter_1 rc=0: (MainProcess pid=13041) INFO 10-05 00:16:03 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T00:16:08Z start adapter_2: --arm adapter
+2026-10-05T00:17:12Z end adapter_2 rc=0: (MainProcess pid=13948) INFO 10-05 00:17:09 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T00:17:14Z start adapter_3: --arm adapter
+2026-10-05T00:18:16Z end adapter_3 rc=0: (MainProcess pid=14850) INFO 10-05 00:18:13 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T00:18:17Z spend [after adapter] balance 50.90, spent since start $1.13, pod t8jgr7fvniodb6 $2.45/h up 1899s
+2026-10-05T00:18:18Z spend [before replace] balance 50.90, spent since start $1.13, pod t8jgr7fvniodb6 $2.45/h up 1934s
+2026-10-05T00:18:18Z pod: bash bench/harness/adapter_port.sh replace
+2026-10-05T00:18:22Z start replace_between_1: --arm replace --kill between
+2026-10-05T00:25:54Z replace_between_1 hung: daemon committed REPLACE at +1.1 s, then survivors hit 'illegal memory access' (NCCL WARN in commReclaim during the live-comm abort); engine never resumed. Sequencer and run stopped.
+2026-10-05T00:25:55Z spend [replace_between_1 hung, stopped] balance 50.48, spent since start $1.55, pod t8jgr7fvniodb6 $2.45/h up 2360s
+2026-10-05T00:26:39Z cause: PyNcclGroup.abort ran ncclCommAbort on a fresh thread, whose current CUDA device is 0 (log: rank 1's abort thread switches [1]->[0]); vLLM's own destroy() sets the comm's device. Fixed; drill runs capped at 600 s wall clock. stock and adapter arms stand (no abort on that path). Resuming: replace, notice.
+2026-10-05T00:26:50Z spend [before replace] balance 50.48, spent since start $1.55, pod t8jgr7fvniodb6 $2.45/h up 2426s
+2026-10-05T00:26:50Z pod: bash bench/harness/adapter_port.sh replace
+2026-10-05T00:26:55Z start replace_between_1: --arm replace --kill between
+2026-10-05T00:36:58Z end replace_between_1 rc=137: bench/harness/adapter_port.sh: line 89: 16794 Killed                  timeout -s KILL 600 "$PY" bench/harness/adapter_drill.py --model "$MODEL" --blocks "$BLOCKS" --event-dir "$OUT/events_$name" --out "$OUT/$name.json" "$@"
+2026-10-05T00:37:01Z start replace_between_2: --arm replace --kill between
+2026-10-05T00:40:47Z spend [after fix smoke] balance 49.86, spent since start $2.17, pod t8jgr7fvniodb6 $2.45/h up 3274s
+2026-10-05T00:41:09Z replace_between_1 (2nd) and _2: committed at +1.1 s, then 'illegal memory access' on survivors again (device fix not the cause). Stacks (SIGUSR1): torch all_gather_into_tensor first called after the fault -> the aborted pynccl handle marked disabled sends vLLM's TP all-gather to its torch NCCL group, which still contains the dead rank. Fix: swap every vLLM group's NCCL handle for a refusing stand-in before aborting; never mark disabled. Those runs moved to out/dev.
+2026-10-05T00:41:11Z pod: bash bench/harness/adapter_port.sh smoke (dev check of the fix)
+2026-10-05T00:42:51Z spend [after fix smoke] balance 49.86, spent since start $2.17, pod t8jgr7fvniodb6 $2.45/h up 3394s
+2026-10-05T00:43:01Z fix smoke (dev): REPLACE recovered, no illegal access. Resuming scored arms: replace, notice.
+2026-10-05T00:43:02Z spend [before replace] balance 49.86, spent since start $2.17, pod t8jgr7fvniodb6 $2.45/h up 3394s
+2026-10-05T00:43:02Z pod: bash bench/harness/adapter_port.sh replace
+2026-10-05T00:43:06Z start replace_between_1: --arm replace --kill between
+2026-10-05T00:44:23Z end replace_between_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T00:44:25Z start replace_between_2: --arm replace --kill between
+2026-10-05T00:45:42Z end replace_between_2 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T00:45:44Z start replace_between_3: --arm replace --kill between
+2026-10-05T00:46:59Z end replace_between_3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T00:47:01Z start replace_mid_1: --arm replace --kill mid
+2026-10-05T00:48:19Z end replace_mid_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T00:48:21Z start replace_mid_2: --arm replace --kill mid
+2026-10-05T00:49:38Z end replace_mid_2 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T00:49:40Z start replace_mid_3: --arm replace --kill mid
+2026-10-05T00:50:57Z end replace_mid_3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T00:50:58Z spend [after replace] balance 49.45, spent since start $2.58, pod t8jgr7fvniodb6 $2.45/h up 3879s
+2026-10-05T00:50:59Z spend [before notice] balance 49.45, spent since start $2.58, pod t8jgr7fvniodb6 $2.45/h up 3879s
+2026-10-05T00:50:59Z pod: bash bench/harness/adapter_port.sh notice
+2026-10-05T00:51:03Z start notice_1: --arm notice --notice-s 10
+2026-10-05T00:52:06Z end notice_1 rc=0: (MainProcess pid=25550) INFO 10-05 00:52:03 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T00:52:08Z start notice_2: --arm notice --notice-s 10
+2026-10-05T00:53:10Z end notice_2 rc=0: (MainProcess pid=26455) INFO 10-05 00:53:07 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T00:53:12Z start notice_3: --arm notice --notice-s 10
+2026-10-05T00:54:13Z end notice_3 rc=0: (MainProcess pid=27356) INFO 10-05 00:54:10 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T00:54:14Z spend [after notice] balance 49.24, spent since start $2.79, pod t8jgr7fvniodb6 $2.45/h up 4084s
+2026-10-05T00:54:16Z pod: bash bench/harness/adapter_port.sh summary (results.json)
+2026-10-05T00:55:57Z PRE-REGISTERED RUNS COMPLETE (scored as run): stock x3 tps 466.7/463.2/463.4; adapter x3 335.4/335.1/335.1 (overhead 27.8-27.9%); replace between x3 pause 10.95/10.85/11.00 s; replace mid x3 10.73/10.77/11.07 s (change segment 9.2-9.4 s; restore check 48/48 every run; epochs matched; none re-prefilled; 8/8); notice x3: no swap happened (sessions finished ~3.5 s after the notice, before the 10 s deadline) -> prediction 6 not exercised by the pre-registered protocol.
+2026-10-05T00:55:57Z cause of the 9.2 s change: on_fault ready_s 10.43 s on every survivor (0.0004 s on the spare): the refusal fix aborted the other groups' handles before the live TP handle, and those aborts wait behind the live handle's blocked all-gather until the 10 s join bound. Fix: refuse all, abort live first, then retire the rest (per-abort timings recorded). POST-HOC from here, labelled: replace x6 after the fix; notice x3 with 600 tokens (max-model-len 2688, 1400 blocks) so the deadline falls inside the run.
+2026-10-05T00:56:01Z pod: bash bench/harness/adapter_port.sh smoke_notice (dev)
+2026-10-05T00:58:12Z spend [after notice smoke] balance 49.24, spent since start $2.79, pod t8jgr7fvniodb6 $2.45/h up 4311s
+2026-10-05T00:58:26Z notice smoke (dev): swap at the deadline, faulted False, epochs 1/1/1/1, replay from 2577. Starting post-hoc arms on d66f08f (not pulling the other session's main commits).
+2026-10-05T00:58:27Z spend [before posthoc_replace] balance 49.04, spent since start $2.99, pod t8jgr7fvniodb6 $2.45/h up 4311s
+2026-10-05T00:58:27Z pod: bash bench/harness/adapter_port.sh posthoc_replace
+2026-10-05T00:58:30Z start posthoc_replace_between_1: --arm replace --kill between
+2026-10-05T00:59:56Z end posthoc_replace_between_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T00:59:58Z start posthoc_replace_between_2: --arm replace --kill between
+2026-10-05T01:01:07Z end posthoc_replace_between_2 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T01:01:09Z start posthoc_replace_between_3: --arm replace --kill between
+2026-10-05T01:02:18Z end posthoc_replace_between_3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T01:02:20Z start posthoc_replace_mid_1: --arm replace --kill mid
+2026-10-05T01:03:28Z end posthoc_replace_mid_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T01:03:30Z start posthoc_replace_mid_2: --arm replace --kill mid
+2026-10-05T01:04:37Z end posthoc_replace_mid_2 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T01:04:39Z start posthoc_replace_mid_3: --arm replace --kill mid
+2026-10-05T01:05:46Z end posthoc_replace_mid_3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T01:05:46Z spend [after posthoc_replace] balance 48.82, spent since start $3.21, pod t8jgr7fvniodb6 $2.45/h up 4768s
+2026-10-05T01:05:48Z spend [before posthoc_notice] balance 48.82, spent since start $3.21, pod t8jgr7fvniodb6 $2.45/h up 4768s
+2026-10-05T01:05:48Z pod: bash bench/harness/adapter_port.sh posthoc_notice
+2026-10-05T01:05:51Z start posthoc_notice_1: --arm notice --notice-s 10 --max-tokens 601 --max-model-len 2688
+2026-10-05T01:07:08Z end posthoc_notice_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T01:07:10Z start posthoc_notice_2: --arm notice --notice-s 10 --max-tokens 601 --max-model-len 2688
+2026-10-05T01:08:25Z end posthoc_notice_2 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T01:08:27Z start posthoc_notice_3: --arm notice --notice-s 10 --max-tokens 601 --max-model-len 2688
+2026-10-05T01:09:43Z end posthoc_notice_3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-05T01:09:44Z spend [after posthoc_notice] balance 48.62, spent since start $3.41, pod t8jgr7fvniodb6 $2.45/h up 5007s
+2026-10-05T01:09:46Z pod: bash bench/harness/adapter_port.sh summary (results.json)
+2026-10-05T01:10:38Z outputs copied to data/ (gitignored). pod: bash bench/harness/adapter_port.sh cleanup (weights deleted)
+overlay         200G   19G  182G  10% /
+ls: cannot access '/workspace/models': No such file or directory
+2026-10-05T01:10:40Z terminate t8jgr7fvniodb6: {"data": {"podTerminate": null}}
+2026-10-05T01:10:40Z laptop watchdog stopped
+2026-10-05T01:10:45Z balance 48.62
+2026-10-05T01:12:40Z pod terminated 01:10:40Z; balance 48.62 (52.03 at start): $3.41 by balance, $3.43 by uptime (1 h 24 min x $2.45). No pods remain. RESULT.md and results.json written; directory moved to bench/runs/2026-10-05-adapter-port-4gpu/.
+2026-10-05T01:19:16Z history rewritten before push: trailers dropped (CONTRIBUTING rule 6), rebased onto origin/main b92afcd; run commits map cd64f82->8136741, 570f1b7->161d60d, d66f08f->e0cf7b4 (see results.json). Pre-rewrite branch kept locally as backup/pre-rebase-b1244c1.

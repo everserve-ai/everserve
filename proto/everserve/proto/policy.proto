@@ -1,0 +1,139 @@
+// SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+// SPDX-License-Identifier: Apache-2.0
+// The deployment's policy document: which outcomes it may use, how many spares it holds, what a
+// notice deadline means. The controller reads it; the same binary serves every customer.
+syntax = "proto3";
+
+package everserve.policy.v1;
+
+import "everserve/proto/signals.proto";
+
+// What an engine promises its sessions across a change (decision 0030). The mechanisms follow
+// from it: deterministic kernels and the compile-cache hold (decision 0029) serve the exact class,
+// and an engine under the continuous class is free of both.
+enum Guarantee {
+  // Exact: the default.
+  GUARANTEE_UNSPECIFIED = 0;
+  // Every session continues from its committed position with every token and K/V row equal to an
+  // uninterrupted engine's: deterministic kernels, and a process whose compile cache differs from
+  // its position's is refused.
+  GUARANTEE_EXACT = 1;
+  // Every session continues from its committed position; numerics are stated, not promised equal.
+  // Kernels may be chosen by timing, and a compile-cache difference is reported, not refused.
+  GUARANTEE_CONTINUOUS = 2;
+}
+
+message SparePool {
+  enum Loading {
+    LOADING_UNSPECIFIED = 0;
+    // A spare holds a rank's shard, KV, graphs and shadow groups before any fault.
+    LOADING_PRELOADED = 1;
+    // A spare loads the shard when a notice arrives; covers notices only.
+    LOADING_ON_NOTICE = 2;
+  }
+  uint32 per_engine = 1;
+  Loading loading = 2;
+  // A spare on a device of another class than the position's may take it, serving degraded until
+  // a planned swap-back (docs/MULTINODE.md section 5).
+  bool allow_mismatched = 3;
+  // The largest slowdown a mismatched spare may bring, in percent of the position's speed; 0 means
+  // any class with enough memory.
+  uint32 max_degrade_percent = 4;
+}
+
+// One engine's shape (decision 0036's spec): its parallel layout and what it requires, not where
+// it runs. Where each rank runs is status, decided by what registers (decision 0041); `members`
+// pins it, for an engine on nodes the operator names (bare metal, a rig).
+message Engine {
+  string name = 1;
+  // Optional: each rank's node and device, in rank order. Present, the engine is pinned there
+  // and the members number its world; absent, the processes that register place it.
+  repeated everserve.signals.v1.Member members = 2;
+  // The layout: the world is tensor_parallel x pipeline_parallel x data_parallel ranks, an unset
+  // width counting as one.
+  uint32 tensor_parallel = 3;
+  // The expert-parallel group's size, which spans the tensor- and data-parallel ranks and adds
+  // none.
+  uint32 expert_parallel = 4;
+  uint32 pipeline_parallel = 5;
+  uint32 data_parallel = 15;
+  // True when the served model is ported to placement-independent arithmetic (SHRINK allowed).
+  bool placement_independent_model = 6;
+  // Nodes holding spares eligible for this engine's positions: a node-level change takes its
+  // spares from them. Not a replication target since decision 0030 (`replica_nodes`).
+  repeated string spare_nodes = 7;
+  // The engine's captured collectives (its tensor-parallel group's) can span the fabric. False
+  // for every engine until it has a fabric path (the fabric slot kernel, decision 0015); while
+  // false, a replacement outside its group's domain moves the whole group (decision 0022).
+  bool fabric_collectives = 8;
+  // Where the engine's spares are placed, as members are: each node's daemon launches the ones
+  // on its node with `spare_launch` (decision 0024). Empty: the engine launches its own spares.
+  repeated SpareSlot spares = 9;
+  SpareLaunch spare_launch = 10;
+  // How long a step boundary waits for a refused group's release (ncclCommAbort, torch's abort)
+  // before leaving it behind as leaked (decision 0025): the operator's trade of pause against
+  // memory. Absent: the adapter's default, 10 s.
+  optional uint32 release_bound_ms = 11;
+  // The nodes whose stores take this engine's rows (decision 0030), other than a rank's own
+  // node. Absent: the engine's own member nodes, so a rank's rows sit in its siblings' host
+  // memory and a shared spare restores from there. Named to put them elsewhere, as the
+  // per-position shape does with its spare node.
+  repeated string replica_nodes = 12;
+  // The engine's guarantee class (decision 0030); absent: exact.
+  Guarantee guarantee = 13;
+  // The engine's head runs on on-demand capacity (decision 0041): a spot reclaim must never take
+  // it. Where the cluster's Nodes say a node's capacity, readiness reports `HeadOnSpot`, true when
+  // the head's node is spot.
+  bool head_on_demand = 14;
+  // Removed with the head handoff, 2026-10-19 (decision 0045).
+  reserved 16 to 21;
+  reserved "head_nodes", "mirror_ack_max_ms", "separate_head", "head_on_rank_nodes",
+    "head_handoff_ms", "start_head_ms";
+}
+
+// One spare's place: the node and device it runs on and the rank it stands in for. Without a
+// rank the spare stands for any position of the engine (decision 0030): it holds the model in host
+// memory and takes the shard of the rank a change names.
+message SpareSlot {
+  string node = 1;
+  uint32 device = 2;
+  optional uint32 rank = 3;
+}
+
+// How a node's daemon starts a spare process. `{engine}`, `{rank}`, `{device}`, `{node}` and
+// `{socket}` (the daemon's worker socket) are filled in, in the command and the environment.
+message SpareLaunch {
+  repeated string command = 1;
+  map<string, string> env = 2;
+}
+
+message Policy {
+  string version = 1;
+  // Preference order; the first outcome whose preconditions hold is taken.
+  repeated everserve.signals.v1.Outcome outcomes_in_order = 2;
+  SparePool spares = 3;
+  // How many ranks may be lost before the engine stops serving.
+  uint32 max_concurrent_losses = 4;
+  // A notice shorter than this is treated as a fault.
+  uint32 notice_min_ms = 5;
+  repeated Engine engines = 6;
+  // Cover plans (decision 0035); absent or disabled, no plan is made or delivered.
+  CoverPolicy cover = 7;
+}
+
+// How the coordinator plans the groups each engine pre-forms (decision 0035).
+message CoverPolicy {
+  // Plan and deliver cover. Off until every process of the engine speaks protocol 8.
+  bool enabled = 1;
+  // The most pre-formed groups any one process holds, counted over both scopes; 0 for no bound.
+  uint32 max_groups_per_gpu = 2;
+  // Let a change whose loss no covered set answers form the set it needs on the critical path,
+  // a slower REPLACE its record reports, instead of refusing it.
+  bool form_on_critical_path = 3;
+  // How long a planned group's members have to form it, in milliseconds; 0 is the default,
+  // 30000. A member's own formation is bounded by it, and the coordinator counts a group not
+  // formed by every member within it, and a transit margin, as failed: its members let it go and
+  // form it again at the retry, so a member whose formation reported success without its peers
+  // holds no dead communicator past it.
+  uint32 form_timeout_ms = 4;
+}

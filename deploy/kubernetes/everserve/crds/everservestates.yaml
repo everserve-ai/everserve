@@ -1,0 +1,43 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# The coordinator's spec store on Kubernetes (decision 0036, amended 2026-10-13): one root object
+# (the term, the nodes' and pools' specs, the engines' objects) and one object per engine (its
+# status), each a SpecSnapshot in protobuf JSON beside the term that last took or wrote it. The
+# coordinator writes them, guarded by resourceVersion; no one else does, and no one deletes them.
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: everservestates.everserve.ai
+spec:
+  group: everserve.ai
+  scope: Namespaced
+  names:
+    kind: EverserveState
+    plural: everservestates
+    singular: everservestate
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      additionalPrinterColumns:
+        - {name: Term, type: string, jsonPath: .spec.term}
+        - {name: Engine, type: string, jsonPath: ".metadata.annotations.everserve\\.ai/engine"}
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              required: [term, state]
+              properties:
+                # the lease term that last took or wrote the object, a decimal string (a u64)
+                term: {type: string, pattern: "^[0-9]+$"}
+                # what the object holds: an everserve.spec.v1.SpecSnapshot in protobuf JSON
+                state:
+                  type: object
+                  x-kubernetes-preserve-unknown-fields: true
+                # the root's alone: the names of the engines' objects, each registered before it
+                # is made
+                engines:
+                  type: array
+                  items: {type: string}

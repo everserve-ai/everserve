@@ -1,0 +1,1 @@
+{"socket": "/workspace/run/mirror.sock", "engine": "rig", "rank": 1, "rows": {}, "error": "MirrorError: rank 1 of rig has no table 0 here"}

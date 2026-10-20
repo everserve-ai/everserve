@@ -1,0 +1,1 @@
+[{"at_ms":1791866098549,"severity":"Normal","reason":"DrainWaiting","message":"node-b's drain is due first"},{"at_ms":1791866100467,"severity":"Normal","reason":"DrainStarted","message":"ranks {\"rig\": [2]} leave at 1791866200466 ms"}]

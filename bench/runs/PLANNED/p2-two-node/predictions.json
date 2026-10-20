@@ -1,0 +1,186 @@
+{
+  "preregistration": "bench/runs/PLANNED/p2-two-node/PREREGISTRATION.md",
+  "note": "the table summary.py carried until 2026-10-10, moved here unchanged",
+  "figures": {
+    "adapter_overhead_pct": {
+      "n": 1,
+      "predicted": "within 5",
+      "kill": "> 10 (under stock)"
+    },
+    "mirror_off_delta_pts": {
+      "n": 2,
+      "predicted": "within 2",
+      "kill": "> 4 apart"
+    },
+    "drain_gap_s": {
+      "n": 3,
+      "predicted": "< 1.0",
+      "kill": "no swap, or > 3"
+    },
+    "node_fault_gap_s": {
+      "n": 4,
+      "predicted": "0.5-1.5 (median of 5)",
+      "kill": "median > 4"
+    },
+    "node_fault_detection_s": {
+      "n": 4,
+      "predicted": "< 0.1",
+      "kill": "> 0.5"
+    },
+    "single_death_gap_s": {
+      "n": "4b",
+      "predicted": "0.5-1.5 (median of 5)",
+      "kill": "median > 4"
+    },
+    "single_death_detection_s": {
+      "n": "4b",
+      "predicted": "< 0.05",
+      "kill": "> 1"
+    },
+    "worst_over_median": {
+      "n": "4c",
+      "predicted": "<= 2x",
+      "kill": "> 3x"
+    },
+    "sessions_kept_identical": {
+      "n": 5,
+      "predicted": "all",
+      "kill": "any lost or mismatched"
+    },
+    "restored_rows_mismatched": {
+      "n": 6,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "restore_coverage": {
+      "n": 6,
+      "predicted": 1.0,
+      "kill": "< 1"
+    },
+    "requests_re_prefilled": {
+      "n": 5,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "resume_below_committed": {
+      "n": 15,
+      "predicted": "0 (at committed, or one below: the last sampled token died with the rank)",
+      "kill": "any"
+    },
+    "instrument_pause_s": {
+      "n": null,
+      "predicted": "after the gap",
+      "kill": null
+    },
+    "first_differing_position": {
+      "n": 5,
+      "predicted": "none",
+      "kill": "any (a row differs)"
+    },
+    "replica_lag_max_steps": {
+      "n": 7,
+      "predicted": "<= 2",
+      "kill": "> 8"
+    },
+    "replication_dropped_total": {
+      "n": 7,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "shadow_formation_s": {
+      "n": 11,
+      "predicted": "< 60",
+      "kill": "formation fails"
+    },
+    "shadow_memory_gb_max": {
+      "n": 11,
+      "predicted": "< 2",
+      "kill": null
+    },
+    "long_context_restore_over_wire_s": {
+      "n": 12,
+      "predicted": "<= 2x",
+      "kill": "> 4x"
+    },
+    "take_s": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "take_weights_s": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "take_modules_s": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "take_kv_config_s": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "take_warm_s": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "take_identity_s": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "staged_wait_s": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "take_written_bytes": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "take_written_beyond_baseline_bytes": {
+      "n": 8,
+      "predicted": 0,
+      "kill": "any byte (zero-byte files listed, not counted)"
+    },
+    "stops_killed": {
+      "n": null,
+      "predicted": 0,
+      "kill": "any process killed at its stop"
+    },
+    "runs_agree": {
+      "n": null,
+      "predicted": "every session",
+      "kill": "any session differs (stop)"
+    },
+    "backup_coverage": {
+      "n": null,
+      "predicted": 1.0,
+      "kill": "< 1.0 for either rank"
+    },
+    "store_refusals_total": {
+      "n": null,
+      "predicted": 0,
+      "kill": "any checksum refusal"
+    },
+    "stock_restart_first_token_s": {
+      "n": null,
+      "predicted": "minutes (the baseline)",
+      "kill": null
+    },
+    "stock_restart_engine_ready_s": {
+      "n": null,
+      "predicted": "the engine's own load",
+      "kill": null
+    },
+    "stock_restart_relaunch_latency_s": {
+      "n": null,
+      "predicted": "the supervisor's",
+      "kill": null
+    }
+  }
+}

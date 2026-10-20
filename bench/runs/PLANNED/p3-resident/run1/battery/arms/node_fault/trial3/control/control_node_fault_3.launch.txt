@@ -1,0 +1,1 @@
+adapter_drill.py --clock-offsets /workspace/out/clocks.json --arm adapter --max-tokens 1792 --kv-digest --logprobs 2 (STOCK=0)

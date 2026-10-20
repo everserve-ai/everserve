@@ -1,0 +1,23 @@
+2026-10-12T20:34:56Z drains smoke on Qwen/Qwen3-1.7B, TP1 x PP3 over a b c, spares d:1 e:1, 4 sessions x 512 prompt, 16000 tokens, blocks 4256; leads node-b 20000 ms, node-c 120000 ms; commit 04208a1, $1.47 spent
+2026-10-12T20:35:24Z nodes at 04208a1, the binaries and kernels built at it
+2026-10-12T20:36:58Z control plane up: coordinator on a at 10.0.0.4:7400, daemons linked on a b c d e, records exchanged
+2026-10-12T20:37:04Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP3, rank 1 of 3 nodes)
+2026-10-12T20:37:07Z node-c headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP3, rank 2 of 3 nodes)
+2026-10-12T20:39:02Z end warmup rc=0
+2026-10-12T20:39:27Z stacks asked of every rank's process and the spare (still running on a d e)
+2026-10-12T20:39:55Z nodes a b c d e down: a=none b=clean c=clean d=none e=none 
+2026-10-12T20:40:14Z compile cache staged from node-b onto node-d: b=e2c59a7754:47f5c375b877 d=e2c59a7754:9a051f1ed5a1 
+2026-10-12T20:40:38Z compile cache staged from node-c onto node-e: c=e2c59a7754:21cb8ea7baf2 e=e2c59a7754:17e20673b03d 
+2026-10-12T20:40:38Z warm-up done; compile caches staged b to d and c to e, $2.42 spent
+2026-10-12T20:42:16Z control plane up: coordinator on a at 10.0.0.4:7400, daemons linked on a b c d e, records exchanged
+2026-10-12T20:42:27Z clock of node-b against node-a: {"host": "10.0.0.20", "at": 1791837747.5688388, "probes": 20, "lost": 0, "offset_s": 0.000339, "rtt_s": 0.000124, "error_s": 6.2e-05}
+2026-10-12T20:42:29Z clock of node-c against node-a: {"host": "10.0.0.63", "at": 1791837749.59702, "probes": 20, "lost": 0, "offset_s": -0.000666, "rtt_s": 0.000123, "error_s": 6.1e-05}
+2026-10-12T20:42:31Z clock of node-d against node-a: {"host": "10.0.0.96", "at": 1791837751.6064618, "probes": 20, "lost": 0, "offset_s": -0.000418, "rtt_s": 0.000146, "error_s": 7.3e-05}
+2026-10-12T20:42:33Z clock of node-e against node-a: {"host": "10.0.0.0", "at": 1791837753.581179, "probes": 20, "lost": 0, "offset_s": -0.000571, "rtt_s": 0.000162, "error_s": 8.1e-05}
+2026-10-12T20:42:40Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP3, rank 1 of 3 nodes)
+2026-10-12T20:42:43Z node-c headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP3, rank 2 of 3 nodes)
+2026-10-12T20:43:24Z the engine up, both spares standing, both losses covered, $2.89 spent
+2026-10-12T20:44:26Z node-d and node-e cordoned and uncordoned; both losses covered again, $3.06 spent
+2026-10-12T20:44:30Z serving at step 50, $3.07 spent
+2026-10-12T20:44:48Z drains asked: node-b (20000 ms), node-c (120000 ms), node-b again (80000 ms), $3.12 spent
+2026-10-12T20:44:55Z end drains rc=1

@@ -1,0 +1,1 @@
+[{"at_ms":1791858843959,"severity":"Normal","reason":"DrainStarted","message":"ranks {\"rig\": [1]} leave at 1791858844417 ms"},{"at_ms":1791858845887,"severity":"Normal","reason":"DrainDone","message":"every position left the node"},{"at_ms":1791858845887,"severity":"Normal","reason":"NotDraining","message":"Draining is False: "}]

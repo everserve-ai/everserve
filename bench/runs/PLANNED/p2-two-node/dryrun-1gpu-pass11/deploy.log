@@ -1,0 +1,50 @@
+2026-10-09T10:15:20Z the battery's dry run on Nebius eu-north1: three single-GPU L40S VMs (gpu-l40s-a 1gpu-8vcpu-32gb), TP1 x PP2 with one spare on node-c: the script end to end, Qwen3-1.7B, every arm once; tree 728240d
+2026-10-09T10:15:59Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00hytpck9bjz33gpm", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.51", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T10:15:59Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00hytpck9bjz33gpm", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.51", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T10:15:59Z VM b computeinstance-e00hytpck9bjz33gpm public 89.169.109.234 private 10.0.0.51, watchdog at +180 min
+2026-10-09T10:16:00Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00fx5ebtg32pzdc59", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.10", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T10:16:00Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00fx5ebtg32pzdc59", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.10", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T10:16:00Z VM c computeinstance-e00fx5ebtg32pzdc59 public 89.169.121.79 private 10.0.0.10, watchdog at +180 min
+2026-10-09T10:16:02Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00vsz9qxr15rvd3nk", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.14", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T10:16:02Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00vsz9qxr15rvd3nk", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.14", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T10:16:02Z VM a computeinstance-e00vsz9qxr15rvd3nk public 89.169.126.169 private 10.0.0.14, watchdog at +180 min
+2026-10-09T10:16:37Z addresses: a=10.0.0.14 b=10.0.0.51 c=10.0.0.10
+2026-10-09T10:16:39Z private network (a to b and c): ok after 5 s
+2026-10-09T10:16:40Z node-a: NVIDIA L40S,8;Mem:              31           1          29           0           0          30;
+2026-10-09T10:17:05Z setup started on a b c
+2026-10-09T10:22:29Z setup done on a b c
+2026-10-09T10:22:40Z nodes updated from the working tree (728240d + uncommitted)
+[2m2026-10-09T10:22:41.990411Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-09T10:22:41.990426Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-09T10:22:41.990428Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-09T10:22:41.990430Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-09T10:22:41.990431Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-09T10:22:41.990432Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-09T10:22:41.990433Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-09T10:22:41.990435Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-09T10:22:41.990436Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-09T10:22:41.990437Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+2026-10-09T10:22:45Z certs made on a, the other nodes' copied
+2026-10-09T10:23:05Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: node_fault single_death; trials 1 (fault) / 3 (other); tree 728240d + uncommitted
+2026-10-09T10:24:18Z fabric: slowest link to node-a 36.45 Gbit/s (floor 1)
+2026-10-09T10:25:05Z == node_fault trial 1: control
+2026-10-09T10:28:22Z == node_fault trial 1
+2026-10-09T10:30:05Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":[],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"0bfe1bf401ae10decd371342957fc7ab5720ca5afadc9ae24b78621ed936ec03"}},{"rank":1,"no
+2026-10-09T10:30:09Z node_fault_1 armed: {"t_armed": 1791541804.7703815, "step": 100}
+2026-10-09T10:31:13Z node_fault_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+node_fault trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+node_fault: 1 trials, green True, first_differing_position=[None], instrument_pause_s=1.5937, node_fault_detection_s=0.0151, node_fault_gap_s=0.3146, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8'], shadow_formation_s=4.426
+2026-10-09T10:31:23Z == single_death trial 1: control
+2026-10-09T10:33:32Z == single_death trial 1
+2026-10-09T10:35:10Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":[],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"0bfe1bf401ae10decd371342957fc7ab5720ca5afadc9ae24b78621ed936ec03"}},{"rank":1,"no
+2026-10-09T10:35:13Z single_death_1 armed: {"t_armed": 1791542109.6202657, "step": 100}
+2026-10-09T10:36:37Z single_death_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+single_death trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+single_death: 1 trials, green True, first_differing_position=[None], instrument_pause_s=1.5678, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8'], shadow_formation_s=13.075, single_death_detection_s=0.0062, single_death_gap_s=0.3247
+2026-10-09T10:37:33Z battery done: node_fault single_death ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass11
+2026-10-09T10:37:33Z battery.sh (bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass11: ARMS="node_fault single_death" TRIALS_FAULT=1 EXCHANGE_IN_FLIGHT=2 PIPELINE_PACKED=1) exited 0
+2026-10-09T10:37:44Z nodes a b c down
+2026-10-09T10:39:18Z terminate computeinstance-e00fx5ebtg32pzdc59: {"deleted": "computeinstance-e00fx5ebtg32pzdc59", "disks": []}
+2026-10-09T10:40:57Z terminate computeinstance-e00vsz9qxr15rvd3nk: {"deleted": "computeinstance-e00vsz9qxr15rvd3nk", "disks": []}
+2026-10-09T10:42:45Z terminate computeinstance-e00hytpck9bjz33gpm: {"deleted": "computeinstance-e00hytpck9bjz33gpm", "disks": []}
+2026-10-09T10:42:45Z VMs released: []

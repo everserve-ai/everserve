@@ -1,0 +1,1 @@
+adapter_drill.py --arm follow --kill external --kill-step 50 --max-tokens 16000 --start-after /workspace/out/drains.start (STOCK=0)

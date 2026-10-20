@@ -1,0 +1,2758 @@
+{
+ "stock_tps_mean": 464.6047026859897,
+ "reconcile_on_recover": {
+  "value": false,
+  "source": "adapters/vllm/everserve_vllm/worker.py, reconcile_on_recover=False"
+ },
+ "runs": {
+  "adapter_1": {
+   "arm": "adapter",
+   "kill": null,
+   "tps_10_200": 400.072055477335,
+   "overhead_pct": 13.889796387246234,
+   "pause_s": 0.036673784255981445,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 28.690680732378866,
+     "p50_ms": 6.208019331097603,
+     "p99_ms": 26.08295436948538,
+     "max_ms": 4605.395584367216,
+     "transport": {
+      "steps": 202,
+      "step_thread_s": 0.011671327985823154,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.769745972007513,
+      "bytes_sent": 441974784,
+      "max_in_flight": 2
+     }
+    },
+    "1": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 28.966786302994972,
+     "p50_ms": 6.478728726506233,
+     "p99_ms": 24.664773605763912,
+     "max_ms": 4664.122038520873,
+     "transport": {
+      "steps": 202,
+      "step_thread_s": 0.011791165918111801,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.827117735520005,
+      "bytes_sent": 441974784,
+      "max_in_flight": 2
+     }
+    },
+    "2": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 28.492516335468775,
+     "p50_ms": 6.4541371539235115,
+     "p99_ms": 21.676043048501015,
+     "max_ms": 4496.762732043862,
+     "transport": {
+      "steps": 202,
+      "step_thread_s": 0.01149829663336277,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.730770520865917,
+      "bytes_sent": 441974784,
+      "max_in_flight": 2
+     }
+    },
+    "3": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 28.83725827283198,
+     "p50_ms": 6.3314978033304214,
+     "p99_ms": 22.81772531569004,
+     "max_ms": 4615.214324556291,
+     "transport": {
+      "steps": 202,
+      "step_thread_s": 0.011455859057605267,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.801271722652018,
+      "bytes_sent": 441974784,
+      "max_in_flight": 2
+     }
+    }
+   },
+   "transport": {
+    "0": {
+     "steps": 202,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.769745972007513,
+     "bytes_sent": 441974784,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.208019331097603
+    },
+    "1": {
+     "steps": 202,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.827117735520005,
+     "bytes_sent": 441974784,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.478728726506233
+    },
+    "2": {
+     "steps": 202,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.730770520865917,
+     "bytes_sent": 441974784,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.4541371539235115
+    },
+    "3": {
+     "steps": 202,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.801271722652018,
+     "bytes_sent": 441974784,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.3314978033304214
+    }
+   },
+   "metrics": {
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "everserve_store_commits_total": {
+     "value": 996.0
+    }
+   }
+  },
+  "adapter_2": {
+   "arm": "adapter",
+   "kill": null,
+   "tps_10_200": 402.2921286903717,
+   "overhead_pct": 13.411955073931503,
+   "pause_s": 0.029456138610839844,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 28.165625850900565,
+     "p50_ms": 6.3437120988965034,
+     "p99_ms": 24.200765416026115,
+     "max_ms": 4440.303352661431,
+     "transport": {
+      "steps": 202,
+      "step_thread_s": 0.011095092631876469,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.664814340882003,
+      "bytes_sent": 441974784,
+      "max_in_flight": 2
+     }
+    },
+    "1": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 28.770842391186125,
+     "p50_ms": 6.370300427079201,
+     "p99_ms": 25.594720616936684,
+     "max_ms": 4584.094979800284,
+     "transport": {
+      "steps": 202,
+      "step_thread_s": 0.011113403365015984,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.788406460545957,
+      "bytes_sent": 441974784,
+      "max_in_flight": 2
+     }
+    },
+    "2": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 28.48853142286586,
+     "p50_ms": 6.4019495621323586,
+     "p99_ms": 22.128531709313393,
+     "max_ms": 4457.8016716986895,
+     "transport": {
+      "steps": 202,
+      "step_thread_s": 0.01107587106525898,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.7306914469227195,
+      "bytes_sent": 441974784,
+      "max_in_flight": 2
+     }
+    },
+    "3": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 29.271493827241777,
+     "p50_ms": 6.1943382024765015,
+     "p99_ms": 21.113385446369648,
+     "max_ms": 4747.522037476301,
+     "transport": {
+      "steps": 202,
+      "step_thread_s": 0.012172874063253403,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.888993851840496,
+      "bytes_sent": 441974784,
+      "max_in_flight": 2
+     }
+    }
+   },
+   "transport": {
+    "0": {
+     "steps": 202,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.664814340882003,
+     "bytes_sent": 441974784,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.3437120988965034
+    },
+    "1": {
+     "steps": 202,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.788406460545957,
+     "bytes_sent": 441974784,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.370300427079201
+    },
+    "2": {
+     "steps": 202,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.7306914469227195,
+     "bytes_sent": 441974784,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.4019495621323586
+    },
+    "3": {
+     "steps": 202,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.888993851840496,
+     "bytes_sent": 441974784,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.1943382024765015
+    }
+   },
+   "metrics": {
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "everserve_store_commits_total": {
+     "value": 996.0
+    }
+   }
+  },
+  "adapter_3": {
+   "arm": "adapter",
+   "kill": null,
+   "tps_10_200": 403.8627897279854,
+   "overhead_pct": 13.073891117941972,
+   "pause_s": 0.030241966247558594,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 28.497225157732125,
+     "p50_ms": 6.451735273003578,
+     "p99_ms": 29.628227464854717,
+     "max_ms": 4441.716347821057,
+     "transport": {
+      "steps": 202,
+      "step_thread_s": 0.01133484672755003,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.732319654896855,
+      "bytes_sent": 441974784,
+      "max_in_flight": 2
+     }
+    },
+    "1": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 28.888425826657528,
+     "p50_ms": 6.335061974823475,
+     "p99_ms": 33.32744259387255,
+     "max_ms": 4609.865490347147,
+     "transport": {
+      "steps": 202,
+      "step_thread_s": 0.012319800443947315,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.812391043640673,
+      "bytes_sent": 441974784,
+      "max_in_flight": 2
+     }
+    },
+    "2": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 29.007464946976096,
+     "p50_ms": 6.413389928638935,
+     "p99_ms": 27.889152988791466,
+     "max_ms": 4651.471523568034,
+     "transport": {
+      "steps": 202,
+      "step_thread_s": 0.011418831534683704,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.835451344028115,
+      "bytes_sent": 441974784,
+      "max_in_flight": 2
+     }
+    },
+    "3": {
+     "steps": 202,
+     "skipped": 0,
+     "mean_ms": 29.00411373944861,
+     "p50_ms": 6.231206469237804,
+     "p99_ms": 32.623051665723324,
+     "max_ms": 4702.403342351317,
+     "transport": {
+      "steps": 202,
+      "step_thread_s": 0.012308120727539062,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.833035779185593,
+      "bytes_sent": 441974784,
+      "max_in_flight": 2
+     }
+    }
+   },
+   "transport": {
+    "0": {
+     "steps": 202,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.732319654896855,
+     "bytes_sent": 441974784,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.451735273003578
+    },
+    "1": {
+     "steps": 202,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.812391043640673,
+     "bytes_sent": 441974784,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.335061974823475
+    },
+    "2": {
+     "steps": 202,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.835451344028115,
+     "bytes_sent": 441974784,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.413389928638935
+    },
+    "3": {
+     "steps": 202,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.833035779185593,
+     "bytes_sent": 441974784,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.231206469237804
+    }
+   },
+   "metrics": {
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "everserve_store_commits_total": {
+     "value": 996.0
+    }
+   }
+  },
+  "adapter_nomirror_1": {
+   "arm": "adapter_nomirror",
+   "kill": null,
+   "tps_10_200": 420.81673277146007,
+   "overhead_pct": 9.424779745314893,
+   "pause_s": 0.021341800689697266,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 0,
+     "skipped": 0,
+     "mean_ms": 0.0,
+     "p50_ms": null,
+     "p99_ms": null,
+     "max_ms": 0.0,
+     "transport": {
+      "steps": 0,
+      "step_thread_s": 0.0,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.0,
+      "bytes_sent": 0,
+      "max_in_flight": 0
+     }
+    },
+    "1": {
+     "steps": 0,
+     "skipped": 0,
+     "mean_ms": 0.0,
+     "p50_ms": null,
+     "p99_ms": null,
+     "max_ms": 0.0,
+     "transport": {
+      "steps": 0,
+      "step_thread_s": 0.0,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.0,
+      "bytes_sent": 0,
+      "max_in_flight": 0
+     }
+    },
+    "2": {
+     "steps": 0,
+     "skipped": 0,
+     "mean_ms": 0.0,
+     "p50_ms": null,
+     "p99_ms": null,
+     "max_ms": 0.0,
+     "transport": {
+      "steps": 0,
+      "step_thread_s": 0.0,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.0,
+      "bytes_sent": 0,
+      "max_in_flight": 0
+     }
+    },
+    "3": {
+     "steps": 0,
+     "skipped": 0,
+     "mean_ms": 0.0,
+     "p50_ms": null,
+     "p99_ms": null,
+     "max_ms": 0.0,
+     "transport": {
+      "steps": 0,
+      "step_thread_s": 0.0,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.0,
+      "bytes_sent": 0,
+      "max_in_flight": 0
+     }
+    }
+   },
+   "transport": {
+    "0": {
+     "steps": 0,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.0,
+     "bytes_sent": 0,
+     "max_in_flight": 0,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": null
+    },
+    "1": {
+     "steps": 0,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.0,
+     "bytes_sent": 0,
+     "max_in_flight": 0,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": null
+    },
+    "2": {
+     "steps": 0,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.0,
+     "bytes_sent": 0,
+     "max_in_flight": 0,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": null
+    },
+    "3": {
+     "steps": 0,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.0,
+     "bytes_sent": 0,
+     "max_in_flight": 0,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": null
+    }
+   },
+   "metrics": {
+    "everserve_store_bytes_in_use": {
+     "value": 0.0
+    },
+    "everserve_store_commits_total": {
+     "value": 0.0
+    }
+   }
+  },
+  "adapter_nomirror_2": {
+   "arm": "adapter_nomirror",
+   "kill": null,
+   "tps_10_200": 421.74234184059327,
+   "overhead_pct": 9.225554669937475,
+   "pause_s": 0.020442962646484375,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 0,
+     "skipped": 0,
+     "mean_ms": 0.0,
+     "p50_ms": null,
+     "p99_ms": null,
+     "max_ms": 0.0,
+     "transport": {
+      "steps": 0,
+      "step_thread_s": 0.0,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.0,
+      "bytes_sent": 0,
+      "max_in_flight": 0
+     }
+    },
+    "1": {
+     "steps": 0,
+     "skipped": 0,
+     "mean_ms": 0.0,
+     "p50_ms": null,
+     "p99_ms": null,
+     "max_ms": 0.0,
+     "transport": {
+      "steps": 0,
+      "step_thread_s": 0.0,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.0,
+      "bytes_sent": 0,
+      "max_in_flight": 0
+     }
+    },
+    "2": {
+     "steps": 0,
+     "skipped": 0,
+     "mean_ms": 0.0,
+     "p50_ms": null,
+     "p99_ms": null,
+     "max_ms": 0.0,
+     "transport": {
+      "steps": 0,
+      "step_thread_s": 0.0,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.0,
+      "bytes_sent": 0,
+      "max_in_flight": 0
+     }
+    },
+    "3": {
+     "steps": 0,
+     "skipped": 0,
+     "mean_ms": 0.0,
+     "p50_ms": null,
+     "p99_ms": null,
+     "max_ms": 0.0,
+     "transport": {
+      "steps": 0,
+      "step_thread_s": 0.0,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.0,
+      "bytes_sent": 0,
+      "max_in_flight": 0
+     }
+    }
+   },
+   "transport": {
+    "0": {
+     "steps": 0,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.0,
+     "bytes_sent": 0,
+     "max_in_flight": 0,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": null
+    },
+    "1": {
+     "steps": 0,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.0,
+     "bytes_sent": 0,
+     "max_in_flight": 0,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": null
+    },
+    "2": {
+     "steps": 0,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.0,
+     "bytes_sent": 0,
+     "max_in_flight": 0,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": null
+    },
+    "3": {
+     "steps": 0,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.0,
+     "bytes_sent": 0,
+     "max_in_flight": 0,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": null
+    }
+   },
+   "metrics": {
+    "everserve_store_bytes_in_use": {
+     "value": 0.0
+    },
+    "everserve_store_commits_total": {
+     "value": 0.0
+    }
+   }
+  },
+  "adapter_nomirror_3": {
+   "arm": "adapter_nomirror",
+   "kill": null,
+   "tps_10_200": 418.03219149547607,
+   "overhead_pct": 10.02411532239491,
+   "pause_s": 0.021146297454833984,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 0,
+     "skipped": 0,
+     "mean_ms": 0.0,
+     "p50_ms": null,
+     "p99_ms": null,
+     "max_ms": 0.0,
+     "transport": {
+      "steps": 0,
+      "step_thread_s": 0.0,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.0,
+      "bytes_sent": 0,
+      "max_in_flight": 0
+     }
+    },
+    "1": {
+     "steps": 0,
+     "skipped": 0,
+     "mean_ms": 0.0,
+     "p50_ms": null,
+     "p99_ms": null,
+     "max_ms": 0.0,
+     "transport": {
+      "steps": 0,
+      "step_thread_s": 0.0,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.0,
+      "bytes_sent": 0,
+      "max_in_flight": 0
+     }
+    },
+    "2": {
+     "steps": 0,
+     "skipped": 0,
+     "mean_ms": 0.0,
+     "p50_ms": null,
+     "p99_ms": null,
+     "max_ms": 0.0,
+     "transport": {
+      "steps": 0,
+      "step_thread_s": 0.0,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.0,
+      "bytes_sent": 0,
+      "max_in_flight": 0
+     }
+    },
+    "3": {
+     "steps": 0,
+     "skipped": 0,
+     "mean_ms": 0.0,
+     "p50_ms": null,
+     "p99_ms": null,
+     "max_ms": 0.0,
+     "transport": {
+      "steps": 0,
+      "step_thread_s": 0.0,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.0,
+      "bytes_sent": 0,
+      "max_in_flight": 0
+     }
+    }
+   },
+   "transport": {
+    "0": {
+     "steps": 0,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.0,
+     "bytes_sent": 0,
+     "max_in_flight": 0,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": null
+    },
+    "1": {
+     "steps": 0,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.0,
+     "bytes_sent": 0,
+     "max_in_flight": 0,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": null
+    },
+    "2": {
+     "steps": 0,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.0,
+     "bytes_sent": 0,
+     "max_in_flight": 0,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": null
+    },
+    "3": {
+     "steps": 0,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.0,
+     "bytes_sent": 0,
+     "max_in_flight": 0,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": null
+    }
+   },
+   "metrics": {
+    "everserve_store_bytes_in_use": {
+     "value": 0.0
+    },
+    "everserve_store_commits_total": {
+     "value": 0.0
+    }
+   }
+  },
+  "notice_1": {
+   "arm": "notice",
+   "kill": null,
+   "tps_10_200": 403.47761062035426,
+   "overhead_pct": 13.156795812062438,
+   "pause_s": 0.08400654792785645,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 602,
+     "skipped": 0,
+     "mean_ms": 13.533793965298868,
+     "p50_ms": 6.338038481771946,
+     "p99_ms": 13.937238603830338,
+     "max_ms": 4489.458688534796,
+     "transport": {
+      "steps": 602,
+      "step_thread_s": 0.03295346349477768,
+      "backpressure_waits": 0,
+      "fence_waits_s": 8.079259247519076,
+      "bytes_sent": 520617984,
+      "max_in_flight": 2
+     }
+    },
+    "1": {
+     "steps": 602,
+     "skipped": 0,
+     "mean_ms": 13.462395902314654,
+     "p50_ms": 6.151492707431316,
+     "p99_ms": 14.508591964840889,
+     "max_ms": 4398.966214619577,
+     "transport": {
+      "steps": 602,
+      "step_thread_s": 0.03256566543132067,
+      "backpressure_waits": 0,
+      "fence_waits_s": 8.037842893972993,
+      "bytes_sent": 520617984,
+      "max_in_flight": 2
+     }
+    },
+    "2": {
+     "steps": 602,
+     "skipped": 0,
+     "mean_ms": 13.383210986308086,
+     "p50_ms": 6.337162107229233,
+     "p99_ms": 14.992845244705677,
+     "max_ms": 4287.740784697235,
+     "transport": {
+      "steps": 602,
+      "step_thread_s": 0.03205167409032583,
+      "backpressure_waits": 0,
+      "fence_waits_s": 7.988655070774257,
+      "bytes_sent": 520617984,
+      "max_in_flight": 2
+     }
+    },
+    "3": {
+     "steps": 602,
+     "skipped": 0,
+     "mean_ms": 13.459646921184074,
+     "p50_ms": 6.01077638566494,
+     "p99_ms": 12.212793342769146,
+     "max_ms": 4570.687719620764,
+     "transport": {
+      "steps": 602,
+      "step_thread_s": 0.03345614951103926,
+      "backpressure_waits": 0,
+      "fence_waits_s": 8.030001666396856,
+      "bytes_sent": 520617984,
+      "max_in_flight": 2
+     }
+    }
+   },
+   "snapshot": {
+    "slots": 17168,
+    "s": 0.0621,
+    "t": 1791199471.8259733
+   },
+   "transport": {
+    "0": {
+     "steps": 602,
+     "backpressure_waits": 0,
+     "fence_waits_s": 8.079259247519076,
+     "bytes_sent": 520617984,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.338038481771946
+    },
+    "1": {
+     "steps": 602,
+     "backpressure_waits": 0,
+     "fence_waits_s": 8.037842893972993,
+     "bytes_sent": 520617984,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.151492707431316
+    },
+    "2": {
+     "steps": 602,
+     "backpressure_waits": 0,
+     "fence_waits_s": 7.988655070774257,
+     "bytes_sent": 520617984,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.337162107229233
+    },
+    "3": {
+     "steps": 602,
+     "backpressure_waits": 0,
+     "fence_waits_s": 8.030001666396856,
+     "bytes_sent": 520617984,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.01077638566494
+    }
+   },
+   "metrics": {
+    "everserve_changes_total": {
+     "{cause=\"notice\",engine=\"rig\",outcome=\"rebuild\",result=\"refused_rebuild\"}": 1.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2202009600.0
+    },
+    "everserve_store_commits_total": {
+     "value": 2596.0
+    }
+   }
+  },
+  "notice_2": {
+   "arm": "notice",
+   "kill": null,
+   "tps_10_200": 403.0778850483127,
+   "overhead_pct": 13.24283143971121,
+   "pause_s": 0.08970761299133301,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 602,
+     "skipped": 0,
+     "mean_ms": 13.502956790373077,
+     "p50_ms": 6.302199326455593,
+     "p99_ms": 14.499679207801819,
+     "max_ms": 4510.29203273356,
+     "transport": {
+      "steps": 602,
+      "step_thread_s": 0.03326666820794344,
+      "backpressure_waits": 0,
+      "fence_waits_s": 8.06414008885622,
+      "bytes_sent": 520617984,
+      "max_in_flight": 2
+     }
+    },
+    "1": {
+     "steps": 602,
+     "skipped": 0,
+     "mean_ms": 13.742960517625773,
+     "p50_ms": 6.417427211999893,
+     "p99_ms": 13.159659691154957,
+     "max_ms": 4514.000481925905,
+     "transport": {
+      "steps": 602,
+      "step_thread_s": 0.03337904065847397,
+      "backpressure_waits": 0,
+      "fence_waits_s": 8.20101067237556,
+      "bytes_sent": 520617984,
+      "max_in_flight": 2
+     }
+    },
+    "2": {
+     "steps": 602,
+     "skipped": 0,
+     "mean_ms": 13.902316163866425,
+     "p50_ms": 6.429864093661308,
+     "p99_ms": 14.322646893560886,
+     "max_ms": 4608.138844370842,
+     "transport": {
+      "steps": 602,
+      "step_thread_s": 0.033697943203151226,
+      "backpressure_waits": 0,
+      "fence_waits_s": 8.299830319359899,
+      "bytes_sent": 520617984,
+      "max_in_flight": 2
+     }
+    },
+    "3": {
+     "steps": 602,
+     "skipped": 0,
+     "mean_ms": 13.644664893329045,
+     "p50_ms": 6.374303251504898,
+     "p99_ms": 12.855181470513344,
+     "max_ms": 4565.29729347676,
+     "transport": {
+      "steps": 602,
+      "step_thread_s": 0.03294580336660147,
+      "backpressure_waits": 0,
+      "fence_waits_s": 8.14297325629741,
+      "bytes_sent": 520617984,
+      "max_in_flight": 2
+     }
+    }
+   },
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0598,
+    "t": 1791199548.0385897
+   },
+   "transport": {
+    "0": {
+     "steps": 602,
+     "backpressure_waits": 0,
+     "fence_waits_s": 8.06414008885622,
+     "bytes_sent": 520617984,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.302199326455593
+    },
+    "1": {
+     "steps": 602,
+     "backpressure_waits": 0,
+     "fence_waits_s": 8.20101067237556,
+     "bytes_sent": 520617984,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.417427211999893
+    },
+    "2": {
+     "steps": 602,
+     "backpressure_waits": 0,
+     "fence_waits_s": 8.299830319359899,
+     "bytes_sent": 520617984,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.429864093661308
+    },
+    "3": {
+     "steps": 602,
+     "backpressure_waits": 0,
+     "fence_waits_s": 8.14297325629741,
+     "bytes_sent": 520617984,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.374303251504898
+    }
+   },
+   "metrics": {
+    "everserve_changes_total": {
+     "{cause=\"notice\",engine=\"rig\",outcome=\"rebuild\",result=\"refused_rebuild\"}": 1.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2202009600.0
+    },
+    "everserve_store_commits_total": {
+     "value": 2596.0
+    }
+   }
+  },
+  "notice_3": {
+   "arm": "notice",
+   "kill": null,
+   "tps_10_200": 402.3811581746763,
+   "overhead_pct": 13.392792658271514,
+   "pause_s": 0.09722113609313965,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 602,
+     "skipped": 0,
+     "mean_ms": 13.629176991177951,
+     "p50_ms": 6.309480406343937,
+     "p99_ms": 15.138709917664528,
+     "max_ms": 4526.645636186004,
+     "transport": {
+      "steps": 602,
+      "step_thread_s": 0.03380085062235594,
+      "backpressure_waits": 0,
+      "fence_waits_s": 8.134442218579352,
+      "bytes_sent": 520617984,
+      "max_in_flight": 2
+     }
+    },
+    "1": {
+     "steps": 602,
+     "skipped": 0,
+     "mean_ms": 13.631355396450259,
+     "p50_ms": 6.197618320584297,
+     "p99_ms": 11.562914587557316,
+     "max_ms": 4476.593864150345,
+     "transport": {
+      "steps": 602,
+      "step_thread_s": 0.033684889785945415,
+      "backpressure_waits": 0,
+      "fence_waits_s": 8.139151954092085,
+      "bytes_sent": 520617984,
+      "max_in_flight": 2
+     }
+    },
+    "2": {
+     "steps": 602,
+     "skipped": 0,
+     "mean_ms": 13.702290462162903,
+     "p50_ms": 6.522797979414463,
+     "p99_ms": 13.252326287329197,
+     "max_ms": 4449.238443747163,
+     "transport": {
+      "steps": 602,
+      "step_thread_s": 0.03313176799565554,
+      "backpressure_waits": 0,
+      "fence_waits_s": 8.180910714901984,
+      "bytes_sent": 520617984,
+      "max_in_flight": 2
+     }
+    },
+    "3": {
+     "steps": 602,
+     "skipped": 0,
+     "mean_ms": 13.26335472460106,
+     "p50_ms": 6.377864629030228,
+     "p99_ms": 14.072145335376263,
+     "max_ms": 4454.818380065262,
+     "transport": {
+      "steps": 602,
+      "step_thread_s": 0.035231408663094044,
+      "backpressure_waits": 0,
+      "fence_waits_s": 7.91281771287322,
+      "bytes_sent": 520617984,
+      "max_in_flight": 2
+     }
+    }
+   },
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0709,
+    "t": 1791199626.0937228
+   },
+   "transport": {
+    "0": {
+     "steps": 602,
+     "backpressure_waits": 0,
+     "fence_waits_s": 8.134442218579352,
+     "bytes_sent": 520617984,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.309480406343937
+    },
+    "1": {
+     "steps": 602,
+     "backpressure_waits": 0,
+     "fence_waits_s": 8.139151954092085,
+     "bytes_sent": 520617984,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.197618320584297
+    },
+    "2": {
+     "steps": 602,
+     "backpressure_waits": 0,
+     "fence_waits_s": 8.180910714901984,
+     "bytes_sent": 520617984,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.522797979414463
+    },
+    "3": {
+     "steps": 602,
+     "backpressure_waits": 0,
+     "fence_waits_s": 7.91281771287322,
+     "bytes_sent": 520617984,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.377864629030228
+    }
+   },
+   "metrics": {
+    "everserve_changes_total": {
+     "{cause=\"notice\",engine=\"rig\",outcome=\"rebuild\",result=\"refused_rebuild\"}": 1.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2202009600.0
+    },
+    "everserve_store_commits_total": {
+     "value": 2596.0
+    }
+   }
+  },
+  "replace_between_1": {
+   "arm": "replace",
+   "kill": "between",
+   "tps_10_200": 400.210348650324,
+   "overhead_pct": 13.860030616002527,
+   "pause_s": 2.1634814739227295,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 30.341645666197234,
+     "p50_ms": 6.614081561565399,
+     "p99_ms": 28.46518252044916,
+     "max_ms": 4240.927131846547,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.010730541311204433,
+      "backpressure_waits": 0,
+      "fence_waits_s": 6.163192810490727,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    },
+    "1": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 30.868675441061164,
+     "p50_ms": 6.073684431612492,
+     "p99_ms": 27.589465491473675,
+     "max_ms": 4411.318433471024,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.011020930483937263,
+      "backpressure_waits": 0,
+      "fence_waits_s": 6.273301606997848,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 5.582524063065648,
+     "p50_ms": 5.835551768541336,
+     "p99_ms": 21.847818978130817,
+     "max_ms": 21.847818978130817,
+     "transport": {
+      "steps": 100,
+      "step_thread_s": 0.005220454186201096,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.5467412369325757,
+      "bytes_sent": 20447232,
+      "max_in_flight": 2
+     }
+    },
+    "3": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 30.046810893634078,
+     "p50_ms": 5.90779073536396,
+     "p99_ms": 25.698084384202957,
+     "max_ms": 4289.726866409183,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.011574903503060341,
+      "backpressure_waits": 0,
+      "fence_waits_s": 6.104068105109036,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.3427422046661377,
+   "change_s": 0.004732155227661128,
+   "restore_s": 1.5806,
+   "resume_s": 0.025599241256713867,
+   "first_token_s": 0.21083664894104004,
+   "commit_to_resume_ms": 25.599241256713867,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-97f1def8": 2149,
+    "1-adfe2373": 2149,
+    "2-a5b01607": 2149,
+    "3-935ab4ff": 2149,
+    "4-b743c82b": 2149,
+    "5-9426f21e": 2149,
+    "6-a96b822c": 2149,
+    "7-bf584e6e": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17168,
+    "s": 0.0724,
+    "t": 1791198951.6602106
+   },
+   "transport": {
+    "0": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 6.163192810490727,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.614081561565399
+    },
+    "1": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 6.273301606997848,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.073684431612492
+    },
+    "2": {
+     "steps": 100,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.5467412369325757,
+     "bytes_sent": 20447232,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 5.835551768541336
+    },
+    "3": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 6.104068105109036,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 5.90779073536396
+    }
+   },
+   "metrics": {
+    "everserve_change_seconds": {
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.25\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.5\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"1\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"2\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"3\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"5\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"8\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"13\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"30\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"60\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"+Inf\"}": 1.0,
+     "_sum{cause=\"fault\",outcome=\"replace\"}": 1.5834041810000001,
+     "_count{cause=\"fault\",outcome=\"replace\"}": 1.0
+    },
+    "everserve_changes_total": {
+     "{cause=\"fault\",engine=\"rig\",outcome=\"replace\",result=\"committed\"}": 1.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "everserve_store_commits_total": {
+     "value": 1002.0
+    }
+   },
+   "daemon_change_s": 1.5834041810000001
+  },
+  "replace_between_2": {
+   "arm": "replace",
+   "kill": "between",
+   "tps_10_200": 400.5852683676469,
+   "overhead_pct": 13.779334119571175,
+   "pause_s": 2.2649528980255127,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 31.645019356088312,
+     "p50_ms": 6.368490867316723,
+     "p99_ms": 34.08247232437134,
+     "max_ms": 4540.06006848067,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.011024177074432373,
+      "backpressure_waits": 0,
+      "fence_waits_s": 6.432347271591425,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    },
+    "1": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 31.252487758904987,
+     "p50_ms": 6.078144535422325,
+     "p99_ms": 31.790087930858135,
+     "max_ms": 4478.6903243511915,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.010905918665230274,
+      "backpressure_waits": 0,
+      "fence_waits_s": 6.351594449020922,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 5.705517530441284,
+     "p50_ms": 5.935924127697945,
+     "p99_ms": 27.505776844918728,
+     "max_ms": 27.505776844918728,
+     "transport": {
+      "steps": 100,
+      "step_thread_s": 0.005311424843966961,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.559657858684659,
+      "bytes_sent": 20447232,
+      "max_in_flight": 2
+     }
+    },
+    "3": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 30.604369445320437,
+     "p50_ms": 5.773958750069141,
+     "p99_ms": 32.10063371807337,
+     "max_ms": 4467.904843389988,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.011470855213701725,
+      "backpressure_waits": 0,
+      "fence_waits_s": 6.220936413854361,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.35431432723999023,
+   "change_s": 0.005342111206054767,
+   "restore_s": 1.6479,
+   "resume_s": 0.02836298942565918,
+   "first_token_s": 0.23018598556518555,
+   "commit_to_resume_ms": 28.36298942565918,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-a0a55a7a": 2149,
+    "1-877a5dd7": 2149,
+    "2-9da2b8c7": 2149,
+    "3-86dac0a9": 2149,
+    "4-80cc6b6c": 2149,
+    "5-86341c96": 2149,
+    "6-90487460": 2149,
+    "7-a9e89fb9": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17176,
+    "s": 0.0629,
+    "t": 1791199028.691078
+   },
+   "transport": {
+    "0": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 6.432347271591425,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.368490867316723
+    },
+    "1": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 6.351594449020922,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.078144535422325
+    },
+    "2": {
+     "steps": 100,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.559657858684659,
+     "bytes_sent": 20447232,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 5.935924127697945
+    },
+    "3": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 6.220936413854361,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 5.773958750069141
+    }
+   },
+   "metrics": {
+    "everserve_change_seconds": {
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.25\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.5\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"1\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"2\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"3\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"5\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"8\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"13\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"30\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"60\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"+Inf\"}": 1.0,
+     "_sum{cause=\"fault\",outcome=\"replace\"}": 1.6509530369999998,
+     "_count{cause=\"fault\",outcome=\"replace\"}": 1.0
+    },
+    "everserve_changes_total": {
+     "{cause=\"fault\",engine=\"rig\",outcome=\"replace\",result=\"committed\"}": 1.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "everserve_store_commits_total": {
+     "value": 1002.0
+    }
+   },
+   "daemon_change_s": 1.6509530369999998
+  },
+  "replace_between_3": {
+   "arm": "replace",
+   "kill": "between",
+   "tps_10_200": 402.70558306610644,
+   "overhead_pct": 13.322964503378854,
+   "pause_s": 2.0253384113311768,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 32.63812335025446,
+     "p50_ms": 6.293712183833122,
+     "p99_ms": 28.984111733734608,
+     "max_ms": 4708.240672014654,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.01122301071882248,
+      "backpressure_waits": 0,
+      "fence_waits_s": 6.6332028498873115,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    },
+    "1": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 31.99302265877087,
+     "p50_ms": 5.834751762449741,
+     "p99_ms": 26.53270121663809,
+     "max_ms": 4578.3084677532315,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.011171993799507618,
+      "backpressure_waits": 0,
+      "fence_waits_s": 6.501347651705146,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 5.7093859277665615,
+     "p50_ms": 6.171402521431446,
+     "p99_ms": 26.546211913228035,
+     "max_ms": 26.546211913228035,
+     "transport": {
+      "steps": 100,
+      "step_thread_s": 0.00528249517083168,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.5575365079566836,
+      "bytes_sent": 20447232,
+      "max_in_flight": 2
+     }
+    },
+    "3": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 32.744143500595406,
+     "p50_ms": 5.944674834609032,
+     "p99_ms": 32.37085696309805,
+     "max_ms": 4821.504856459796,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.011796345934271812,
+      "backpressure_waits": 0,
+      "fence_waits_s": 6.656566417776048,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.340564489364624,
+   "change_s": 0.005636695098876876,
+   "restore_s": 1.4368,
+   "resume_s": 0.0313260555267334,
+   "first_token_s": 0.21369528770446777,
+   "commit_to_resume_ms": 31.3260555267334,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-961a5450": 2149,
+    "1-b9f4fce3": 2149,
+    "2-894b6459": 2149,
+    "3-83838388": 2149,
+    "4-bdf228a3": 2149,
+    "5-be5f43f2": 2149,
+    "6-bdf5ef6a": 2149,
+    "7-b71f194b": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17168,
+    "s": 0.0625,
+    "t": 1791199108.4540076
+   },
+   "transport": {
+    "0": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 6.6332028498873115,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.293712183833122
+    },
+    "1": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 6.501347651705146,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 5.834751762449741
+    },
+    "2": {
+     "steps": 100,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.5575365079566836,
+     "bytes_sent": 20447232,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.171402521431446
+    },
+    "3": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 6.656566417776048,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 5.944674834609032
+    }
+   },
+   "metrics": {
+    "everserve_change_seconds": {
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.25\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.5\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"1\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"2\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"3\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"5\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"8\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"13\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"30\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"60\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"+Inf\"}": 1.0,
+     "_sum{cause=\"fault\",outcome=\"replace\"}": 1.439835648,
+     "_count{cause=\"fault\",outcome=\"replace\"}": 1.0
+    },
+    "everserve_changes_total": {
+     "{cause=\"fault\",engine=\"rig\",outcome=\"replace\",result=\"committed\"}": 1.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "everserve_store_commits_total": {
+     "value": 1002.0
+    }
+   },
+   "daemon_change_s": 1.439835648
+  },
+  "replace_mid_1": {
+   "arm": "replace",
+   "kill": "mid",
+   "tps_10_200": 395.7693077356531,
+   "overhead_pct": 14.815905769438597,
+   "pause_s": 2.329296588897705,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 27.20463891312772,
+     "p50_ms": 6.103347055613995,
+     "p99_ms": 23.294880986213684,
+     "max_ms": 4325.608747079968,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.010782148689031601,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.528019901365042,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    },
+    "1": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 27.84060136707244,
+     "p50_ms": 6.054132245481014,
+     "p99_ms": 24.580813013017178,
+     "max_ms": 4468.077858909965,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.01142936758697033,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.656601831316948,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 5.389041220769286,
+     "p50_ms": 5.6158872321248055,
+     "p99_ms": 33.62525813281536,
+     "max_ms": 33.62525813281536,
+     "transport": {
+      "steps": 100,
+      "step_thread_s": 0.005749305710196495,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.5263002924621105,
+      "bytes_sent": 20447232,
+      "max_in_flight": 2
+     }
+    },
+    "3": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 27.575612410574276,
+     "p50_ms": 5.809156224131584,
+     "p99_ms": 21.00937906652689,
+     "max_ms": 4613.118507899344,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.011643560603260994,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.60184826515615,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.3739323616027832,
+   "change_s": 0.005317321395873931,
+   "restore_s": 1.6544,
+   "resume_s": 0.027013301849365234,
+   "first_token_s": 0.2593677043914795,
+   "commit_to_resume_ms": 27.013301849365234,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-834c2686": 2149,
+    "1-b2e155ed": 2149,
+    "2-a014ae81": 2149,
+    "3-9c81373c": 2149,
+    "4-beecf596": 2149,
+    "5-bb825176": 2149,
+    "6-9ceab64f": 2149,
+    "7-bc5c8ce6": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17168,
+    "s": 0.0644,
+    "t": 1791199184.7263393
+   },
+   "transport": {
+    "0": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.528019901365042,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.103347055613995
+    },
+    "1": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.656601831316948,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.054132245481014
+    },
+    "2": {
+     "steps": 100,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.5263002924621105,
+     "bytes_sent": 20447232,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 5.6158872321248055
+    },
+    "3": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.60184826515615,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 5.809156224131584
+    }
+   },
+   "metrics": {
+    "everserve_change_seconds": {
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.25\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.5\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"1\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"2\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"3\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"5\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"8\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"13\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"30\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"60\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"+Inf\"}": 1.0,
+     "_sum{cause=\"fault\",outcome=\"replace\"}": 1.6578072449999999,
+     "_count{cause=\"fault\",outcome=\"replace\"}": 1.0
+    },
+    "everserve_changes_total": {
+     "{cause=\"fault\",engine=\"rig\",outcome=\"replace\",result=\"committed\"}": 1.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "everserve_store_commits_total": {
+     "value": 1002.0
+    }
+   },
+   "daemon_change_s": 1.6578072449999999
+  },
+  "replace_mid_2": {
+   "arm": "replace",
+   "kill": "mid",
+   "tps_10_200": 389.5211853463062,
+   "overhead_pct": 16.160731242195336,
+   "pause_s": 2.448345422744751,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 27.001322580355346,
+     "p50_ms": 5.727746523916721,
+     "p99_ms": 21.268070675432682,
+     "max_ms": 4388.000064529479,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.011808237060904503,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.483599798753858,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    },
+    "1": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 26.66723570676849,
+     "p50_ms": 5.815686658024788,
+     "p99_ms": 20.04314213991165,
+     "max_ms": 4331.232602708042,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.012128142639994621,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.416194326244295,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 5.506795505061746,
+     "p50_ms": 5.792021751403809,
+     "p99_ms": 25.12993011623621,
+     "max_ms": 25.12993011623621,
+     "transport": {
+      "steps": 100,
+      "step_thread_s": 0.005197735503315926,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.5414330791682005,
+      "bytes_sent": 20447232,
+      "max_in_flight": 2
+     }
+    },
+    "3": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 26.57532883241919,
+     "p50_ms": 5.80742210149765,
+     "p99_ms": 22.793886251747608,
+     "max_ms": 4344.242982566357,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.012786777690052986,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.3959250738844275,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.3466370105743408,
+   "change_s": 0.006170399856567421,
+   "restore_s": 1.7443,
+   "resume_s": 0.027736425399780273,
+   "first_token_s": 0.3142702579498291,
+   "commit_to_resume_ms": 27.736425399780273,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-976f1073": 2149,
+    "1-98724ac4": 2149,
+    "2-8738f1e1": 2149,
+    "3-aac385d2": 2149,
+    "4-88dbbfa8": 2149,
+    "5-94180410": 2149,
+    "6-81fd3682": 2149,
+    "7-91c83c83": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17168,
+    "s": 0.0663,
+    "t": 1791199261.9816725
+   },
+   "transport": {
+    "0": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.483599798753858,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 5.727746523916721
+    },
+    "1": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.416194326244295,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 5.815686658024788
+    },
+    "2": {
+     "steps": 100,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.5414330791682005,
+     "bytes_sent": 20447232,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 5.792021751403809
+    },
+    "3": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.3959250738844275,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 5.80742210149765
+    }
+   },
+   "metrics": {
+    "everserve_change_seconds": {
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.25\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.5\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"1\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"2\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"3\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"5\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"8\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"13\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"30\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"60\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"+Inf\"}": 1.0,
+     "_sum{cause=\"fault\",outcome=\"replace\"}": 1.748448735,
+     "_count{cause=\"fault\",outcome=\"replace\"}": 1.0
+    },
+    "everserve_changes_total": {
+     "{cause=\"fault\",engine=\"rig\",outcome=\"replace\",result=\"committed\"}": 1.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "everserve_store_commits_total": {
+     "value": 1002.0
+    }
+   },
+   "daemon_change_s": 1.748448735
+  },
+  "replace_mid_3": {
+   "arm": "replace",
+   "kill": "mid",
+   "tps_10_200": 394.33462217524306,
+   "overhead_pct": 15.124702807461631,
+   "pause_s": 2.067173480987549,
+   "pause_session": 0,
+   "sessions": 8,
+   "commit_ms": {
+    "0": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 27.80789042384747,
+     "p50_ms": 6.307263858616352,
+     "p99_ms": 30.38812428712845,
+     "max_ms": 4355.801215395331,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.011178425513207912,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.650800671428442,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    },
+    "1": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 28.123023878673422,
+     "p50_ms": 6.2442971393466,
+     "p99_ms": 21.906628273427486,
+     "max_ms": 4502.014878205955,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.011269836686551571,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.711828576400876,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    },
+    "2": {
+     "steps": 100,
+     "skipped": 0,
+     "mean_ms": 4.550188183784485,
+     "p50_ms": 5.533413030207157,
+     "p99_ms": 20.582258701324463,
+     "max_ms": 20.582258701324463,
+     "transport": {
+      "steps": 100,
+      "step_thread_s": 0.005636001005768776,
+      "backpressure_waits": 0,
+      "fence_waits_s": 0.4438903024420142,
+      "bytes_sent": 20447232,
+      "max_in_flight": 2
+     }
+    },
+    "3": {
+     "steps": 204,
+     "skipped": 0,
+     "mean_ms": 28.184895307811743,
+     "p50_ms": 5.974415689706802,
+     "p99_ms": 26.274309493601322,
+     "max_ms": 4572.3761627450585,
+     "transport": {
+      "steps": 204,
+      "step_thread_s": 0.011326469480991364,
+      "backpressure_waits": 0,
+      "fence_waits_s": 5.7246844451874495,
+      "bytes_sent": 443351040,
+      "max_in_flight": 2
+     }
+    }
+   },
+   "rank_lost_events": 1,
+   "detect_s": 0.38850998878479004,
+   "change_s": 0.007278958511352629,
+   "restore_s": 1.3738,
+   "resume_s": 0.0317533016204834,
+   "first_token_s": 0.25702643394470215,
+   "commit_to_resume_ms": 31.7533016204834,
+   "epoch_committed": 1,
+   "epochs_applied": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "epoch_match": true,
+   "restore_check": {
+    "tables": 48,
+    "mismatched": []
+   },
+   "replay_from": {
+    "0-bf423468": 2149,
+    "1-89520ce4": 2149,
+    "2-ae7edee7": 2149,
+    "3-966f0c70": 2149,
+    "4-b496b7a8": 2149,
+    "5-93ab93fe": 2149,
+    "6-9cda5993": 2149,
+    "7-ac0cf9d2": 2149
+   },
+   "re_prefilled": [],
+   "n_replayed": 8,
+   "sessions_kept": 8,
+   "after_fault_match": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "snapshot": {
+    "slots": 17168,
+    "s": 0.0615,
+    "t": 1791199336.904217
+   },
+   "transport": {
+    "0": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.650800671428442,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.307263858616352
+    },
+    "1": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.711828576400876,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 6.2442971393466
+    },
+    "2": {
+     "steps": 100,
+     "backpressure_waits": 0,
+     "fence_waits_s": 0.4438903024420142,
+     "bytes_sent": 20447232,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 5.533413030207157
+    },
+    "3": {
+     "steps": 204,
+     "backpressure_waits": 0,
+     "fence_waits_s": 5.7246844451874495,
+     "bytes_sent": 443351040,
+     "max_in_flight": 2,
+     "backpressure_per_step": 0.0,
+     "step_thread_p50_ms": 5.974415689706802
+    }
+   },
+   "metrics": {
+    "everserve_change_seconds": {
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.25\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.5\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"1\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"2\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"3\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"5\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"8\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"13\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"30\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"60\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"+Inf\"}": 1.0,
+     "_sum{cause=\"fault\",outcome=\"replace\"}": 1.378602171,
+     "_count{cause=\"fault\",outcome=\"replace\"}": 1.0
+    },
+    "everserve_changes_total": {
+     "{cause=\"fault\",engine=\"rig\",outcome=\"replace\",result=\"committed\"}": 1.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "everserve_store_commits_total": {
+     "value": 1002.0
+    }
+   },
+   "daemon_change_s": 1.378602171
+  },
+  "stock_1": {
+   "arm": "stock",
+   "kill": null,
+   "tps_10_200": 461.35135569106643,
+   "overhead_pct": 0.7002397901086477,
+   "pause_s": 0.018903255462646484,
+   "pause_session": 0,
+   "sessions": 8,
+   "transport": null
+  },
+  "stock_2": {
+   "arm": "stock",
+   "kill": null,
+   "tps_10_200": 466.49877973824204,
+   "overhead_pct": -0.40767496353399935,
+   "pause_s": 0.01875615119934082,
+   "pause_session": 0,
+   "sessions": 8,
+   "transport": null
+  },
+  "stock_3": {
+   "arm": "stock",
+   "kill": null,
+   "tps_10_200": 465.9639726286607,
+   "overhead_pct": -0.29256482657467053,
+   "pause_s": 0.01910853385925293,
+   "pause_session": 0,
+   "sessions": 8,
+   "transport": null
+  }
+ },
+ "metrics_per_arm": {
+  "adapter": [
+   {
+    "run": "adapter_1",
+    "everserve_change_seconds": null,
+    "everserve_changes_total": null,
+    "everserve_store_commits_total": {
+     "value": 996.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "daemon_change_s": null,
+    "driver_pause_s": 0.036673784255981445,
+    "restore_s": null
+   },
+   {
+    "run": "adapter_2",
+    "everserve_change_seconds": null,
+    "everserve_changes_total": null,
+    "everserve_store_commits_total": {
+     "value": 996.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "daemon_change_s": null,
+    "driver_pause_s": 0.029456138610839844,
+    "restore_s": null
+   },
+   {
+    "run": "adapter_3",
+    "everserve_change_seconds": null,
+    "everserve_changes_total": null,
+    "everserve_store_commits_total": {
+     "value": 996.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "daemon_change_s": null,
+    "driver_pause_s": 0.030241966247558594,
+    "restore_s": null
+   }
+  ],
+  "adapter_nomirror": [
+   {
+    "run": "adapter_nomirror_1",
+    "everserve_change_seconds": null,
+    "everserve_changes_total": null,
+    "everserve_store_commits_total": {
+     "value": 0.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 0.0
+    },
+    "daemon_change_s": null,
+    "driver_pause_s": 0.021341800689697266,
+    "restore_s": null
+   },
+   {
+    "run": "adapter_nomirror_2",
+    "everserve_change_seconds": null,
+    "everserve_changes_total": null,
+    "everserve_store_commits_total": {
+     "value": 0.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 0.0
+    },
+    "daemon_change_s": null,
+    "driver_pause_s": 0.020442962646484375,
+    "restore_s": null
+   },
+   {
+    "run": "adapter_nomirror_3",
+    "everserve_change_seconds": null,
+    "everserve_changes_total": null,
+    "everserve_store_commits_total": {
+     "value": 0.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 0.0
+    },
+    "daemon_change_s": null,
+    "driver_pause_s": 0.021146297454833984,
+    "restore_s": null
+   }
+  ],
+  "notice": [
+   {
+    "run": "notice_1",
+    "everserve_change_seconds": null,
+    "everserve_changes_total": {
+     "{cause=\"notice\",engine=\"rig\",outcome=\"rebuild\",result=\"refused_rebuild\"}": 1.0
+    },
+    "everserve_store_commits_total": {
+     "value": 2596.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2202009600.0
+    },
+    "daemon_change_s": null,
+    "driver_pause_s": 0.08400654792785645,
+    "restore_s": null
+   },
+   {
+    "run": "notice_2",
+    "everserve_change_seconds": null,
+    "everserve_changes_total": {
+     "{cause=\"notice\",engine=\"rig\",outcome=\"rebuild\",result=\"refused_rebuild\"}": 1.0
+    },
+    "everserve_store_commits_total": {
+     "value": 2596.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2202009600.0
+    },
+    "daemon_change_s": null,
+    "driver_pause_s": 0.08970761299133301,
+    "restore_s": null
+   },
+   {
+    "run": "notice_3",
+    "everserve_change_seconds": null,
+    "everserve_changes_total": {
+     "{cause=\"notice\",engine=\"rig\",outcome=\"rebuild\",result=\"refused_rebuild\"}": 1.0
+    },
+    "everserve_store_commits_total": {
+     "value": 2596.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2202009600.0
+    },
+    "daemon_change_s": null,
+    "driver_pause_s": 0.09722113609313965,
+    "restore_s": null
+   }
+  ],
+  "replace_between": [
+   {
+    "run": "replace_between_1",
+    "everserve_change_seconds": {
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.25\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.5\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"1\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"2\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"3\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"5\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"8\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"13\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"30\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"60\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"+Inf\"}": 1.0,
+     "_sum{cause=\"fault\",outcome=\"replace\"}": 1.5834041810000001,
+     "_count{cause=\"fault\",outcome=\"replace\"}": 1.0
+    },
+    "everserve_changes_total": {
+     "{cause=\"fault\",engine=\"rig\",outcome=\"replace\",result=\"committed\"}": 1.0
+    },
+    "everserve_store_commits_total": {
+     "value": 1002.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "daemon_change_s": 1.5834041810000001,
+    "driver_pause_s": 2.1634814739227295,
+    "restore_s": 1.5806
+   },
+   {
+    "run": "replace_between_2",
+    "everserve_change_seconds": {
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.25\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.5\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"1\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"2\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"3\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"5\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"8\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"13\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"30\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"60\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"+Inf\"}": 1.0,
+     "_sum{cause=\"fault\",outcome=\"replace\"}": 1.6509530369999998,
+     "_count{cause=\"fault\",outcome=\"replace\"}": 1.0
+    },
+    "everserve_changes_total": {
+     "{cause=\"fault\",engine=\"rig\",outcome=\"replace\",result=\"committed\"}": 1.0
+    },
+    "everserve_store_commits_total": {
+     "value": 1002.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "daemon_change_s": 1.6509530369999998,
+    "driver_pause_s": 2.2649528980255127,
+    "restore_s": 1.6479
+   },
+   {
+    "run": "replace_between_3",
+    "everserve_change_seconds": {
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.25\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.5\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"1\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"2\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"3\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"5\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"8\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"13\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"30\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"60\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"+Inf\"}": 1.0,
+     "_sum{cause=\"fault\",outcome=\"replace\"}": 1.439835648,
+     "_count{cause=\"fault\",outcome=\"replace\"}": 1.0
+    },
+    "everserve_changes_total": {
+     "{cause=\"fault\",engine=\"rig\",outcome=\"replace\",result=\"committed\"}": 1.0
+    },
+    "everserve_store_commits_total": {
+     "value": 1002.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "daemon_change_s": 1.439835648,
+    "driver_pause_s": 2.0253384113311768,
+    "restore_s": 1.4368
+   }
+  ],
+  "replace_mid": [
+   {
+    "run": "replace_mid_1",
+    "everserve_change_seconds": {
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.25\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.5\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"1\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"2\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"3\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"5\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"8\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"13\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"30\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"60\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"+Inf\"}": 1.0,
+     "_sum{cause=\"fault\",outcome=\"replace\"}": 1.6578072449999999,
+     "_count{cause=\"fault\",outcome=\"replace\"}": 1.0
+    },
+    "everserve_changes_total": {
+     "{cause=\"fault\",engine=\"rig\",outcome=\"replace\",result=\"committed\"}": 1.0
+    },
+    "everserve_store_commits_total": {
+     "value": 1002.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "daemon_change_s": 1.6578072449999999,
+    "driver_pause_s": 2.329296588897705,
+    "restore_s": 1.6544
+   },
+   {
+    "run": "replace_mid_2",
+    "everserve_change_seconds": {
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.25\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.5\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"1\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"2\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"3\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"5\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"8\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"13\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"30\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"60\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"+Inf\"}": 1.0,
+     "_sum{cause=\"fault\",outcome=\"replace\"}": 1.748448735,
+     "_count{cause=\"fault\",outcome=\"replace\"}": 1.0
+    },
+    "everserve_changes_total": {
+     "{cause=\"fault\",engine=\"rig\",outcome=\"replace\",result=\"committed\"}": 1.0
+    },
+    "everserve_store_commits_total": {
+     "value": 1002.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "daemon_change_s": 1.748448735,
+    "driver_pause_s": 2.448345422744751,
+    "restore_s": 1.7443
+   },
+   {
+    "run": "replace_mid_3",
+    "everserve_change_seconds": {
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.25\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"0.5\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"1\"}": 0.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"2\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"3\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"5\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"8\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"13\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"30\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"60\"}": 1.0,
+     "_bucket{cause=\"fault\",outcome=\"replace\",le=\"+Inf\"}": 1.0,
+     "_sum{cause=\"fault\",outcome=\"replace\"}": 1.378602171,
+     "_count{cause=\"fault\",outcome=\"replace\"}": 1.0
+    },
+    "everserve_changes_total": {
+     "{cause=\"fault\",engine=\"rig\",outcome=\"replace\",result=\"committed\"}": 1.0
+    },
+    "everserve_store_commits_total": {
+     "value": 1002.0
+    },
+    "everserve_store_bytes_in_use": {
+     "value": 2044723200.0
+    },
+    "daemon_change_s": 1.378602171,
+    "driver_pause_s": 2.067173480987549,
+    "restore_s": 1.3738
+   }
+  ],
+  "stock": [
+   {
+    "run": "stock_1",
+    "everserve_change_seconds": null,
+    "everserve_changes_total": null,
+    "everserve_store_commits_total": null,
+    "everserve_store_bytes_in_use": null,
+    "daemon_change_s": null,
+    "driver_pause_s": 0.018903255462646484,
+    "restore_s": null
+   },
+   {
+    "run": "stock_2",
+    "everserve_change_seconds": null,
+    "everserve_changes_total": null,
+    "everserve_store_commits_total": null,
+    "everserve_store_bytes_in_use": null,
+    "daemon_change_s": null,
+    "driver_pause_s": 0.01875615119934082,
+    "restore_s": null
+   },
+   {
+    "run": "stock_3",
+    "everserve_change_seconds": null,
+    "everserve_changes_total": null,
+    "everserve_store_commits_total": null,
+    "everserve_store_bytes_in_use": null,
+    "daemon_change_s": null,
+    "driver_pause_s": 0.01910853385925293,
+    "restore_s": null
+   }
+  ]
+ },
+ "tree": "8e51114",
+ "pod": {
+  "id": "1r13xzft9kn58i",
+  "gpus": "5x A40 48 GB",
+  "cloud": "secure SE",
+  "usd_per_h": 2.45,
+  "driver": "580.159.04 + cuda-compat-13-0",
+  "up": "2026-10-05T10:56:13Z",
+  "terminated": "2026-10-05T11:27:42Z",
+  "usd": 1.29
+ },
+ "notice_not_exercised": {
+  "notice_1": -0.191,
+  "notice_2": -0.158,
+  "notice_3": -0.167,
+  "note": "last token minus deadline, seconds: every session ended before the 10 s deadline; no change happened"
+ },
+ "verdicts": {
+  "1 step-thread commit p50 < 0.5 ms every rank (kill: any > 2 ms)": "dead: 5.5-6.6 ms on every rank in every run with the mirror on",
+  "2 adapter overhead within 2 points of mirror-off on this pod (kill: > 5 points above)": "weakened: adapter 13.1-13.9 % (mean 13.5), mirror-off 9.2-10.0 % (mean 9.6), 3.9 points above",
+  "3 REPLACE pause 1.4-2.0 s every run (kill: any > 2.5 s)": "weakened: 2.03-2.45 s, all six above the band, none over the kill; restore 1.37-1.74 s",
+  "4 sessions continue, 20 tokens equal, replay past the prompt": "alive: 8/8, 8/8 equal, replay from 2149, 6/6 runs",
+  "5 restore exactness (kill: any mismatched table)": "alive for REPLACE: 48/48 tables in 6/6 runs; notice runs did not restore",
+  "6 commit within 100 ms of resume, epochs applied": "alive: 25.6-31.8 ms; epoch 1 on every survivor and the spare",
+  "7 notice pause < 0.5 s, no fault (kill: > 1.0 s or a fault)": "not tested: in all three runs the sessions ended 0.16-0.19 s before the deadline; no swap happened"
+ },
+ "raw_data_sha256": {
+  "adapter_1.daemon.log": "2784e3e57f51fe146c831e0ce93bcc257dae4f9825ea20ccbfce26085015a14e",
+  "adapter_1.daemon.metrics.txt": "44b52d78c46778ef91f4b0535ea24653a143a78a1df97b82c48ef498c619c951",
+  "adapter_1.json": "1d31e7b3df9d13e9eaf0931f7768a41a619992e99d03c0ab91295baf738a7ada",
+  "adapter_1.log": "000f29cac032b75d1d9f4dbf74550baa5a58c50b59ac71b2ecd95fd175a4c6ba",
+  "adapter_1.store.log": "f4784e47c785401268dea207367b74d52dfe0e9bcc11ac8aefcdeb91699de5b5",
+  "adapter_1.store.metrics.txt": "ca9f47b31645f6b56a2ed5393941b331d23e1748db5a1d4f212eaf0ef957acce",
+  "adapter_2.daemon.log": "78fccf69be88dc82e25b0fcd0b9d85a84b9140d02f0a40d26605c17f2adb4025",
+  "adapter_2.daemon.metrics.txt": "44b52d78c46778ef91f4b0535ea24653a143a78a1df97b82c48ef498c619c951",
+  "adapter_2.json": "b5a3f03842557aa91c91cc41abb8b2b10591542f43b6a57c9017960c4b695ee1",
+  "adapter_2.log": "2b943159699a9cc4773ccc7dbe86f69ca00b4968ee5a5bb632c6c950fa4b0918",
+  "adapter_2.store.log": "4ad082fa32455164659110f811438132302090004c7db5b92b015736cce7ca62",
+  "adapter_2.store.metrics.txt": "ca9f47b31645f6b56a2ed5393941b331d23e1748db5a1d4f212eaf0ef957acce",
+  "adapter_3.daemon.log": "4cfa24b6382665ea6fcb8308297a20535b7429b0713e44aa43ca2899762e8715",
+  "adapter_3.daemon.metrics.txt": "44b52d78c46778ef91f4b0535ea24653a143a78a1df97b82c48ef498c619c951",
+  "adapter_3.json": "38ad55d8617834e788387214449b7a64d1ec81cffe107cf5cc17239b32bf1037",
+  "adapter_3.log": "0e36d2e2ee5858d887f012ecbcb132087c73389157605cb136166c6661ec8823",
+  "adapter_3.store.log": "9737c28246179e8ad20d9edf7a5f30d905858f10e2988116b5a65c4f5dd0f901",
+  "adapter_3.store.metrics.txt": "ca9f47b31645f6b56a2ed5393941b331d23e1748db5a1d4f212eaf0ef957acce",
+  "adapter_nomirror_1.daemon.log": "ce492db3e9493039b1b3b8753c5f5d9f982c29c041bad6de8e4ab163520de059",
+  "adapter_nomirror_1.daemon.metrics.txt": "44b52d78c46778ef91f4b0535ea24653a143a78a1df97b82c48ef498c619c951",
+  "adapter_nomirror_1.json": "408c870299ab535a1f69f9a6047261e4ac95ba9f82e86fce3d5a215900bad033",
+  "adapter_nomirror_1.log": "1fa8bb2dfc7d2e11620c069f1bc0813bedbd61012141904fd9c7a5d3499be3d3",
+  "adapter_nomirror_1.store.log": "64b9962f29ff1fe62c683c06180ec1ea2fbf44804508e2b133f8c9b5ba5e75bb",
+  "adapter_nomirror_1.store.metrics.txt": "e1b4afea6a0a4b78366fdd3f1a3a9360a08c33d0a9f4366e4e7cead950064d76",
+  "adapter_nomirror_2.daemon.log": "9499916c9d3f6c1588619495ceb4771811c15f502c2e4e1d7eb8c92fbbc1ae34",
+  "adapter_nomirror_2.daemon.metrics.txt": "44b52d78c46778ef91f4b0535ea24653a143a78a1df97b82c48ef498c619c951",
+  "adapter_nomirror_2.json": "4aa5e584f33e4eac942cd5cfc52a101afe7a9ce5074d7188560f69d4c6bc3a0b",
+  "adapter_nomirror_2.log": "af74a990880faa0f92ec29fccec6e978cdd99a9bdb688848da6de89ea2af3e29",
+  "adapter_nomirror_2.store.log": "c0a17095ee4e271b94bcb5360d807588f8cc57e387d6333e299f8e9b4026d7fe",
+  "adapter_nomirror_2.store.metrics.txt": "e1b4afea6a0a4b78366fdd3f1a3a9360a08c33d0a9f4366e4e7cead950064d76",
+  "adapter_nomirror_3.daemon.log": "2c9cfe8f4df48b4f4dd9c3ceeb3d8e4d21c7688cae349559bfc33667c5a9b2b8",
+  "adapter_nomirror_3.daemon.metrics.txt": "44b52d78c46778ef91f4b0535ea24653a143a78a1df97b82c48ef498c619c951",
+  "adapter_nomirror_3.json": "172655b5ea80b5eb5337df661b5fad50d3d7df3e95c55a71261fb9976daa758c",
+  "adapter_nomirror_3.log": "fdd405d3222d5b7538cb884ebf2ad43e51010c19cd5b114cf36d0b3969a58d71",
+  "adapter_nomirror_3.store.log": "6315cc80d984aba44b4757253eb62549ab5ffc3b8de049eb7c04408c16476a1f",
+  "adapter_nomirror_3.store.metrics.txt": "e1b4afea6a0a4b78366fdd3f1a3a9360a08c33d0a9f4366e4e7cead950064d76",
+  "download.log": "d765140045947eb861b47944c4b0213280272e3c70f8f9fc3bbf6c56b076c745",
+  "notice_1.daemon.log": "dcbe62991656e25a010e691dde5f2a9248033baa3be91e0f600b4ed5eb006f47",
+  "notice_1.daemon.metrics.txt": "56dd65e8d95e0cef1a0b5d223fe1c64a23a76111b6e7df986118d3b738d1b697",
+  "notice_1.json": "aa33f74e6039738c5cff9954e7976254307ecf971496c33f8711d8008bbd40bf",
+  "notice_1.log": "bfc886c7e4de1122d9dd215f60d0f639e1880472e5b46640671bee90a254438a",
+  "notice_1.store.log": "d426c39bafa8fb3997649f8668a5f5527a2277cddc50eb3a5b9b45be9392de90",
+  "notice_1.store.metrics.txt": "03552329f44ae94aa72d4cfde095482093371b43adf9f4d4218ee441f47caa75",
+  "notice_2.daemon.log": "09c338d6f9897b37da463a1e88dd1dca7cc257f50256aabf8e21ae54200b454e",
+  "notice_2.daemon.metrics.txt": "56dd65e8d95e0cef1a0b5d223fe1c64a23a76111b6e7df986118d3b738d1b697",
+  "notice_2.json": "56e51935f63fe84f5068796aee0d65da6cb48f1ae7a14b040384c15bd68a804c",
+  "notice_2.log": "5278a89f3b8f7186cc0301d44a53dac59ae010e1e7f3f07c2639e7202b058ca5",
+  "notice_2.store.log": "91c79c6f7bfb6b68546df4b3d86a278535946cf76f84a93e8c3025357f0235de",
+  "notice_2.store.metrics.txt": "03552329f44ae94aa72d4cfde095482093371b43adf9f4d4218ee441f47caa75",
+  "notice_3.daemon.log": "0b0342db98e27cfce02e2f73974cdf4d7fdef3560ab8259751d7e4427398442b",
+  "notice_3.daemon.metrics.txt": "56dd65e8d95e0cef1a0b5d223fe1c64a23a76111b6e7df986118d3b738d1b697",
+  "notice_3.json": "ee6e90ecec469f2a45a89902c664211416b9a6346fc2250a92081c00b5d109d1",
+  "notice_3.log": "51c68409aaa29928a544a334d137bdb10a650a08b3183f996382821e732041df",
+  "notice_3.store.log": "87756dd8552b7a129987dc38e87d3a456baba52c83c69b0d2b6131c164551549",
+  "notice_3.store.metrics.txt": "03552329f44ae94aa72d4cfde095482093371b43adf9f4d4218ee441f47caa75",
+  "replace_between_1.daemon.log": "b477eab476973d99692fc1cae24fcafc9f22b1c24c66908095d9d35ccf02c9db",
+  "replace_between_1.daemon.metrics.txt": "5c7823f455b3dc74233bc9414878c53aa84097d392ef30824f89279b218d1e4b",
+  "replace_between_1.json": "6759a077e2bdf4b027d4b1604a3d6d7591876d3a36bde5f294981c7bc401c729",
+  "replace_between_1.log": "30cb7aec4bc0d6bbd1474a2d75304fddfb363ce8edd25f69b9d47c13482c04b3",
+  "replace_between_1.store.log": "a1aa1d91f12ba8d36643b3248da1b27da54c7981a0318983202dd40a126acd7e",
+  "replace_between_1.store.metrics.txt": "567f7de22b600c7d5aa23c493bbb2b10685541ea6ae50bccbad6b7bd45520138",
+  "replace_between_2.daemon.log": "d5a4e3f31bfa7b904c4693b999284ecfcbca1563379e432c6920f8068d122db6",
+  "replace_between_2.daemon.metrics.txt": "ee1c9b27c2d1ae4fa9671ebe4f8a1912b3060b374d361470fe7e2b44add8cfb1",
+  "replace_between_2.json": "c7165a2a7f3c85e2bc44847f2d322b444dc2a13b366edba6d1d1bb56a0c6f351",
+  "replace_between_2.log": "56850c947b013b99eea1d84e4745ceef0f93ea80538d8e6cfa0a29538de078cb",
+  "replace_between_2.store.log": "cc7858230b83bf976aaa711139b5bc3690951ae374ec354ea4a3719caf33788d",
+  "replace_between_2.store.metrics.txt": "567f7de22b600c7d5aa23c493bbb2b10685541ea6ae50bccbad6b7bd45520138",
+  "replace_between_3.daemon.log": "817c66af44afa364072a85a9b91864acc6fa38331154d806fa047abaf6e5a954",
+  "replace_between_3.daemon.metrics.txt": "c4290cfd93599bde635dbdb3832bbef4419b161f17332a8605ff6301ff9dc071",
+  "replace_between_3.json": "736d6f4a3e8acb6175f23fee9d374275c49fb370f54465e1a349e840122901da",
+  "replace_between_3.log": "ef10cc188b8163d60de882eba159a4a222365795f223689c99891c08f6219672",
+  "replace_between_3.store.log": "8433d42073f5b62445625e0712ae066f5fc7c22c86e46ea483b1fec574ada08b",
+  "replace_between_3.store.metrics.txt": "567f7de22b600c7d5aa23c493bbb2b10685541ea6ae50bccbad6b7bd45520138",
+  "replace_mid_1.daemon.log": "fc3731b1f0c45aa32ea2a30ac78110eaec2e9a29bcc90c93eb19059a61ac37f3",
+  "replace_mid_1.daemon.metrics.txt": "cdd7c48bf0b1a7bd1558546cd313b6112e5e74a16398e58375023793547b6aed",
+  "replace_mid_1.json": "bac4e3f9e1897334e073f952a7ae6499669bb731ba3bd42549f77f903171a6bc",
+  "replace_mid_1.log": "dc5893eead56bd7c4835a753b16f76d9567d62dc65ca306c117469495b7c0c19",
+  "replace_mid_1.store.log": "759ada3a70189ba7e79c34a7efe17b12d8ab82ef037b577e32ad78889d22ffd8",
+  "replace_mid_1.store.metrics.txt": "567f7de22b600c7d5aa23c493bbb2b10685541ea6ae50bccbad6b7bd45520138",
+  "replace_mid_2.daemon.log": "92cd47b2a087f41e0405c7034911dda4c4eb42a57aecb2fefac7d34fde1bfd15",
+  "replace_mid_2.daemon.metrics.txt": "e92b802cbd3143e460f13e99d1e0ca54482f70b4a5664fed82cba62920fa12ca",
+  "replace_mid_2.json": "aec2fa27f69bf0555c040c81ca152319af05243a988e5ff1a18f57bd88ff90eb",
+  "replace_mid_2.log": "e638c7384067a09d11dc763b6a81cce06ee512b0f4ae245e2633cd630033575c",
+  "replace_mid_2.store.log": "219f44fd92725bc2bed621f5297a134bf9a44d21f3809e3af79b6ec97dd3d0a9",
+  "replace_mid_2.store.metrics.txt": "567f7de22b600c7d5aa23c493bbb2b10685541ea6ae50bccbad6b7bd45520138",
+  "replace_mid_3.daemon.log": "e7d24338dc3fb539ef2d75003c71bfeb42eaae607f15384039796d34c1be0ade",
+  "replace_mid_3.daemon.metrics.txt": "0305f6655abb759d9683845e7177af8bea1d341de59e18960f0504a18f635b10",
+  "replace_mid_3.json": "d822914b1e9ef55a7fcd2ea3512332f5b006779e6fe42276c44c3b3c7c49db5a",
+  "replace_mid_3.log": "80db3e78fafee1076a54c31f2feef7a1581c0d84f4d334f40974e5873532b537",
+  "replace_mid_3.store.log": "295141e1d13c8c75c58e70db54e6c90d1406ddede9464d62518dbe0b9068d905",
+  "replace_mid_3.store.metrics.txt": "567f7de22b600c7d5aa23c493bbb2b10685541ea6ae50bccbad6b7bd45520138",
+  "setup.log": "7e8e79ef3d123a3b3f48107331625073518c7546235c079f64896aed911c3b39",
+  "smoke.sh.log": "12241c5ebde78bfa930ec54f853fb6ed872b8b63f69423c48ecb32304648ad9a",
+  "stock_1.json": "ef7ded3de7b1a4a2005aed7783a195d42d1840dec1b626237d9beed62b02e72c",
+  "stock_1.log": "a47eee0c7a213dbfbabe4333fe7185d7a69439496c64f69885a3b349d680a327",
+  "stock_2.json": "2cc72df874a74207a60b7cd333116669afc35b198fd5e978187f030462f49b1f",
+  "stock_2.log": "8442145a34cdb3d3ad662d879202bd75eef9dd77f8f7ebb3061604dd9c5850a4",
+  "stock_3.json": "f8fadc840a8732c81b077f118f87c592ee4abee38aaee8f4b5e8737b153b076f",
+  "stock_3.log": "a345b7d6d52bc42326426f801396c3b33f10971ab8ec4fdaa1e828a5773b78cc",
+  "topology.txt": "a6111acccd947c3443bd62263451cb14f95aeda26bd75aaeba794a236380770e"
+ }
+}

@@ -1,0 +1,57 @@
+2026-10-09T02:58:09Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: node_fault single_death; trials 1 (fault) / 3 (other); tree b1a84a4 + uncommitted
+2026-10-09T02:58:20Z nodes updated from the working tree (b1a84a4 + uncommitted)
+2026-10-09T02:58:56Z iperf3 node-b -> node-a: 41.7 Gbit/s
+2026-10-09T02:59:07Z NCCL send node-a <-> node-b: "decode_pp_send_128KB: 0.15 ms per send, 0.87 GB/s;prefill_pp_send_268MB: 137.24 ms per send, 1.96 GB/s;replication_burst_650MB: 325.09 ms per send, 2.00 GB/s;"
+2026-10-09T02:59:23Z iperf3 node-c -> node-a: 37.26 Gbit/s
+2026-10-09T02:59:23Z fabric: slowest link to node-a 37.26 Gbit/s (floor 1)
+2026-10-09T02:59:49Z clock of node-b against node-a: {"host": "10.0.0.33", "at": 1791514789.0897162, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-09T03:00:10Z clock of node-c against node-a: {"host": "10.0.0.28", "at": 1791514810.7114036, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-09T03:00:10Z == node_fault trial 1: control
+2026-10-09T03:00:47Z control plane up: coordinator on a at 10.0.0.75:7400, daemons linked on a b c, records exchanged
+2026-10-09T03:00:52Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T03:03:23Z end control_node_fault_1 rc=0
+2026-10-09T03:03:31Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass9/arms/node_fault/trial1/control
+2026-10-09T03:03:41Z nodes a b c down
+2026-10-09T03:03:45Z == node_fault trial 1
+2026-10-09T03:04:01Z compile cache staged from node-b onto node-c: b=f964ea4030:58bbe42fd5f5 c=f964ea4030:58bbe42fd5f5 
+2026-10-09T03:04:37Z control plane up: coordinator on a at 10.0.0.75:7400, daemons linked on a b c, records exchanged
+2026-10-09T03:04:42Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T03:05:51Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":[],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"0a4b036a333e230fd670f4b54df1e4b08b02a0f7b532970dadcc06766c44736c"}},{"rank":1,"no
+pool 1 of 1 wanted; members 2 of 2
+replication targets {0: [], 1: ['10.0.0.28:7402']}
+compile key 35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1 consistent True per rank {0: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', '0a4b036a333e'), 1: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', 'e7b258072c40')} spares {1: ('35fd1f190474', 'e7b258072c40')}
+2026-10-09T03:05:54Z node_fault_1 armed: {"t_armed": 1791515146.1270156, "step": 100}
+2026-10-09T03:05:58Z node-b lost at 1791515156.504096299 (daemon and workers killed)
+2026-10-09T03:06:05Z native stacks of node-a's and node-b's engine processes requested for node_fault_1
+2026-10-09T03:06:12Z end node_fault_1 rc=0
+2026-10-09T03:07:15Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass9/arms/node_fault/trial1
+2026-10-09T03:07:23Z node_fault_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+node_fault trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+2026-10-09T03:07:34Z nodes a b c down
+node_fault: 1 trials, green True, first_differing_position=[None], instrument_pause_s=1.5878, node_fault_detection_s=0.0126, node_fault_gap_s=1.0679, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8'], shadow_formation_s=22.783
+2026-10-09T03:07:34Z == single_death trial 1: control
+2026-10-09T03:08:10Z control plane up: coordinator on a at 10.0.0.75:7400, daemons linked on a b c, records exchanged
+2026-10-09T03:08:15Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T03:09:12Z end control_single_death_1 rc=0
+2026-10-09T03:10:08Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass9/arms/single_death/trial1/control
+2026-10-09T03:10:17Z nodes a b c down
+2026-10-09T03:10:21Z == single_death trial 1
+2026-10-09T03:10:40Z compile cache staged from node-b onto node-c: b=f964ea4030:58bbe42fd5f5 c=f964ea4030:58bbe42fd5f5 
+2026-10-09T03:11:15Z control plane up: coordinator on a at 10.0.0.75:7400, daemons linked on a b c, records exchanged
+2026-10-09T03:11:20Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-09T03:11:49Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":[],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"0a4b036a333e230fd670f4b54df1e4b08b02a0f7b532970dadcc06766c44736c"}},{"rank":1,"no
+pool 1 of 1 wanted; members 2 of 2
+replication targets {0: [], 1: ['10.0.0.28:7402']}
+compile key 35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1 consistent True per rank {0: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', '0a4b036a333e'), 1: ('35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1', 'e7b258072c40')} spares {1: ('35fd1f190474', 'e7b258072c40')}
+2026-10-09T03:11:52Z single_death_1 armed: {"t_armed": 1791515505.9455621, "step": 100}
+2026-10-09T03:11:57Z node-b's worker for rank 1 (pid 14221) killed at 1791515515.807824933
+2026-10-09T03:12:04Z native stacks of node-a's and node-b's engine processes requested for single_death_1
+2026-10-09T03:12:11Z end single_death_1 rc=0
+2026-10-09T03:12:59Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass9/arms/single_death/trial1
+2026-10-09T03:13:07Z single_death_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+single_death trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+2026-10-09T03:13:17Z nodes a b c down
+single_death: 1 trials, green True, first_differing_position=[None], instrument_pause_s=1.5741, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8'], shadow_formation_s=0.333, single_death_detection_s=0.0064, single_death_gap_s=0.6591
+2026-10-09T03:13:42Z clock of node-b against node-a: {"host": "10.0.0.33", "at": 1791515622.8876677, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-09T03:14:04Z clock of node-c against node-a: {"host": "10.0.0.28", "at": 1791515644.5324342, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-09T03:14:04Z battery done: node_fault single_death ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass9

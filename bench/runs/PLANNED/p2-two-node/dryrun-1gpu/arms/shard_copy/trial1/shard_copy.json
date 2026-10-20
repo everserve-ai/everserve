@@ -1,0 +1,1 @@
+{"model_dir": "/workspace/models/Qwen3-1.7B", "files": 2, "model_bytes": 4063515592, "shard_bytes": 4063515592, "tp": 1, "n": 5, "copy_s": [6.1292, 4.3816, 4.3902, 4.382, 4.3769], "median_s": 4.382, "worst_s": 6.1292, "gb_s_median": 0.93}

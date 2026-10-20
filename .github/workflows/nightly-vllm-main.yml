@@ -1,0 +1,43 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# The adapter against vLLM's main, nightly: its private lines (adapters/vllm/PRIVATE-INTERNALS.md)
+# break here before they break in a deployment. The pinned vLLM is installed as the engine image
+# installs it, then replaced by vLLM's nightly wheel from main; the adapter's vLLM-gated tests run
+# against that, the ledger test among them. A nightly that cannot be installed fails the job: a
+# job that cannot fail proves nothing.
+name: nightly-vllm-main
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  adapter-against-main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      # vLLM and torch's CUDA libraries fill most of the runner's disk
+      - name: room on the disk
+        run: |
+          df -h /
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+        with:
+          enable-cache: true
+      - run: uv python install
+      - run: uv sync --all-packages --all-extras
+      - name: vLLM main, its nightly wheel
+        run: |
+          uv pip install --pre --upgrade --extra-index-url https://wheels.vllm.ai/nightly vllm
+          uv run python -c "import vllm; print('vllm', vllm.__version__)"
+      # the CUDA driver stub, as the engine image carries it (ci.yml's adapter-vllm job)
+      - name: CUDA driver stub
+        run: |
+          deb=cuda-driver-dev-13-0_13.0.96-1_amd64.deb
+          curl -fsSL --retry 4 --retry-all-errors --max-time 120 -o "/tmp/$deb" "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/$deb"
+          echo "a9726490d4797965b56a2e1dedb2c4cffd3f3463e11435fa4c500b3d147af08a  /tmp/$deb" | sha256sum -c -
+          dpkg-deb -x "/tmp/$deb" /tmp/cuda-stub
+      - run: uv run pytest -m "not slow" -rs adapters/vllm/tests
+        env:
+          EVERSERVE_CUDA_STUB: /tmp/cuda-stub/usr/local/cuda-13.0/targets/x86_64-linux/lib/stubs/libcuda.so

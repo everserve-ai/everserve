@@ -1,0 +1,31 @@
+{
+  "arm": "stock",
+  "trials": 1,
+  "figures": {
+    "adapter_overhead_pct": {
+      "values": [
+        0.0
+      ],
+      "prediction": 1,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replica_lag_max_steps": {
+      "values": [
+        null
+      ],
+      "prediction": 7
+    },
+    "replication_dropped_total": {
+      "values": [
+        0
+      ],
+      "prediction": 7,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    }
+  },
+  "green": true
+}

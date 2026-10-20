@@ -1,0 +1,97 @@
+2026-10-07T11:02:25Z owner's brief: the cheap two-node smoke (points 2, 3, 5) before landing 5. Tree 75ed23d. Stock vLLM, Qwen3-1.7B, TP1 x PP2, one GPU per pod, global networking.
+2026-10-07T11:02:26Z deploy 1x NVIDIA RTX A4000,NVIDIA RTX A4500,NVIDIA RTX A5000,NVIDIA RTX 4000 Ada Generation,NVIDIA RTX 2000 Ada Generation,NVIDIA A40 networked: {"consumerUserId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9", "containerDiskInGb": 60, "costPerHr": 0.49, "createdAt": "2026-10-07 11:02:26.384 +0000 UTC", "desiredStatus": "RUNNING", "env": {"PUBLIC_KEY": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFRnQjQg8vXbAjBPNTnTdA2jsKFkSKRUuKzarQK860HS claude-e2-runpod"}, "gpuCount": 1, "id": "fsn4wlyxro0ym2", "imageName": "runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-u
+2026-10-07T11:02:27Z pod a fsn4wlyxro0ym2; watchdog at +75 min
+2026-10-07T11:02:39Z pod a in , 
+2026-10-07T11:02:42Z deploy 1x NVIDIA RTX A4000,NVIDIA RTX A4500,NVIDIA RTX A5000,NVIDIA RTX 4000 Ada Generation,NVIDIA RTX 2000 Ada Generation,NVIDIA A40 networked: {"consumerUserId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9", "containerDiskInGb": 60, "costPerHr": 0.49, "createdAt": "2026-10-07 11:02:41.499 +0000 UTC", "desiredStatus": "RUNNING", "env": {"PUBLIC_KEY": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFRnQjQg8vXbAjBPNTnTdA2jsKFkSKRUuKzarQK860HS claude-e2-runpod"}, "gpuCount": 1, "id": "1ja6fmcayk9tvt", "imageName": "runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-u
+2026-10-07T11:02:42Z pod b 1ja6fmcayk9tvt; watchdog at +75 min
+2026-10-07T11:02:48Z pod b in , 
+2026-10-07T11:02:55Z private addresses: a=10.1.84.61 b=10.0.66.103; interfaces a: lo 127.0.0.1/8;eth0 172.16.160.2/20;podnet1 10.1.84.61/10;
+2026-10-07T11:02:56Z ping b from a: bash: line 1: ping: command not found
+2026-10-07T11:03:20Z setup started on both
+2026-10-07T11:06:29Z setup failed on both: the wheel URL carried $PIN unexpanded (my script read the template line). Re-run out of band with PIN=6e517b15c1833cf72a7f557ee32524d98682e617; the smoke waits on SETUP_OK.
+2026-10-07T11:08:47Z setup done: a: 0.30.1rc1.dev606+g6e517b15c NVIDIA A40, 570.195.03 ; b: 0.30.1rc1.dev606+g6e517b15c
+2026-10-07T11:09:00Z iperf3 b->a: [SUM]   0.00-8.09   sec  87.9 MBytes  91.1 Mbits/sec                  receiver
+2026-10-07T11:23:49Z nccl b<-a: 
+2026-10-07T11:26:30Z node-b headless started
+2026-10-07T11:26:57Z the launch ssh for node-b's headless process (and the head's) did not return: the nohup'd engine processes kept the session's stdin; killed the local ssh clients, the remote processes run on
+2026-10-07T11:30:55Z the head's gloo (CPU) group bound eth0's NAT address (172.16.160.2 -> 172.16.0.2) and could not connect to node-b: vLLM's CPU groups follow the default route, not NCCL_SOCKET_IFNAME. Engines stopped; the main script stopped before its wait could terminate the pods; the engine phase restarts with GLOO_SOCKET_IFNAME=podnet1 as well.
+2026-10-07T11:31:40Z node-b headless started (gloo and NCCL on podnet1)
+2026-10-07T11:31:41Z head started
+2026-10-07T11:33:57Z the head's worker failed to bind 29501 (a process of the first attempt still held it; my kill pattern missed it); listener killed, both sides restarted
+2026-10-07T11:38:22Z node-b's PP1 worker died needing ninja (a JIT on the last pipeline stage): my launch environment lacked the venv's bin, which the harness puts on PATH; fixed, both sides restarted
+2026-10-07T11:38:54Z node-b headless started (gloo and NCCL on podnet1)
+2026-10-07T11:38:56Z head started
+2026-10-07T11:41:29Z node-b's PP1 worker failed FlashInfer's sampler JIT (no CUDA 13 nvcc in my lighter setup; the harness installs the toolkit): VLLM_USE_FLASHINFER_SAMPLER=0 on both sides, restarted
+2026-10-07T11:41:55Z node-b headless started (gloo and NCCL on podnet1)
+2026-10-07T11:41:56Z head started
+2026-10-07T11:43:09Z engine up: ready 62.2 s; executor {'class': 'MultiprocExecutor', 'world_size': 2, 'local_world_size': 1, 'local_workers': 1, 'response_mqs': ['MessageQueue(local)', 'MessageQueue(remote)'], 'broadcast_handle': "Handle(local_reader_ranks=[0], buffer_handle=(1, 16777216, 10, 'psm_3e63fbc5'), local_subscribe_addr='ipc:///tmp/5bcdb2e3-8820-4ab7-8d4f-966fa4100c9a', local_notify_addr='ipc:///tmp/8f5c2d14-d6af-4cf6-8af5-bdeb367d2096', remote_subscribe_addr='tcp://10.1.84.61:32857', remote_addr_ipv6=False)"}
+baseline {'baseline': {'tokens': 64, 'steps': 129, 's': 0.71, 'tps': 361.9, 'first_token_s': 0.001}, 'baseline2': {'tokens': 64, 'steps': 129, 's': 0.6, 'tps': 426.2, 'first_token_s': 0.002}}
+2026-10-07T11:43:11Z node-b processes:    4579      76 vllm            /workspace/everserve/.venv/bin/python .venv/bin/vllm serve /workspace/models/Qwen3-1.7B ;   4839      67 python          /workspace/everserve/.venv/bin/python -c from multiprocessing.resource_tracker import ma;
+2026-10-07T11:43:14Z killed node-b worker pid 5310 at 1791373393.200918000
+2026-10-07T11:43:21Z after the kill: {'tokens': 64, 'steps': 129, 's': 0.69, 'tps': 372.2, 'first_token_s': 0.002} ; head log tail: NCCL version 2.29.7+cuda13.2;[2026-10-07 11:42:14] 38f341b8f4fe:5684:5684 [0] misc/ibvwrap.cc:173 NCCL WARN lib wrapper not initialized.;(Worker pid=5684) INFO 10-07 11:42:14 [cuda_communicator.py:340] Using ['PYNCCL'] all-reduce backends (in dispatch order) for group 'pp:0' out of potential backends: ['FLASHINFER_PCIE_IPC', 'FLASHINFE;[rank0]:[W1007 11:42:48.402448108 ProcessGroupNCCL.cpp:4173] Warning: An unbatched P2P op (send/recv) was called on this ProcessGroup with size 2.  In lazy initialization mode, this will result in a n;
+2026-10-07T11:43:22Z node-b after the kill:    4579 vllm;   4839 python;(Worker_PP1 pid=4840) INFO 10-07 11:43:03 [gpu_worker.py:928] CUDA graph pool memory: 0.03 GiB (actual), 0.05 GiB (estimated), difference: 0.02 GiB (60.0%).;(Worker_PP1 pid=4840) INFO 10-07 11:43:03 [gpu_worker.py:991] Free memory on device (44.01/44.43 GiB) on startup. Desired GPU memory utilization is (0.6, 26.66 GiB). Actual usage is 2.0 GiB for consum;(Worker_PP1 pid=4840) INFO 10-07 11:43:05 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.;
+2026-10-07T11:43:26Z node-b headless restarted
+2026-10-07T11:43:32Z after the restart: {'tokens': 64, 'steps': 129, 's': 0.68, 'tps': 376.4, 'first_token_s': 0.002}; node-b: frame #10: clone + 0x44 (0x7b5ed6e1ba04 in /lib/x86_64-linux-gnu/libc.so.6);;[rank1]:[W1007 11:43:32.874341912 ProcessGroupNCCL.cpp:1876] [PG ID 0 PG GUID 0 Rank 1] Failed to check the "should dump" flag on TCPStore, (maybe TCPStore server has shut down too early), with error:;
+2026-10-07T11:43:36Z data copied
+2026-10-07T11:43:36Z terminate fsn4wlyxro0ym2: {"data": {"podTerminate": null}}
+2026-10-07T11:43:37Z terminate 1ja6fmcayk9tvt: {"data": {"podTerminate": null}}
+2026-10-07T11:43:37Z pods terminated
+2026-10-07T11:43:37Z balance 7.13
+2026-10-07T11:45:33Z first pass over (both pods terminated by the script, ~$0.67): the engine ran across the tunnel, but the kill missed (pgrep found no 'VllmWorker': vLLM names it VLLM::Worker), so the dead-remote-worker question is open. One clean rerun with the script fixed (wheel URL, detached launches, gloo and NCCL on podnet1, the JIT sampler off, the venv's tools on PATH, the right worker name, the data center pinned via GraphQL); outputs in data2/.
+2026-10-07T11:45:33Z owner's brief: the cheap two-node smoke (points 2, 3, 5) before landing 5. Tree 75ed23d. Stock vLLM, Qwen3-1.7B, TP1 x PP2, one GPU per pod, global networking.
+2026-10-07T11:45:35Z deploy 1x NVIDIA RTX A4000,NVIDIA RTX A4500,NVIDIA RTX A5000,NVIDIA RTX 4000 Ada Generation,NVIDIA RTX 2000 Ada Generation,NVIDIA A40 networked: {"consumerUserId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9", "containerDiskInGb": 60, "costPerHr": 0.49, "createdAt": "2026-10-07 11:45:34.604 +0000 UTC", "desiredStatus": "RUNNING", "env": {"PUBLIC_KEY": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFRnQjQg8vXbAjBPNTnTdA2jsKFkSKRUuKzarQK860HS claude-e2-runpod"}, "gpuCount": 1, "id": "4ia1e8wicnekuv", "imageName": "runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-u
+2026-10-07T11:45:35Z pod a 4ia1e8wicnekuv; watchdog at +40 min
+2026-10-07T11:46:03Z pod a in CA-MTL-1, A40 0.49
+2026-10-07T11:46:05Z deploy 1x NVIDIA RTX A4000,NVIDIA RTX A4500,NVIDIA RTX A5000,NVIDIA RTX 4000 Ada Generation,NVIDIA RTX 2000 Ada Generation,NVIDIA A40 networked: {"consumerUserId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9", "containerDiskInGb": 60, "costPerHr": 0.49, "createdAt": "2026-10-07 11:46:05.113 +0000 UTC", "desiredStatus": "RUNNING", "env": {"PUBLIC_KEY": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFRnQjQg8vXbAjBPNTnTdA2jsKFkSKRUuKzarQK860HS claude-e2-runpod"}, "gpuCount": 1, "id": "9ukh2p2ha1tee0", "imageName": "runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-u
+2026-10-07T11:46:05Z pod b 9ukh2p2ha1tee0; watchdog at +40 min
+2026-10-07T11:46:30Z pod b in CA-MTL-1, A40 0.49
+2026-10-07T11:46:32Z private addresses: a=10.0.178.31 b=10.1.113.210; interfaces a: lo 127.0.0.1/8;eth0 172.16.64.2/20;podnet1 10.0.178.31/10;
+2026-10-07T11:46:38Z reach b from a over the tunnel: tcp to b:22 failed
+2026-10-07T11:46:48Z setup started on both
+2026-10-07T11:47:53Z setup done: a: 0.30.1rc1.dev606+g6e517b15c NVIDIA A40, 570.211.01 ; b: 0.30.1rc1.dev606+g6e517b15c
+2026-10-07T11:50:09Z iperf3 b->a: 
+2026-10-07T11:52:16Z nccl b<-a: Exception raised from throwTimeoutError at /__w/pytorch/pytorch/torch/csrc/distributed/c10d/socket.cpp:1030 (most recent call first):;frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9d (0x74aad0163bfd in /workspace/everserve/.venv/lib/python3.12/site-packages/torch/lib/libc10.so);frame #1: c10::DistError::DistError(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x72 (0x74aad0164bd2 in /workspace/everserve/.venv/lib/python3.12/site-packages/torch/lib/libc10.so);frame #2: c10::DistNetworkError::DistNetworkError(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x72 (0x74aad0165092 in /workspace/everserve/.venv/lib/python3.12/site-packages/torch/lib/libc10.so);torch.distributed.DistNetworkError: The client socket has timed out after 120000ms while trying to connect to (10.0.178.31, 29600).;
+2026-10-07T11:52:16Z node-b headless started
+2026-10-07T12:02:41Z the head did not get ready in 10 min
+(MainProcess pid=1134) INFO 10-07 11:52:42 [scheduler.py:308] Chunked prefill is enabled with max_num_batched_tokens=2048.
+(MainProcess pid=1134) INFO 10-07 11:52:42 [kernel.py:459] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native'])
+(MainProcess pid=1134) INFO 10-07 11:52:46 [core.py:129] Initializing a V1 LLM engine (v0.30.1rc1.dev606+g6e517b15c) with config: model='/workspace/models/Qwen3-1.7B', speculative_config=None, tokenizer='/workspace/models/Qwen3-1.7B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, to
+(MainProcess pid=1134) INFO 10-07 11:52:46 [multiproc_executor.py:153] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=10.0.178.31, mq_connect_ip=10.0.178.31 (local), world_size=2, local_world_size=1
+(Worker pid=1596) INFO 10-07 11:52:48 [parallel_state.py:1825] world_size=2 rank=0 local_rank=0 distributed_init_method=tcp://10.0.178.31:29501 backend=nccl
+(Worker pid=1398) INFO 10-07 11:52:48 [parallel_state.py:1825] world_size=2 rank=1 local_rank=0 distributed_init_method=tcp://10.0.178.31:29501 backend=nccl
+[W1007 11:55:04.457082182 socket.cpp:938] [c10d] The server socket on [::ffff:10.0.178.31]:29501 has timed out, will retry.
+[W1007 11:57:20.625086519 socket.cpp:938] [c10d] The server socket on [::ffff:10.0.178.31]:29501 has timed out, will retry.
+[W1007 11:59:35.793098997 socket.cpp:938] [c10d] The server socket on [::ffff:10.0.178.31]:29501 has timed out, will retry.
+[W1007 12:01:50.961119919 socket.cpp:938] [c10d] The server socket on [::ffff:10.0.178.31]:29501 has timed out, will retry.
+2026-10-07T12:02:43Z terminate 4ia1e8wicnekuv: {"data": {"podTerminate": null}}
+2026-10-07T12:02:44Z terminate 9ukh2p2ha1tee0: {"data": {"podTerminate": null}}
+2026-10-07T12:02:44Z pods terminated
+2026-10-07T12:02:44Z balance 6.92
+2026-10-07T12:03:42Z third pass, pinned to EU-SE-1, aborting before setup if the tunnel is dead. The cheap two-node smoke (points 2, 3, 5) before landing 5. Tree 75ed23d. Stock vLLM, Qwen3-1.7B, TP1 x PP2, one GPU per pod, global networking.
+2026-10-07T12:03:44Z deploy 1x NVIDIA RTX A4000,NVIDIA RTX A4500,NVIDIA RTX A5000,NVIDIA RTX 4000 Ada Generation,NVIDIA RTX 2000 Ada Generation,NVIDIA A40 networked: {"consumerUserId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9", "containerDiskInGb": 60, "costPerHr": 0.49, "createdAt": "2026-10-07 12:03:43.639 +0000 UTC", "desiredStatus": "RUNNING", "env": {"PUBLIC_KEY": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFRnQjQg8vXbAjBPNTnTdA2jsKFkSKRUuKzarQK860HS claude-e2-runpod"}, "gpuCount": 1, "id": "gvkw5rhkg4fbny", "imageName": "runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-u
+2026-10-07T12:03:44Z pod a gvkw5rhkg4fbny; watchdog at +40 min
+2026-10-07T12:03:56Z pod a in EU-SE-1, A40 0.49
+2026-10-07T12:03:59Z deploy 1x NVIDIA RTX A4000,NVIDIA RTX A4500,NVIDIA RTX A5000,NVIDIA RTX 4000 Ada Generation,NVIDIA RTX 2000 Ada Generation,NVIDIA A40 networked: {"consumerUserId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9", "containerDiskInGb": 60, "costPerHr": 0.27, "createdAt": "2026-10-07 12:03:59.28 +0000 UTC", "desiredStatus": "RUNNING", "env": {"PUBLIC_KEY": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFRnQjQg8vXbAjBPNTnTdA2jsKFkSKRUuKzarQK860HS claude-e2-runpod"}, "gpuCount": 1, "id": "0wrupchswuki23", "imageName": "runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ub
+2026-10-07T12:03:59Z pod b 0wrupchswuki23; watchdog at +40 min
+2026-10-07T12:04:13Z pod b in EU-SE-1, RTX A5000 0.27
+2026-10-07T12:04:20Z private addresses: a=10.1.23.106 b=10.0.123.233; interfaces a: lo 127.0.0.1/8;eth0 172.16.80.2/20;podnet1 10.1.23.106/10;
+2026-10-07T12:04:22Z reach b from a over the tunnel: ok after 5 s
+2026-10-07T12:04:46Z setup started on both
+2026-10-07T12:05:59Z setup done: a: 0.30.1rc1.dev606+g6e517b15c NVIDIA A40, 570.195.03 ; b: 0.30.1rc1.dev606+g6e517b15c
+2026-10-07T12:06:13Z iperf3 b->a: [SUM]   0.00-8.06   sec  78.5 MBytes  81.7 Mbits/sec                  receiver
+2026-10-07T12:10:19Z nccl b<-a: decode_pp_send_128KB: 8.36 ms per send, 0.02 GB/s;prefill_pp_send_268MB: 22388.39 ms per send, 0.01 GB/s;
+2026-10-07T12:10:21Z node-b headless started
+2026-10-07T12:11:48Z engine up: ready 68.5 s; executor {'class': 'MultiprocExecutor', 'world_size': 2, 'local_world_size': 1, 'local_workers': 1, 'response_mqs': ['MessageQueue(local)', 'MessageQueue(remote)'], 'broadcast_handle': "Handle(local_reader_ranks=[0], buffer_handle=(1, 16777216, 10, 'psm_e8d07ffb'), local_subscribe_addr='ipc:///tmp/62d383fe-0ca5-4a7b-a76b-84ed0575f29b', local_notify_addr='ipc:///tmp/9e7087ee-5583-4445-a55c-daf0a10b8ce0', remote_subscribe_addr='tcp://10.1.23.106:45901', remote_addr_ipv6=False)"}
+baseline {'baseline': {'tokens': 64, 'steps': 129, 's': 0.66, 'tps': 385.9, 'first_token_s': 0.001}, 'baseline2': {'tokens': 64, 'steps': 129, 's': 0.56, 'tps': 455.3, 'first_token_s': 0.002}}
+2026-10-07T12:11:49Z node-b processes:    1069      89 vllm            /workspace/everserve/.venv/bin/python .venv/bin/vllm serve /workspace/models/Qwen3-1.7B ;   1494      70 python          /workspace/everserve/.venv/bin/python -c from multiprocessing.resource_tracker import ma;
+2026-10-07T12:11:53Z node-b worker to kill:    1495 VLLM::Worker_PP VLLM::Worker_PP1
+2026-10-07T12:11:55Z killed node-b worker pid 1495 at 1791375113.444741000
+2026-10-07T12:14:08Z after the kill: {'hung_s': 60.0} ; head log tail: frame #6: c10d::ProcessGroupNCCL::Watchdog::run() + 0x157 (0x7739a625cd47 in /workspace/everserve/.venv/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so);[rank0]:[E1007 12:12:57.927069589 ProcessGroupNCCL.cpp:2372] [PG ID 7 PG GUID 21(pp_broadcast) Rank 0]  failure detected by watchdog at work sequence id: 266 PG status: last enqueued work: 266, last s;[rank0]:[E1007 12:12:57.927825450 ProcessGroupNCCL.cpp:774] Stack trace of the failed collective: ;[rank0]:[E1007 12:13:57.928171323 ProcessGroupNCCL.cpp:791] [Rank 0] Some NCCL operations have failed or timed out. Due to the asynchronous nature of CUDA kernels, subsequent GPU operations might run ;
+2026-10-07T12:14:10Z node-b after the kill: (MainProcess pid=1069) INFO 10-07 12:11:55 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully;/root/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to cl;  warnings.warn('resource_tracker: There appear to be %d ';
+2026-10-07T12:14:13Z node-b headless restarted
+2026-10-07T12:16:53Z after the restart: None; node-b: (MainProcess pid=1069) INFO 10-07 12:11:55 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully;/root/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to cl;  warnings.warn('resource_tracker: There appear to be %d ';
+2026-10-07T12:16:56Z data copied
+2026-10-07T12:16:57Z terminate gvkw5rhkg4fbny: {"data": {"podTerminate": null}}
+2026-10-07T12:16:57Z terminate 0wrupchswuki23: {"data": {"podTerminate": null}}
+2026-10-07T12:16:57Z pods terminated
+2026-10-07T12:16:57Z balance 6.72

@@ -1,0 +1,21 @@
+{
+  "version": "rig-4gpu-1",
+  "outcomesInOrder": ["OUTCOME_REPLACE", "OUTCOME_REBUILD"],
+  "spares": { "perEngine": 1, "loading": "LOADING_PRELOADED" },
+  "maxConcurrentLosses": 1,
+  "noticeMinMs": 2000,
+  "engines": [
+    {
+      "name": "rig",
+      "members": [
+        { "node": "rig", "device": 0 }, { "node": "rig", "device": 1 },
+        { "node": "rig", "device": 2 }, { "node": "rig", "device": 3 }
+      ],
+      "tensorParallel": 1,
+      "expertParallel": 4,
+      "dataParallel": 4,
+      "pipelineParallel": 1,
+      "placementIndependentModel": false
+    }
+  ]
+}

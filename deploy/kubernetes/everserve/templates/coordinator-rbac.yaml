@@ -1,0 +1,136 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# The coordinator takes, renews and releases its Lease, and never deletes it: a recreated Lease
+# starts its term over, below what every daemon has seen (decision 0036). Kubernetes cannot limit
+# `create` to a name, so it is granted alone; reading and writing are limited to the one Lease.
+# It reads and writes its spec store's objects, and deletes none.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ include "everserve.fullname" . }}-coordinator
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ include "everserve.fullname" . }}-coordinator
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+rules:
+  # its own pod's holder label, which the Service selects by: Kubernetes grants patch on pods
+  # of the namespace, not on one pod by name
+  - apiGroups: [""]
+    resources: [pods]
+    verbs: [get, patch]
+  - apiGroups: [coordination.k8s.io]
+    resources: [leases]
+    verbs: [create]
+  - apiGroups: [coordination.k8s.io]
+    resources: [leases]
+    resourceNames: [{{ .Values.coordinator.leaseName | quote }}]
+    verbs: [get, update]
+  # its spec store (decision 0036): every write a replace guarded by resourceVersion; none
+  # deleted, so a takeover always finds every object the last holder wrote
+  - apiGroups: [everserve.ai]
+    resources: [everservestates]
+    verbs: [get, create, update]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "everserve.fullname" . }}-coordinator
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ include "everserve.fullname" . }}-coordinator
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "everserve.fullname" . }}-coordinator
+    namespace: {{ .Release.Namespace }}
+{{- if .Values.coordinator.nodes.follow }}
+---
+# The cluster's Nodes (decision 0041): read and watched, never written; a Node's labels say which
+# nodes are spot and which their provider is taking back.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "everserve.fullname" . }}-coordinator-nodes
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+rules:
+  - apiGroups: [""]
+    resources: [nodes]
+    verbs: [get, list, watch]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "everserve.fullname" . }}-coordinator-nodes
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "everserve.fullname" . }}-coordinator-nodes
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "everserve.fullname" . }}-coordinator
+    namespace: {{ .Release.Namespace }}
+{{- end }}
+---
+# The operator API asks the cluster who a bearer token is and whether it may (decision 0039):
+# TokenReview and SubjectAccessReview, as every component that delegates to the cluster does.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "everserve.fullname" . }}-coordinator-auth-delegator
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:auth-delegator
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "everserve.fullname" . }}-coordinator
+    namespace: {{ .Release.Namespace }}
+---
+# What a caller of the operator API may be granted (decisions 0039, 0042), bound in the
+# coordinator's namespace: a viewer reads and watches; an operator also cordons and drains nodes,
+# writes pools and takes a process's stacks; a launcher writes the command a pool's spares run on
+# every node of the pool, a grant of its own.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "everserve.fullname" . }}-viewer
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+rules:
+  - apiGroups: [everserve.ai]
+    resources: [engines, engines/events, nodes, nodes/events, nodes/release, pools, pools/events, topology]
+    verbs: [get, list, watch]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "everserve.fullname" . }}-operator
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+rules:
+  - apiGroups: [everserve.ai]
+    resources: [engines, engines/events, nodes, nodes/events, nodes/release, pools, pools/events, topology]
+    verbs: [get, list, watch]
+  - apiGroups: [everserve.ai]
+    resources: [nodes, pools]
+    verbs: [update]
+  - apiGroups: [everserve.ai]
+    resources: [engines/stacks]
+    verbs: [create]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "everserve.fullname" . }}-launcher
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+rules:
+  - apiGroups: [everserve.ai]
+    resources: [pools/launcher]
+    verbs: [get, update]

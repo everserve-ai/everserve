@@ -1,0 +1,100 @@
+# p1-frontier-commit-path battery: run log
+2026-10-06T11:07:49Z Pasted brief, standing permission. Tree 1a13b29 (pre-registration committed and pushed, CI green). Cap $30; balance 24.68, so the guard stops at $22 of spend.
+2026-10-06T11:07:49Z deploy 5x NVIDIA H100 80GB HBM3 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-06T11:07:50Z deploy 5x NVIDIA H100 80GB HBM3 SECURE: {"data": {"podFindAndDeployOnDemand": {"id": "p267lcynio2uiu", "costPerHr": 17.45, "machine": {"gpuDisplayName": "H100 SXM", "location": "IN"}}}}
+2026-10-06T11:08:04Z pod p267lcynio2uiu 5x H100 SXM secure IN $17.45/h (deployed 11:07:50Z); watchdog terminates at 12:22:50Z (~$21.80)
+2026-10-06T11:12:30Z tree 1a13b29 on the pod
+0, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+1, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+2, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+3, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+4, NVIDIA H100 80GB HBM3, 580.126.09, 81559 MiB
+	[4mGPU0	GPU1	GPU2	GPU3	GPU4	NIC0	NIC1	NIC2	NIC3	NIC4	NIC5	NIC6	NIC7	NIC8	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+GPU0	 X 	NV18	NV18	NV18	NV18	NODE	PIX	NODE	NODE	SYS	SYS	SYS	SYS	SYS	0-55,112-167	0		N/A
+GPU1	NV18	 X 	NV18	NV18	NV18	NODE	NODE	PIX	NODE	SYS	SYS	SYS	SYS	SYS	0-55,112-167	0		N/A
+GPU2	NV18	NV18	 X 	NV18	NV18	SYS	SYS	SYS	SYS	PIX	NODE	NODE	NODE	PIX	56-111,168-223	1		N/A
+GPU3	NV18	NV18	NV18	 X 	NV18	SYS	SYS	SYS	SYS	NODE	PIX	NODE	NODE	NODE	56-111,168-223	1		N/A
+GPU4	NV18	NV18	NV18	NV18	 X 	SYS	SYS	SYS	SYS	NODE	NODE	NODE	PIX	NODE	56-111,168-223	1		N/A
+shm             586G     0  586G   0% /dev/shm
+overlay         250G   25M  250G   1% /
+2026-10-06T11:12:38Z setup, build and model download started (Llama 3.3 70B Instruct first, else Qwen2.5 72B Instruct)
+2026-10-06T11:22:24Z owner: no run past its estimate. Watchdog moved from the budget (12:22:50Z) to the estimate plus 12 min: terminates at 11:55:00Z (~$13.70 at most). Setup still running at 14 min (estimate 13).
+2026-10-06T11:25:09Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;-rwxr-xr-x 2 root root 7365960 Oct  6 11:25 /workspace/everserve/target/release/everserve-controller;Qwen/Qwen2.5-72B-Instruct;136G	/workspace/models/Qwen2.5-72B-Instruct;shm             586G  8.1M  586G   1% /dev/shm;
+2026-10-06T11:25:14Z pod:  adapter_port.sh drill stock_1 --arm stock --custom-all-reduce default
+2026-10-06T11:25:19Z start stock_1: --arm stock --custom-all-reduce default
+2026-10-06T11:30:42Z end stock_1 rc=0: (MainProcess pid=11049) INFO 10-06 11:30:39 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-06T11:30:43Z spend [after stock] balance 18.70, spent since start $5.98, pod p267lcynio2uiu $17.45/h up 1364s
+2026-10-06T11:30:43Z pod:  adapter_port.sh drill adapter_1 --arm adapter
+2026-10-06T11:30:50Z start adapter_1: --arm adapter
+2026-10-06T11:41:18Z adapter_1 failed at start: rank 0 crashed forming the shadow groups (groups.py:171 form_shadow_groups -> vLLM StatelessProcessGroup.create -> create_tcp_store: OSError Bad file descriptor, the path after a failed bind); the other ranks waited, GPUs idle. First GPU run of 56c5d41 (sets of ranks). Every remaining arm starts an adapter engine: battery stopped. stock_1: 464.75 tok/s.
+2026-10-06T11:41:23Z end adapter_1 rc=143:   warnings.warn('resource_tracker: There appear to be %d '
+overlay         250G   26G  225G  11% /
+2026-10-06T11:41:27Z terminate p267lcynio2uiu: {"data": {"podTerminate": null}}
+2026-10-06T11:41:27Z data copied; pod terminated; watchdog stopped
+2026-10-06T11:41:32Z balance 15.79
+2026-10-06T11:42:17Z NOTE.md written; the battery is not scored
+2026-10-06T22:54:26Z owner: second attempt; owner topping the balance up to $30. Tree 91e948b (preflight green). Polling 5x H100 SXM secure every 60 s, deploying once the balance is at least $25; watchdog at +52 min (estimate 40 + 12, ~$15).
+2026-10-06T22:54:39Z the poll's first try took a no-supply answer for a deploy (it read stdout without the exit status) and stopped; no pod was made. Fixed, poll restarted.
+2026-10-06T22:55:46Z deploy 5x H100 SXM SECURE (balance 30.70): {"id": "647islznuyhxco", "costPerHr": 17.45, "machine": {"gpuDisplayName": "H100 SXM", "location": "JP"}}
+2026-10-06T22:55:46Z pod 647islznuyhxco; watchdog terminates at +52 min (estimate 40 + 12)
+2026-10-06T22:56:36Z tree 91e948b on the pod
+0, NVIDIA H100 80GB HBM3, 570.133.20, 81559 MiB
+1, NVIDIA H100 80GB HBM3, 570.133.20, 81559 MiB
+2, NVIDIA H100 80GB HBM3, 570.133.20, 81559 MiB
+3, NVIDIA H100 80GB HBM3, 570.133.20, 81559 MiB
+4, NVIDIA H100 80GB HBM3, 570.133.20, 81559 MiB
+	[4mGPU0	GPU1	GPU2	GPU3	GPU4	NIC0	NIC1	NIC2	NIC3	NIC4	NIC5	NIC6	NIC7	NIC8	NIC9	NIC10	NIC11	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+GPU0	 X 	NV18	NV18	NV18	NV18	PXB	NODE	NODE	NODE	NODE	NODE	SYS	SYS	SYS	SYS	SYS	SYS	0-55,112-167	0		N/A
+GPU1	NV18	 X 	NV18	NV18	NV18	NODE	NODE	NODE	NODE	PXB	NODE	SYS	SYS	SYS	SYS	SYS	SYS	0-55,112-167	0		N/A
+GPU2	NV18	NV18	 X 	NV18	NV18	SYS	SYS	SYS	SYS	SYS	SYS	PXB	NODE	NODE	NODE	NODE	NODE	56-111,168-223	1		N/A
+GPU3	NV18	NV18	NV18	 X 	NV18	SYS	SYS	SYS	SYS	SYS	SYS	NODE	NODE	NODE	PXB	NODE	NODE	56-111,168-223	1		N/A
+GPU4	NV18	NV18	NV18	NV18	 X 	SYS	SYS	SYS	SYS	SYS	SYS	NODE	NODE	NODE	NODE	PXB	NODE	56-111,168-223	1		N/A
+shm             586G     0  586G   0% /dev/shm
+overlay         200G   25M  200G   1% /
+2026-10-06T22:56:42Z setup, build and the Qwen/Qwen2.5-72B-Instruct download started
+2026-10-06T23:03:04Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;136G	/workspace/models/Qwen2.5-72B-Instruct;shm             586G  8.1M  586G   1% /dev/shm;
+2026-10-06T23:03:07Z pod:  adapter_port.sh drill stock_1 --arm stock --custom-all-reduce default
+2026-10-06T23:03:12Z start stock_1: --arm stock --custom-all-reduce default
+2026-10-06T23:05:52Z end stock_1 rc=0: (MainProcess pid=10745) INFO 10-06 23:05:48 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-06T23:05:52Z end stock_1 rc=0
+2026-10-06T23:05:56Z stock_1 results written; slot: None
+2026-10-06T23:05:57Z spend [after stock] balance 28.52, spent since start $2.18, pod 647islznuyhxco $17.45/h up 585s
+2026-10-06T23:05:57Z pod:  adapter_port.sh drill adapter_1 --arm adapter
+2026-10-06T23:06:02Z start adapter_1: --arm adapter
+2026-10-06T23:08:08Z end adapter_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T23:08:09Z end adapter_1 rc=0
+2026-10-06T23:08:12Z adapter_1 results written; slot: {'variant': 'p2p', 'how': 'probe', 'detail': 'exact sum on all 5 devices', 'seconds': 4.67}
+2026-10-06T23:08:13Z pod:  adapter_port.sh drill adapter_2 --arm adapter
+2026-10-06T23:08:18Z start adapter_2: --arm adapter
+2026-10-06T23:09:39Z end adapter_2 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T23:09:39Z end adapter_2 rc=0
+2026-10-06T23:09:43Z adapter_2 results written; slot: {'variant': 'p2p', 'how': 'cache', 'detail': 'exact sum on all 5 devices', 'seconds': 0.0}
+2026-10-06T23:09:44Z spend [after adapter] balance 27.04, spent since start $3.66, pod 647islznuyhxco $17.45/h up 809s
+2026-10-06T23:09:44Z pod:  adapter_port.sh drill adapter_nomirror_1 --arm adapter_nomirror
+2026-10-06T23:09:49Z start adapter_nomirror_1: --arm adapter_nomirror
+2026-10-06T23:11:08Z end adapter_nomirror_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T23:11:08Z end adapter_nomirror_1 rc=0
+2026-10-06T23:11:12Z adapter_nomirror_1 results written; slot: {'variant': 'p2p', 'how': 'cache', 'detail': 'exact sum on all 5 devices', 'seconds': 0.0}
+2026-10-06T23:11:13Z spend [after mirror-off] balance 27.04, spent since start $3.66, pod 647islznuyhxco $17.45/h up 890s
+2026-10-06T23:11:14Z pod:  adapter_port.sh drill replace_mid_1 --arm replace --kill mid
+2026-10-06T23:11:18Z start replace_mid_1: --arm replace --kill mid
+2026-10-06T23:12:50Z end replace_mid_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T23:12:50Z end replace_mid_1 rc=0
+2026-10-06T23:12:55Z replace_mid_1 results written; slot: {'variant': 'p2p', 'how': 'cache', 'detail': 'exact sum on all 5 devices', 'seconds': 0.0}
+2026-10-06T23:12:56Z spend [after replace] balance 27.04, spent since start $3.66, pod 647islznuyhxco $17.45/h up 1006s
+2026-10-06T23:12:56Z pod: BLOCKS=1400 adapter_port.sh drill notice_ref --arm adapter --max-tokens 601 --max-model-len 2688
+2026-10-06T23:13:01Z start notice_ref: --arm adapter --max-tokens 601 --max-model-len 2688
+2026-10-06T23:15:08Z end notice_ref rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T23:15:08Z end notice_ref rc=0
+2026-10-06T23:15:13Z notice_ref results written; slot: {'variant': 'p2p', 'how': 'cache', 'detail': 'exact sum on all 5 devices', 'seconds': 0.0}
+2026-10-06T23:15:14Z spend [after notice_ref] balance 25.59, spent since start $5.11, pod 647islznuyhxco $17.45/h up 1151s
+2026-10-06T23:15:14Z pod: BLOCKS=1400 adapter_port.sh drill notice_1 --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-06T23:15:19Z start notice_1: --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-06T23:16:52Z end notice_1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T23:16:52Z end notice_1 rc=0
+2026-10-06T23:16:57Z notice_1 results written; slot: {'variant': 'p2p', 'how': 'cache', 'detail': 'exact sum on all 5 devices', 'seconds': 0.0}
+2026-10-06T23:16:58Z spend [after notice] balance 25.59, spent since start $5.11, pod 647islznuyhxco $17.45/h up 1242s
+2026-10-06T23:17:01Z pod: adapter_port.sh summary (results.json)
+2026-10-06T23:17:06Z terminate 647islznuyhxco: {"data": {"podTerminate": null}}
+2026-10-06T23:17:06Z data copied; pod terminated; watchdog stopped
+2026-10-06T23:17:07Z balance 25.59

@@ -1,0 +1,99 @@
+# HELP everserve_change_decision_seconds first report to delivery, per change
+# TYPE everserve_change_decision_seconds histogram
+everserve_change_decision_seconds_bucket{le="0.0005"} 0
+everserve_change_decision_seconds_bucket{le="0.001"} 0
+everserve_change_decision_seconds_bucket{le="0.002"} 0
+everserve_change_decision_seconds_bucket{le="0.005"} 0
+everserve_change_decision_seconds_bucket{le="0.01"} 0
+everserve_change_decision_seconds_bucket{le="0.05"} 0
+everserve_change_decision_seconds_bucket{le="0.25"} 0
+everserve_change_decision_seconds_bucket{le="1"} 0
+everserve_change_decision_seconds_bucket{le="+Inf"} 0
+everserve_change_decision_seconds_sum 0
+everserve_change_decision_seconds_count 0
+# HELP everserve_changes_in_flight changes being driven right now
+# TYPE everserve_changes_in_flight gauge
+everserve_changes_in_flight 0
+# HELP everserve_daemons_connected node daemons connected to the coordinator
+# TYPE everserve_daemons_connected gauge
+everserve_daemons_connected 5
+# HELP everserve_engine_condition 1 on the status each engine condition holds
+# TYPE everserve_engine_condition gauge
+everserve_engine_condition{engine="rig",status="False",type="Covered"} 1
+everserve_engine_condition{engine="rig",status="False",type="Degraded"} 1
+everserve_engine_condition{engine="rig",status="False",type="Down"} 1
+everserve_engine_condition{engine="rig",status="False",type="Progressing"} 1
+everserve_engine_condition{engine="rig",status="False",type="Serving"} 0
+everserve_engine_condition{engine="rig",status="True",type="Covered"} 0
+everserve_engine_condition{engine="rig",status="True",type="Degraded"} 0
+everserve_engine_condition{engine="rig",status="True",type="Down"} 0
+everserve_engine_condition{engine="rig",status="True",type="Progressing"} 0
+everserve_engine_condition{engine="rig",status="True",type="Serving"} 1
+everserve_engine_condition{engine="rig",status="Unknown",type="Covered"} 0
+everserve_engine_condition{engine="rig",status="Unknown",type="Degraded"} 0
+everserve_engine_condition{engine="rig",status="Unknown",type="Down"} 0
+everserve_engine_condition{engine="rig",status="Unknown",type="Progressing"} 0
+everserve_engine_condition{engine="rig",status="Unknown",type="Serving"} 0
+# HELP everserve_engine_down whether the engine is down
+# TYPE everserve_engine_down gauge
+everserve_engine_down{engine="rig"} 0
+# HELP everserve_node_condition 1 on the status each node condition holds
+# TYPE everserve_node_condition gauge
+everserve_node_condition{node="node-b",status="False",type="Degraded"} 1
+everserve_node_condition{node="node-b",status="False",type="Draining"} 0
+everserve_node_condition{node="node-b",status="True",type="Degraded"} 0
+everserve_node_condition{node="node-b",status="True",type="Draining"} 1
+everserve_node_condition{node="node-b",status="Unknown",type="Degraded"} 0
+everserve_node_condition{node="node-b",status="Unknown",type="Draining"} 0
+everserve_node_condition{node="node-c",status="False",type="Degraded"} 1
+everserve_node_condition{node="node-c",status="False",type="Draining"} 0
+everserve_node_condition{node="node-c",status="True",type="Degraded"} 0
+everserve_node_condition{node="node-c",status="True",type="Draining"} 1
+everserve_node_condition{node="node-c",status="Unknown",type="Degraded"} 0
+everserve_node_condition{node="node-c",status="Unknown",type="Draining"} 0
+everserve_node_condition{node="node-d",status="False",type="Degraded"} 1
+everserve_node_condition{node="node-d",status="False",type="Draining"} 1
+everserve_node_condition{node="node-d",status="True",type="Degraded"} 0
+everserve_node_condition{node="node-d",status="True",type="Draining"} 0
+everserve_node_condition{node="node-d",status="Unknown",type="Degraded"} 0
+everserve_node_condition{node="node-d",status="Unknown",type="Draining"} 0
+everserve_node_condition{node="node-e",status="False",type="Degraded"} 1
+everserve_node_condition{node="node-e",status="False",type="Draining"} 1
+everserve_node_condition{node="node-e",status="True",type="Degraded"} 0
+everserve_node_condition{node="node-e",status="True",type="Draining"} 0
+everserve_node_condition{node="node-e",status="Unknown",type="Degraded"} 0
+everserve_node_condition{node="node-e",status="Unknown",type="Draining"} 0
+# HELP everserve_queue_depth keys queued and not yet taken
+# TYPE everserve_queue_depth gauge
+everserve_queue_depth{controller="engine"} 0
+everserve_queue_depth{controller="node"} 0
+# HELP everserve_queue_wait_seconds a key's enqueue to its reconcile
+# TYPE everserve_queue_wait_seconds histogram
+everserve_queue_wait_seconds_bucket{controller="engine",le="0.0001"} 0
+everserve_queue_wait_seconds_bucket{controller="engine",le="0.001"} 0
+everserve_queue_wait_seconds_bucket{controller="engine",le="0.01"} 0
+everserve_queue_wait_seconds_bucket{controller="engine",le="0.1"} 0
+everserve_queue_wait_seconds_bucket{controller="engine",le="1"} 0
+everserve_queue_wait_seconds_bucket{controller="engine",le="10"} 0
+everserve_queue_wait_seconds_bucket{controller="engine",le="+Inf"} 0
+everserve_queue_wait_seconds_sum{controller="engine"} 0
+everserve_queue_wait_seconds_count{controller="engine"} 0
+everserve_queue_wait_seconds_bucket{controller="node",le="0.0001"} 0
+everserve_queue_wait_seconds_bucket{controller="node",le="0.001"} 0
+everserve_queue_wait_seconds_bucket{controller="node",le="0.01"} 0
+everserve_queue_wait_seconds_bucket{controller="node",le="0.1"} 0
+everserve_queue_wait_seconds_bucket{controller="node",le="1"} 0
+everserve_queue_wait_seconds_bucket{controller="node",le="10"} 0
+everserve_queue_wait_seconds_bucket{controller="node",le="+Inf"} 0
+everserve_queue_wait_seconds_sum{controller="node"} 0
+everserve_queue_wait_seconds_count{controller="node"} 0
+# HELP everserve_spares spares in the pool
+# TYPE everserve_spares gauge
+everserve_spares{engine="rig",state="cordoned"} 0
+everserve_spares{engine="rig",state="mismatched"} 0
+everserve_spares{engine="rig",state="on_demand"} 0
+everserve_spares{engine="rig",state="warm"} 2
+# HELP everserve_spec_writes_total spec writes, by writer and result
+# TYPE everserve_spec_writes_total counter
+everserve_spec_writes_total{kind="node",result="refused",writer="operator_api"} 1
+everserve_spec_writes_total{kind="node",result="written",writer="operator_api"} 6

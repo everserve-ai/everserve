@@ -1,0 +1,1 @@
+{"engine":"rig","epoch":1,"world_size":2,"members":[],"spares":[],"any_spares":[],"lost":[],"nodes":[],"slots":{"node-a":{"variant":"p2p","how":"cache","detail":"one device: nothing to reach","seconds":0.0},"node-c":{"variant":"p2p","how":"cache","detail":"one device: nothing to reach","seconds":0.0}},"compile_key":null,"compile_cache_consistent":false}

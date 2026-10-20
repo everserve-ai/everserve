@@ -1,0 +1,78 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+{{- if .Values.node.enabled }}
+# The node daemons read the coordinator's Lease, whose record names the coordinator to link to,
+# and their own Node, whose taints say it is leaving; they write nothing. Their tokens, projected
+# for the audience `everserve`, are what the coordinator issues a node's certificate for (0037).
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ include "everserve.fullname" . }}-node
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+automountServiceAccountToken: true
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ include "everserve.fullname" . }}-node
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+rules:
+  - apiGroups: [coordination.k8s.io]
+    resources: [leases]
+    resourceNames: [{{ .Values.coordinator.leaseName | quote }}]
+    verbs: [get]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "everserve.fullname" . }}-node
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ include "everserve.fullname" . }}-node
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "everserve.fullname" . }}-node
+    namespace: {{ .Release.Namespace }}
+---
+# Kubernetes cannot limit a pod to its own Node by name: every daemon may read every Node, and
+# write none.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "everserve.fullname" . }}-node
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+rules:
+  - apiGroups: [""]
+    resources: [nodes]
+    verbs: [get]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "everserve.fullname" . }}-node
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "everserve.fullname" . }}-node
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "everserve.fullname" . }}-node
+    namespace: {{ .Release.Namespace }}
+---
+# The deployment's CA certificate, public: what a node verifies the coordinator by before it is
+# issued its own. The CA's key stays in the coordinator's Secret.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "everserve.fullname" . }}-ca
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+data:
+  ca.crt: {{ required "tls.caCertificate: the deployment CA's certificate (PEM), --set-file tls.caCertificate=certs/ca.crt" .Values.tls.caCertificate | quote }}
+{{- end }}

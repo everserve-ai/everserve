@@ -1,0 +1,71 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+{{- if .Values.networkPolicy.enabled }}
+# Who reaches the control plane's ports, beyond what each port authenticates (mutual TLS on the
+# link and on replication, the cluster's RBAC on the operator API): the node daemons link to the
+# coordinator and replicate to each other's stores; the operator API is for whom
+# networkPolicy.apiFrom names, and the node daemons, which are issued their certificates there;
+# /metrics, which serves without authentication, is for whom networkPolicy.metricsFrom names. An
+# engine's processes reach their node's daemon and store by Unix socket, never by these ports.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "everserve.fullname" . }}-coordinator
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/component: coordinator
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/instance: {{ .Release.Name }}
+              app.kubernetes.io/component: node
+      ports:
+        - {port: {{ .Values.coordinator.port }}, protocol: TCP}
+        - {port: {{ .Values.coordinator.apiPort }}, protocol: TCP}
+    {{- with .Values.networkPolicy.apiFrom }}
+    - from: {{- toYaml . | nindent 8 }}
+      ports:
+        - {port: {{ $.Values.coordinator.apiPort }}, protocol: TCP}
+    {{- end }}
+    {{- with .Values.networkPolicy.metricsFrom }}
+    - from: {{- toYaml . | nindent 8 }}
+      ports:
+        - {port: {{ $.Values.coordinator.metricsPort }}, protocol: TCP}
+    {{- end }}
+{{- if .Values.node.enabled }}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "everserve.fullname" . }}-node
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/component: node
+  policyTypes: [Ingress]
+  ingress:
+    # a store replicates to another node's store
+    - from:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/instance: {{ .Release.Name }}
+              app.kubernetes.io/component: node
+      ports:
+        - {port: {{ .Values.node.store.replicaPort }}, protocol: TCP}
+    {{- with .Values.networkPolicy.metricsFrom }}
+    - from: {{- toYaml . | nindent 8 }}
+      ports:
+        - {port: {{ $.Values.node.metricsPort }}, protocol: TCP}
+        - {port: {{ $.Values.node.store.metricsPort }}, protocol: TCP}
+    {{- end }}
+{{- end }}
+{{- end }}

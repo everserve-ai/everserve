@@ -1,0 +1,58 @@
+{
+  "arm": "repeat",
+  "trials": 1,
+  "figures": {
+    "replica_lag_max_steps": {
+      "values": [
+        0.0
+      ],
+      "prediction": 7,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0
+      ],
+      "prediction": 7,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "runs_agree": {
+      "values": [
+        "8/8"
+      ],
+      "prediction": null
+    },
+    "shadow_formation_s": {
+      "values": [
+        0.306
+      ],
+      "prediction": 11,
+      "median": 0.306,
+      "worst": 0.306,
+      "worst_over_median": 1.0
+    },
+    "store_refusals_total": {
+      "values": [
+        0
+      ],
+      "prediction": null,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "take_written_bytes": {
+      "values": [
+        4489489
+      ],
+      "prediction": null,
+      "median": 4489489,
+      "worst": 4489489,
+      "worst_over_median": 1.0
+    }
+  },
+  "green": true
+}

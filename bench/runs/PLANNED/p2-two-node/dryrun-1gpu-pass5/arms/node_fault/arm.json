@@ -1,0 +1,94 @@
+{
+  "arm": "node_fault",
+  "trials": 2,
+  "figures": {
+    "node_fault_detection_s": {
+      "values": [
+        0.0099,
+        0.0099
+      ],
+      "prediction": 4,
+      "median": 0.0099,
+      "worst": 0.0099,
+      "worst_over_median": 1.0
+    },
+    "node_fault_gap_s": {
+      "values": [
+        2.4373,
+        2.2937
+      ],
+      "prediction": 4,
+      "median": 2.3655,
+      "worst": 2.4373,
+      "worst_over_median": 1.03
+    },
+    "replica_lag_max_steps": {
+      "values": [
+        0.0,
+        0.0
+      ],
+      "prediction": 7,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0,
+        0
+      ],
+      "prediction": 7,
+      "median": 0.0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "requests_re_prefilled": {
+      "values": [
+        0,
+        0
+      ],
+      "prediction": 5,
+      "median": 0.0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "restore_coverage": {
+      "values": [
+        1.0,
+        1.0
+      ],
+      "prediction": 6,
+      "median": 1.0,
+      "worst": 1.0,
+      "worst_over_median": 1.0
+    },
+    "restored_rows_mismatched": {
+      "values": [
+        0,
+        0
+      ],
+      "prediction": 6,
+      "median": 0.0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "sessions_kept_identical": {
+      "values": [
+        "8/8",
+        "7/8"
+      ],
+      "prediction": 5
+    },
+    "shadow_formation_s": {
+      "values": [
+        6.158,
+        1.402
+      ],
+      "prediction": 11,
+      "median": 3.7800000000000002,
+      "worst": 6.158,
+      "worst_over_median": 1.63
+    }
+  },
+  "green": false
+}

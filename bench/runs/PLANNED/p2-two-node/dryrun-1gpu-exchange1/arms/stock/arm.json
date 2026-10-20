@@ -1,0 +1,22 @@
+{
+  "arm": "stock",
+  "trials": 1,
+  "figures": {
+    "replica_lag_max_steps": {
+      "values": [
+        null
+      ],
+      "prediction": 7
+    },
+    "replication_dropped_total": {
+      "values": [
+        0
+      ],
+      "prediction": 7,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    }
+  },
+  "green": true
+}

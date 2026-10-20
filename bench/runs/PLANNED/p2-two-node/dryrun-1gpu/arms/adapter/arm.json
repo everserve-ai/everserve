@@ -1,0 +1,37 @@
+{
+  "arm": "adapter",
+  "trials": 2,
+  "figures": {
+    "replica_lag_max_steps": {
+      "values": [
+        0.0,
+        0.0
+      ],
+      "prediction": 7,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0,
+        0
+      ],
+      "prediction": 7,
+      "median": 0.0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "shadow_formation_s": {
+      "values": [
+        10.006,
+        3.865
+      ],
+      "prediction": 11,
+      "median": 6.9355,
+      "worst": 10.006,
+      "worst_over_median": 1.44
+    }
+  },
+  "green": true
+}

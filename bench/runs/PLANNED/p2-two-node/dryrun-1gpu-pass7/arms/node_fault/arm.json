@@ -1,0 +1,121 @@
+{
+  "arm": "node_fault",
+  "trials": 2,
+  "figures": {
+    "first_differing_position": {
+      "values": [
+        null,
+        null
+      ],
+      "prediction": 5
+    },
+    "instrument_pause_s": {
+      "values": [
+        1.5793,
+        1.5852
+      ],
+      "prediction": null,
+      "median": 1.58225,
+      "worst": 1.5852,
+      "worst_over_median": 1.0
+    },
+    "node_fault_detection_s": {
+      "values": [
+        0.0111,
+        0.0111
+      ],
+      "prediction": 4,
+      "median": 0.0111,
+      "worst": 0.0111,
+      "worst_over_median": 1.0
+    },
+    "node_fault_gap_s": {
+      "values": [
+        1.3329,
+        0.6684
+      ],
+      "prediction": 4,
+      "median": 1.00065,
+      "worst": 1.3329,
+      "worst_over_median": 1.33
+    },
+    "replica_lag_max_steps": {
+      "values": [
+        0.0,
+        0.0
+      ],
+      "prediction": 7,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0,
+        0
+      ],
+      "prediction": 7,
+      "median": 0.0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "requests_re_prefilled": {
+      "values": [
+        0,
+        0
+      ],
+      "prediction": 5,
+      "median": 0.0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "restore_coverage": {
+      "values": [
+        1.0,
+        1.0
+      ],
+      "prediction": 6,
+      "median": 1.0,
+      "worst": 1.0,
+      "worst_over_median": 1.0
+    },
+    "restored_rows_mismatched": {
+      "values": [
+        0,
+        0
+      ],
+      "prediction": 6,
+      "median": 0.0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "resume_below_committed": {
+      "values": [
+        0,
+        0
+      ],
+      "prediction": 15,
+      "median": 0.0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "sessions_kept_identical": {
+      "values": [
+        "8/8",
+        "8/8"
+      ],
+      "prediction": 5
+    },
+    "shadow_formation_s": {
+      "values": [
+        2.882,
+        11.817
+      ],
+      "prediction": 11,
+      "median": 7.3495,
+      "worst": 11.817,
+      "worst_over_median": 1.61
+    }
+  },
+  "green": true
+}

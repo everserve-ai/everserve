@@ -1,0 +1,8 @@
+commit: 836416bc4034fcff64b40cbaa8f9b17e48af2811 (uncommitted changes under core/: 0)
+host: Darwin 25.0.0 arm64
+failed at iteration: 1 of 40
+test: FAILED core/tests/test_runtime_fault.py::test_mid_step_kill_is_bit_identical[0.003-tp]
+event logs from: $TMPDIR/tmp.oHfIZSr4Od/everserve-q5izlxva
+date: 2026-10-04T23:48:26Z
+rank0.json
+rank3.json

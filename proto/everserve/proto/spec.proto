@@ -1,0 +1,162 @@
+// SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+// SPDX-License-Identifier: Apache-2.0
+//
+// Desired state (decision 0036): what each resource Everserve manages should be. Written only
+// through the operator API, kept in a spec store, read by the controllers that reconcile each
+// resource's observed status toward it. A Kubernetes custom resource of the same kind carries the
+// same fields. Beside it, the status the control plane alone must keep across a restart (decision
+// 0038), written only by the coordinator holding the lease.
+
+syntax = "proto3";
+
+package everserve.spec.v1;
+
+import "everserve/proto/coord.proto";
+import "everserve/proto/signals.proto";
+
+// What a node should be.
+message NodeSpec {
+  // The node's name, as its daemon says hello with it.
+  string node = 1;
+  // Cordoned: no spare on it joins a pool and no position moves onto it. What it already serves
+  // it keeps serving.
+  bool unschedulable = 2;
+  // Drained: every position on it moves elsewhere by this time, Unix milliseconds; 0 for none.
+  int64 drain_by_ms = 3;
+  // Why, as the writer said it, for people.
+  string reason = 4;
+}
+
+// One resource's desired state as the store keeps it.
+message ResourceSpec {
+  // Raised by every write; a write names the generation it read, and fails if another landed
+  // since (optimistic concurrency).
+  uint64 generation = 1;
+  // Who wrote it and when, Unix milliseconds: the audit of the last write.
+  string written_by = 2;
+  int64 written_at_ms = 3;
+  oneof kind {
+    NodeSpec node = 10;
+    PoolSpec pool = 11;
+  }
+}
+
+// Spare capacity for engines of one shape (decision 0031): the engines whose spares it holds,
+// how many it wants standing, and what may join it.
+message PoolSpec {
+  // Its name, as `GET /v1/pools` and the spare's `--pool` give it.
+  string name = 1;
+  // The engines it holds spares for. They must share a shape: the identity's engine-compatible
+  // fields and the compile key (0031's amendment); a write naming engines whose known shapes
+  // differ is refused.
+  repeated string engines = 2;
+  // How many spares it wants standing.
+  uint32 wants = 3;
+  // A device class a spare must stand on, e.g. "NVIDIA H100 80GB HBM3"; empty for any.
+  string device_class = 4;
+  // A network domain a spare must stand in; empty for any.
+  string domain = 5;
+  // Why, as the writer said it, for people.
+  string reason = 6;
+  // How a node's daemon starts one of the pool's spares, `{pool}`, `{device}`, `{node}` and
+  // `{socket}` filled in, in the command and the environment; empty, the pool launches nothing and
+  // only counts what stands.
+  repeated string command = 7;
+  map<string, string> env = 8;
+}
+
+// What an engine is, as only the control plane holds it (decision 0038): the daemons hold copies
+// of it, and a GPU node may go with its copy, so the coordinator keeps it here and a restarted
+// coordinator, or its standby taking the lease, takes the newest of this and the hellos.
+message EngineStatus {
+  // The engine's name, as its policy gives it.
+  string engine = 1;
+  // The cover plan's place, once a whole plan, ports and all (decision 0035): a plan is kept by
+  // the daemons that hold it, each of which reports it in its hello, and a successor adopts the
+  // newest it hears; only its generation is kept here.
+  reserved 2;
+  // The highest cover plan generation numbered, written before the plan is delivered: a
+  // successor numbers its first plan above it, so no generation is used twice, even one only a
+  // lost daemon heard.
+  uint64 plan_generation = 5;
+  // The last change claimed, written before its first delivery and again, with its commit,
+  // before the first daemon hears the commit: a two-phase commit's coordinator log. A coordinator
+  // that restarts or takes the lease finishes it, sending it again byte for byte, and claims no
+  // other change of the engine before (decision 0038).
+  ChangeLog change = 3;
+  // The processes told to serve a rank that have not registered as its worker yet (decision
+  // 0041), one per rank: written before the answer goes out, so a restart never tells two.
+  repeated Assignment assignments = 4;
+  // Removed with the head handoff, 2026-10-19 (decision 0045).
+  reserved 6, 7;
+  reserved "head", "head_copy";
+  // Every rank's holder, kept once this incarnation of the engine first held every rank and again
+  // when a commit moved one; cleared when the engine goes down. A coordinator that starts or takes
+  // the lease counts a rank of it that no daemon relinks within the allowance as lost; an engine
+  // with none kept never served, and its ranks still registering are not lost.
+  repeated KeptMember members = 8;
+}
+
+// One rank's holder, as kept in the engine's status.
+message KeptMember {
+  uint32 rank = 1;
+  string node = 2;
+}
+
+// One process told to serve `rank`, named by its node and its connection there.
+message Assignment {
+  uint32 rank = 1;
+  // The engine's committed epoch when it was told.
+  uint64 epoch = 2;
+  string node = 3;
+  everserve.coord.v1.ConnectionRef connection = 4;
+  // The address the process is reached at, as it registered it.
+  string host = 5;
+}
+
+// One change as the coordinator decided it: what each node was sent, and what the engine's view
+// became, so a successor applies the same claim and sends the same messages.
+message ChangeLog {
+  // The change as delivered.
+  everserve.signals.v1.Change change = 1;
+  // What each node was sent.
+  repeated NodeDelivery deliveries = 2;
+  // The engine's world size, and the ranks lost under SHRINK once the change commits.
+  uint32 world_size = 3;
+  repeated uint32 shrunk = 4;
+  // The nodes the change takes ranks from, which hear its commit.
+  repeated string from_nodes = 5;
+  // How the change used cover, for its record.
+  string cover = 6;
+  // The spares standing for any position that take the lost ranks (decision 0030).
+  repeated everserve.signals.v1.Take taking = 7;
+  // The commit, as sent; absent until the change commits.
+  everserve.coord.v1.Committed committed = 8;
+}
+
+// What one node is sent of a change: its serving ranks, its spares preloaded for lost ranks, and
+// its spares standing for any position that take one.
+message NodeDelivery {
+  string node = 1;
+  repeated uint32 to_ranks = 2;
+  repeated uint32 to_spares = 3;
+  repeated everserve.signals.v1.Take take = 4;
+}
+
+// One resource's status as the store keeps it. No generation: one coordinator writes it, fenced
+// by its lease term, and no operator does.
+message ResourceStatus {
+  oneof kind {
+    EngineStatus engine = 10;
+  }
+}
+
+// Every resource's desired state and kept status, keyed `kind/name` (`node/node-a`,
+// `engine/llama`): what a file store writes whole.
+message SpecSnapshot {
+  map<string, ResourceSpec> resources = 1;
+  // The newest coordinator lease term that wrote to the store (decision 0036): a write under an
+  // older term is refused, so a coordinator deposed without noticing writes nothing.
+  uint64 term = 2;
+  map<string, ResourceStatus> statuses = 3;
+}

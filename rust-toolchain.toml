@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# One compiler for the local gate and CI, so a lint that exists in one cannot pass the other.
+# Move the pin deliberately; CI uses the same file.
+[toolchain]
+channel = "1.97.1"
+components = ["rustfmt", "clippy"]

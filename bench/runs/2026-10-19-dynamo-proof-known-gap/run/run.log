@@ -1,0 +1,137 @@
+23:52:09Z the certificates, made here
+[2m2026-10-19T23:52:09.388297Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.DZJtS6/certs/ca.crt
+[2m2026-10-19T23:52:09.388373Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.DZJtS6/certs/ca.key
+[2m2026-10-19T23:52:09.388381Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.DZJtS6/certs/coordinator.crt
+[2m2026-10-19T23:52:09.388388Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.DZJtS6/certs/coordinator.key
+[2m2026-10-19T23:52:09.388394Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.DZJtS6/certs/operator-proof.crt
+[2m2026-10-19T23:52:09.388399Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote $TMPDIR/everserve-proof-secrets.DZJtS6/certs/operator-proof.key
+23:52:09Z the cluster: 3 gpu-h100-sxm 1gpu-16vcpu-200gb nodes, released at the latest after 1.5 h
+2026-10-19T23:57:32Z node-group create --async answered: 'opmk8snodegroup-e00m74cxgyrxtnv8qx\n'
+2026-10-19T23:59:24Z up everserve-proof-1019235209 gpu-h100-sxm/1gpu-16vcpu-200gb x3: {"cluster": "mk8scluster-e00mh4c3nwg6ef5ra6", "node_group": "mk8snodegroup-e00eq9ehqzeftn6mdk", "kubeconfig": "$TMPDIR/everserve-proof-secrets.DZJtS6/kubeconfig"}
+{"cluster": "mk8scluster-e00mh4c3nwg6ef5ra6", "node_group": "mk8snodegroup-e00eq9ehqzeftn6mdk", "kubeconfig": "$TMPDIR/everserve-proof-secrets.DZJtS6/kubeconfig"}
+NAME                                 GPU
+computeinstance-e00cc24553kyb9at1e   1
+computeinstance-e00eq32cqntf6bcf8p   <none>
+computeinstance-e00qppb6kef9evgyhc   <none>
+namespace/everserve created
+namespace/everserve labeled
+secret/nebius-cr created
+namespace/serving created
+namespace/serving labeled
+secret/nebius-cr created
+secret/everserve-tls created
+23:59:31Z Dynamo's platform 1.5.1, with Grove
+NAME: dynamo-platform
+LAST DEPLOYED: Mon Oct 19 19:59:37 2026
+NAMESPACE: dynamo-system
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+# SPDX-FileCopyrightText: Copyright (c) 2025-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+00:00:11Z the instance: the head, one node of the engine, 1 spare node(s)
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-26/proof.k8s.json
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-26/proof.engine.json
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-26/proof.values.json
+00:00:11Z Everserve's chart
+NAME: everserve
+LAST DEPLOYED: Mon Oct 19 20:00:14 2026
+NAMESPACE: everserve
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+dynamographdeployment.nvidia.com/proof created
+service/proof-rendezvous created
+networkpolicy.networking.k8s.io/proof-engine created
+00:00:30Z the coordinator's API: its record decides when the loss is taken and whether it passed
+serviceaccount/proof-viewer created
+rolebinding.rbac.authorization.k8s.io/proof-viewer created
+Forwarding from 127.0.0.1:17443 -> 7443
+Forwarding from [::1]:17443 -> 7443
+00:00:35Z waiting for proof to serve
+error: lost connection to pod
+Forwarding from 127.0.0.1:17443 -> 7443
+Forwarding from [::1]:17443 -> 7443
+Handling connection for 17443
+00:08:38Z proof serves: Serving True (Members); 2 of 2 positions held; head on computeinstance-e00qppb6kef9evgyhc
+NAME                     READY   STATUS    RESTARTS   AGE    IP            NODE                                 NOMINATED NODE   READINESS GATES
+proof-0-frontend-cztr6   1/1     Running   0          8m2s   10.5.60.68    computeinstance-e00eq32cqntf6bcf8p   <none>           <none>
+proof-0-head-txwnz       1/1     Running   0          8m2s   10.5.64.157   computeinstance-e00qppb6kef9evgyhc   <none>           <none>
+proof-0-nodes-555vh      1/1     Running   0          8m2s   10.0.13.50    computeinstance-e00cc24553kyb9at1e   <none>           <none>
+proof-0-nodes-lzjdd      1/1     Running   0          8m2s   10.5.60.104   computeinstance-e00eq32cqntf6bcf8p   <none>           <none>
+Forwarding from 127.0.0.1:18000 -> 8000
+Forwarding from [::1]:18000 -> 8000
+00:08:44Z warm: one short completion
+Handling connection for 18000
+{"streams": 1, "completed": 1, "errors": [], "max_gap_s": 0.073}
+00:08:45Z loss 1 of 2: waiting for a formed set to cover the loss of rank 1
+Handling connection for 17443
+Handling connection for 17443
+00:08:56Z cover: plan 2 at epoch 0: 0-R1@computeinstance-e00cc24553kyb9at1e:0: 1 of 1 groups formed
+00:08:56Z the engine: Covered True (EveryLossCovered): every node's and position's loss has a formed set; the head's node holds [0], whose loss restarts the engine
+00:08:56Z loss 1 (delete): 8 streams of 6000 tokens (about 40 s each); proof-0-nodes-lzjdd, which holds rank 1 on computeinstance-e00eq32cqntf6bcf8p, taken away while they run
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+pod "proof-0-nodes-lzjdd" deleted from serving namespace
+{"streams": 8, "completed": 8, "errors": [], "max_gap_s": 0.642}
+{"streams": 8, "completed": 8, "errors": [], "max_gap_s": 0.642}
+00:09:30Z loss 1: the coordinator's record of it
+Handling connection for 17443
+Handling connection for 17443
+00:09:31Z the change: epoch 1: replace of ranks [1] through covered set 0-R1@computeinstance-e00cc24553kyb9at1e:0
+00:09:31Z who serves what: every node pod's answer, the one Grove made again included
+proof-0-nodes-555vh: told spare
+proof-0-nodes-mpw97: told spare
+00:09:33Z loss 1: every stream finished without an error
+00:09:33Z loss 2 of 2: waiting for a formed set to cover the loss of rank 1
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+00:10:16Z cover: plan 4 at epoch 1: 0-R1@computeinstance-e00eq32cqntf6bcf8p:0: 1 of 1 groups formed
+00:10:16Z the engine: Covered True (EveryLossCovered): every node's and position's loss has a formed set; the head's node holds [0], whose loss restarts the engine
+00:10:17Z loss 2 (crash): 8 streams of 6000 tokens (about 40 s each); proof-0-nodes-555vh, which holds rank 1 on computeinstance-e00cc24553kyb9at1e, taken away while they run
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+00:10:27Z loss 2: kill at 1792455027295 ms on the pod clock, 1 processes killed
+{"streams": 8, "completed": 8, "errors": [], "max_gap_s": 1.135}
+{"streams": 8, "completed": 8, "errors": [], "max_gap_s": 1.135}
+00:10:51Z loss 2: the coordinator's record of it
+Handling connection for 17443
+Handling connection for 17443
+00:10:52Z the change: epoch 2: replace of ranks [1] through covered set 0-R1@computeinstance-e00eq32cqntf6bcf8p:0
+00:10:52Z who serves what: every node pod's answer, the one Grove made again included
+proof-0-nodes-555vh: told spare
+proof-0-nodes-mpw97: told spare
+00:10:55Z loss 2: every stream finished without an error
+00:10:55Z passed: 2 losses of rank 1 under load, each taken by a spare
+00:11:18Z taking the cluster down
+2026-10-20T00:23:50Z down: {"down": "everserve-proof-1019235209", "cluster": "mk8scluster-e00mh4c3nwg6ef5ra6"}

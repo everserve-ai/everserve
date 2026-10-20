@@ -1,0 +1,6 @@
+Everserve
+Copyright (c) 2026 Everserve
+
+This product includes the DynamoGraphDeployment schema from NVIDIA Dynamo
+(integrations/dynamo/schema/dynamographdeployment-v1beta1.json), copyright
+NVIDIA Corporation and licensed under the Apache License, Version 2.0.

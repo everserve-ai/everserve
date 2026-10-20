@@ -1,0 +1,29 @@
+# H100 determinism check: run log
+2026-10-05T22:57:29Z Pasted brief, standing permission. Tree 5f5b116. Balance 15.09; the two caps ($10 A100, $5 H100) together equal it, so each pod's watchdog sits under its cap.
+2026-10-05T22:57:35Z deploy 4x NVIDIA H100 80GB HBM3 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T22:57:35Z deploy 4x NVIDIA H100 80GB HBM3 SECURE: {"data": {"podFindAndDeployOnDemand": {"id": "u1uk92gg94we4h", "costPerHr": 13.96, "machine": {"gpuDisplayName": "H100 SXM", "location": "IN"}}}}
+2026-10-05T22:57:50Z pod u1uk92gg94we4h 4x H100 SXM secure IN $13.96/h (deployed 22:57:35Z); watchdog terminates at 23:17:35Z (~$4.65, cap $5)
+NVIDIA H100 80GB HBM3, 580.126.09
+	[4mGPU0	GPU1	GPU2	GPU3	NIC0	NIC1	NIC2	NIC3	NIC4	NIC5	NIC6	NIC7	NIC8	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+GPU0	 X 	NV18	NV18	NV18	NODE	NODE	NODE	PIX	SYS	SYS	SYS	SYS	SYS	0-55,112-167	0		N/A
+GPU1	NV18	 X 	NV18	NV18	SYS	SYS	SYS	SYS	NODE	PIX	NODE	NODE	NODE	56-111,168-223	1		N/A
+GPU2	NV18	NV18	 X 	NV18	SYS	SYS	SYS	SYS	NODE	NODE	PIX	NODE	NODE	56-111,168-223	1		N/A
+GPU3	NV18	NV18	NV18	 X 	SYS	SYS	SYS	SYS	NODE	NODE	NODE	PIX	NODE	56-111,168-223	1		N/A
+2026-10-05T23:00:56Z setup done: 57G	/workspace/models/Qwen3-30B-A3B
+export LD_LIBRARY_PATH=/usr/local/cuda-13.0/compat:${LD_LIBRARY_PATH:-}
+2026-10-05T23:01:00Z pod:  drill fixed_1 --arm stock --custom-all-reduce default
+2026-10-05T23:01:05Z start fixed_1: --arm stock --custom-all-reduce default
+2026-10-05T23:02:51Z end fixed_1 rc=0: (MainProcess pid=1907) INFO 10-05 23:02:48 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T23:02:51Z pod:  drill fixed_2 --arm stock --custom-all-reduce default
+2026-10-05T23:02:57Z start fixed_2: --arm stock --custom-all-reduce default
+2026-10-05T23:03:35Z end fixed_2 rc=0: (MainProcess pid=3390) INFO 10-05 23:03:32 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T23:03:39Z fixed_1 vs fixed_2 first differing token per session: [None, None, None, None, None, None, None, None]
+2026-10-05T23:03:39Z pod: ALLREDUCE_DEFAULTS=1 drill default_1 --arm stock --custom-all-reduce default
+2026-10-05T23:03:44Z start default_1: --arm stock --custom-all-reduce default
+2026-10-05T23:04:53Z end default_1 rc=1: (MainProcess pid=4339) INFO 10-05 23:04:48 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-05T23:04:53Z tok/s: default/default_1.log;fixed/fixed_1.log "tps_10_200": 1425.3;fixed/fixed_2.log "tps_10_200": 1423.57;
+2026-10-05T23:05:17Z default_1 failed: with vLLM's defaults FlashInfer's all-reduce JIT-compiles its comm kernel (nvcc) and the stock-only setup has no CUDA toolkit. Installing cuda-toolkit-13-0 and repeating it.
+2026-10-05T23:15:43Z terminate u1uk92gg94we4h: {"data": {"podTerminate": null}}
+2026-10-05T23:15:43Z the toolkit install had not finished after 10 min; stopped before the $5 cap with the default baseline unmeasured. fixed/ and default/ copied to data/ (tar over ssh). Pod terminated, watchdog stopped.
+Connection to 103.207.149.108 closed by remote host.
+2026-10-05T23:18:20Z NOTE.md and results.json written; committed

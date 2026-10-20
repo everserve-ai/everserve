@@ -1,0 +1,10 @@
+{
+  "name": "proof-b",
+  "tensorParallel": 1,
+  "pipelineParallel": 1,
+  "dataParallel": 1,
+  "expertParallel": 1,
+  "placementIndependentModel": false,
+  "headOnDemand": false,
+  "guarantee": "GUARANTEE_CONTINUOUS"
+}

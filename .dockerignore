@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# the image copies what it builds from by name; this keeps the context small
+target
+.git
+vllm
+bench
+core
+adapters
+docs
+deploy
+.venv

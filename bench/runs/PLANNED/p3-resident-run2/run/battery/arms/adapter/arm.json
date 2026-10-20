@@ -1,0 +1,98 @@
+{
+  "arm": "adapter",
+  "trials": 1,
+  "figures": {
+    "adapter_overhead_pct": {
+      "values": [
+        1.25
+      ],
+      "prediction": 13,
+      "median": 1.25,
+      "worst": 1.25,
+      "worst_over_median": 1.0
+    },
+    "compile_cache_consistent": {
+      "values": [
+        true
+      ],
+      "prediction": 6,
+      "median": true,
+      "worst": true,
+      "worst_over_median": 1.0
+    },
+    "engine_down": {
+      "values": [
+        false
+      ],
+      "prediction": 2,
+      "median": false,
+      "worst": false,
+      "worst_over_median": null
+    },
+    "replica_lag_max_steps": {
+      "values": [
+        0.0
+      ],
+      "prediction": null,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0
+      ],
+      "prediction": null,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "shadow_formation_s": {
+      "values": [
+        0.466
+      ],
+      "prediction": 12,
+      "median": 0.466,
+      "worst": 0.466,
+      "worst_over_median": 1.0
+    },
+    "stops_killed": {
+      "values": [
+        0
+      ],
+      "prediction": 14,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "store_refusals_total": {
+      "values": [
+        0
+      ],
+      "prediction": 6,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "take_written_beyond_baseline_bytes": {
+      "values": [
+        0
+      ],
+      "prediction": 9,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "take_written_bytes": {
+      "values": [
+        4617092
+      ],
+      "prediction": null,
+      "median": 4617092,
+      "worst": 4617092,
+      "worst_over_median": 1.0
+    }
+  },
+  "failed": [],
+  "green": true
+}

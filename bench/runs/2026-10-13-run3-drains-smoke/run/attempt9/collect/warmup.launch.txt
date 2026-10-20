@@ -1,0 +1,2 @@
+adapter_drill.py --arm adapter --max-tokens 32 (STOCK=0)
+adapter_drill.py --arm adapter --max-tokens 32 (STOCK=0)

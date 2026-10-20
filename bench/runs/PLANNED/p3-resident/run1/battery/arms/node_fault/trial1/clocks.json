@@ -1,0 +1,2 @@
+{"node": "node-b", "against": "node-a", "when": "start", "probe": {"host": "10.0.0.83", "at": 1791631096.403011, "probes": 20, "lost": 0, "offset_s": 1e-05, "rtt_s": 0.000234, "error_s": 0.000117}}
+{"node": "node-c", "against": "node-a", "when": "start", "probe": {"host": "10.0.0.72", "at": 1791631098.4509442, "probes": 20, "lost": 0, "offset_s": 0.0, "rtt_s": 0.00017, "error_s": 8.5e-05}}

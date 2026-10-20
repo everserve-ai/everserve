@@ -1,0 +1,787 @@
+// SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+// SPDX-License-Identifier: Apache-2.0
+// The signal protocol between the controller, the workers and the mirror.
+//
+// These are the only messages the controller sends into an engine process and the only ones an
+// adapter sends out. The controller never touches engine state; an adapter never decides
+// membership. Mirrored in Python by `core/everserve/signals` until generation is wired.
+syntax = "proto3";
+
+package everserve.signals.v1;
+
+// The protocol every first message carries, defined once here for every language. A receiver
+// refuses a first message from another version with an error that names both (decision 0027):
+// a field the other build does not know reads as zero in protobuf, and zero means something
+// (a heartbeat interval of zero is "never"), so builds talk only within the range each declares
+// it serves (decision 0040).
+enum Protocol {
+  PROTOCOL_UNSPECIFIED = 0;
+  // 2: every replicated row carries its CRC32C (decision 0030's row checksums).
+  // 3: a worker names its staging files from the prefix the store's Opened gives it.
+  // 4: the engine's head registers and says goodbye with a cause; an abandoned change reaches
+  // every process (decision 0032).
+  // 5: a replica's state says the epoch it fences the rank at.
+  // 6: a worker event carries the node's epoch when it happened.
+  // 7: a registration carries the process's software identity (decision 0034).
+  // 8: cover plans and the reports of their groups (decision 0035).
+  // 9: a Change names the lost ranks that leave on notice and reaches their processes; a commit
+  // carries the whole committed membership.
+  // 10: every first message carries the oldest protocol its sender serves (decision 0040).
+  // 11: a process registers undecided and is told whether it serves its rank or stands as its
+  // spare (decision 0041); a build of 11 serves 10, and an undecided process asks for 11 alone.
+  PROTOCOL_VERSION = 11;
+}
+
+// The oldest protocol this build serves correctly (decision 0040): every field added since reads,
+// absent, as what that build did, and what it cannot follow is gated on a link's negotiated
+// version. Raised with PROTOCOL_VERSION unless a change says how it serves the version before. Its
+// own enum, since an alias of PROTOCOL_VERSION's value would be dropped by the generators.
+enum ProtocolOldest {
+  PROTOCOL_OLDEST_UNSPECIFIED = 0;
+  PROTOCOL_OLDEST = 10;
+}
+
+// Why a rank is leaving or has left.
+enum Reason {
+  REASON_UNSPECIFIED = 0;
+  // A preemption notice: the rank is still healthy and leaves at the deadline.
+  REASON_NOTICE = 1;
+  // The rank is gone or unreachable now.
+  REASON_FAULT = 2;
+  // An operator asked for the change.
+  REASON_OPERATOR = 3;
+  // The coordinator retires the process: one of its communicators' releases is still running past
+  // its bound, holding that communicator's memory until the process ends (decision 0025,
+  // amended). The rank is healthy, and a spare takes it at the deadline with no gap.
+  REASON_RETIRED = 4;
+}
+
+// What happens when a rank leaves. See docs/RUNTIME.md section 2 and decision 0004.
+enum Outcome {
+  OUTCOME_UNSPECIFIED = 0;
+  // A spare takes the dead rank's id at constant world size.
+  OUTCOME_REPLACE = 1;
+  // Survivors absorb the lost rank's units; needs a placement-independent model.
+  OUTCOME_SHRINK = 2;
+  // Rebuild the executor at a smaller parallel size and replay requests.
+  OUTCOME_REBUILD = 3;
+  // Removed with the head handoff, 2026-10-19 (decision 0045).
+  reserved 4;
+  reserved "OUTCOME_HEAD";
+}
+
+// One GPU slot in the fleet.
+message Member {
+  string node = 1;
+  uint32 device = 2;
+}
+
+// A rank will leave at a known time.
+message Notice {
+  uint32 rank = 1;
+  // Unix milliseconds.
+  int64 deadline_ms = 2;
+  Reason reason = 3;
+}
+
+// One or more ranks are gone now. A node's loss is every rank on it, reported once, so the
+// coordinator drives one change for the set (docs/MULTINODE.md section 2).
+message RankLost {
+  repeated uint32 ranks = 1;
+  Reason reason = 2;
+  string detail = 3;
+  // The membership epoch the reporter saw the ranks in. A rank changed at a later epoch is
+  // reported stale and folded: one death is seen by the slot kernel on every survivor and by the
+  // executor's process sentinel, and only the first report moves it (decision 0021).
+  uint64 epoch = 4;
+}
+
+// A spare is ready to take `rank` at constant world size.
+message RankJoining {
+  uint32 rank = 1;
+  Member member = 2;
+}
+
+// The engine is serving again on `active_ranks`. `epoch` increases by one on every committed
+// change and fences stale messages.
+message MembershipCommitted {
+  uint64 epoch = 1;
+  repeated uint32 active_ranks = 2;
+  uint32 world_size = 3;
+  uint32 pause_ms = 4;
+  repeated uint32 lost = 5;
+  // The change's moments on the coordinator's clock, microseconds since the Unix epoch, so a
+  // record can say where a claim-to-commit went: the report that moved the change (for a node
+  // loss, the moment the coordinator took the node as lost), the Change sent to the nodes, the
+  // last acknowledgement received, the commit.
+  uint64 reported_at_us = 6;
+  uint64 delivered_at_us = 7;
+  uint64 acknowledged_at_us = 8;
+  uint64 committed_at_us = 9;
+  // Every acknowledgement the commit waited on, each with when its daemon received it: which
+  // process the change waited for longest.
+  repeated Ack acks = 10;
+  // The committed membership, whole: where every active rank runs from this epoch on. It is
+  // state, not a change since the last commit, so a listener that missed a commit still learns
+  // what holds by reading the next: a process whose node and device are no longer at its rank
+  // has left, whether or not it heard the Change.
+  repeated RankPlacement members = 11;
+  // Removed with the head handoff, 2026-10-19 (decision 0045).
+  reserved 12;
+  reserved "head_node";
+}
+
+// Where one rank runs.
+message RankPlacement {
+  uint32 rank = 1;
+  string node = 2;
+  // Its device on the node; absent while only the process told to serve it is known, before its
+  // worker registers (decision 0041).
+  optional uint32 device = 3;
+  // The address its process is reached at, as the process registered it; empty when it named none.
+  string host = 4;
+  // The rank's compile cache as its serving worker registered it (decision 0029), absent until it
+  // did; a spare for the rank runs on this pair or does not stand.
+  CompileCache compile_cache = 5;
+  // Where that pair can be fetched from (decision 0043): the stores' replication addresses of the
+  // nodes holding it, the serving rank's first, then those of spares admitted for the rank.
+  repeated string cache_holders = 6;
+}
+
+// Where one spare stands (decision 0041): for a rank, or for any position when `for_rank` is
+// absent.
+message SparePlacement {
+  optional uint32 for_rank = 1;
+  string node = 2;
+  uint32 device = 3;
+  string host = 4;
+}
+
+// Where an engine runs (decision 0041): every rank's process and every standing spare, so a
+// process forms its groups, and pre-forms its replacement sets, from this and never from a file.
+// Sent once every rank of the engine's world is placed, and again whenever the placement changes.
+message EnginePlacement {
+  string engine = 1;
+  // The engine's committed epoch.
+  uint64 epoch = 2;
+  repeated RankPlacement members = 3;
+  repeated SparePlacement spares = 4;
+  // Removed with the start-up replay's re-ask at each new head, 2026-10-19 (decision 0044).
+  reserved 5;
+  reserved "head";
+}
+
+// The controller's decision for a set of lost ranks, sent to every survivor and to every spare
+// that takes one of them, and, unacknowledged, to the processes of every rank that departs on
+// notice. The worker moves its collective to the new member set at `epoch` and
+// acknowledges: under REPLACE the set is the members with each lost rank's spare in its place;
+// under SHRINK it is the members without the lost ranks.
+message Change {
+  repeated uint32 lost = 1;
+  Outcome outcome = 2;
+  uint64 epoch = 3;
+  // When the coordinator sent it, on its clock, microseconds since the Unix epoch: a survivor's
+  // refusal time against it is the daemon hop.
+  uint64 delivered_at_us = 4;
+  // Under REPLACE, which spare standing for any position takes which lost rank (decision 0030);
+  // a spare preloaded for one rank takes that rank and is not listed.
+  repeated Take take = 5;
+  // The lost ranks that leave on notice rather than by a fault: still running, they get this
+  // Change too, outside its barrier, and drain and release rather than be treated as dead.
+  repeated uint32 departing = 6;
+  // Removed with the head handoff, 2026-10-19 (decision 0045).
+  reserved 7;
+  reserved "head_node";
+}
+
+// A spare that stands for any position, named by its node and device, takes `rank`.
+message Take {
+  uint32 rank = 1;
+  string node = 2;
+  uint32 device = 3;
+  // The position's compile cache as its serving rank last reported it (decision 0029), absent
+  // when it never reported one. The spare compares its own pair after it attaches and refuses the
+  // change, naming both, when they differ: a spare running other kernels never takes the rank.
+  CompileCache compile_cache = 4;
+}
+
+// A spare's ask for rank `rank`'s compile cache (decision 0043); `dp` names the rank's
+// directory, `rank_<rank>_<dp>`.
+message CacheWanted {
+  string engine = 1;
+  uint32 rank = 2;
+  uint32 dp = 3;
+}
+
+// The rank's compile cache, the pair (`key`, `digest`), is on the node: the spare loads it.
+message CacheReady {
+  string engine = 1;
+  uint32 rank = 2;
+  string key = 3;
+  string digest = 4;
+}
+
+// The rank's compile cache could not be put on the node: the spare refuses to stand, and never
+// compiles for itself instead.
+message CacheRefused {
+  string engine = 1;
+  uint32 rank = 2;
+  string reason = 3;
+}
+
+// What a connection to the node daemon is.
+enum Role {
+  // A serving worker of `rank`: receives changes and acknowledges them.
+  ROLE_WORKER = 0;
+  // A pre-loaded spare standing in for `rank`: makes REPLACE available for that rank, receives
+  // the change that replaces it, and serves as `rank` once the change is committed.
+  ROLE_SPARE = 1;
+  // An engine-side or operator client (the executor, a drill driver): may report a lost rank or
+  // deliver a notice, and receives every committed membership. `rank` is unused.
+  ROLE_CLIENT = 2;
+  // The engine's head (decision 0032): the process that owns the scheduler and the executor,
+  // registered on the executor's own connection. A client in everything a client does; the
+  // engine is down when this connection ends. `rank` is unused.
+  ROLE_HEAD = 3;
+  // A process of a framework's group for `rank`, before it loads anything (decision 0041): told
+  // on this connection, by `RoleAssigned`, whether it serves the rank or stands as its spare; it
+  // registers again on the connection as that once it has loaded, and holds the rank meanwhile
+  // if it was told to serve. Registered with `protocol_oldest` 11.
+  ROLE_UNDECIDED = 4;
+  // Removed with the head handoff, 2026-10-19 (decision 0045).
+  reserved 5;
+  reserved "ROLE_HEAD_SPARE";
+}
+
+// The first message on a connection to the node daemon.
+message Register {
+  string engine = 1;
+  uint32 rank = 2;
+  Member member = 3;
+  Role role = 4;
+  // The engine's slot-collective choice, sent by the engine's client (ROLE_CLIENT) so the
+  // readiness view says whether the engine runs on the peer-to-peer or the host-memory path.
+  SlotChoice slot = 5;
+  // PROTOCOL_VERSION of the sender (decision 0027).
+  uint32 protocol = 6;
+  // The compile cache the process loaded and warmed with (decision 0029); absent from a process
+  // that compiled nothing.
+  CompileCache compile_cache = 7;
+  // A spare that stands for any position of the engine (decision 0030): it holds no shard until a
+  // change names its rank in `Change.take`, and `rank` is unused. Its compile cache is reported at
+  // the join, once it has attached.
+  bool any_rank = 8;
+  // A head's launcher (decision 0032): the process the operator started, which a stop is sent to.
+  // The head's own pid comes from the daemon socket's peer credentials; the two are the same when
+  // the engine core runs in the launcher's process. Zero from every other role.
+  uint32 launcher_pid = 9;
+  // What the process runs (decision 0034): every process of this build sends it. A destination
+  // that sends none is refused; a serving member that sent none keeps serving.
+  SoftwareIdentity identity = 10;
+  // The oldest protocol this process serves (decision 0040); absent, `protocol` alone.
+  uint32 protocol_oldest = 11;
+  // An undecided registration's stage (decision 0041): every rank its answer covers, which move
+  // together (a pipeline stage's tensor-parallel ranks, decision 0022), `rank` the first of them;
+  // empty, `rank` alone. The ranks' workers register on their own connections from the same node.
+  repeated uint32 stage = 12;
+  // The address the process is reached at by its peers on other nodes (a pod's IP); empty for
+  // none. Addressing, not identity: the process is named by its connection.
+  string host = 13;
+  // Removed with the head handoff, 2026-10-19 (decision 0045).
+  reserved 14;
+  reserved "head";
+}
+
+// What a process runs, kept apart from where it runs (decision 0034). The coordinator compares
+// the fields marked compared before any position moves; the others are reported.
+message SoftwareIdentity {
+  // The engine, "vllm".
+  string engine = 1;
+  // The engine's source commit, never its version string: dev builds share version strings.
+  // Compared.
+  string engine_commit = 2;
+  // The adapter's git commit. Compared.
+  string adapter_commit = 3;
+  // The adapter was built from a tree with uncommitted changes: refused as a destination.
+  bool adapter_dirty = 4;
+  // Reported: the compile key already changes with torch (vLLM's Inductor factors hash it).
+  string torch_version = 5;
+  // The CUDA runtime, major.minor. Compared under the exact guarantee class: the compile key is
+  // not shown to cover it, and kernels built against one are not promised to round the same
+  // under another.
+  string cuda_version = 6;
+  // Reported.
+  string driver_version = 7;
+  // Compared: every member of a group must run the same NCCL, or its communicator can fail at
+  // init or at the first collective.
+  string nccl_version = 8;
+  // The model's id as served. Reported.
+  string model = 9;
+  // The checkpoint's snapshot commit, for people. Reported.
+  string model_revision = 10;
+  // sha256 over the sorted (file name, content sha256) of the checkpoint's weights and its
+  // config: every weight file, never a shard, so a position and a spare holding the whole model
+  // compare, and only what decides the numerics, so two processes that fetched the repository's
+  // other files differently compare too. Compared.
+  string checkpoint_digest = 11;
+  // The engine's quantization method ("compressed-tensors", "fp8" for an online quantization of a
+  // wider checkpoint, empty for none): the weights a GPU holds change with it while the
+  // checkpoint stays the same. Compared.
+  string quantization = 12;
+  // The model's compute dtype. Compared.
+  string model_dtype = 13;
+  // The engine's KV layout for this position. Compared.
+  KvFormat kv_format = 14;
+  // The engine's parallel widths. Compared.
+  ParallelLayout layout = 15;
+  // What shapes the engine's collectives step by step, as the engine resolved it: compared, so a
+  // process that would join a collective of another shape is refused before it loads rather than
+  // hang in it (a stage built with other scheduler limits did, on the first GPU proof).
+  StepConfig step = 16;
+  // The guarantee class the process was started for, `exact` or `continuous` (decision 0030):
+  // its flags, compared with its engine's in the policy before it is told anything, so a process
+  // started for another class than its engine's is refused rather than run beside it.
+  string guarantee = 17;
+  // The process drives its engine's steps through Everserve's hook, so it serves membership
+  // changes (decision 0042's due diligence: an engine that only looks protected is worse than one
+  // that says it is not). Said by the engine's head; the coordinator changes nothing on an engine
+  // whose head did not say it.
+  bool serves_changes = 18;
+  // Removed with the head handoff, 2026-10-19 (decision 0045).
+  reserved 19, 20;
+  reserved "takes_head_change", "mirrors_requests";
+}
+
+// The settings that shape an engine's collectives, as the engine resolved them (decision 0034's
+// identity): each named by a stable key (`max_num_seqs`, `cudagraph_capture_sizes`, ...; the
+// adapter documents each key's engine field), and a digest over them.
+message StepConfig {
+  // SHA-256, hex, over the fields sorted by key: what two processes compare.
+  string digest = 1;
+  // The fields, for the refusal's message: which differ, and how.
+  map<string, string> fields = 2;
+}
+
+// An engine's KV layout for one position, not the store's row format, which is the store's own.
+message KvFormat {
+  string dtype = 1;
+  uint32 block_size = 2;
+  // sha256 over the attention backend's name, the cache's layout (kv_first, blocks_first or
+  // combined) with its axes' memory order read from the strides (NHD and HND share a shape),
+  // num_kv_heads on the rank, head_size and the stage's layer count. It depends on the position:
+  // a spare standing for any position has none until it takes one.
+  string layout_hash = 3;
+}
+
+// An engine's parallel widths.
+message ParallelLayout {
+  uint32 tensor = 1;
+  uint32 pipeline = 2;
+  uint32 data = 3;
+  uint32 expert = 4;
+  // vLLM's decode context-parallel width: it shards the KV differently, so a position under one
+  // width is not interchangeable with one under another.
+  uint32 context = 5;
+}
+
+// Why an engine's head stopped (decision 0032).
+enum StopCause {
+  STOP_CAUSE_UNSPECIFIED = 0;
+  // In order, on request.
+  STOP_CAUSE_STOPPED = 1;
+  // In order, after a failure the executor raised that was not a loss.
+  STOP_CAUSE_FAILED = 2;
+  // Its connection ended without a goodbye. Set by the daemon, never sent by a head.
+  STOP_CAUSE_LOST = 3;
+  // A guard refused it before it served: its step config differs from its engine's, or its
+  // store holds fewer slots than it writes. The detail says which.
+  STOP_CAUSE_REFUSED = 4;
+}
+
+// A process's last message before it closes its connection: a head's says how it stopped, and
+// a head without one is lost; any process refused by a guard says why, which its engine's
+// events then show.
+message Goodbye {
+  StopCause cause = 1;
+  string detail = 2;
+}
+
+// A change that failed after it was delivered (decision 0032): the processes that applied it hold
+// a membership that will not commit, so the engine is down. `epoch` is spent; the next change is
+// claimed after it.
+message Abandoned {
+  uint64 epoch = 1;
+  string detail = 2;
+}
+
+// The compiled-kernel cache a process runs with (decision 0029): vLLM's torch_compile_cache key
+// and a digest over every file under it, the autotune results included, taken after warm-up.
+message CompileCache {
+  string key = 1;
+  string digest = 2;
+}
+
+// Which slot-collective variant an engine runs, and how that was decided
+// (`everserve.comm.slotkernel.decide_variant`).
+message SlotChoice {
+  enum Variant {
+    VARIANT_UNSPECIFIED = 0;
+    // Pushes over peer-to-peer device memory.
+    VARIANT_P2P = 1;
+    // Pushes through host memory: works everywhere, slower.
+    VARIANT_HOST = 2;
+  }
+  enum How {
+    HOW_UNSPECIFIED = 0;
+    // The operator's setting.
+    HOW_OVERRIDE = 1;
+    // NVML reported no peer reads between some pair.
+    HOW_NVML = 2;
+    // A probe's verdict kept from an earlier start on the same driver and GPUs.
+    HOW_CACHE = 3;
+    // The peer-to-peer collective was run once on these GPUs.
+    HOW_PROBE = 4;
+  }
+  Variant variant = 1;
+  How how = 2;
+  // What the probe found, for a human.
+  string detail = 3;
+  // Seconds the decision took.
+  double seconds = 4;
+}
+
+message Signal {
+  oneof kind {
+    Notice notice = 1;
+    RankLost rank_lost = 2;
+    RankJoining rank_joining = 3;
+    MembershipCommitted membership_committed = 4;
+    Change change = 5;
+    Register register = 6;
+    // A worker's reply to a Change. It is a Signal like every other worker-to-daemon frame, so
+    // the daemon reads each frame by its kind: a survivor's loss report can arrive while the
+    // daemon waits for an acknowledgement (decision 0021) and is never mistaken for one.
+    Ack ack = 7;
+    // An opaque join payload between an engine's executor and a process taking a position
+    // (decision 0024): from the executor to `rank`'s process, and that process's answer back.
+    Join join = 8;
+    Goodbye goodbye = 9;
+    Abandoned abandoned = 10;
+    // Decision 0035: the plan, from the daemon to every process of its engine; and each process's
+    // report of a group it formed, failed to form, or released.
+    CoverPlan cover_plan = 11;
+    GroupFormed group_formed = 12;
+    GroupFailed group_failed = 13;
+    GroupReleased group_released = 14;
+    // Decision 0041: the daemon's answer to an undecided registration.
+    RoleAssigned role_assigned = 15;
+    // From the daemon: write every thread's stack to the process's own log. Asked on the
+    // process's link, never by a signal to its pid, which a daemon in another pod cannot see.
+    DumpStacks dump_stacks = 16;
+    // From the daemon, after a process's first registration and on every change: the policy of
+    // the process's engine, from the coordinator (decision 0041). A process takes the last one.
+    EnginePolicy engine_policy = 17;
+    // From the daemon, on every connection of the engine, an undecided one included: where the
+    // engine runs (decision 0041). A process takes the last one.
+    EnginePlacement engine_placement = 18;
+    // From the daemon, on every connection of the engine, an undecided one included: the
+    // instance's state in a framework's terms (decision 0041). A process takes the last one.
+    InstanceState instance_state = 19;
+    // From a process: its stacks, the answer to `DumpStacks`.
+    StacksDumped stacks_dumped = 20;
+    // Both ways, decision 0035 amended: from a group's server member, the id it made for the
+    // group; to the group's other members, through their daemons, the id to form it with.
+    GroupId group_id = 21;
+    // A spare told to stand asks its node's daemon for its rank's compile cache (decision 0043),
+    // before its compile step; the daemon answers once the set is on the node, or refuses.
+    CacheWanted cache_wanted = 22;
+    CacheReady cache_ready = 23;
+    CacheRefused cache_refused = 24;
+    // Decision 0025, amended: a release of one of this process's communicators ran past its bound
+    // and was left behind.
+    ReleaseLeaked release_leaked = 27;
+    // Decision 0035, amended: a member holds the plan and waits for this group's id.
+    GroupReady group_ready = 28;
+    ReplayAsk replay_ask = 30;
+    ReplayOffer replay_offer = 31;
+  }
+  // Removed with the head handoff, 2026-10-19 (decision 0045).
+  reserved 25, 26, 29;
+  reserved "take_head", "head_taken", "start_head";
+}
+
+// A process's report, at the boundary whose reap counts it, of a release of one of its
+// communicators left running past its bound (decision 0025, amended): sent once per release.
+// Serving is unaffected; the release holds the communicator's memory and a thread until the
+// process ends, and the coordinator retires the process by notice once a spare can take its rank.
+message ReleaseLeaked {
+  string engine = 1;
+  // The process's rank at that boundary.
+  uint32 rank = 2;
+  // The release left behind, by its name.
+  string release = 3;
+  // How long it had run when it was counted, in milliseconds.
+  uint64 run_ms = 4;
+  // Every release this process has left behind, this one included.
+  uint32 leaked_total = 5;
+}
+
+// An instance's state in a framework's terms (decision 0041's second obligation), which an
+// integration reports to the framework that routes to the engine. Derived by the coordinator in
+// one place, the first that holds: failed, recovering, degraded, serving, starting.
+enum InstancePhase {
+  INSTANCE_PHASE_UNSPECIFIED = 0;
+  // Bring-up: not every position of the world is held yet.
+  INSTANCE_STARTING = 1;
+  // Every position of the world is held.
+  INSTANCE_SERVING = 2;
+  // A change is in flight (a rank replaced, a drain's ranks moved, a shrink): the framework holds
+  // its own recovery off while Everserve's runs.
+  INSTANCE_RECOVERING = 3;
+  // Serving with ranks lost under SHRINK: its capacity is down.
+  INSTANCE_DEGRADED = 4;
+  // Down (decision 0032): its head is lost or stopped, or a change failed. The framework's own
+  // recovery takes over.
+  INSTANCE_FAILED = 5;
+}
+
+// An engine's instance state, sent through each daemon to every process of the engine when the
+// daemon links and whenever it changes.
+message InstanceState {
+  string engine = 1;
+  InstancePhase phase = 2;
+  // Positions held, of the world's: the instance's capacity.
+  uint32 positions_held = 3;
+  uint32 world = 4;
+  // The engine's committed epoch.
+  uint64 epoch = 5;
+  // Why, for people: the change in flight, the ranks lost, the cause of a failure.
+  string reason = 6;
+}
+
+// One engine's policy as the coordinator holds it: a `Policy` (policy.proto) narrowed to the
+// engine, its policy-wide fields with the one `Engine` entry, encoded. Carried as bytes since
+// policy.proto names messages of this file.
+message EnginePolicy {
+  string engine = 1;
+  bytes policy = 2;
+}
+
+// Write every thread's stack to the process's own log; nothing is answered.
+message DumpStacks {
+  // Why, for the log.
+  string reason = 1;
+  // The daemon's: the process answers `StacksDumped` with it.
+  uint64 request_id = 2;
+}
+
+// From a process: its every thread's stack, the answer to `DumpStacks`, carried back through its
+// daemon to whoever asked, so the stacks reach an operator on any platform whatever becomes of
+// the process's standard error (a vLLM worker's reaches no pod's log).
+message StacksDumped {
+  uint64 request_id = 1;
+  // The stacks, as Python's faulthandler writes them; at most 1 MiB, cut with a marker.
+  string text = 2;
+}
+
+// What an undecided process is (decision 0041): `ROLE_WORKER`, the one process to serve `rank` at
+// `epoch`, or `ROLE_SPARE`, a spare preloaded for the rank's shard.
+message RoleAssigned {
+  string engine = 1;
+  uint32 rank = 2;
+  uint64 epoch = 3;
+  Role role = 4;
+  // The stage the answer covers, as the registration named it.
+  repeated uint32 stage = 5;
+  // Non-empty: the process may not serve this engine, and stops with this reason (a step config
+  // that differs from the engine's, each differing field named).
+  string refusal = 6;
+}
+
+// A join payload the adapters exchange when a spare takes a position; the control plane carries
+// it unread.
+message Join {
+  string engine = 1;
+  uint64 epoch = 2;
+  // The position joined.
+  uint32 rank = 3;
+  bytes payload = 4;
+}
+
+// A worker's reply to a Change.
+message Ack {
+  uint32 rank = 1;
+  uint64 epoch = 2;
+  // Empty on success.
+  string error = 3;
+  // When the daemon received it, on the daemon's clock, microseconds since the Unix epoch. Set by
+  // the daemon; a process sends 0.
+  uint64 received_at_us = 4;
+}
+
+// Cover plans (decision 0035): the member sets an engine pre-forms groups for, which the
+// coordinator plans and every process forms its part of in the background.
+
+// Where a collective's members are, which decides what carries it.
+enum Scope {
+  SCOPE_UNSPECIFIED = 0;
+  // Inside one domain (a node's NVLink or PCIe): a stage's tensor-parallel group.
+  SCOPE_DOMAIN = 1;
+  // Across domains, over the fabric: a column's pipeline group.
+  SCOPE_FABRIC = 2;
+}
+
+// A spare's process, before it takes a position: the position it stands in for in a set, and
+// where it stands, which tells two spares for any position apart (decision 0030).
+message SpareRef {
+  uint32 for_rank = 1;
+  string node = 2;
+  uint32 device = 3;
+}
+
+// A member of a set: a serving rank, or a spare standing in for a rank.
+message SetMember {
+  oneof kind {
+    uint32 rank = 1;
+    SpareRef spare = 2;
+  }
+}
+
+// One group to form: its scope, the members it spans in the communicator's rank order (a member's
+// index here is its rank in the group), and the member that makes the group's id. A group is its
+// scope and its spans, whatever sets need it (0035, amended): a process forms it once and keeps it
+// while a set of the newest plan names it. Its rendezvous is the control plane's own links: the
+// server member makes the group's NCCL id and reports it (`GroupId`), the coordinator relays it
+// to the other members' daemons, and no member opens a port for it.
+message CoverGroup {
+  // Was the set the group was kept under: a group belongs to no one set.
+  reserved 1;
+  Scope scope = 2;
+  repeated SetMember spans = 3;
+  SetMember server = 4;
+  // Were the rendezvous store's host and port: an unauthenticated store on the pod network, now
+  // the links' authenticated relay.
+  reserved 5, 6;
+}
+
+// A group's id, the NCCL unique id its members form it with (decision 0035, amended): made by the
+// group's server member, carried only on the control plane's mutually authenticated links and
+// the node's local sockets, never logged. A group made again after a failure has a new id at a
+// newer generation; a member takes the newest.
+message GroupId {
+  string engine = 1;
+  uint64 generation = 2;
+  Scope scope = 3;
+  repeated SetMember spans = 4;
+  // The id, as NCCL makes it.
+  bytes id = 5;
+}
+
+// The process holding a rank: the node and device in its registration's Member.
+message Holder {
+  string node = 1;
+  uint32 device = 2;
+}
+
+// An engine's cover plan: every group of every set it holds, for the placement at a committed
+// epoch. A generation is never reused, across a coordinator's restart or failover; a process
+// ignores a plan below one it applied.
+message CoverPlan {
+  string engine = 1;
+  uint64 generation = 2;
+  // The committed epoch the placement is for.
+  uint64 epoch = 3;
+  // Each rank's holding process at `epoch`, by the node and device it registered with: a process
+  // that holds a group naming a rank tells from two plans whether the rank's holder changed, a
+  // take on the same node included.
+  map<uint32, Holder> placement = 4;
+  // Every group any set needs, each once.
+  repeated CoverGroup groups = 5;
+  // The sets, in plan order: the current membership's first.
+  repeated CoverSet sets = 6;
+}
+
+// One set a plan holds: its members, and the groups it needs, both scopes, by their index in the
+// plan's `groups`. A swap to the set points each scope at the set's group that spans the process.
+message CoverSet {
+  repeated SetMember members = 1;
+  repeated uint32 groups = 2;
+  // What it is for, for people: `current`, or the loss it answers and how.
+  string purpose = 3;
+}
+
+// A process formed the group over `spans` in `scope` under plan `generation`, in `seconds`.
+// A member of the group over `spans` in `scope`, under plan `generation`, holds the plan and waits
+// for the group's id (decision 0035, amended): the coordinator relays the server's id to the
+// members only once every one of them, the server included, said so, so none starts a blocking
+// join that a member never answers. A member's receipt of the id is its go.
+message GroupReady {
+  string engine = 1;
+  uint64 generation = 2;
+  repeated SetMember spans = 3;
+  Scope scope = 4;
+  SetMember member = 5;
+}
+
+message GroupFormed {
+  string engine = 1;
+  uint64 generation = 2;
+  repeated SetMember spans = 3;
+  Scope scope = 4;
+  double seconds = 5;
+  // The member that formed it.
+  SetMember member = 6;
+}
+
+// A process could not form the group over `spans` in `scope` under plan `generation`. It tries a
+// group once per generation that names it; a retry is the controller's (decision 0036).
+message GroupFailed {
+  string engine = 1;
+  uint64 generation = 2;
+  repeated SetMember spans = 3;
+  Scope scope = 4;
+  string error = 5;
+  SetMember member = 6;
+}
+
+// A process released the group over `spans` in `scope`: no set of plan `generation` names it, or
+// the process ended (reported by its daemon).
+message GroupReleased {
+  string engine = 1;
+  uint64 generation = 2;
+  repeated SetMember spans = 3;
+  Scope scope = 4;
+  SetMember member = 5;
+}
+
+// One process of the engine, as the control plane addresses it: its node, and its connection to
+// that node's daemon (the daemon's instance and the connection's serial).
+message ProcessRef {
+  string node = 1;
+  uint64 instance = 2;
+  uint64 serial = 3;
+}
+
+// A spare asks the engine's core for what the core sent `rank` at its start, so it builds as that
+// rank's worker was built rather than deriving any of it (decision 0044). Sent by the spare with
+// `asker` empty; its daemon names the spare in `asker` before passing it up, and the coordinator
+// hands it to the engine's head.
+message ReplayAsk {
+  string engine = 1;
+  uint32 rank = 2;
+  ProcessRef asker = 3;
+}
+
+// The core's answer to one spare's ReplayAsk: a queue the core made for that spare alone, from
+// which the spare reads what the core sent `rank` at its start (the adapter's handle, opaque to
+// the control plane). `to` is the asker, as the ask named it, and the coordinator delivers the
+// offer to that process alone, from the engine's head only.
+message ReplayOffer {
+  string engine = 1;
+  uint32 rank = 2;
+  // Removed with the start-up replay's re-ask at each new head, 2026-10-19 (decision 0044).
+  reserved 3;
+  reserved "incarnation";
+  string handle = 4;
+  ProcessRef to = 5;
+}

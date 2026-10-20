@@ -1,0 +1,176 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# The coordinator: one pod holds the Lease and acts, the others stand by (decision 0036). A pod
+# that loses the Lease exits 75 and is restarted to stand by. Every pod is ready while it stands
+# (/healthz), so a rollout completes and the disruption budget counts them; the holder labels its
+# own pod (everserve.ai/lease-holder) and the Service selects it alone. There is no liveness
+# probe, which would kill the standbys.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "everserve.fullname" . }}-coordinator
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+    app.kubernetes.io/component: coordinator
+spec:
+  replicas: {{ .Values.coordinator.replicas }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/component: coordinator
+  template:
+    metadata:
+      labels: {{- include "everserve.labels" . | nindent 8 }}
+        app.kubernetes.io/component: coordinator
+      annotations:
+        # a new policy rolls the coordinators
+        checksum/policy: {{ .Values.policy | toJson | sha256sum }}
+    spec:
+      serviceAccountName: {{ include "everserve.fullname" . }}-coordinator
+      {{- with .Values.coordinator.priorityClassName }}
+      priorityClassName: {{ . }}
+      {{- end }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets: {{- toYaml . | nindent 8 }}
+      {{- end }}
+      terminationGracePeriodSeconds: {{ add .Values.coordinator.gracefulShutdownSeconds 15 }}
+      securityContext:
+        # by number: a kubelet verifies runAsNonRoot only against a numeric user. The pod's
+        # group owns its secret's files (fsGroup), which mode 0440 lets it read
+        runAsNonRoot: true
+        runAsUser: 65532
+        runAsGroup: 65532
+        fsGroup: 65532
+        seccompProfile: {type: RuntimeDefault}
+      affinity:
+        podAntiAffinity:
+          # a standby on the holder's node fails with it
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                topologyKey: kubernetes.io/hostname
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/instance: {{ .Release.Name }}
+                    app.kubernetes.io/component: coordinator
+      containers:
+        - name: coordinator
+          image: {{ include "everserve.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args: [coord]
+          env:
+            - {name: EVERSERVE_LOG_FORMAT, value: {{ .Values.logFormat | quote }}}
+            - name: POD_IP
+              valueFrom: {fieldRef: {fieldPath: status.podIP}}
+            # the holder labels this pod for the Service, and clears the label when its hold ends
+            - name: EVERSERVE_POD_NAME
+              valueFrom: {fieldRef: {fieldPath: metadata.name}}
+            - name: EVERSERVE_POLICY
+              value: /etc/everserve/policy/policy.json
+            - name: EVERSERVE_LISTEN
+              value: "0.0.0.0:{{ .Values.coordinator.port }}"
+            - name: EVERSERVE_ADVERTISE
+              value: "$(POD_IP):{{ .Values.coordinator.port }}"
+            - name: EVERSERVE_LEASE
+              value: "kubernetes://{{ .Release.Namespace }}/{{ .Values.coordinator.leaseName }}"
+            - name: EVERSERVE_LEASE_TTL_SECS
+              value: {{ .Values.coordinator.leaseTtlSeconds | quote }}
+            # cordons, drains, pools and each engine's change in flight survive a takeover
+            - name: EVERSERVE_SPEC_STORE
+              value: "kubernetes://{{ .Release.Namespace }}/{{ .Values.coordinator.specStore }}"
+            - name: EVERSERVE_METRICS_ADDR
+              value: "0.0.0.0:{{ .Values.coordinator.metricsPort }}"
+            - name: EVERSERVE_API_ADDR
+              value: "0.0.0.0:{{ .Values.coordinator.apiPort }}"
+            - name: EVERSERVE_API_KUBERNETES
+              value: "true"
+            - name: EVERSERVE_NAMESPACE
+              valueFrom: {fieldRef: {fieldPath: metadata.namespace}}
+            - name: EVERSERVE_GRACEFUL_SHUTDOWN_SECS
+              value: {{ .Values.coordinator.gracefulShutdownSeconds | quote }}
+            {{- with .Values.coordinator.nodes }}
+            {{- if .follow }}
+            - name: EVERSERVE_KUBERNETES_NODES
+              value: "true"
+            - name: EVERSERVE_PREEMPTION_LEAD_SECS
+              value: {{ .preemptionLeadSeconds | quote }}
+            {{- with .spotLabel }}
+            - name: EVERSERVE_SPOT_LABEL
+              value: {{ . | quote }}
+            {{- end }}
+            {{- with .preemptionLabel }}
+            - name: EVERSERVE_PREEMPTION_LABEL
+              value: {{ . | quote }}
+            {{- end }}
+            {{- end }}
+            {{- end }}
+            {{- if .Values.node.enabled }}
+            # the node daemons' certificates, signed with the CA's key (decision 0037)
+            - name: EVERSERVE_ISSUE_NODE_CERTS
+              value: "true"
+            - name: EVERSERVE_ISSUE_CA_KEY
+              value: /etc/everserve/certs/ca.key
+            - name: EVERSERVE_ISSUE_SERVICE_ACCOUNT
+              value: {{ include "everserve.fullname" . }}-node
+            - name: EVERSERVE_ISSUE_HOURS
+              value: {{ .Values.node.certificateHours | quote }}
+            {{- end }}
+            - name: EVERSERVE_TLS_CERT
+              value: /etc/everserve/certs/coordinator.crt
+            - name: EVERSERVE_TLS_KEY
+              value: /etc/everserve/certs/coordinator.key
+            - name: EVERSERVE_TLS_CA
+              value: /etc/everserve/certs/ca.crt
+          ports:
+            - {name: link, containerPort: {{ .Values.coordinator.port }}}
+            - {name: metrics, containerPort: {{ .Values.coordinator.metricsPort }}}
+            - {name: api, containerPort: {{ .Values.coordinator.apiPort }}}
+          readinessProbe:
+            httpGet: {path: /healthz, port: metrics}
+            periodSeconds: 5
+          resources: {{- toYaml .Values.coordinator.resources | nindent 12 }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: [ALL]}
+          volumeMounts:
+            - {name: policy, mountPath: /etc/everserve/policy, readOnly: true}
+            - {name: certs, mountPath: /etc/everserve/certs, readOnly: true}
+      volumes:
+        - name: policy
+          configMap: {name: {{ include "everserve.fullname" . }}-policy}
+        - name: certs
+          secret: {secretName: {{ .Values.tls.secretName }}, defaultMode: 0440}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "everserve.fullname" . }}-coordinator
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+    app.kubernetes.io/component: coordinator
+spec:
+  # the holder only: the pod it labelled on taking the Lease
+  selector:
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/component: coordinator
+    {{ include "everserve.holderLabel" . }}: "true"
+  ports:
+    - {name: metrics, port: {{ .Values.coordinator.metricsPort }}, targetPort: metrics}
+    - {name: api, port: {{ .Values.coordinator.apiPort }}, targetPort: api}
+---
+# a voluntary disruption (a node drained for maintenance, an upgrade of the cluster) takes one
+# coordinator at a time: the standby takes the Lease while the holder goes, and never both
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "everserve.fullname" . }}-coordinator
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "everserve.labels" . | nindent 4 }}
+    app.kubernetes.io/component: coordinator
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/component: coordinator

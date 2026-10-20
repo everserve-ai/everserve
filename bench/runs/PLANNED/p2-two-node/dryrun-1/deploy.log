@@ -1,0 +1,122 @@
+2026-10-08T14:26:54Z the battery's dry run on Nebius eu-north1: three L40S VMs with two GPUs each (gpu-l40s-d 2gpu-64vcpu-384gb), TP2 x PP2 with two spares on node-c, Qwen3-1.7B, every arm once; tree 95994c8
+2026-10-08T14:27:32Z deploy everserve-a gpu-l40s-d/2gpu-64vcpu-384gb: {"id": "computeinstance-e00dv321qvft8mgkbg", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.31", "platform": "gpu-l40s-d", "preset": "2gpu-64vcpu-384gb"}
+2026-10-08T14:27:32Z deploy everserve-a gpu-l40s-d/2gpu-64vcpu-384gb: {"id": "computeinstance-e00dv321qvft8mgkbg", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.31", "platform": "gpu-l40s-d", "preset": "2gpu-64vcpu-384gb"}
+2026-10-08T14:27:33Z VM a computeinstance-e00dv321qvft8mgkbg public 89.169.127.200 private 10.0.0.31, watchdog at +75 min
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 291, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 259, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 130, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 63, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00gb653209sqrvkan" over resource "computeinstance-e00hnbncwvahfyetn5" to complete
+2026-10-08T14:33:12Z deploy b failed: RuntimeError: waiting for operation "computeoperation-e00gb653209sqrvkan" over resource "computeinstance-e00hnbncwvahfyetn5" to complete
+2026-10-08T14:34:49Z terminate computeinstance-e00dv321qvft8mgkbg: {"deleted": "computeinstance-e00dv321qvft8mgkbg", "disks": []}
+2026-10-08T14:34:50Z VMs released: [{"id": "computeinstance-e00hnbncwvahfyetn5", "name": "everserve-b", "state": "STOPPED", "public_ip": "", "private_ip": "10.0.0.56", "platform": "gpu-l40s-d", "preset": "2gpu-64vcpu-384gb"}]
+2026-10-08T14:35:35Z terminate computeinstance-e00hnbncwvahfyetn5: {"deleted": "computeinstance-e00hnbncwvahfyetn5", "disks": []}
+2026-10-08T14:36:14Z attempt 1: node-b's deploy on gpu-l40s-d 2gpu-64vcpu-384gb never ran (STOPPED after the create operation timed out), the driver released node-a and left node-b stopped; node-b deleted by hand; the driver now retries a deploy three times and releases by listing the project; attempt 2 follows
+2026-10-08T14:36:15Z the battery's dry run on Nebius eu-north1: three L40S VMs with two GPUs each (gpu-l40s-d 2gpu-64vcpu-384gb), TP2 x PP2 with two spares on node-c, Qwen3-1.7B, every arm once; tree 95994c8
+2026-10-08T14:36:54Z deploy everserve-a gpu-l40s-d/2gpu-64vcpu-384gb: {"id": "computeinstance-e00d1g4kz75skwt9jk", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.48", "platform": "gpu-l40s-d", "preset": "2gpu-64vcpu-384gb"}
+2026-10-08T14:36:54Z deploy everserve-a gpu-l40s-d/2gpu-64vcpu-384gb: {"id": "computeinstance-e00d1g4kz75skwt9jk", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.48", "platform": "gpu-l40s-d", "preset": "2gpu-64vcpu-384gb"}
+2026-10-08T14:36:54Z VM a computeinstance-e00d1g4kz75skwt9jk public 89.169.112.114 private 10.0.0.48, watchdog at +180 min
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 291, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 259, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 130, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 63, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00hn3pxb9gawbm91t" over resource "computeinstance-e00c7c79z4nw3hp5vj" to complete
+2026-10-08T14:42:36Z deploy b failed: RuntimeError: waiting for operation "computeoperation-e00hn3pxb9gawbm91t" over resource "computeinstance-e00c7c79z4nw3hp5vj" to complete
+2026-10-08T14:42:36Z deploy b attempt 1 failed; a half-made VM is deleted and the deploy retried in 60 s
+2026-10-08T14:42:54Z terminate computeinstance-e00c7c79z4nw3hp5vj: {"deleted": "computeinstance-e00c7c79z4nw3hp5vj", "disks": []}
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 291, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 259, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 130, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 63, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00tehpqcj9w41prdt" over resource "computeinstance-e00ntr80vy8k8n2nxe" to complete
+2026-10-08T14:49:34Z deploy b failed: RuntimeError: waiting for operation "computeoperation-e00tehpqcj9w41prdt" over resource "computeinstance-e00ntr80vy8k8n2nxe" to complete
+2026-10-08T14:49:34Z deploy b attempt 2 failed; a half-made VM is deleted and the deploy retried in 60 s
+2026-10-08T14:49:45Z terminate computeinstance-e00ntr80vy8k8n2nxe: {"deleted": "computeinstance-e00ntr80vy8k8n2nxe", "disks": []}
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 291, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 259, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 130, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 63, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00n269fj2sgzcftx8" over resource "computeinstance-e00g2frebhxwh7arpw" to complete
+2026-10-08T14:56:35Z deploy b failed: RuntimeError: waiting for operation "computeoperation-e00n269fj2sgzcftx8" over resource "computeinstance-e00g2frebhxwh7arpw" to complete
+2026-10-08T14:56:35Z deploy b attempt 3 failed; a half-made VM is deleted and the deploy retried in 60 s
+2026-10-08T14:56:46Z terminate computeinstance-e00g2frebhxwh7arpw: {"deleted": "computeinstance-e00g2frebhxwh7arpw", "disks": []}
+2026-10-08T14:59:33Z terminate computeinstance-e00d1g4kz75skwt9jk: {"deleted": "computeinstance-e00d1g4kz75skwt9jk", "disks": []}
+2026-10-08T14:59:34Z VMs released: []
+2026-10-08T15:00:18Z attempt 2: node-a came up on gpu-l40s-d 2gpu-64vcpu-384gb, node-b's deploy failed three times (the create operation never completed, the VM STOPPED each time: no capacity for a second 2-GPU L40S-d VM in eu-north1); released, nothing running; about 23 min of one VM
+2026-10-08T15:12:59Z attempt 3 (the owner's word): the same two-GPU preset, the three deploys in parallel
+2026-10-08T15:13:05Z the battery's dry run on Nebius eu-north1: three L40S VMs with two GPUs each (gpu-l40s-d 2gpu-64vcpu-384gb), TP2 x PP2 with two spares on node-c, Qwen3-1.7B, every arm once; tree 95994c8
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 291, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 259, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 130, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 63, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00h06g902vq4gcwye" over resource "computeinstance-e00w5nz9fwqgra2p80" to complete
+2026-10-08T15:18:48Z deploy a failed: RuntimeError: waiting for operation "computeoperation-e00h06g902vq4gcwye" over resource "computeinstance-e00w5nz9fwqgra2p80" to complete
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 291, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 259, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 130, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 63, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00mt7gw1cwvjc0smb" over resource "computeinstance-e00m5stfce7g0pnx0t" to complete
+2026-10-08T15:18:50Z deploy c failed: RuntimeError: waiting for operation "computeoperation-e00mt7gw1cwvjc0smb" over resource "computeinstance-e00m5stfce7g0pnx0t" to complete
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 291, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 259, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 130, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 63, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00mcs37ztyz5fae4v" over resource "computeinstance-e00rebtsb4w1tz0t98" to complete
+2026-10-08T15:18:50Z deploy b failed: RuntimeError: waiting for operation "computeoperation-e00mcs37ztyz5fae4v" over resource "computeinstance-e00rebtsb4w1tz0t98" to complete
+2026-10-08T15:18:50Z a deploy failed; every VM released: 
+2026-10-08T15:19:06Z terminate computeinstance-e00rebtsb4w1tz0t98: {"deleted": "computeinstance-e00rebtsb4w1tz0t98", "disks": []}
+2026-10-08T15:19:06Z terminate computeinstance-e00rebtsb4w1tz0t98: {"deleted": "computeinstance-e00rebtsb4w1tz0t98", "disks": []}
+2026-10-08T15:19:25Z terminate computeinstance-e00m5stfce7g0pnx0t: {"deleted": "computeinstance-e00m5stfce7g0pnx0t", "disks": []}
+2026-10-08T15:19:25Z terminate computeinstance-e00m5stfce7g0pnx0t: {"deleted": "computeinstance-e00m5stfce7g0pnx0t", "disks": []}
+2026-10-08T15:19:35Z terminate computeinstance-e00w5nz9fwqgra2p80: {"deleted": "computeinstance-e00w5nz9fwqgra2p80", "disks": []}
+2026-10-08T15:19:35Z terminate computeinstance-e00w5nz9fwqgra2p80: {"deleted": "computeinstance-e00w5nz9fwqgra2p80", "disks": []}
+2026-10-08T15:19:54Z attempt 3: all three two-GPU VMs STARTING for ~5 min then STOPPED, none ran; the driver released them and they were deleted by hand; nothing running. The two-GPU L40S-d preset has no capacity in eu-north1 today

@@ -1,0 +1,98 @@
+02:47:57Z the certificates, made here
+[2m2026-10-15T02:47:58.155307Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-3/certs/ca.crt
+[2m2026-10-15T02:47:58.155358Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-3/certs/ca.key
+[2m2026-10-15T02:47:58.155379Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-3/certs/coordinator.crt
+[2m2026-10-15T02:47:58.155388Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-3/certs/coordinator.key
+[2m2026-10-15T02:47:58.155395Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-3/certs/operator-proof.crt
+[2m2026-10-15T02:47:58.155401Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-3/certs/operator-proof.key
+02:47:58Z the cluster: 3 L40S nodes, released at the latest after 1.5 h
+2026-10-15T02:53:21Z node-group create --async answered: 'opmk8snodegroup-e00qx657h65zvjbwd2\n'
+2026-10-15T02:56:16Z up everserve-proof-1015024757 gpu-l40s-a/1gpu-8vcpu-32gb x3: {"cluster": "mk8scluster-e00fbqcygfv1se405v", "node_group": "mk8snodegroup-e00d3v4x5t59m1w5vs", "kubeconfig": "/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-3/kubeconfig"}
+{"cluster": "mk8scluster-e00fbqcygfv1se405v", "node_group": "mk8snodegroup-e00d3v4x5t59m1w5vs", "kubeconfig": "/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-3/kubeconfig"}
+NAME                                 GPU
+computeinstance-e00b6j2dj5s1xvr11k   1
+computeinstance-e00bqzg3pabhn3sx8r   1
+computeinstance-e00nbnch16rfdhxz5d   <none>
+namespace/everserve created
+namespace/everserve labeled
+secret/nebius-cr created
+namespace/serving created
+namespace/serving labeled
+secret/nebius-cr created
+secret/everserve-tls created
+02:56:23Z Dynamo's platform 1.5.1, with Grove
+NAME: dynamo-platform
+LAST DEPLOYED: Wed Oct 14 22:56:28 2026
+NAMESPACE: dynamo-system
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+# SPDX-FileCopyrightText: Copyright (c) 2025-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+02:57:03Z the instance: the head, one node of the engine, 1 spare node(s)
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-3/proof.k8s.json
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-3/proof.engine.json
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-3/proof.values.json
+02:57:03Z Everserve's chart
+NAME: everserve
+LAST DEPLOYED: Wed Oct 14 22:57:06 2026
+NAMESPACE: everserve
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+dynamographdeployment.nvidia.com/proof created
+service/proof-rendezvous created
+networkpolicy.networking.k8s.io/proof-engine created
+02:57:22Z waiting for the instance to serve
+NAME                     READY   STATUS    RESTARTS   AGE    IP             NODE                                 NOMINATED NODE   READINESS GATES
+proof-0-frontend-jcnsw   1/1     Running   0          8m5s   10.0.39.39     computeinstance-e00b6j2dj5s1xvr11k   <none>           <none>
+proof-0-head-f8qvx       1/1     Running   0          8m5s   10.0.125.147   computeinstance-e00nbnch16rfdhxz5d   <none>           <none>
+proof-0-nodes-2b95g      1/1     Running   0          8m5s   10.0.95.7      computeinstance-e00bqzg3pabhn3sx8r   <none>           <none>
+proof-0-nodes-vplwn      1/1     Running   0          8m5s   10.0.39.217    computeinstance-e00b6j2dj5s1xvr11k   <none>           <none>
+Forwarding from 127.0.0.1:18000 -> 8000
+Forwarding from [::1]:18000 -> 8000
+03:05:38Z the coordinator's API: its record decides when the loss is taken and whether it passed
+serviceaccount/proof-viewer created
+rolebinding.rbac.authorization.k8s.io/proof-viewer created
+Forwarding from 127.0.0.1:17443 -> 7443
+Forwarding from [::1]:17443 -> 7443
+03:05:43Z warm: one short completion
+Handling connection for 18000
+{"streams": 1, "completed": 1, "errors": [], "max_gap_s": 0.079}
+03:05:43Z passed: 0 losses of rank 1 under load, each taken by a spare
+03:05:45Z nccl probe: a group of two whose second member never comes (pod/proof-0-nodes-2b95g)
+03:06:00Z nccl probe: {"mode": "missing", "as": 0, "nccl": 22907, "init_rc": 7, "state": 7, "waited_s": 10.008, "polls": 995, "abort_rc": 0, "abort_s": 0.0, "device_ok": true}
+03:06:00Z nccl probe: a member whose server made its id and is gone (pod/proof-0-head-f8qvx)
+03:06:22Z nccl probe: {"mode": "missing", "as": 1, "nccl": 22907, "init_rc": 7, "state": 7, "waited_s": 10.008, "polls": 995, "abort_rc": 0, "abort_s": 0.643, "device_ok": true}
+03:06:22Z nccl probe: a group of two formed by vllm, then eager and graphed all-reduces (pod/proof-0-head-f8qvx, pod/proof-0-nodes-2b95g)
+03:06:33Z nccl probe: vllm rank 0: {"mode": "join", "how": "vllm", "rank": 0, "nccl": 22907, "state": 0, "formed_s": 5.095, "polls": 0, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "abort_rc": 0, "abort_s": 0.51}
+03:06:33Z nccl probe: vllm rank 1: {"mode": "join", "how": "vllm", "rank": 1, "nccl": 22907, "state": 0, "formed_s": 0.215, "polls": 0, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "abort_rc": 0, "abort_s": 0.51}
+03:06:33Z nccl probe: a group of two formed by blocking, then eager and graphed all-reduces (pod/proof-0-head-f8qvx, pod/proof-0-nodes-2b95g)
+03:06:45Z nccl probe: blocking rank 0: {"mode": "join", "how": "blocking", "rank": 0, "nccl": 22907, "init_rc": 0, "state": 0, "formed_s": 5.156, "polls": 1, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "cost": {"896": {"eager_us": 120.6, "replay_us": 145.7, "all_success": true}, "7168": {"eager_us": 192.2, "replay_us": 196.5, "all_success": true}}, "abort_rc": 0, "abort_s": 0.51}
+03:06:45Z nccl probe: blocking rank 1: {"mode": "join", "how": "blocking", "rank": 1, "nccl": 22907, "init_rc": 0, "state": 0, "formed_s": 0.159, "polls": 1, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "polled": 0, "all_success": true}, "cost": {"896": {"eager_us": 120.4, "replay_us": 145.7, "all_success": true}, "7168": {"eager_us": 192.8, "replay_us": 196.6, "all_success": true}}, "abort_rc": 0, "abort_s": 0.51}
+03:06:45Z nccl probe: a group of two formed by nonblocking-polled, then eager and graphed all-reduces (pod/proof-0-head-f8qvx, pod/proof-0-nodes-2b95g)
+03:06:57Z nccl probe: nonblocking-polled rank 0: {"mode": "join", "how": "nonblocking-polled", "rank": 0, "nccl": 22907, "init_rc": 7, "state": 0, "formed_s": 5.135, "polls": 511, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "polled": 5, "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "polled": 10, "all_success": true}, "cost": {"896": {"eager_us": 250.2, "replay_us": 187.1, "all_success": true}, "7168": {"eager_us": 213.9, "replay_us": 233.0, "all_success": true}}, "abort_rc": 0, "abort_s": 0.51}
+03:06:57Z nccl probe: nonblocking-polled rank 1: {"mode": "join", "how": "nonblocking-polled", "rank": 1, "nccl": 22907, "init_rc": 7, "state": 0, "formed_s": 0.163, "polls": 17, "eager": {"sums_right": true, "rcs": [0, 0, 0, 0, 0], "polled": 5, "all_success": true}, "graphed": {"sums_right": true, "rcs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "polled": 10, "all_success": true}, "cost": {"896": {"eager_us": 250.0, "replay_us": 187.2, "all_success": true}, "7168": {"eager_us": 214.0, "replay_us": 232.8, "all_success": true}}, "abort_rc": 0, "abort_s": 0.51}
+03:06:57Z nccl probe: a group of two formed by split, then eager and graphed all-reduces (pod/proof-0-head-f8qvx, pod/proof-0-nodes-2b95g)
+03:10:03Z nccl probe: split rank 0: id 6b3c80eb7d4dc35202009abd0a007d9300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+03:10:03Z nccl probe: split rank 1: 
+03:10:03Z nccl probe: a group of two formed by split-missing, then eager and graphed all-reduces (pod/proof-0-head-f8qvx, pod/proof-0-nodes-2b95g)
+03:10:15Z nccl probe: split-missing rank 0: {"mode": "join", "how": "split-missing", "rank": 0, "nccl": 22907, "init_rc": 7, "state": 0, "formed_s": 5.195, "polls": 517, "split": {"rc": 0, "state": 0, "s": 0.0, "polls": 0, "child": false}, "eager": {"sums_right": false, "rcs": [4, 4, 4, 4, 4], "polled": 0, "all_success": false}, "graphed": {"sums_right": false, "rcs": [4, 4, 4, 4, 4, 4, 4, 4, 4, 4], "polled": 0, "all_success": false}, "abort_rc": 0, "abort_s": 0.0, "parent_abort_rc": 0, "parent_abort_s": 0.984}
+03:10:15Z nccl probe: split-missing rank 1: {"mode": "join", "how": "split-missing", "rank": 1, "nccl": 22907, "init_rc": 7, "state": 0, "formed_s": 0.164, "polls": 17, "left": "formed the parent and left without splitting"}
+03:10:40Z taking the cluster down
+2026-10-15T03:22:41Z down: {"down": "everserve-proof-1015024757", "cluster": "mk8scluster-e00fbqcygfv1se405v"}

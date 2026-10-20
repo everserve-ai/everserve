@@ -1,0 +1,1 @@
+adapter_drill.py --clock-offsets /workspace/out/clocks.json --arm stock --kill external --max-tokens 1792 (STOCK=1)

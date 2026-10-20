@@ -1,0 +1,40 @@
+{
+  "arm": "node_fault",
+  "trials": 1,
+  "figures": {
+    "replica_lag_max_steps": {
+      "values": [
+        0.0
+      ],
+      "prediction": 7,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0
+      ],
+      "prediction": 7,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "sessions_kept_identical": {
+      "values": [
+        "8/8"
+      ],
+      "prediction": 5
+    },
+    "shadow_formation_s": {
+      "values": [
+        5.491
+      ],
+      "prediction": 11,
+      "median": 5.491,
+      "worst": 5.491,
+      "worst_over_median": 1.0
+    }
+  },
+  "green": false
+}

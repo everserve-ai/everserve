@@ -1,0 +1,26 @@
+// SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+// SPDX-License-Identifier: Apache-2.0
+// How processes find each other. A node daemon publishes one record; the coordinator, the drill
+// driver and the workers read it. The file backend writes these as protobuf JSON, one file per
+// node, in a directory; the Kubernetes backend (phase 2) derives the same record from
+// EndpointSlices. Nothing outside Kubernetes is required in production.
+syntax = "proto3";
+
+package everserve.discovery.v1;
+
+// One node daemon.
+message DaemonRecord {
+  // The node's name in the policy document.
+  string node = 1;
+  // Where to connect: a Unix socket path on the node, or host:port across nodes.
+  string address = 2;
+  // Engines with at least one worker registered.
+  repeated string engines = 3;
+  uint64 started_at_ms = 4;
+  uint32 pid = 5;
+  // The mirror service on this node, same address form.
+  string mirror_address = 6;
+  // The address other nodes reach this node at (the fabric's, or the tunnel's), from the
+  // daemon's `--advertise-host`; empty on a single node, where loopback serves.
+  string host = 7;
+}

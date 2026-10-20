@@ -1,0 +1,17 @@
+2026-10-08T17:50:52Z nodes updated from the working tree (142de12 + uncommitted)
+2026-10-08T17:51:27Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: node_fault; trials 2 (fault) / 1 (other); tree 142de12 + uncommitted
+2026-10-08T17:52:39Z fabric: slowest link to node-a 39.64 Gbit/s (floor 1)
+2026-10-08T17:53:27Z == node_fault trial 1: control
+2026-10-08T17:56:58Z == node_fault trial 1
+2026-10-08T17:58:17Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":[]},{"rank":1,"node":"node-b","class":"NVIDIA L40S","replicates_to":["10.0.0.10:7402"]}],"spares":[{"rank":1,"node":"node-c","speed":1.0,"state":"warm"}],"lost":[],"nodes":[{"node":"no
+2026-10-08T17:58:20Z node_fault_1 armed: {"t_armed": 1791482294.7664578, "step": 100}
+2026-10-08T18:01:01Z node_fault_1: rows for 12 sampled slots pulled from the kill-time file and both stores
+node_fault trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+2026-10-08T18:01:10Z == node_fault trial 2: control
+2026-10-08T18:04:45Z == node_fault trial 2
+2026-10-08T18:06:04Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":[]},{"rank":1,"node":"node-b","class":"NVIDIA L40S","replicates_to":["10.0.0.10:7402"]}],"spares":[{"rank":1,"node":"node-c","speed":1.0,"state":"warm"}],"lost":[],"nodes":[{"node":"no
+2026-10-08T18:06:07Z node_fault_2 armed: {"t_armed": 1791482764.5705621, "step": 100}
+2026-10-08T18:08:53Z node_fault_2: rows for 12 sampled slots pulled from the kill-time file and both stores
+node_fault trial 2: loss arm complete, DIVERGED vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 570, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+node_fault: 2 trials, green False, node_fault_detection_s=0.011099999999999999, node_fault_gap_s=2.23535, replica_lag_max_steps=0.0, replication_dropped_total=0.0, restored_rows_mismatched=112.0, sessions_kept_identical=['8/8', '7/8'], shadow_formation_s=8.400500000000001
+2026-10-08T18:09:50Z battery done: node_fault ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass4

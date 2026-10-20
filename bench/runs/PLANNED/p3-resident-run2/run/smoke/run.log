@@ -1,0 +1,69 @@
+2026-10-10T18:20:00Z battery on RedHatAI/Llama-3.3-70B-Instruct-FP8-dynamic, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 2048 prompt, 1792 tokens, blocks 2048, slots 32768, long context 32768, store budget 16000000000, node-b's first layer 40, KV heads 8, row bytes 512; arms: repeat node_fault; trials 1 (node fault) / 1 (single death) / 3 (other) / 2 (adapter); commit c5bea92, checkpoint revision f50dbad2c84590ca17dc51e207c34321b65ff14b
+2026-10-10T18:20:16Z nodes at c5bea92, the binaries and kernels built at it
+2026-10-10T18:20:53Z iperf3 node-b -> node-a: 66.12 Gbit/s
+2026-10-10T18:21:04Z NCCL send node-a <-> node-b: "decode_pp_send_128KB: 0.18 ms per send, 0.72 GB/s;prefill_pp_send_268MB: 98.44 ms per send, 2.73 GB/s;replication_burst_650MB: 241.04 ms per send, 2.70 GB/s;"
+2026-10-10T18:21:20Z iperf3 node-c -> node-a: 66.43 Gbit/s
+2026-10-10T18:21:20Z fabric: slowest link to node-a 66.12 Gbit/s (floor 1)
+2026-10-10T18:21:27Z clock of node-b against node-a: {"host": "10.0.0.0", "at": 1791656487.3652499, "probes": 20, "lost": 0, "offset_s": -5.1e-05, "rtt_s": 0.000111, "error_s": 5.6e-05}
+2026-10-10T18:21:29Z clock of node-c against node-a: {"host": "10.0.0.1", "at": 1791656489.3790581, "probes": 20, "lost": 0, "offset_s": -2.3e-05, "rtt_s": 0.000173, "error_s": 8.7e-05}
+2026-10-10T18:22:54Z idle baseline: written since the start: a=3 files 4359069 bytes (start 0, takes 0, exit none) b=3 files 4359068 bytes (start 0, takes 0, exit none) c=3 files 4354948 bytes (start 0, takes 0, exit none) 
+2026-10-10T18:22:54Z == repeat trial 1: control
+2026-10-10T18:23:40Z control plane up: coordinator on a at 10.0.0.14:7400, daemons linked on a b c, records exchanged
+2026-10-10T18:23:46Z node-b headless started: the node role (RedHatAI/Llama-3.3-70B-Instruct-FP8-dynamic, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-10T18:26:18Z end control_repeat_1 rc=0
+2026-10-10T18:26:26Z collected into bench/runs/PLANNED/p3-resident-run2/run/smoke/arms/repeat/trial1/control
+2026-10-10T18:26:30Z control_repeat_1 running: written since the start: a=226 files 40293930 bytes (start 1, takes 0, exit None) b=441 files 53136684 bytes (start 1, takes 0, exit None) c=7 files 4618089 bytes (start 1, takes 0, exit None) 
+2026-10-10T18:26:47Z stacks asked of every rank's process and the spare (still running on a b)
+2026-10-10T18:27:06Z nodes a b c down: a=none b=clean c=clean 
+2026-10-10T18:27:10Z control_repeat_1 stopped: written since the start: a=226 files 40293930 bytes (start 1, takes 0, exit none) b=441 files 53136684 bytes (start 1, takes 0, exit clean) c=7 files 4618089 bytes (start 1, takes 0, exit clean) 
+2026-10-10T18:27:17Z collected into bench/runs/PLANNED/p3-resident-run2/run/smoke/arms/repeat/trial1/control
+2026-10-10T18:27:20Z == repeat trial 1, $7.81 spent
+2026-10-10T18:28:07Z control plane up: coordinator on a at 10.0.0.14:7400, daemons linked on a b c, records exchanged
+2026-10-10T18:28:12Z node-b headless started: the node role (RedHatAI/Llama-3.3-70B-Instruct-FP8-dynamic, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-10T18:30:06Z end repeat_1 rc=0
+2026-10-10T18:30:20Z collected into bench/runs/PLANNED/p3-resident-run2/run/smoke/arms/repeat/trial1
+2026-10-10T18:30:31Z repeat_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T18:30:32Z repeat_1: exact; its kill-time rows removed from node-b
+2026-10-10T18:30:37Z repeat_1 running: written since the start: a=8 files 4605644 bytes (start 2, takes 0, exit None) b=303 files 18592126 bytes (start 2, takes 0, exit None) c=5 files 4617092 bytes (start 2, takes 0, exit None) 
+2026-10-10T18:30:54Z stacks asked of every rank's process and the spare (still running on a b)
+2026-10-10T18:31:13Z nodes a b c down: a=none b=clean c=clean 
+2026-10-10T18:31:17Z repeat_1 stopped: written since the start: a=8 files 4605644 bytes (start 2, takes 0, exit none) b=303 files 18592126 bytes (start 2, takes 0, exit clean) c=5 files 4617092 bytes (start 2, takes 0, exit clean) 
+2026-10-10T18:31:24Z collected into bench/runs/PLANNED/p3-resident-run2/run/smoke/arms/repeat/trial1
+repeat trial 1: repeat AGREES with the first run: changes 0, identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+repeat: 1 trials (0 failed), green True, compile_cache_consistent=True, engine_down=False, replica_lag_max_steps=0.0, replication_dropped_total=0, runs_agree=['8/8'], shadow_formation_s=0.517, stops_killed=0, store_refusals_total=0, take_written_beyond_baseline_bytes=0, take_written_bytes=4617092
+2026-10-10T18:31:24Z == node_fault trial 1: control
+2026-10-10T18:32:14Z control plane up: coordinator on a at 10.0.0.14:7400, daemons linked on a b c, records exchanged
+2026-10-10T18:32:19Z node-b headless started: the node role (RedHatAI/Llama-3.3-70B-Instruct-FP8-dynamic, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-10T18:34:03Z end control_node_fault_1 rc=0
+2026-10-10T18:34:11Z collected into bench/runs/PLANNED/p3-resident-run2/run/smoke/arms/node_fault/trial1/control
+2026-10-10T18:34:16Z control_node_fault_1 running: written since the start: a=113 files 159053158 bytes (start 3, takes 0, exit None) b=21 files 131860147 bytes (start 3, takes 0, exit None) c=18 files 131873849 bytes (start 3, takes 0, exit None) 
+2026-10-10T18:34:33Z stacks asked of every rank's process and the spare (still running on a b)
+2026-10-10T18:34:51Z nodes a b c down: a=none b=clean c=clean 
+2026-10-10T18:34:55Z control_node_fault_1 stopped: written since the start: a=113 files 159053158 bytes (start 3, takes 0, exit none) b=21 files 131860147 bytes (start 3, takes 0, exit clean) c=19 files 131873921 bytes (start 3, takes 0, exit clean) 
+2026-10-10T18:35:03Z collected into bench/runs/PLANNED/p3-resident-run2/run/smoke/arms/node_fault/trial1/control
+2026-10-10T18:35:06Z == node_fault trial 1, $9.54 spent
+2026-10-10T18:35:41Z compile cache staged from node-b onto node-c: b=57f7aebbdc:50ed8cd2192a c=57f7aebbdc:b55ed424b294 
+2026-10-10T18:36:28Z control plane up: coordinator on a at 10.0.0.14:7400, daemons linked on a b c, records exchanged
+2026-10-10T18:36:33Z node-b headless started: the node role (RedHatAI/Llama-3.3-70B-Instruct-FP8-dynamic, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-10T18:37:16Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA H100 80GB HBM3","replicates_to":["10.0.0.0:7402"],"compile_cache":{"key":"02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434","digest":"aa1c9371af5b535e8f51a81e8a031830b5d1d13031126871350232d3
+pool 1 of 1 wanted (any position: 1 ); members 2 of 2
+replication targets {0: ['10.0.0.0:7402'], 1: ['10.0.0.14:7402']}
+compile key 02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434 consistent True per rank {0: ('02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434', 'aa1c9371af5b'), 1: ('02376ca32757a184d7dbfcfe3930139831e87c5f67dbeae8a2207761c584b434', 'b8d71a3169b7')} spares {}
+2026-10-10T18:37:33Z node_fault_1 armed: {"t_armed": 1791657450.310191, "step": 100}
+2026-10-10T18:37:38Z node-b lost at 1791657456.643119512 (daemon and workers killed)
+2026-10-10T18:37:43Z node_fault_1: committed at epoch 1; no native stacks taken
+2026-10-10T18:39:37Z end node_fault_1 rc=0
+2026-10-10T18:39:52Z collected into bench/runs/PLANNED/p3-resident-run2/run/smoke/arms/node_fault/trial1
+2026-10-10T18:40:03Z node_fault_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+2026-10-10T18:40:04Z node_fault_1: exact; its kill-time rows removed from node-b
+2026-10-10T18:40:18Z node_fault_1: backup after the take: {"0": {"rank": 0, "holder": {"epoch": 1, "step": 3587, "held": true, "caught_up": false}, "replica": {"epoch": 1, "step": 3587, "held": true, "caught_up": true}, "scored_at_step": 3587, "rows_due": 15360, "rows_matching": 15360, "coverage": 1.0},"1": {"rank": 1, "holder": {"epoch": 1, "step": 3585, "held": true, "caught_up": true}, "replica": {"epoch": 1, "step": 3585, "held": true, "caught_up": t
+2026-10-10T18:40:23Z node_fault_1 running: written since the start: a=8 files 4610306 bytes (start 4, takes 0, exit None) b=7 files 4604097 bytes (start 4, takes 0, exit None) c=6 files 4617092 bytes (start 4, takes 1, exit None) 
+2026-10-10T18:40:40Z stacks asked of every rank's process and the spare (still running on a)
+2026-10-10T18:40:57Z nodes a b c down: a=none b=none c=clean 
+2026-10-10T18:41:02Z node_fault_1 stopped: written since the start: a=8 files 4610306 bytes (start 4, takes 0, exit none) b=7 files 4604097 bytes (start 4, takes 0, exit none) c=6 files 4617092 bytes (start 4, takes 1, exit clean) 
+2026-10-10T18:41:10Z collected into bench/runs/PLANNED/p3-resident-run2/run/smoke/arms/node_fault/trial1
+node_fault trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+node_fault: 1 trials (0 failed), green True, backup_coverage=1.0, compile_cache_consistent=False, engine_down=False, first_differing_position=[None], instrument_pause_s=49.4543, node_fault_detection_s=0.0124, node_fault_gap_s=13.1575, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8'], shadow_formation_s=0.466, staged_wait_s=0.0001, stops_killed=0, store_refusals_total=0, take_identity_s=0.002, take_kv_alloc_s=0.003, take_kv_config_s=2.096, take_modules_s=2.213, take_restore_s=0.7309, take_s=9.183, take_sizing_s=0.018, take_warm_s=3.554, take_weights_s=0.722, take_written_beyond_baseline_bytes=0, take_written_bytes=4617092
+2026-10-10T18:41:17Z clock of node-b against node-a: {"host": "10.0.0.0", "at": 1791657677.4520242, "probes": 20, "lost": 0, "offset_s": 0.000108, "rtt_s": 0.000368, "error_s": 0.000184}
+2026-10-10T18:41:19Z clock of node-c against node-a: {"host": "10.0.0.1", "at": 1791657679.6154451, "probes": 20, "lost": 0, "offset_s": 5.7e-05, "rtt_s": 0.000252, "error_s": 0.000126}
+2026-10-10T18:41:19Z battery done: node_fault repeat ; the record is bench/runs/PLANNED/p3-resident-run2/run/smoke

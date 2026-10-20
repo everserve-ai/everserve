@@ -1,0 +1,1 @@
+{"mode": "join", "how": "split-missing", "rank": 1, "nccl": 22907, "init_rc": 7, "state": 0, "formed_s": 0.163, "polls": 17, "left": "formed the parent and left without splitting"}

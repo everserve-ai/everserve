@@ -1,0 +1,373 @@
+// SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+// SPDX-License-Identifier: Apache-2.0
+// The committed-KV service. The socket is the control plane: rows never cross it. A worker stages
+// a step's rows in a shared-memory file under its rank directory and commits by naming them; the
+// store moves them into its tables, which are shared-memory files a restoring rank maps directly
+// (decision 0011). Implemented by `store/`.
+syntax = "proto3";
+
+package everserve.mirror.v1;
+
+// The first request on a connection: the worker learns its rank directory, where it creates
+// staging files and where the store keeps the rank's tables. Opening a rank drops the store's
+// maps of that rank's earlier staging files, so a replaced worker starts clean.
+message Open {
+  string engine = 1;
+  uint32 rank = 2;
+  // PROTOCOL_VERSION of the worker (decision 0027).
+  uint32 protocol = 3;
+  // The oldest protocol the worker serves (decision 0040); absent, `protocol` alone.
+  uint32 protocol_oldest = 4;
+}
+
+message Opened {
+  // Absolute path of `<data dir>/<engine>/rank<rank>`, created if absent.
+  string rank_dir = 1;
+  // The prefix every staging file this connection creates is named from (`stage-<n>-`, unique
+  // in the store). When the connection ends, however the worker ended, the store removes the
+  // files named from it; another connection's files and the rank's tables stay.
+  string stage_prefix = 2;
+}
+
+// One step's rows for every saved layer and held head slot, in one staging file the worker
+// mapped as [layers, heads, capacity, 2, d] (decision 0019): the rows of (layer index i, head
+// index h) are `slots.size()` contiguous rows at `base_offset + layers[i] * layer_stride +
+// h * head_stride`, and they belong to the table `layers[i] * table_stride + heads[h]`. A negative
+// slot id is padding and the store skips that row. One message describes the whole step,
+// whatever the layer count.
+message StagedStep {
+  // The staging file's name (a basename in the rank directory).
+  string stage = 1;
+  uint64 base_offset = 2;
+  uint64 layer_stride = 3;
+  uint64 head_stride = 4;
+  // Layer indices saved this step, ascending.
+  repeated uint32 layers = 5;
+  // Head slots held, in the order they sit in the buffer.
+  repeated uint32 heads = 6;
+  // Table id = layer * table_stride + head slot.
+  uint32 table_stride = 7;
+  // Slot id of each row in order; a negative id is padding.
+  repeated int64 slots = 8;
+  string dtype = 9;
+  repeated uint32 shape = 10;
+}
+
+// Sent once at registration: the tables this rank will commit, so the store creates them and
+// touches every page before serving, and the first commit into them costs what every later one
+// does (decision 0020). A table the rank commits without preparing is still created on first use.
+message Prepare {
+  string engine = 1;
+  uint32 rank = 2;
+  // Table ids (layer * table_stride + head slot).
+  repeated uint32 tables = 3;
+  string dtype = 4;
+  repeated uint32 shape = 5;
+  // The slot ids the engine writes, 0 to this: its KV cache's blocks times its block size. A
+  // store that holds fewer refuses the prepare, naming both, rather than fail the engine's first
+  // busy step (the first GPU proof's store held 4,096 of an engine's six million).
+  uint64 slots = 6;
+}
+
+// Everything one rank committed in one step: the staged rows, or none for a step that wrote
+// nothing, and the counts.
+message Commit {
+  string engine = 1;
+  uint32 rank = 2;
+  uint64 epoch = 3;
+  uint64 step = 4;
+  StagedStep staged = 5;
+  // The requests whose KV these rows belong to, and how many tokens each has committed.
+  repeated string request_ids = 6;
+  repeated uint64 committed_tokens = 7;
+}
+
+message CommitAck {
+  uint64 step = 1;
+  // Never set: a refused commit rides `MirrorReply.error`. Reserved 2026-10-19.
+  reserved 2;
+  reserved "error";
+}
+
+// Ask for what is held for `rank` of `engine`: everything, or with `since_step` set, only the
+// slots written by commits after that step of the rank's own. A restoring rank reads the whole
+// state once when a notice arrives and, at the swap, only what the leaving rank committed since,
+// so the tail it replays is one position (decision 0013).
+message RestoreRequest {
+  string engine = 1;
+  uint32 rank = 2;
+  uint64 since_step = 3;
+}
+
+// `count` consecutive written slot ids from `start`.
+message SlotRange {
+  int64 start = 1;
+  int64 count = 2;
+}
+
+// One table of the restored rank: a shared-memory file of `num_slots` rows of `shape` elements
+// of `dtype`, and the slot ids that hold committed rows.
+message TableRef {
+  uint32 layer = 1;
+  // Absolute path of the table file.
+  string path = 2;
+  string dtype = 3;
+  repeated uint32 shape = 4;
+  repeated SlotRange written = 5;
+}
+
+// The restored rank's tables and its own committed count per request, read together: the rows
+// are complete through exactly these counts, whatever other ranks committed since, and the
+// scheduler recomputes only what lies beyond them.
+message RestoreReply {
+  repeated TableRef tables = 1;
+  repeated string request_ids = 2;
+  repeated uint64 committed_tokens = 3;
+  // The rank's last committed step, the watermark a later `since_step` continues from.
+  uint64 step = 4;
+}
+
+// The scheduler evicted a request's blocks beyond `kept_tokens` (preemption), before the slots
+// are overwritten. The committed count drops to `kept_tokens`.
+message Evicted {
+  string engine = 1;
+  string request_id = 2;
+  uint64 kept_tokens = 3;
+}
+
+// Requests that finished; the service forgets their committed counts.
+message Finished {
+  string engine = 1;
+  repeated string request_ids = 2;
+}
+
+// From the node daemon, at the coordinator's direction: replicate `rank`'s tables of `engine` to
+// the stores at `targets` (`host:port` under mutual TLS, or a Unix path on the same node), the
+// nodes holding spares eligible for the rank's position (decision 0016). An empty list stops
+// replication. Replication is asynchronous: a commit is acknowledged when this store has it, and
+// the replica's lag is a metric.
+message Replicate {
+  string engine = 1;
+  uint32 rank = 2;
+  repeated string targets = 3;
+  // The node this store is on, as its daemon knows it: the name this store gives a replica in
+  // its first request, which the replica checks against this store's certificate (decision
+  // 0026).
+  string node = 4;
+}
+
+// Daemon to store: rank `rank` of `engine` replicates into this store from `from_node`, and
+// from nobody else; empty `from_node` expects nobody. The coordinator decides it, as it decides
+// the targets (decision 0026).
+message Expect {
+  string engine = 1;
+  uint32 rank = 2;
+  string from_node = 3;
+  // The epoch the expectation holds from: the store fences the rank there and refuses any
+  // replicated step of an older epoch from then on, so a source whose daemon died with its
+  // worker and keeps draining its backlog cannot write a replica the spare is restoring from.
+  uint64 epoch = 4;
+}
+
+// What this store holds for some slots of one table of a rank: each slot's row and the step
+// that wrote it, read together under the store's lock. A diagnostic for a harness comparing
+// copies; nothing in the serving path uses it.
+message RowsQuery {
+  string engine = 1;
+  uint32 rank = 2;
+  uint32 table = 3;
+  repeated int64 slots = 4;
+}
+
+message SlotRow {
+  int64 slot = 1;
+  // 0 when nothing wrote the slot.
+  uint64 written_step = 2;
+  bytes data = 3;
+  // The row's CRC32C as this store recorded it when the row was written (decision 0030).
+  fixed32 crc32c = 4;
+}
+
+message RowsReply {
+  uint64 epoch = 1;
+  uint64 step = 2;
+  repeated SlotRow rows = 3;
+}
+
+// One table's rows as a replica receives them: the slots a commit wrote and their bytes.
+message ReplicatedTable {
+  uint32 table = 1;
+  string dtype = 2;
+  repeated uint32 shape = 3;
+  repeated int64 slots = 4;
+  bytes data = 5;
+  // Each row's CRC32C, in `slots` order, as the source store took it when the row was committed
+  // (decision 0030). A replica refuses a step with a row that does not match, or with none.
+  repeated fixed32 crc32c = 6;
+}
+
+// Store to store: what one commit wrote for `rank` of `engine`, applied on the replica with the
+// same per-slot write steps, so an incremental restore works there.
+message Replicated {
+  string engine = 1;
+  uint32 rank = 2;
+  uint64 epoch = 3;
+  uint64 step = 4;
+  repeated ReplicatedTable tables = 5;
+  repeated string request_ids = 6;
+  repeated uint64 committed_tokens = 7;
+}
+
+// Store to store: where the replica stands for a rank. A source asks on every connection and,
+// unless the answer is where it last left the replica, sends the rank as it holds it now before
+// the queue: a target named late, a replica or a source restarted, acknowledgements lost with a
+// link. The replica is never silently behind.
+message ReplicaStateQuery {
+  string engine = 1;
+  uint32 rank = 2;
+  // PROTOCOL_VERSION of the source store (decision 0027).
+  uint32 protocol = 3;
+  // The source's node: the replica refuses the link unless its certificate is valid for this
+  // name and the coordinator said the rank comes from it (decision 0026).
+  string node = 4;
+  // The oldest protocol the source store serves (decision 0040); absent, `protocol` alone.
+  uint32 protocol_oldest = 5;
+}
+
+message ReplicaState {
+  uint64 epoch = 1;
+  uint64 step = 2;
+  // Whether the replica holds any row of the rank. (0, 0) is both "nothing yet" and "step 0
+  // applied", and the engine's first commit, the prefill, is step 0: without this a carrier
+  // took a replica with nothing for one that had step 0 and skipped the prefill (dry run 1).
+  bool held = 3;
+  // Whether the source's carrier has told this replica it has nothing more queued for the rank
+  // (`CaughtUp` after its last step): a restore that waits for a staged snapshot (decision 0030)
+  // reads the rank when `held` and `caught_up` both hold. Cleared by every step applied.
+  bool caught_up = 4;
+  // The epoch the rank is fenced at here (the coordinator's `Expect.epoch`, never lowered): a
+  // step, or the rank as held, of an older epoch is refused. A carrier holds back a snapshot
+  // labelled below it rather than send one the replica refuses after the whole transfer.
+  uint64 fence_epoch = 5;
+}
+
+// Store to store: the source's carrier has sent everything it holds for `rank` through
+// (`epoch`, `step`) and its queue is empty. The replica marks the rank caught up when that is
+// where it stands; a later step clears the mark (decision 0030: a spare's restore from a
+// staged replication waits for it).
+message CaughtUp {
+  string engine = 1;
+  uint32 rank = 2;
+  uint64 epoch = 3;
+  uint64 step = 4;
+}
+
+message CommittedQuery {
+  string engine = 1;
+  repeated string request_ids = 2;
+}
+
+message CommittedReply {
+  repeated string request_ids = 1;
+  repeated uint64 committed_tokens = 2;
+}
+
+// A rank's compile cache (decision 0043): the files its manifest lists, under the engine's key
+// directory `<cache>/torch_compile_cache/torch_aot_compile/<key>`, their paths relative to it.
+message CacheFile {
+  string path = 1;
+  uint64 size = 2;
+  string sha256 = 3;
+}
+
+// Fetch rank `rank`'s compile cache, the pair (`key`, `digest`), into this node's cache directory
+// from the first of `holders` (their stores' replication addresses, in order) that serves it.
+// Asked by the node's daemon on the node's socket; answered `Done` once the set and its manifest
+// are in place, or refused.
+message CacheFetch {
+  string key = 1;
+  uint32 rank = 2;
+  uint32 dp = 3;
+  string digest = 4;
+  repeated string holders = 5;
+}
+
+// Asked of a holder's store: the manifest of rank `rank`'s set, if its digest is `digest`.
+message CacheManifestQuery {
+  string key = 1;
+  uint32 rank = 2;
+  uint32 dp = 3;
+  string digest = 4;
+}
+
+// The manifest: every file the digest covers.
+message CacheManifest {
+  string key = 1;
+  uint32 rank = 2;
+  uint32 dp = 3;
+  string digest = 4;
+  repeated CacheFile files = 5;
+}
+
+// Asked of a holder's store: up to `CACHE_CHUNK_BYTES` of a file its manifest for the pair lists,
+// from `offset`.
+message CacheRead {
+  string key = 1;
+  uint32 rank = 2;
+  uint32 dp = 3;
+  string digest = 4;
+  string path = 5;
+  uint64 offset = 6;
+}
+
+message CacheChunk {
+  bytes data = 1;
+}
+
+// One request on the mirror connection. Replies come back in order, one per request.
+message MirrorRequest {
+  oneof kind {
+    Commit commit = 1;
+    RestoreRequest restore = 2;
+    CommittedQuery committed = 3;
+    Evicted evicted = 4;
+    Finished finished = 5;
+    Open open = 6;
+    Prepare prepare = 7;
+    Replicate replicate = 8;
+    Replicated replicated = 9;
+    ReplicaStateQuery replica_state = 10;
+    Expect expect = 11;
+    RowsQuery rows = 12;
+    CaughtUp caught_up = 13;
+    CacheFetch cache_fetch = 14;
+    CacheManifestQuery cache_manifest = 15;
+    CacheRead cache_read = 16;
+  }
+  // Removed with the head handoff, 2026-10-19 (decision 0045): the request-state mirror.
+  reserved 17 to 25;
+  reserved "prepare_requests", "put_requests", "read_requests", "requests_target",
+    "expect_requests", "requests_copy", "requests_replicated", "watch_requests",
+    "requests_behind_kept";
+}
+
+// A reply. `error` is set instead of a kind when the request was refused.
+message MirrorReply {
+  oneof kind {
+    CommitAck commit_ack = 1;
+    RestoreReply restore = 2;
+    CommittedReply committed = 3;
+    Done done = 4;
+    Opened opened = 5;
+    ReplicaState replica_state = 6;
+    RowsReply rows = 7;
+    CacheManifest cache_manifest = 8;
+    CacheChunk cache_chunk = 9;
+  }
+  string error = 10;
+  // Removed with the head handoff, 2026-10-19 (decision 0045): the request-state mirror.
+  reserved 11 to 13;
+  reserved "requests", "requests_ack", "requests_copy_state";
+}
+
+message Done {}

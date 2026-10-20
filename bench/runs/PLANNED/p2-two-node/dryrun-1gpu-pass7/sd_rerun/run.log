@@ -1,0 +1,5 @@
+2026-10-09T01:31:58Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: single_death; trials 1 (fault) / 3 (other); tree 0ce9abc + uncommitted
+2026-10-09T01:42:31Z nodes updated from the working tree (ea2848d + uncommitted)
+bench/harness/twonode/battery.sh: line 78: bench/harness/twonode/nodes.sh: Permission denied
+2026-10-09T01:42:52Z fabric: slowest link to node-a  Gbit/s (floor 1)
+2026-10-09T01:42:52Z REFUSED: fabric  Gbit/s under the floor 1; no arm started (REFUSED.md)

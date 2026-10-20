@@ -1,0 +1,4 @@
+{"node": "node-b", "against": "node-a", "when": "start", "probe": {"host": "10.0.0.60", "at": 1791483105.7960274, "probes": 20, "lost": 20, "error": "no reply"}}
+{"node": "node-c", "against": "node-a", "when": "start", "probe": {"host": "10.0.0.10", "at": 1791483127.4103942, "probes": 20, "lost": 20, "error": "no reply"}}
+{"node": "node-b", "against": "node-a", "when": "end", "probe": {"host": "10.0.0.60", "at": 1791483785.8465736, "probes": 20, "lost": 20, "error": "no reply"}}
+{"node": "node-c", "against": "node-a", "when": "end", "probe": {"host": "10.0.0.10", "at": 1791483807.4901743, "probes": 20, "lost": 20, "error": "no reply"}}

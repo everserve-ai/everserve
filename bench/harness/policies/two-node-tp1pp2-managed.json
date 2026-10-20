@@ -1,0 +1,77 @@
+{
+  "version": "two-node-tp1pp2-managed-drill",
+  "outcomesInOrder": [
+    "OUTCOME_REPLACE",
+    "OUTCOME_REBUILD"
+  ],
+  "spares": {
+    "perEngine": 1,
+    "loading": "LOADING_PRELOADED",
+    "allowMismatched": false,
+    "maxDegradePercent": 0
+  },
+  "maxConcurrentLosses": 1,
+  "noticeMinMs": 2000,
+  "engines": [
+    {
+      "name": "rig",
+      "members": [
+        {
+          "node": "node-a",
+          "device": 0
+        },
+        {
+          "node": "node-b",
+          "device": 0
+        }
+      ],
+      "tensorParallel": 1,
+      "expertParallel": 1,
+      "pipelineParallel": 2,
+      "placementIndependentModel": false,
+      "spares": [
+        {
+          "node": "node-a",
+          "device": 1,
+          "rank": 1
+        }
+      ],
+      "spareLaunch": {
+        "command": [
+          "/workspace/everserve/.venv/bin/python",
+          "-m",
+          "everserve_vllm.spare_main",
+          "--engine",
+          "{engine}",
+          "--rank",
+          "{rank}",
+          "--node",
+          "{node}",
+          "--policy",
+          "/workspace/everserve/bench/harness/policies/two-node-tp1pp2-managed.json",
+          "--discovery-dir",
+          "/workspace/disc",
+          "--model",
+          "/workspace/models/Qwen3-1.7B",
+          "--tp",
+          "1",
+          "--pp",
+          "2",
+          "--max-model-len",
+          "2304",
+          "--blocks",
+          "1300",
+          "--gpu-util",
+          "0.85"
+        ],
+        "env": {
+          "CUDA_VISIBLE_DEVICES": "{device}",
+          "EVERSERVE_GRAPH_SAFE": "1",
+          "EVERSERVE_LAYOUT": "1,2",
+          "EVERSERVE_EVENT_DIR": "/workspace/out/events_spare",
+          "PYTHONUNBUFFERED": "1"
+        }
+      }
+    }
+  ]
+}

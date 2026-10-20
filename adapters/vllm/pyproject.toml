@@ -1,0 +1,32 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+[project]
+name = "everserve-vllm"
+version = "0.0.1"
+description = "The vLLM adapter for Everserve: a plugin, no fork."
+readme = "README.md"
+requires-python = ">=3.10"
+# the table forms: the build backend CI resolves predates PEP 639's expression and list
+license = { text = "Apache-2.0" }
+license-files = { paths = ["LICENSE"] }
+classifiers = ["License :: OSI Approved :: Apache Software License"]
+dependencies = [
+  "everserve",
+]
+
+[project.optional-dependencies]
+# adapters/vllm/PIN: the touchpoints are read against it; vLLM installs on Linux GPU hosts only
+engine = ["vllm==0.31.0; sys_platform == 'linux'"]
+
+[project.entry-points."vllm.general_plugins"]
+everserve = "everserve_vllm:register"
+
+[tool.uv.sources]
+everserve = { workspace = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["everserve_vllm"]

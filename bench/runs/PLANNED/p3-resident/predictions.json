@@ -1,0 +1,151 @@
+{
+  "preregistration": "bench/runs/PLANNED/p3-resident/PREREGISTRATION.md",
+  "note": "transcribed from the pre-registration's Predictions and its amendments; a figure with n null is the harness's own check or reported, not scored",
+  "figures": {
+    "sessions_kept_identical": {
+      "n": 1,
+      "predicted": "every session identical to the control's, arms 5 to 7, every trial",
+      "kill": "any mismatch"
+    },
+    "first_differing_position": {
+      "n": 2,
+      "predicted": "none on both ranks",
+      "kill": "any differing position"
+    },
+    "restored_rows_mismatched": {
+      "n": 2,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "restore_coverage": {
+      "n": 3,
+      "predicted": 1.0,
+      "kill": "< 1.0"
+    },
+    "backup_coverage": {
+      "n": 4,
+      "predicted": 1.0,
+      "kill": "< 1.0 for either rank"
+    },
+    "requests_re_prefilled": {
+      "n": 5,
+      "predicted": 0,
+      "kill": "any first batch computing more than one token for a request"
+    },
+    "resume_below_committed": {
+      "n": 5,
+      "predicted": "0 (one below only with its cause named)",
+      "kill": "any resume lower"
+    },
+    "compile_cache_consistent": {
+      "n": 6,
+      "predicted": "true: readiness consistent, the spare holding its position's caches, no autotune result written",
+      "kill": "false (the failing check named)"
+    },
+    "store_refusals_total": {
+      "n": 7,
+      "predicted": 0,
+      "kill": "any refusal for checksum or unchecked"
+    },
+    "node_fault_gap_s": {
+      "n": 8,
+      "predicted": "10 to 25 (median of five warm takes)",
+      "kill": "median > 40; a cold take > 40"
+    },
+    "single_death_gap_s": {
+      "n": 9,
+      "predicted": "8 to 20 (median of five warm takes)",
+      "kill": "median > 40"
+    },
+    "take_weights_s": {
+      "n": 10,
+      "predicted": "1.5 to 4",
+      "kill": "> 10"
+    },
+    "take_kv_config_s": {
+      "n": 10,
+      "predicted": "< 2, profiling skipped",
+      "kill": "a profiling run logged"
+    },
+    "take_modules_s": {
+      "n": 10,
+      "predicted": "reported, not scored",
+      "kill": null
+    },
+    "take_warm_s": {
+      "n": 10,
+      "predicted": "reported, not scored",
+      "kill": null
+    },
+    "take_s": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "take_identity_s": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "staged_wait_s": {
+      "n": 11,
+      "predicted": "the staged copy finished before the spare asks (long context)",
+      "kill": "> 5 (long context, median of three)"
+    },
+    "take_restore_s": {
+      "n": 11,
+      "predicted": "< 2 (long context, median of three)",
+      "kill": null
+    },
+    "stock_restart_first_token_s": {
+      "n": 12,
+      "predicted": "5 to 20 minutes (median of three), the comparison, not scored",
+      "kill": null
+    },
+    "adapter_overhead_pct": {
+      "n": 13,
+      "predicted": "within 5",
+      "kill": "> 10 under stock"
+    },
+    "take_written_beyond_baseline_bytes": {
+      "n": "clarification 3",
+      "predicted": "0 on a cold take",
+      "kill": "any byte on a cold take (zero-byte files listed, not counted)"
+    },
+    "take_written_bytes": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "runs_agree": {
+      "n": "amendment 3",
+      "predicted": "every session",
+      "kill": "any session differs (the battery stops)"
+    },
+    "shadow_formation_s": {
+      "n": null,
+      "predicted": "reported, not scored",
+      "kill": null
+    },
+    "stops_killed": {
+      "n": null,
+      "predicted": 0,
+      "kill": "any process killed at its stop"
+    },
+    "replica_lag_max_steps": {
+      "n": null,
+      "predicted": null,
+      "kill": null
+    },
+    "replication_dropped_total": {
+      "n": null,
+      "predicted": 0,
+      "kill": null
+    },
+    "instrument_pause_s": {
+      "n": null,
+      "predicted": "after the gap",
+      "kill": null
+    }
+  }
+}

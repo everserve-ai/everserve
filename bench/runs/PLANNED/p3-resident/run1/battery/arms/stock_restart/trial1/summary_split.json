@@ -1,0 +1,72 @@
+{
+  "arm": "stock_restart",
+  "trial": 1,
+  "record": "bench/runs/PLANNED/p3-resident/run1/battery/arms/stock_restart/trial1/result.json",
+  "model": "/workspace/models/Llama-3.3-70B-Instruct-FP8-dynamic",
+  "sessions": 8,
+  "prompt_len": 2048,
+  "kill": {
+    "t_kill": 1791633491.8192992,
+    "mode": "node-b lost"
+  },
+  "clock": {
+    "offset_s": 1e-05,
+    "source": "probe at start",
+    "error_s": 0.000117,
+    "rtt_s": 0.000234
+  },
+  "figures": {
+    "stock_restart_first_token_s": {
+      "value": 403.29,
+      "prediction": null,
+      "predicted": "minutes (the baseline)",
+      "kill": null,
+      "t_kill_node_a": 1791633491.8192892,
+      "t_first_token": 1791633895.108862
+    },
+    "stock_restart_relaunch_latency_s": {
+      "value": 316.151,
+      "prediction": null,
+      "predicted": "the supervisor's",
+      "kill": null
+    },
+    "stock_restart_relaunch_to_ready_s": {
+      "value": 84.725,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "t_relaunch_node_a": 1791633807.9702892
+    },
+    "stock_restart_ready_to_first_token_s": {
+      "value": 2.414,
+      "prediction": null,
+      "predicted": null,
+      "kill": null
+    },
+    "stock_restart_engine_ready_s": {
+      "value": 25.433,
+      "prediction": null,
+      "predicted": "the engine's own load",
+      "kill": null
+    },
+    "sessions_kept_identical": {
+      "value": "0/8",
+      "prediction": 5,
+      "predicted": "all",
+      "kill": "any lost or mismatched",
+      "verdict": "stock keeps no session across a lost rank: every request prefilled again",
+      "green": false
+    },
+    "requests_re_prefilled": {
+      "value": 8,
+      "prediction": 5,
+      "predicted": 0,
+      "kill": "any"
+    }
+  },
+  "verdict": {
+    "green": true,
+    "line": "the baseline: measured, not scored"
+  },
+  "rederived": "2026-10-10, after the run, by stock_restart.py with the split: the relaunch stamp is the kill plus the recorded relaunch latency; the exit was not stamped, so no detection or supervisor figure"
+}

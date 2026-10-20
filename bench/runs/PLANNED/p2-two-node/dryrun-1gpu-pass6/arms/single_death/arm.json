@@ -1,0 +1,103 @@
+{
+  "arm": "single_death",
+  "trials": 1,
+  "figures": {
+    "first_differing_position": {
+      "values": [
+        0
+      ],
+      "prediction": 5,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "instrument_pause_s": {
+      "values": [
+        1.5685
+      ],
+      "prediction": null,
+      "median": 1.5685,
+      "worst": 1.5685,
+      "worst_over_median": 1.0
+    },
+    "replica_lag_max_steps": {
+      "values": [
+        0.0
+      ],
+      "prediction": 7,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0
+      ],
+      "prediction": 7,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "requests_re_prefilled": {
+      "values": [
+        0
+      ],
+      "prediction": 5,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "restore_coverage": {
+      "values": [
+        1.0
+      ],
+      "prediction": 6,
+      "median": 1.0,
+      "worst": 1.0,
+      "worst_over_median": 1.0
+    },
+    "restored_rows_mismatched": {
+      "values": [
+        0
+      ],
+      "prediction": 6,
+      "median": 0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "sessions_kept_identical": {
+      "values": [
+        "4/8"
+      ],
+      "prediction": 5
+    },
+    "shadow_formation_s": {
+      "values": [
+        3.984
+      ],
+      "prediction": 11,
+      "median": 3.984,
+      "worst": 3.984,
+      "worst_over_median": 1.0
+    },
+    "single_death_detection_s": {
+      "values": [
+        0.0067
+      ],
+      "prediction": "4b",
+      "median": 0.0067,
+      "worst": 0.0067,
+      "worst_over_median": 1.0
+    },
+    "single_death_gap_s": {
+      "values": [
+        0.6718
+      ],
+      "prediction": "4b",
+      "median": 0.6718,
+      "worst": 0.6718,
+      "worst_over_median": 1.0
+    }
+  },
+  "green": false
+}

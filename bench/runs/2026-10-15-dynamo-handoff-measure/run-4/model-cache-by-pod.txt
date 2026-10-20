@@ -1,0 +1,58 @@
+== proof-0-nodes-c5zx2 on computeinstance-e00wfr0npqxvj529x0
+cache /home/dynamo/.cache/huggingface/hub
+f 0 /home/dynamo/.cache/huggingface/hub/.locks/models--Qwen--Qwen2.5-0.5B-Instruct/0dbb161213629a23f0fc00ef286e6b1e366d180f.lock
+f 0 /home/dynamo/.cache/huggingface/hub/.locks/models--Qwen--Qwen2.5-0.5B-Instruct/fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe.lock
+f 659 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/0dbb161213629a23f0fc00ef286e6b1e366d180f
+l 79 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe
+f 40 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/refs/main
+l 52 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775/config.json
+l 76 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775/model.safetensors
+f 1251 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/trees/7ae557604adf67be50417f59c2c2f167def9a775.json
+weights /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775/model.safetensors 
+command terminated with exit code 1
+== proof-0-nodes-jw6mv on computeinstance-e00q3n42k5jzcqpf12
+cache /home/dynamo/.cache/huggingface/hub
+f 0 /home/dynamo/.cache/huggingface/hub/.locks/models--Qwen--Qwen2.5-0.5B-Instruct/0dbb161213629a23f0fc00ef286e6b1e366d180f.lock
+f 0 /home/dynamo/.cache/huggingface/hub/.locks/models--Qwen--Qwen2.5-0.5B-Instruct/fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe.lock
+f 659 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/0dbb161213629a23f0fc00ef286e6b1e366d180f
+l 79 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe
+f 40 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/refs/main
+l 52 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775/config.json
+l 76 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775/model.safetensors
+f 1251 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/trees/7ae557604adf67be50417f59c2c2f167def9a775.json
+weights /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775/model.safetensors 
+command terminated with exit code 1
+== proof-0-nodes-nllqp on computeinstance-e00njd6jm25gs5hpwt
+cache /home/dynamo/.cache/huggingface/hub
+f 0 /home/dynamo/.cache/huggingface/hub/.locks/models--Qwen--Qwen2.5-0.5B-Instruct/0dbb161213629a23f0fc00ef286e6b1e366d180f.lock
+f 0 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/.no_exist/7ae557604adf67be50417f59c2c2f167def9a775/added_tokens.json
+f 0 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/.no_exist/7ae557604adf67be50417f59c2c2f167def9a775/chat_template.jinja
+f 0 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/.no_exist/7ae557604adf67be50417f59c2c2f167def9a775/special_tokens_map.json
+f 7305 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/07bfe0640cb5a0037f9322287fbfc682806cf672
+f 0 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/07bfe0640cb5a0037f9322287fbfc682806cf672.lock
+f 659 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/0dbb161213629a23f0fc00ef286e6b1e366d180f
+f 1671839 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/20024bfe7c83998e9aeaf98a0cd6a2ce6306c2f0
+f 0 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/20024bfe7c83998e9aeaf98a0cd6a2ce6306c2f0.lock
+f 7031645 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/443909a61d429dff23010e5bddd28ff530edda00
+f 0 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/443909a61d429dff23010e5bddd28ff530edda00.lock
+f 2776833 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/4783fe10ac3adce15ac8f358ef5462739852c569
+f 0 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/4783fe10ac3adce15ac8f358ef5462739852c569.lock
+f 11343 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/6634c8cc3133b3848ec74b9f275acaaa1ea618ab
+f 0 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/6634c8cc3133b3848ec74b9f275acaaa1ea618ab.lock
+f 242 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/dfc11073787daf1b0f9c0f1499487ab5f4c93738
+f 0 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/dfc11073787daf1b0f9c0f1499487ab5f4c93738.lock
+f 988097824 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe
+f 0 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/blobs/fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe.lock
+f 40 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/refs/7ae557604adf67be50417f59c2c2f167def9a775
+f 40 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/refs/main
+l 52 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775/LICENSE
+l 52 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775/config.json
+l 52 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775/generation_config.json
+l 52 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775/merges.txt
+l 76 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775/model.safetensors
+l 52 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775/tokenizer.json
+l 52 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775/tokenizer_config.json
+l 52 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775/vocab.json
+f 1251 /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/trees/7ae557604adf67be50417f59c2c2f167def9a775.json
+weights /home/dynamo/.cache/huggingface/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775/model.safetensors 
+command terminated with exit code 1

@@ -1,0 +1,45 @@
+# Commit-path session (spare catch-up, shadow memory, then the p1-frontier-commit-path battery): run log
+2026-10-06T03:19:34Z Pasted brief, standing permission. Base d1b5d1b; local 18996f7. Cap $30 for the session. Balance 46.98.
+2026-10-06T03:19:35Z deploy 5x NVIDIA H100 80GB HBM3 COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-06T03:19:35Z deploy 5x NVIDIA H100 80GB HBM3 SECURE: {"data": {"podFindAndDeployOnDemand": {"id": "44wipvnh0u72xc", "costPerHr": 17.45, "machine": {"gpuDisplayName": "H100 SXM", "location": "CA"}}}}
+2026-10-06T03:19:53Z pod 44wipvnh0u72xc 5x H100 SXM secure CA $17.45/h (deployed 03:19:35Z); watchdog terminates at 04:57:35Z (~$28.50, cap $30)
+2026-10-06T03:19:57Z tree 18996f7 on the pod
+0, NVIDIA H100 80GB HBM3, 595.91.07, 81559 MiB
+1, NVIDIA H100 80GB HBM3, 595.91.07, 81559 MiB
+2, NVIDIA H100 80GB HBM3, 595.91.07, 81559 MiB
+3, NVIDIA H100 80GB HBM3, 595.91.07, 81559 MiB
+4, NVIDIA H100 80GB HBM3, 595.91.07, 81559 MiB
+	[4mGPU0	GPU1	GPU2	GPU3	GPU4	NIC0	NIC1	NIC2	NIC3	NIC4	NIC5	NIC6	NIC7	NIC8	NIC9	NIC10	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+GPU0	 X 	NV18	NV18	NV18	NV18	PIX	NODE	NODE	NODE	SYS	SYS	SYS	SYS	PIX	PIX	SYS	0,2,4,6,8,10	0		N/A
+GPU1	NV18	 X 	NV18	NV18	NV18	NODE	PIX	NODE	NODE	SYS	SYS	SYS	SYS	NODE	NODE	SYS	0,2,4,6,8,10	0		N/A
+GPU2	NV18	NV18	 X 	NV18	NV18	NODE	NODE	PIX	NODE	SYS	SYS	SYS	SYS	NODE	NODE	SYS	0,2,4,6,8,10	0		N/A
+GPU3	NV18	NV18	NV18	 X 	NV18	SYS	SYS	SYS	SYS	PIX	NODE	NODE	NODE	SYS	SYS	PIX	1,3,5,7,9,11	1		N/A
+GPU4	NV18	NV18	NV18	NV18	 X 	SYS	SYS	SYS	SYS	NODE	PIX	NODE	NODE	SYS	SYS	NODE	1,3,5,7,9,11	1		N/A
+shm             293G     0  293G   0% /dev/shm
+overlay         250G   25M  250G   1% /
+2026-10-06T03:19:58Z setup, build and model download started (Llama 3.3 70B Instruct first, else Qwen2.5 72B Instruct)
+2026-10-06T03:25:38Z setup done: cuda-compat-13-0 does not help on this driver: not used;-rwxr-xr-x 2 root root 7359416 Oct  6 03:25 /workspace/everserve/target/release/everserve-controller;Qwen/Qwen2.5-72B-Instruct;136G	/workspace/models/Qwen2.5-72B-Instruct;shm             293G  8.1M  293G   1% /dev/shm;
+2026-10-06T03:30:44Z pod:  adapter_port.sh drill det_1 --arm stock --custom-all-reduce default
+2026-10-06T03:30:47Z start det_1: --arm stock --custom-all-reduce default
+2026-10-06T03:33:37Z end det_1 rc=0: (MainProcess pid=10730) INFO 10-06 03:33:34 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-06T03:33:37Z pod:  adapter_port.sh drill det_2 --arm stock --custom-all-reduce default
+2026-10-06T03:33:40Z start det_2: --arm stock --custom-all-reduce default
+2026-10-06T03:34:34Z end det_2 rc=0: (MainProcess pid=12311) INFO 10-06 03:34:32 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-06T03:34:35Z determinism: det_1 vs det_2 first differing token per session: [None, None, None, None, None, None, None, None]
+2026-10-06T03:34:36Z pod: BLOCKS=1400 adapter_port.sh drill notice_ref --arm adapter --max-tokens 601 --max-model-len 2688
+2026-10-06T03:34:39Z start notice_ref: --arm adapter --max-tokens 601 --max-model-len 2688
+2026-10-06T03:37:00Z end notice_ref rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T03:37:01Z pod: BLOCKS=1400 adapter_port.sh drill notice_1 --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-06T03:37:04Z start notice_1: --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-06T03:51:19Z end notice_1 rc=134:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T03:52:01Z notice_1 (dev) hung after the swap (driver waiting on a step result; no error in any log); aborted at 03:51. Repeating it with the workers' stacks dumped 60 s after the swap.
+2026-10-06T03:56:48Z notice_2 (dev) hung the same way: rank 3 blocked in vLLM's copy_to_uva (sampler staged writes, model_runner.add_requests in execute_model) on its first step back, GPUs idle, ranks 0/1/spare waiting for the next RPC. Discriminating: the same notice drill on d1b5d1b's product code (without the catch-up landing).
+INFO:__main__:built everserve_kernels at /root/.cache/torch_extensions/py312_cu130/everserve_kernels/everserve_kernels.so
+2026-10-06T03:57:35Z start notice_3: --arm notice --notice-steps 300 --max-tokens 601 --max-model-len 2688
+2026-10-06T03:59:14Z end notice_3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-06T04:00:03Z notice_3 on d1b5d1b's product code (no catch-up) completed: the hang is landing 1's (fff6d85), not decision 0019's. Dev figures on d1b5d1b: notice_ref 463.0 tok/s, fence_waits_s 4.1-4.2 per rank, sender p50 0.94-1.13 ms, 1.0 commit message per step, shadow sets 1.527 GB per rank measured at formation. The battery is not run: its notice prediction needs landing 1, and 0019 alone misses the fence-waits kill on these figures. Data copied (tar over ssh); stopping the pod.
+overlay         250G   26G  225G  11% /
+2026-10-06T04:00:06Z terminate 44wipvnh0u72xc: {"data": {"podTerminate": null}}
+2026-10-06T04:00:06Z weights and /dev/shm deleted; pod terminated; watchdog stopped
+2026-10-06T04:00:10Z balance 35.68
+2026-10-06T04:01:31Z NOTE.md written; the battery's pre-registration marked DRAFT, NOT RUN; landing 1 kept on local branch catchup-wip

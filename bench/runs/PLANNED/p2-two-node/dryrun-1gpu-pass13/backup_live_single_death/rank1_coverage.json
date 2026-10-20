@@ -1,0 +1,1 @@
+{"rank": 1, "holder": {"epoch": 1, "step": 3585, "held": true, "caught_up": true}, "replica": {"epoch": 1, "step": 3585, "held": true, "caught_up": true}, "rows_due": 9216, "rows_matching": 9216, "coverage": 1.0}

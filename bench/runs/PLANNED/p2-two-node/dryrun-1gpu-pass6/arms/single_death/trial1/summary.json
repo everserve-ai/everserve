@@ -1,0 +1,278 @@
+{
+  "arm": "single_death",
+  "trial": 1,
+  "record": "bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass6/arms/single_death/trial1/result.json",
+  "model": "/workspace/models/Qwen3-1.7B",
+  "sessions": 8,
+  "prompt_len": 512,
+  "tok_s_steps_10_200": 1179.67,
+  "clock_offsets": [
+    {
+      "node": "node-b",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.9",
+        "at": 1791496946.2497544,
+        "probes": 20,
+        "lost": 20,
+        "error": "no reply"
+      }
+    },
+    {
+      "node": "node-c",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.78",
+        "at": 1791496967.8780713,
+        "probes": 20,
+        "lost": 20,
+        "error": "no reply"
+      }
+    },
+    {
+      "node": "node-b",
+      "against": "node-a",
+      "when": "end",
+      "probe": {
+        "host": "10.0.0.9",
+        "at": 1791497716.041262,
+        "probes": 20,
+        "lost": 20,
+        "error": "no reply"
+      }
+    },
+    {
+      "node": "node-c",
+      "against": "node-a",
+      "when": "end",
+      "probe": {
+        "host": "10.0.0.78",
+        "at": 1791497737.6914053,
+        "probes": 20,
+        "lost": 20,
+        "error": "no reply"
+      }
+    },
+    {
+      "node": "node-b",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.9",
+        "at": 1791497892.6098077,
+        "probes": 20,
+        "lost": 20,
+        "error": "no reply"
+      }
+    },
+    {
+      "node": "node-c",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.78",
+        "at": 1791497914.2401907,
+        "probes": 20,
+        "lost": 20,
+        "error": "no reply"
+      }
+    }
+  ],
+  "figures": {
+    "single_death_gap_s": {
+      "value": 0.6718,
+      "prediction": "4b",
+      "predicted": "0.5-1.5 (median of 5)",
+      "kill": "median > 4",
+      "per_session": [
+        0.6718,
+        0.6718,
+        0.6718,
+        0.6718,
+        0.6718,
+        0.6718,
+        0.6718,
+        0.6718
+      ],
+      "median_over_sessions": 0.6718
+    },
+    "single_death_detection_s": {
+      "value": 0.0067,
+      "prediction": "4b",
+      "predicted": "< 0.05",
+      "kill": "> 1"
+    },
+    "sessions_kept_identical": {
+      "value": "4/8",
+      "prediction": 5,
+      "predicted": "all",
+      "kill": "any lost or mismatched",
+      "verdict": "loss arm complete, DIVERGED vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 15, 1792, 1792, 220, 1792, 3, 11] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]",
+      "green": false
+    },
+    "restored_rows_mismatched": {
+      "value": 0,
+      "prediction": 6,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "restore_coverage": {
+      "value": 1.0,
+      "prediction": 6,
+      "predicted": 1.0,
+      "kill": "< 1"
+    },
+    "requests_re_prefilled": {
+      "value": 0,
+      "prediction": 5,
+      "predicted": 0,
+      "kill": "any",
+      "requests": []
+    },
+    "first_differing_position": {
+      "value": 0,
+      "prediction": 5,
+      "predicted": "none",
+      "kill": "any (a row differs)",
+      "comparable": true,
+      "reason": null,
+      "per_request": {
+        "0:0": null,
+        "0:1": 527,
+        "0:2": null,
+        "0:3": null,
+        "0:4": 732,
+        "0:5": null,
+        "0:6": 515,
+        "0:7": 523,
+        "1:0": 10,
+        "1:1": 0,
+        "1:2": 18,
+        "1:3": 10,
+        "1:4": 21,
+        "1:5": 13,
+        "1:6": 69,
+        "1:7": 2
+      }
+    },
+    "instrument_pause_s": {
+      "value": 1.5685,
+      "prediction": null,
+      "predicted": "after the gap",
+      "kill": null,
+      "step": 2361
+    },
+    "replica_lag_max_steps": {
+      "value": 0.0,
+      "prediction": 7,
+      "predicted": "<= 2",
+      "kill": "> 8"
+    },
+    "replication_dropped_total": {
+      "value": 0,
+      "prediction": 7,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "shadow_formation_s": {
+      "value": 3.984,
+      "prediction": 11,
+      "predicted": "< 60",
+      "kill": "formation fails"
+    }
+  },
+  "verdict": {
+    "green": false,
+    "line": "loss arm complete, DIVERGED vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 15, 1792, 1792, 220, 1792, 3, 11] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]"
+  },
+  "change": {
+    "ranks": [
+      1
+    ],
+    "faulted": [
+      1
+    ],
+    "epoch_committed": 1,
+    "wait_commit_s": 0.2056,
+    "boundary_s": 0.3078,
+    "resume_s": 0.0092,
+    "n_replayed": 8,
+    "claim_to_commit": {
+      "coordinator": {
+        "reported_at": 1791498168.803975,
+        "delivered_at": 1791498168.803979,
+        "acknowledged_at": 1791498169.025613,
+        "committed_at": 1791498169.025614
+      },
+      "deliver_s": 4e-06,
+      "acknowledgements_s": 0.221634,
+      "commit_s": 1e-06,
+      "heard_after_commit_s": 0.000368
+    },
+    "spares": {
+      "1": {
+        "restore": {
+          "restore_s": 0.2185,
+          "counts": {
+            "0-8aea6fec": 1680,
+            "1-808a67b8": 1680,
+            "2-8ca91ecd": 1680,
+            "3-a01d199e": 1680,
+            "4-bbc7dc70": 1680,
+            "5-8bb35cfd": 1680,
+            "6-b4f76f0d": 1680,
+            "7-8ebe85f1": 1680
+          },
+          "rows": 1505280,
+          "watermark": 2337,
+          "dead": 1,
+          "heads": 8,
+          "catch_up": {
+            "since_step": 2337,
+            "watermark": 2337,
+            "rows": 0,
+            "counts_before": {
+              "0-8aea6fec": 1680,
+              "1-808a67b8": 1680,
+              "2-8ca91ecd": 1680,
+              "3-a01d199e": 1680,
+              "4-bbc7dc70": 1680,
+              "5-8bb35cfd": 1680,
+              "6-b4f76f0d": 1680,
+              "7-8ebe85f1": 1680
+            },
+            "s": 0.0024,
+            "t_end": 1791498169.0424762
+          }
+        },
+        "join_s": 0.0044
+      }
+    },
+    "boundaries": {
+      "0": {
+        "tag": "change-1-1791498169.03837",
+        "rank": 0,
+        "applied": false,
+        "moved": {
+          "members": "0-R1",
+          "rows": [
+            0
+          ],
+          "epoch": 1
+        },
+        "released": [
+          "fabric 0.522s"
+        ],
+        "releasing": [
+          "torch"
+        ],
+        "leaked": 0,
+        "boundary_s": 0.0012,
+        "ring_s": 0.0007
+      }
+    },
+    "replaced_after_kill_s": 0.5455
+  }
+}

@@ -1,0 +1,126 @@
+13:43:23Z the certificates, made here
+[2m2026-10-14T13:43:23.840914Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-16/certs/ca.crt
+[2m2026-10-14T13:43:23.840979Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-16/certs/ca.key
+[2m2026-10-14T13:43:23.840989Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-16/certs/coordinator.crt
+[2m2026-10-14T13:43:23.840996Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-16/certs/coordinator.key
+[2m2026-10-14T13:43:23.841003Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-16/certs/operator-proof.crt
+[2m2026-10-14T13:43:23.841009Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-16/certs/operator-proof.key
+13:43:23Z the cluster: 3 L40S nodes, released at the latest after 1.5 h
+2026-10-14T13:50:17Z up everserve-proof-1014134323 gpu-l40s-a/1gpu-8vcpu-32gb x3: {"cluster": "mk8scluster-e00d9pzhmdt56nw4dv", "node_group": "mk8snodegroup-e00qst5151nyqvxymn", "kubeconfig": "/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-16/kubeconfig"}
+{"cluster": "mk8scluster-e00d9pzhmdt56nw4dv", "node_group": "mk8snodegroup-e00qst5151nyqvxymn", "kubeconfig": "/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-16/kubeconfig"}
+NAME                                 GPU
+computeinstance-e00e6ahqepj131gdvj   <none>
+computeinstance-e00j0et2kwzc701mx2   1
+computeinstance-e00xdjebfkrzmtaqkj   <none>
+namespace/everserve created
+namespace/everserve labeled
+secret/nebius-cr created
+namespace/serving created
+namespace/serving labeled
+secret/nebius-cr created
+secret/everserve-tls created
+13:50:24Z Dynamo's platform 1.5.1, with Grove
+NAME: dynamo-platform
+LAST DEPLOYED: Wed Oct 14 09:50:30 2026
+NAMESPACE: dynamo-system
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+# SPDX-FileCopyrightText: Copyright (c) 2025-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+13:51:04Z the instance: the head, one node of the engine, 1 spare node(s)
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-16/proof.k8s.json
+/private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/proof-16/proof.engine.json
+13:51:04Z Everserve's chart
+NAME: everserve
+LAST DEPLOYED: Wed Oct 14 09:51:06 2026
+NAMESPACE: everserve
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+dynamographdeployment.nvidia.com/proof created
+service/proof-rendezvous created
+networkpolicy.networking.k8s.io/proof-engine created
+13:51:25Z waiting for the instance to serve
+NAME                     READY   STATUS    RESTARTS   AGE     IP            NODE                                 NOMINATED NODE   READINESS GATES
+proof-0-frontend-wjwvd   1/1     Running   0          8m57s   10.4.45.156   computeinstance-e00e6ahqepj131gdvj   <none>           <none>
+proof-0-head-f6tn4       1/1     Running   0          8m57s   10.0.18.126   computeinstance-e00j0et2kwzc701mx2   <none>           <none>
+proof-0-nodes-59v44      1/1     Running   0          8m57s   10.4.45.50    computeinstance-e00e6ahqepj131gdvj   <none>           <none>
+proof-0-nodes-z9z8c      1/1     Running   0          8m57s   10.4.18.3     computeinstance-e00xdjebfkrzmtaqkj   <none>           <none>
+Forwarding from 127.0.0.1:18000 -> 8000
+Forwarding from [::1]:18000 -> 8000
+14:00:34Z the coordinator's API: its record decides when the loss is taken and whether it passed
+serviceaccount/proof-viewer created
+rolebinding.rbac.authorization.k8s.io/proof-viewer created
+Forwarding from 127.0.0.1:17443 -> 7443
+Forwarding from [::1]:17443 -> 7443
+14:00:39Z warm: one short completion
+Handling connection for 18000
+{"streams": 1, "completed": 1, "errors": [], "max_gap_s": 0.085}
+14:00:40Z loss 1 of 2: waiting for a formed set to cover the loss of rank 1
+Handling connection for 17443
+14:00:40Z cover: plan 2 at epoch 0: 0-R1@computeinstance-e00e6ahqepj131gdvj:0: 1 of 1 groups formed
+14:00:41Z loss 1: 8 streams of 6000 tokens (about 40 s each); proof-0-nodes-z9z8c, which holds rank 1 on computeinstance-e00xdjebfkrzmtaqkj, taken away while they run
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+pod "proof-0-nodes-z9z8c" deleted from serving namespace
+{"streams": 8, "completed": 8, "errors": [], "max_gap_s": 0.668}
+{"streams": 8, "completed": 8, "errors": [], "max_gap_s": 0.668}
+14:01:21Z loss 1: the coordinator's record of it
+Handling connection for 17443
+Handling connection for 17443
+14:01:22Z the change: epoch 1: replace of ranks [1] through covered set 0-R1@computeinstance-e00e6ahqepj131gdvj:0
+14:01:22Z who serves what: every node pod's answer, the one Grove made again included
+proof-0-nodes-2vr9r: told spare
+proof-0-nodes-59v44: told spare
+14:01:25Z loss 1: every stream finished without an error
+14:01:25Z loss 2 of 2: waiting for a formed set to cover the loss of rank 1
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+Handling connection for 17443
+14:01:58Z cover: plan 4 at epoch 1: 0-R1@computeinstance-e00xdjebfkrzmtaqkj:0: 1 of 1 groups formed
+14:01:58Z loss 2: 8 streams of 6000 tokens (about 40 s each); proof-0-nodes-59v44, which holds rank 1 on computeinstance-e00e6ahqepj131gdvj, taken away while they run
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+Handling connection for 18000
+pod "proof-0-nodes-59v44" deleted from serving namespace
+{"streams": 8, "completed": 8, "errors": [], "max_gap_s": 3.738}
+{"streams": 8, "completed": 8, "errors": [], "max_gap_s": 3.738}
+14:02:41Z loss 2: the coordinator's record of it
+Handling connection for 17443
+Handling connection for 17443
+14:02:42Z the change: epoch 2: replace of ranks [1] through covered set 0-R1@computeinstance-e00xdjebfkrzmtaqkj:0
+14:02:42Z who serves what: every node pod's answer, the one Grove made again included
+proof-0-nodes-2vr9r: told spare
+proof-0-nodes-h74wn: told spare
+14:02:45Z loss 2: every stream finished without an error
+14:02:45Z passed: 2 losses of rank 1 under load, each taken by a spare
+14:03:12Z taking the cluster down
+2026-10-14T14:14:55Z down: {"down": "everserve-proof-1014134323", "cluster": "mk8scluster-e00d9pzhmdt56nw4dv"}

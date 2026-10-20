@@ -1,0 +1,34 @@
+# Where the survivors wait when the slot collective does not see a death: run log
+2026-10-07T01:50:15Z owner's brief: grab the survivors' stacks at the kill (~$3) before building the step-stall rule. 5x A6000, Qwen3-1.7B TP4 + spare, tree 818d23b. adapter_1, then replace at --mid-frac 0.1, 0.3, 0.5, 0.7, 0.9, each with --stacks-after 0.15. Watchdog 30 min.
+2026-10-07T01:50:22Z deploy 3x NVIDIA RTX A6000: {"id": "qxtlst14nfrztt", "costPerHr": 2.65, "machine": {"gpuDisplayName": "RTX A6000", "location": "SE"}}
+2026-10-07T01:50:22Z pod qxtlst14nfrztt (NVIDIA RTX A6000); watchdog terminates at +30 min
+NVIDIA RTX A6000, 570.195.03
+2026-10-07T01:51:04Z tree 818d23b on the pod; setup, build and the Qwen3-1.7B download
+2026-10-07T01:58:21Z setup done: driver older than CUDA 13: cuda-compat-13-0 installed;    Finished `release` profile [optimized] target(s) in 21.49s -rwxr-xr-x 2 root root 9170472 Oct  7 01:58 /workspace/everserve/target/release/everserve-controller -rwxr-xr-x 2 root root 6805448 Oct  7 01:58 /workspace/everserve/target/release/everserve-store 
+2026-10-07T01:58:21Z pod: adapter_port.sh drill adapter_1 --arm adapter
+2026-10-07T01:58:24Z start adapter_1: --arm adapter
+2026-10-07T02:00:18Z end adapter_1 rc=0: (MainProcess pid=10103) INFO 10-07 02:00:15 [multiproc_executor.py:481] [shutdown] Executor: all workers exited gracefully
+2026-10-07T02:00:20Z adapter_1: events [] exit None stacks None
+2026-10-07T02:00:20Z pod: adapter_port.sh drill replace_f1 --arm replace --kill mid --mid-frac 0.1 --stacks-after 0.15
+2026-10-07T02:00:24Z start replace_f1: --arm replace --kill mid --mid-frac 0.1 --stacks-after 0.15
+2026-10-07T02:01:14Z end replace_f1 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T02:01:17Z replace_f1: events [('rank_lost', 'slot', 0.043), ('exited', None, 0.242)] exit 0.002 stacks [12308, 12332, 12382]
+2026-10-07T02:01:17Z pod: adapter_port.sh drill replace_f3 --arm replace --kill mid --mid-frac 0.3 --stacks-after 0.15
+2026-10-07T02:01:21Z start replace_f3: --arm replace --kill mid --mid-frac 0.3 --stacks-after 0.15
+2026-10-07T02:02:11Z end replace_f3 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T02:02:14Z replace_f3: events [('rank_lost', 'slot', 0.043), ('exited', None, 0.271)] exit 0.002 stacks [13618, 13642, 13692]
+2026-10-07T02:02:14Z pod: adapter_port.sh drill replace_f5 --arm replace --kill mid --mid-frac 0.5 --stacks-after 0.15
+2026-10-07T02:02:18Z start replace_f5: --arm replace --kill mid --mid-frac 0.5 --stacks-after 0.15
+2026-10-07T02:03:08Z end replace_f5 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T02:03:11Z replace_f5: events [('rank_lost', 'slot', 0.046), ('exited', None, 0.27)] exit 0.002 stacks [14901, 14925, 14974]
+2026-10-07T02:03:11Z pod: adapter_port.sh drill replace_f7 --arm replace --kill mid --mid-frac 0.7 --stacks-after 0.15
+2026-10-07T02:03:15Z start replace_f7: --arm replace --kill mid --mid-frac 0.7 --stacks-after 0.15
+2026-10-07T02:04:04Z end replace_f7 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T02:04:07Z replace_f7: events [('rank_lost', 'slot', 0.043), ('exited', None, 0.269)] exit 0.002 stacks [16182, 16206, 16255]
+2026-10-07T02:04:07Z pod: adapter_port.sh drill replace_f9 --arm replace --kill mid --mid-frac 0.9 --stacks-after 0.15
+2026-10-07T02:04:11Z start replace_f9: --arm replace --kill mid --mid-frac 0.9 --stacks-after 0.15
+2026-10-07T02:05:00Z end replace_f9 rc=0:   warnings.warn('resource_tracker: There appear to be %d '
+2026-10-07T02:05:03Z replace_f9: events [('rank_lost', 'sentinel', 0.213)] exit 0.002 stacks [17450, 17474, 17524]
+2026-10-07T02:05:08Z terminate qxtlst14nfrztt: {"data": {"podTerminate": null}}
+2026-10-07T02:05:08Z data copied; pod terminated
+2026-10-07T02:06:15Z result (pod qxtlst14nfrztt, 5x A6000 $2.65/h, 01:50:22-02:05:08, ~$0.65): kills at 0.1, 0.3, 0.5, 0.7 of a step detected by the slot in 43-46 ms; at 0.9 by the sentinel at 0.213 s. The stack files stayed empty (vLLM's workers wrote the faulthandler dumps to the run log, three interleaved); read from the log: at 0.9 every survivor's step thread was idle in vLLM's worker loop (worker_busy_loop > dequeue > acquire_read), waiting for the executor's next RPC. The survivors had finished the step; the executor waited for the dead rank's answer, which never came. Not the logits all-gather: a kill late in a step leaves no survivor in any collective. At 0.5 one survivor was in synchronize, waiting on the slot kernel. The stall rule (executor in flight, no step ending) covers this case.

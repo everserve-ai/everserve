@@ -1,0 +1,87 @@
+{
+  "arm": "adapter",
+  "trials": 2,
+  "figures": {
+    "adapter_overhead_pct": {
+      "values": [
+        1.38,
+        1.15
+      ],
+      "prediction": 1,
+      "median": 1.265,
+      "worst": 1.38,
+      "worst_over_median": 1.09
+    },
+    "replica_lag_max_steps": {
+      "values": [
+        0.0,
+        0.0
+      ],
+      "prediction": 7,
+      "median": 0.0,
+      "worst": 0.0,
+      "worst_over_median": null
+    },
+    "replication_dropped_total": {
+      "values": [
+        0,
+        0
+      ],
+      "prediction": 7,
+      "median": 0.0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "shadow_formation_s": {
+      "values": [
+        85.797,
+        146.7
+      ],
+      "prediction": 11,
+      "median": 116.24849999999999,
+      "worst": 146.7,
+      "worst_over_median": 1.26
+    },
+    "stops_killed": {
+      "values": [
+        0,
+        0
+      ],
+      "prediction": null,
+      "median": 0.0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "store_refusals_total": {
+      "values": [
+        0,
+        0
+      ],
+      "prediction": null,
+      "median": 0.0,
+      "worst": 0,
+      "worst_over_median": null
+    },
+    "take_written_beyond_baseline_bytes": {
+      "values": [
+        122187030,
+        0
+      ],
+      "prediction": 8,
+      "median": 61093515.0,
+      "worst": 122187030,
+      "worst_over_median": 2.0
+    },
+    "take_written_bytes": {
+      "values": [
+        126763043,
+        4576013
+      ],
+      "prediction": null,
+      "median": 65669528.0,
+      "worst": 126763043,
+      "worst_over_median": 1.93
+    }
+  },
+  "green": true
+}

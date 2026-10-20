@@ -1,0 +1,114 @@
+2026-10-09T14:18:50Z the battery's dry run on Nebius eu-north1: three single-GPU L40S VMs (gpu-l40s-a 1gpu-8vcpu-32gb), TP1 x PP2 with one spare on node-c: the script end to end, Qwen3-1.7B, every arm once; tree 68f4520
+2026-10-09T14:19:28Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00k38nz33x5xt067b", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.40", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T14:19:28Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00k38nz33x5xt067b", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.40", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T14:19:29Z VM b computeinstance-e00k38nz33x5xt067b public 89.169.115.1 private 10.0.0.40, watchdog at +180 min
+2026-10-09T14:19:30Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00nkc82czqe19qn0c", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.9", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T14:19:30Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00nkc82czqe19qn0c", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.9", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T14:19:30Z VM a computeinstance-e00nkc82czqe19qn0c public 89.169.126.232 private 10.0.0.9, watchdog at +180 min
+Traceback (most recent call last):
+  File "<tree>/bench/harness/nebius.py", line 291, in <module>
+    main()
+  File "<tree>/bench/harness/nebius.py", line 259, in main
+    out = nb.deploy(
+          ^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 130, in deploy
+    out = self.run(*args)
+          ^^^^^^^^^^^^^^^
+  File "<tree>/bench/harness/nebius.py", line 63, in run
+    raise RuntimeError(p.stderr.strip().splitlines()[0] if p.stderr.strip() else p.stdout)
+RuntimeError: waiting for operation "computeoperation-e00jcfq5gr08nwjvxd" over resource "computeinstance-e00jfhz071zjfn3m58" to complete
+2026-10-09T14:24:36Z deploy c failed: RuntimeError: waiting for operation "computeoperation-e00jcfq5gr08nwjvxd" over resource "computeinstance-e00jfhz071zjfn3m58" to complete
+2026-10-09T14:24:36Z a deploy failed; every VM released: 
+2026-10-09T14:24:54Z terminate computeinstance-e00jfhz071zjfn3m58: {"deleted": "computeinstance-e00jfhz071zjfn3m58", "disks": []}
+2026-10-09T14:26:32Z terminate computeinstance-e00nkc82czqe19qn0c: {"deleted": "computeinstance-e00nkc82czqe19qn0c", "disks": []}
+2026-10-09T14:28:10Z terminate computeinstance-e00k38nz33x5xt067b: {"deleted": "computeinstance-e00k38nz33x5xt067b", "disks": []}
+2026-10-09T14:28:10Z VMs released: []
+2026-10-09T14:28:18Z the battery's dry run on Nebius eu-north1: three single-GPU L40S VMs (gpu-l40s-a 1gpu-8vcpu-32gb), TP1 x PP2 with one spare on node-c: the script end to end, Qwen3-1.7B, every arm once; tree 68f4520
+2026-10-09T14:28:58Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00jsnsqhwajwzg5y8", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.40", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T14:28:58Z deploy everserve-a gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00jsnsqhwajwzg5y8", "name": "everserve-a", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.40", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T14:28:58Z VM a computeinstance-e00jsnsqhwajwzg5y8 public 89.169.124.3 private 10.0.0.40, watchdog at +180 min
+2026-10-09T14:29:00Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00m0m1e9nhgp67jd1", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.53", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T14:29:00Z deploy everserve-c gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00m0m1e9nhgp67jd1", "name": "everserve-c", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.53", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T14:29:00Z VM c computeinstance-e00m0m1e9nhgp67jd1 public 89.169.112.10 private 10.0.0.53, watchdog at +180 min
+2026-10-09T14:33:06Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00ndfdj4949zpjy2a", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.9", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T14:33:06Z deploy everserve-b gpu-l40s-a/1gpu-8vcpu-32gb: {"id": "computeinstance-e00ndfdj4949zpjy2a", "name": "everserve-b", "state": "RUNNING", "public_ip": "<public-ip>", "private_ip": "10.0.0.9", "platform": "gpu-l40s-a", "preset": "1gpu-8vcpu-32gb"}
+2026-10-09T14:33:06Z VM b computeinstance-e00ndfdj4949zpjy2a public 89.169.111.69 private 10.0.0.9, watchdog at +180 min
+2026-10-09T14:33:42Z addresses: a=10.0.0.40 b=10.0.0.9 c=10.0.0.53
+2026-10-09T14:33:44Z private network (a to b and c): ok after 5 s
+2026-10-09T14:33:45Z node-a: NVIDIA L40S,8;Mem:              31           1          29           0           0          30;
+2026-10-09T14:34:11Z setup started on a b c
+2026-10-09T14:39:38Z setup done on a b c
+2026-10-09T14:39:48Z nodes updated from the working tree (68f4520 + uncommitted)
+[2m2026-10-09T14:39:50.022601Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.crt
+[2m2026-10-09T14:39:50.022617Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/ca.key
+[2m2026-10-09T14:39:50.022619Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.crt
+[2m2026-10-09T14:39:50.022620Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/coordinator.key
+[2m2026-10-09T14:39:50.022622Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.crt
+[2m2026-10-09T14:39:50.022623Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-a.key
+[2m2026-10-09T14:39:50.022625Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.crt
+[2m2026-10-09T14:39:50.022626Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-b.key
+[2m2026-10-09T14:39:50.022627Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.crt
+[2m2026-10-09T14:39:50.022628Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /workspace/certs/node-c.key
+2026-10-09T14:39:53Z certs made on a, the other nodes' copied
+2026-10-09T14:40:13Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: stock_restart node_fault single_death; trials 1 (fault) / 3 (other); tree 68f4520 + uncommitted
+2026-10-09T14:41:25Z fabric: slowest link to node-a 28.59 Gbit/s (floor 1)
+2026-10-09T14:41:36Z == stock_restart trial 1
+2026-10-09T14:43:46Z stock_restart_1 armed: {"t_armed": 1791557023.5402322, "step": 100}
+2026-10-09T14:48:59Z stock_restart_1: the stock engine exited 0 after node-b's loss; relaunching it
+stock_restart trial 1: stock_restart_first_token_s=379.029, stock_restart_relaunch_latency_s=312.44, stock_restart_engine_ready_s=17.479, sessions_kept_identical=0/8, requests_re_prefilled=8
+stock_restart: 1 trials, green True, requests_re_prefilled=8, sessions_kept_identical=['0/8'], stock_restart_engine_ready_s=17.479, stock_restart_first_token_s=379.029, stock_restart_relaunch_latency_s=312.44
+2026-10-09T14:50:39Z == node_fault trial 1: control
+2026-10-09T14:53:33Z == node_fault trial 1
+2026-10-09T14:55:15Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":["10.0.0.9:7402"],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"92e817b4a1484a607a67970bfdde5fe51fe1a7893bd3ff293289aeee61f0d98e"}
+2026-10-09T14:55:19Z node_fault_1 armed: {"t_armed": 1791557714.245351, "step": 100}
+2026-10-09T14:57:53Z node_fault_1 left no results (rc 0)
+2026-10-09T14:57:53Z node_fault trial 1 failed
+node_fault: 0 trials, green False, 
+2026-10-09T14:57:53Z == single_death trial 1: control
+2026-10-09T15:00:03Z pass 12, the fault arms rerun on the same VMs after the take fix (the worker built at the take); the battery's dry run on Nebius eu-north1: three single-GPU L40S VMs (gpu-l40s-a 1gpu-8vcpu-32gb), TP1 x PP2 with one spare on node-c: the script end to end, Qwen3-1.7B, every arm once; tree 4e947c2
+2026-10-09T15:00:11Z addresses: a=10.0.0.40 b=10.0.0.9 c=10.0.0.53
+2026-10-09T15:16:55Z pass 12, the fault arms rerun on the same VMs after the take fix (the worker built at the take); the battery's dry run on Nebius eu-north1: three single-GPU L40S VMs (gpu-l40s-a 1gpu-8vcpu-32gb), TP1 x PP2 with one spare on node-c: the script end to end, Qwen3-1.7B, every arm once; tree 4e947c2
+2026-10-09T15:17:03Z addresses: a=10.0.0.40 b=10.0.0.9 c=10.0.0.53
+2026-10-09T15:17:12Z nodes a b c down
+2026-10-09T15:17:22Z nodes updated from the working tree (4e947c2 + uncommitted)
+2026-10-09T15:17:43Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: node_fault single_death; trials 1 (fault) / 3 (other); tree 4e947c2 + uncommitted
+2026-10-09T15:18:55Z fabric: slowest link to node-a 41.71 Gbit/s (floor 1)
+2026-10-09T15:19:03Z == node_fault trial 1: control
+2026-10-09T15:21:04Z == node_fault trial 1
+2026-10-09T15:22:59Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":["10.0.0.9:7402"],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"92e817b4a1484a607a67970bfdde5fe51fe1a7893bd3ff293289aeee61f0d98e"}
+2026-10-09T15:23:02Z node_fault_1 armed: {"t_armed": 1791559378.579207, "step": 100}
+2026-10-09T15:25:37Z node_fault_1 left no results (rc 0)
+2026-10-09T15:25:37Z node_fault trial 1 failed
+node_fault: 0 trials, green False, 
+2026-10-09T15:25:37Z == single_death trial 1: control
+2026-10-09T15:52:49Z pass 12, the fault arms rerun on the same VMs after the staging fence fix and the take fix; the battery's dry run on Nebius eu-north1: three single-GPU L40S VMs (gpu-l40s-a 1gpu-8vcpu-32gb), TP1 x PP2 with one spare on node-c: the script end to end, Qwen3-1.7B, every arm once; tree 69ceb21
+2026-10-09T15:52:57Z addresses: a=10.0.0.40 b=10.0.0.9 c=10.0.0.53
+2026-10-09T15:53:06Z nodes a b c down
+2026-10-09T15:53:21Z nodes updated from the working tree (69ceb21 + uncommitted)
+    Finished `release` profile [optimized] target(s) in 13.35s
+    Finished `release` profile [optimized] target(s) in 13.20s
+    Finished `release` profile [optimized] target(s) in 13.30s
+2026-10-09T15:54:06Z store and controller rebuilt on a b c at 69ceb21
+2026-10-09T15:54:27Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: node_fault single_death; trials 1 (fault) / 3 (other); tree 69ceb21 + uncommitted
+2026-10-09T15:55:40Z fabric: slowest link to node-a 40.76 Gbit/s (floor 1)
+2026-10-09T15:55:47Z == node_fault trial 1: control
+2026-10-09T15:57:49Z == node_fault trial 1
+2026-10-09T15:59:44Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":["10.0.0.9:7402"],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"92e817b4a1484a607a67970bfdde5fe51fe1a7893bd3ff293289aeee61f0d98e"}
+2026-10-09T15:59:47Z node_fault_1 armed: {"t_armed": 1791561585.17846, "step": 100}
+2026-10-09T16:01:05Z node_fault_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+node_fault trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+node_fault: 1 trials, green True, first_differing_position=[None], instrument_pause_s=1.5607, node_fault_detection_s=0.0107, node_fault_gap_s=10.9539, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8'], shadow_formation_s=0.294
+2026-10-09T16:01:14Z == single_death trial 1: control
+2026-10-09T16:03:15Z == single_death trial 1
+2026-10-09T16:04:56Z readiness: {"engine":"rig","epoch":0,"world_size":2,"members":[{"rank":0,"node":"node-a","class":"NVIDIA L40S","replicates_to":["10.0.0.9:7402"],"compile_cache":{"key":"35fd1f19047490ce07760a3bffafa1b9fb3b940a9e94813f281c102e044594a1","digest":"92e817b4a1484a607a67970bfdde5fe51fe1a7893bd3ff293289aeee61f0d98e"}
+2026-10-09T16:04:59Z single_death_1 armed: {"t_armed": 1791561894.3263278, "step": 100}
+2026-10-09T16:06:31Z single_death_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+single_death trial 1: loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]
+single_death: 1 trials, green True, first_differing_position=[None], instrument_pause_s=1.5615, replica_lag_max_steps=0.0, replication_dropped_total=0, requests_re_prefilled=0, restore_coverage=1.0, restored_rows_mismatched=0, resume_below_committed=0, sessions_kept_identical=['8/8'], shadow_formation_s=0.305, single_death_detection_s=0.0097, single_death_gap_s=11.2781
+2026-10-09T16:06:48Z battery done: node_fault node_fault-staged-rows-refused node_fault-take-built-as-rank0 single_death stock_restart ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass12
+2026-10-09T16:06:48Z battery.sh (bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass12: ARMS="node_fault single_death" TRIALS_FAULT=1 RESIDENT=1) exited 0
+2026-10-09T16:06:58Z nodes a b c down
+2026-10-09T16:08:38Z terminate computeinstance-e00m0m1e9nhgp67jd1: {"deleted": "computeinstance-e00m0m1e9nhgp67jd1", "disks": []}
+2026-10-09T16:10:23Z terminate computeinstance-e00jsnsqhwajwzg5y8: {"deleted": "computeinstance-e00jsnsqhwajwzg5y8", "disks": []}
+2026-10-09T16:11:57Z terminate computeinstance-e00ndfdj4949zpjy2a: {"deleted": "computeinstance-e00ndfdj4949zpjy2a", "disks": []}
+2026-10-09T16:11:57Z VMs released: []

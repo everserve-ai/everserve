@@ -1,0 +1,569 @@
+{
+ "streams": 32,
+ "completed": 22,
+ "errors": [
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  },
+  {
+   "message": "Service temporarily unavailable",
+   "type": "service_unavailable",
+   "code": 503
+  }
+ ],
+ "max_gap_s": 10.652,
+ "per_stream": {
+  "0": {
+   "tokens": 6000,
+   "start": 1792181593.1533902,
+   "gap_s": 0.108,
+   "gap_at": 1792181593.672,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.669,
+   "usage_tokens": 6000,
+   "last": 1792181613.755,
+   "end": 1792181613.757,
+   "text_chunks": 6000
+  },
+  "1": {
+   "tokens": 6000,
+   "start": 1792181593.153454,
+   "gap_s": 0.103,
+   "gap_at": 1792181593.923,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.799,
+   "usage_tokens": 6000,
+   "last": 1792181614.208,
+   "end": 1792181614.208,
+   "text_chunks": 6000
+  },
+  "2": {
+   "tokens": 6000,
+   "start": 1792181593.1535091,
+   "gap_s": 0.107,
+   "gap_at": 1792181593.673,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.669,
+   "usage_tokens": 6000,
+   "last": 1792181613.702,
+   "end": 1792181613.702,
+   "text_chunks": 6000
+  },
+  "3": {
+   "tokens": 2968,
+   "start": 1792181593.153543,
+   "gap_s": 0.444,
+   "gap_at": 1792181605.052,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8587800900894760
+   ],
+   "first": 1792181593.802,
+   "last": 1792181610.654,
+   "end": 1792181610.696,
+   "text_chunks": 2968
+  },
+  "4": {
+   "tokens": 6000,
+   "start": 1792181593.153574,
+   "gap_s": 0.103,
+   "gap_at": 1792181593.923,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.798,
+   "usage_tokens": 6000,
+   "last": 1792181614.208,
+   "end": 1792181614.208,
+   "text_chunks": 5631
+  },
+  "5": {
+   "tokens": 6000,
+   "start": 1792181593.1536021,
+   "gap_s": 0.108,
+   "gap_at": 1792181593.673,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.66,
+   "usage_tokens": 6000,
+   "last": 1792181613.662,
+   "end": 1792181613.666,
+   "text_chunks": 5998
+  },
+  "6": {
+   "tokens": 2972,
+   "start": 1792181593.153632,
+   "gap_s": 0.454,
+   "gap_at": 1792181605.047,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8587800900894760
+   ],
+   "first": 1792181593.794,
+   "last": 1792181610.657,
+   "end": 1792181610.696,
+   "text_chunks": 2972
+  },
+  "7": {
+   "tokens": 2837,
+   "start": 1792181593.1536598,
+   "gap_s": 0.453,
+   "gap_at": 1792181605.047,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8587800900894760
+   ],
+   "first": 1792181593.798,
+   "last": 1792181610.658,
+   "end": 1792181610.692,
+   "text_chunks": 2837
+  },
+  "8": {
+   "tokens": 6000,
+   "start": 1792181593.153688,
+   "gap_s": 3.309,
+   "gap_at": 1792181610.504,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.799,
+   "usage_tokens": 6000,
+   "last": 1792181617.401,
+   "end": 1792181617.401,
+   "text_chunks": 5997
+  },
+  "9": {
+   "tokens": 2951,
+   "start": 1792181593.153712,
+   "gap_s": 0.444,
+   "gap_at": 1792181605.052,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8587800900894760
+   ],
+   "first": 1792181593.918,
+   "last": 1792181610.654,
+   "end": 1792181610.696,
+   "text_chunks": 2951
+  },
+  "10": {
+   "tokens": 1828,
+   "start": 1792181593.1537468,
+   "gap_s": 0.466,
+   "gap_at": 1792181605.047,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8587800900894760
+   ],
+   "first": 1792181593.66,
+   "last": 1792181610.652,
+   "end": 1792181610.692,
+   "text_chunks": 1828
+  },
+  "11": {
+   "tokens": 6000,
+   "start": 1792181593.1537752,
+   "gap_s": 0.107,
+   "gap_at": 1792181593.672,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.669,
+   "usage_tokens": 6000,
+   "last": 1792181613.697,
+   "end": 1792181613.697,
+   "text_chunks": 5789
+  },
+  "12": {
+   "tokens": 6000,
+   "start": 1792181593.15381,
+   "gap_s": 8.184,
+   "gap_at": 1792181605.974,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.8,
+   "usage_tokens": 6000,
+   "last": 1792181621.073,
+   "end": 1792181621.076,
+   "text_chunks": 5990
+  },
+  "13": {
+   "tokens": 6000,
+   "start": 1792181593.153837,
+   "gap_s": 8.875,
+   "gap_at": 1792181605.285,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.922,
+   "usage_tokens": 6000,
+   "last": 1792181621.598,
+   "end": 1792181621.598,
+   "text_chunks": 5997
+  },
+  "14": {
+   "tokens": 2949,
+   "start": 1792181593.153867,
+   "gap_s": 0.453,
+   "gap_at": 1792181605.048,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8587800900894760
+   ],
+   "first": 1792181593.917,
+   "last": 1792181610.658,
+   "end": 1792181610.697,
+   "text_chunks": 2949
+  },
+  "15": {
+   "tokens": 2968,
+   "start": 1792181593.15391,
+   "gap_s": 0.444,
+   "gap_at": 1792181605.052,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8587800900894760
+   ],
+   "first": 1792181593.801,
+   "last": 1792181610.654,
+   "end": 1792181610.692,
+   "text_chunks": 2968
+  },
+  "16": {
+   "tokens": 6000,
+   "start": 1792181593.1539378,
+   "gap_s": 10.652,
+   "gap_at": 1792181603.633,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.922,
+   "usage_tokens": 6000,
+   "last": 1792181622.71,
+   "end": 1792181622.711,
+   "text_chunks": 5997
+  },
+  "17": {
+   "tokens": 6000,
+   "start": 1792181593.153968,
+   "gap_s": 4.439,
+   "gap_at": 1792181609.372,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.801,
+   "usage_tokens": 6000,
+   "last": 1792181618.496,
+   "end": 1792181618.499,
+   "text_chunks": 5997
+  },
+  "18": {
+   "tokens": 2974,
+   "start": 1792181593.153995,
+   "gap_s": 0.453,
+   "gap_at": 1792181605.048,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8587800900894760
+   ],
+   "first": 1792181593.794,
+   "last": 1792181610.659,
+   "end": 1792181610.696,
+   "text_chunks": 2974
+  },
+  "19": {
+   "tokens": 6000,
+   "start": 1792181593.154022,
+   "gap_s": 0.24,
+   "gap_at": 1792181613.46,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.798,
+   "usage_tokens": 6000,
+   "last": 1792181614.477,
+   "end": 1792181614.477,
+   "text_chunks": 5997
+  },
+  "20": {
+   "tokens": 2042,
+   "start": 1792181593.1540768,
+   "gap_s": 0.463,
+   "gap_at": 1792181605.042,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8587800900894760
+   ],
+   "first": 1792181593.918,
+   "last": 1792181610.658,
+   "end": 1792181610.696,
+   "text_chunks": 2042
+  },
+  "21": {
+   "tokens": 2949,
+   "start": 1792181593.1541271,
+   "gap_s": 0.453,
+   "gap_at": 1792181605.048,
+   "error": {
+    "message": "Service temporarily unavailable",
+    "type": "service_unavailable",
+    "code": 503
+   },
+   "workers": [
+    8587800900894760
+   ],
+   "first": 1792181593.921,
+   "last": 1792181610.659,
+   "end": 1792181610.692,
+   "text_chunks": 2949
+  },
+  "22": {
+   "tokens": 6000,
+   "start": 1792181593.154158,
+   "gap_s": 1.907,
+   "gap_at": 1792181611.85,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.798,
+   "usage_tokens": 6000,
+   "last": 1792181616.062,
+   "end": 1792181616.067,
+   "text_chunks": 5987
+  },
+  "23": {
+   "tokens": 6000,
+   "start": 1792181593.154188,
+   "gap_s": 10.154,
+   "gap_at": 1792181604.106,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.922,
+   "usage_tokens": 6000,
+   "last": 1792181622.382,
+   "end": 1792181622.383,
+   "text_chunks": 5694
+  },
+  "24": {
+   "tokens": 6000,
+   "start": 1792181593.1542149,
+   "gap_s": 5.463,
+   "gap_at": 1792181608.401,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.799,
+   "usage_tokens": 6000,
+   "last": 1792181619.224,
+   "end": 1792181619.228,
+   "text_chunks": 5580
+  },
+  "25": {
+   "tokens": 6000,
+   "start": 1792181593.154243,
+   "gap_s": 0.102,
+   "gap_at": 1792181593.8,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.799,
+   "usage_tokens": 6000,
+   "last": 1792181614.208,
+   "end": 1792181614.208,
+   "text_chunks": 5684
+  },
+  "26": {
+   "tokens": 6000,
+   "start": 1792181593.1542668,
+   "gap_s": 0.104,
+   "gap_at": 1792181593.924,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.794,
+   "usage_tokens": 6000,
+   "last": 1792181614.048,
+   "end": 1792181614.051,
+   "text_chunks": 5998
+  },
+  "27": {
+   "tokens": 6000,
+   "start": 1792181593.154304,
+   "gap_s": 7.378,
+   "gap_at": 1792181606.73,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.798,
+   "usage_tokens": 6000,
+   "last": 1792181620.533,
+   "end": 1792181620.533,
+   "text_chunks": 5997
+  },
+  "28": {
+   "tokens": 6000,
+   "start": 1792181593.154355,
+   "gap_s": 6.643,
+   "gap_at": 1792181607.517,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.799,
+   "usage_tokens": 6000,
+   "last": 1792181619.96,
+   "end": 1792181619.96,
+   "text_chunks": 2942
+  },
+  "29": {
+   "tokens": 6000,
+   "start": 1792181593.154392,
+   "gap_s": 0.103,
+   "gap_at": 1792181593.8,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.795,
+   "usage_tokens": 6000,
+   "last": 1792181614.051,
+   "end": 1792181614.053,
+   "text_chunks": 5834
+  },
+  "30": {
+   "tokens": 6000,
+   "start": 1792181593.1544168,
+   "gap_s": 9.526,
+   "gap_at": 1792181604.734,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.921,
+   "usage_tokens": 6000,
+   "last": 1792181622.013,
+   "end": 1792181622.014,
+   "text_chunks": 5982
+  },
+  "31": {
+   "tokens": 6000,
+   "start": 1792181593.154443,
+   "gap_s": 0.103,
+   "gap_at": 1792181593.924,
+   "error": null,
+   "workers": [
+    954731664956755
+   ],
+   "first": 1792181593.798,
+   "usage_tokens": 6000,
+   "last": 1792181614.206,
+   "end": 1792181614.208,
+   "text_chunks": 5996
+  }
+ }
+}

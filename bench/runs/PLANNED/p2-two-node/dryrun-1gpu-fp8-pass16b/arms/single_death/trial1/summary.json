@@ -1,0 +1,399 @@
+{
+  "arm": "single_death",
+  "trial": 1,
+  "record": "bench/runs/PLANNED/p2-two-node/dryrun-1gpu-fp8-pass16b/arms/single_death/trial1/result.json",
+  "model": "/workspace/models/Qwen3-1.7B-FP8",
+  "sessions": 8,
+  "prompt_len": 512,
+  "tok_s_steps_10_200": 1121.69,
+  "clock_offsets": [
+    {
+      "node": "node-b",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.22",
+        "at": 1791584354.5483322,
+        "probes": 20,
+        "lost": 0,
+        "offset_s": -0.000497,
+        "rtt_s": 0.000109,
+        "error_s": 5.4e-05
+      }
+    },
+    {
+      "node": "node-c",
+      "against": "node-a",
+      "when": "start",
+      "probe": {
+        "host": "10.0.0.57",
+        "at": 1791584356.5941281,
+        "probes": 20,
+        "lost": 0,
+        "offset_s": -0.000223,
+        "rtt_s": 0.000126,
+        "error_s": 6.3e-05
+      }
+    }
+  ],
+  "figures": {
+    "single_death_gap_s": {
+      "value": 5.9176,
+      "prediction": "4b",
+      "predicted": "0.5-1.5 (median of 5)",
+      "kill": "median > 4",
+      "per_session": [
+        5.9176,
+        5.9176,
+        5.9176,
+        5.9176,
+        5.9176,
+        5.9176,
+        5.9176,
+        5.9176
+      ],
+      "median_over_sessions": 5.9176
+    },
+    "single_death_detection_s": {
+      "value": 0.0079,
+      "prediction": "4b",
+      "predicted": "< 0.05",
+      "kill": "> 1"
+    },
+    "sessions_kept_identical": {
+      "value": "8/8",
+      "prediction": 5,
+      "predicted": "all",
+      "kill": "any lost or mismatched",
+      "verdict": "loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]",
+      "green": true
+    },
+    "restored_rows_mismatched": {
+      "value": 0,
+      "prediction": 6,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "restore_coverage": {
+      "value": 1.0,
+      "prediction": 6,
+      "predicted": 1.0,
+      "kill": "< 1"
+    },
+    "requests_re_prefilled": {
+      "value": 0,
+      "prediction": 5,
+      "predicted": 0,
+      "kill": "any",
+      "requests": []
+    },
+    "resume_below_committed": {
+      "value": 0,
+      "prediction": 15,
+      "predicted": "0 (at committed, or one below: the last sampled token died with the rank)",
+      "kill": "any",
+      "requests": [],
+      "causes": {
+        "0-a2a67bb6": "at_committed",
+        "1-8237c9cf": "at_committed",
+        "2-b33fbb79": "at_committed",
+        "3-9a4585c5": "at_committed",
+        "4-83dd760a": "at_committed",
+        "5-8194c2a7": "at_committed",
+        "6-b748f22b": "at_committed",
+        "7-a37e592c": "at_committed"
+      }
+    },
+    "first_differing_position": {
+      "value": null,
+      "prediction": 5,
+      "predicted": "none",
+      "kill": "any (a row differs)",
+      "comparable": true,
+      "reason": null,
+      "per_request": {
+        "0:0": null,
+        "0:1": null,
+        "0:2": null,
+        "0:3": null,
+        "0:4": null,
+        "0:5": null,
+        "0:6": null,
+        "0:7": null,
+        "1:0": null,
+        "1:1": null,
+        "1:2": null,
+        "1:3": null,
+        "1:4": null,
+        "1:5": null,
+        "1:6": null,
+        "1:7": null
+      }
+    },
+    "instrument_pause_s": {
+      "value": 1.7817,
+      "prediction": null,
+      "predicted": "after the gap",
+      "kill": null,
+      "step": 3022
+    },
+    "take_s": {
+      "value": 5.552,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1"
+    },
+    "take_weights_s": {
+      "value": 0.087,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1"
+    },
+    "take_modules_s": {
+      "value": 1.783,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1"
+    },
+    "take_kv_config_s": {
+      "value": 1.203,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1"
+    },
+    "take_warm_s": {
+      "value": 2.108,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1"
+    },
+    "take_identity_s": {
+      "value": 0.002,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1"
+    },
+    "staged_wait_s": {
+      "value": 0.0001,
+      "prediction": null,
+      "predicted": null,
+      "kill": null,
+      "rank": "1"
+    },
+    "replica_lag_max_steps": {
+      "value": 0.0,
+      "prediction": 7,
+      "predicted": "<= 2",
+      "kill": "> 8"
+    },
+    "store_refusals_total": {
+      "value": 0,
+      "prediction": null,
+      "predicted": 0,
+      "kill": "any checksum refusal",
+      "by_reason": {},
+      "stores_read": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "replication_dropped_total": {
+      "value": 0,
+      "prediction": 7,
+      "predicted": 0,
+      "kill": "any"
+    },
+    "backup_coverage": {
+      "value": 1.0,
+      "prediction": null,
+      "predicted": 1.0,
+      "kill": "< 1.0 for either rank",
+      "per_rank": {
+        "0": 1.0,
+        "1": 1.0
+      },
+      "detail": {
+        "0": {
+          "rank": 0,
+          "holder": {
+            "epoch": 1,
+            "step": 3585,
+            "held": true,
+            "caught_up": false
+          },
+          "replica": {
+            "epoch": 1,
+            "step": 3585,
+            "held": true,
+            "caught_up": true
+          },
+          "scored_at_step": 3585,
+          "rows_due": 9216,
+          "rows_matching": 9216,
+          "coverage": 1.0
+        },
+        "1": {
+          "rank": 1,
+          "holder": {
+            "epoch": 1,
+            "step": 3583,
+            "held": true,
+            "caught_up": true
+          },
+          "replica": {
+            "epoch": 1,
+            "step": 3583,
+            "held": true,
+            "caught_up": true
+          },
+          "scored_at_step": 3583,
+          "rows_due": 9216,
+          "rows_matching": 9216,
+          "coverage": 1.0
+        }
+      }
+    },
+    "shadow_formation_s": {
+      "value": 0.295,
+      "prediction": 11,
+      "predicted": "< 60",
+      "kill": "formation fails"
+    }
+  },
+  "verdict": {
+    "green": true,
+    "line": "loss arm complete, exact vs control: changes 1, events ['rank_lost', 'replaced'], identical prefix per session [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792] of [1792, 1792, 1792, 1792, 1792, 1792, 1792, 1792]"
+  },
+  "change": {
+    "ranks": [
+      1
+    ],
+    "faulted": [
+      1
+    ],
+    "epoch_committed": 1,
+    "wait_commit_s": 5.7868,
+    "boundary_s": 0.0199,
+    "resume_s": 0.0067,
+    "n_replayed": 8,
+    "claim_to_commit": {
+      "coordinator": {
+        "reported_at": 1791584985.09956,
+        "delivered_at": 1791584985.09959,
+        "acknowledged_at": 1791584990.902388,
+        "committed_at": 1791584990.902389
+      },
+      "deliver_s": 3e-05,
+      "acknowledgements_s": 5.802798,
+      "commit_s": 1e-06,
+      "heard_after_commit_s": 0.000547
+    },
+    "join_legs_s": {
+      "offers_out": 0.0129,
+      "answers_back": 0.0056,
+      "ring_subscribed": 0.0,
+      "ring_ready": 0.0012,
+      "survivors_boundary": 0.0002
+    },
+    "spares": {
+      "1": {
+        "restore": {
+          "restore_s": 0.247,
+          "staged": {
+            "epoch": 0,
+            "step": 2998,
+            "s": 0.0001,
+            "polls": 1
+          },
+          "counts": {
+            "0-a2a67bb6": 2011,
+            "1-8237c9cf": 2011,
+            "2-b33fbb79": 2011,
+            "3-9a4585c5": 2011,
+            "4-83dd760a": 2011,
+            "5-8194c2a7": 2011,
+            "6-b748f22b": 2011,
+            "7-a37e592c": 2011
+          },
+          "rows": 1801856,
+          "watermark": 2998,
+          "dead": 1,
+          "heads": 8,
+          "catch_up": {
+            "since_step": 2998,
+            "watermark": 2998,
+            "rows": 0,
+            "counts_before": {
+              "0-a2a67bb6": 2011,
+              "1-8237c9cf": 2011,
+              "2-b33fbb79": 2011,
+              "3-9a4585c5": 2011,
+              "4-83dd760a": 2011,
+              "5-8194c2a7": 2011,
+              "6-b748f22b": 2011,
+              "7-a37e592c": 2011
+            },
+            "s": 0.0024,
+            "t_end": 1791584990.9186378
+          }
+        },
+        "join_s": 0.0042,
+        "attachment": {
+          "engine": "rig",
+          "rank": 1,
+          "stage": 1,
+          "sizing_s": 0.016,
+          "warm_s": 2.108,
+          "shard_copy_s": 1.87,
+          "weights_s": 0.087,
+          "kv_config_s": 1.203,
+          "kv_alloc_s": 0.003,
+          "take_s": 5.552,
+          "identity_s": 0.002,
+          "build_s": 0.226
+        }
+      }
+    },
+    "boundaries": {
+      "0": {
+        "tag": "change-1-1791584990.915552",
+        "rank": 0,
+        "applied": false,
+        "moved": {
+          "members": "0-R1",
+          "rows": [
+            0
+          ],
+          "epoch": 1
+        },
+        "released": [
+          "fabric 0.517s",
+          "torch 1.023s"
+        ],
+        "releasing": [],
+        "leaked": 0,
+        "boundary_s": 0.0014,
+        "t_entered": 1791584990.9160116,
+        "release_times": {
+          "fabric": [
+            1791584985.100478,
+            1791584985.6172063
+          ],
+          "torch": [
+            1791584985.1007776,
+            1791584986.1238537
+          ]
+        },
+        "ring_s": 0.0041
+      }
+    },
+    "replaced_after_kill_s": 5.8376
+  }
+}

@@ -1,0 +1,15 @@
+{"action": "read_registered", "t": 1791847519.135172000, "rc": 0}
+{"action": "cordon_d", "t": 1791847519.137189000, "rc": 0}
+{"action": "cordon_e", "t": 1791847520.667846000, "rc": 0}
+{"action": "read_cordoned", "t": 1791847535.476806000, "rc": 0}
+{"action": "uncordon_d", "t": 1791847535.484174000, "rc": 0}
+{"action": "uncordon_e", "t": 1791847537.076890000, "rc": 0}
+{"action": "read_uncordoned", "t": 1791847551.556917000, "rc": 0}
+{"action": "read_recovered", "t": 1791847567.401089000, "rc": 0}
+{"action": "drain_b", "t": 1791847570.692323000, "rc": 0}
+{"action": "drain_c", "t": 1791847572.289629000, "rc": 0}
+{"action": "drain_b_again", "t": 1791847573.899332000, "rc": 0}
+{"action": "read_draining", "t": 1791847588.411738000, "rc": 0}
+{"action": "coord_restart", "t": 1791847914.353577000, "rc": 0}
+{"action": "read_restarted", "t": 1791847940.918173000, "rc": 0}
+{"action": "read_draining", "t": 1791848933.637188000, "rc": 0}

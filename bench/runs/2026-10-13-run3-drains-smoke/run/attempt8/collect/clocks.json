@@ -1,0 +1,8 @@
+{"node": "node-b", "against": "node-a", "when": "start", "probe": {"host": "10.0.0.94", "at": 1791852059.3046095, "probes": 20, "lost": 0, "offset_s": -4.3e-05, "rtt_s": 0.000139, "error_s": 6.9e-05}}
+{"node": "node-c", "against": "node-a", "when": "start", "probe": {"host": "10.0.0.47", "at": 1791852061.4239566, "probes": 20, "lost": 0, "offset_s": 0.001446, "rtt_s": 0.000147, "error_s": 7.4e-05}}
+{"node": "node-d", "against": "node-a", "when": "start", "probe": {"host": "10.0.0.84", "at": 1791852063.4845934, "probes": 20, "lost": 0, "offset_s": 0.0003, "rtt_s": 0.000145, "error_s": 7.3e-05}}
+{"node": "node-e", "against": "node-a", "when": "start", "probe": {"host": "10.0.0.82", "at": 1791852065.5320709, "probes": 20, "lost": 0, "offset_s": -0.000232, "rtt_s": 0.000133, "error_s": 6.6e-05}}
+{"node": "node-b", "against": "node-a", "when": "end", "probe": {"host": "10.0.0.94", "at": 1791852406.691224, "probes": 20, "lost": 0, "offset_s": -3.6e-05, "rtt_s": 0.000154, "error_s": 7.7e-05}}
+{"node": "node-c", "against": "node-a", "when": "end", "probe": {"host": "10.0.0.47", "at": 1791852408.7158878, "probes": 20, "lost": 0, "offset_s": 0.000921, "rtt_s": 0.000131, "error_s": 6.5e-05}}
+{"node": "node-d", "against": "node-a", "when": "end", "probe": {"host": "10.0.0.84", "at": 1791852410.7194078, "probes": 20, "lost": 0, "offset_s": 0.000166, "rtt_s": 0.000135, "error_s": 6.7e-05}}
+{"node": "node-e", "against": "node-a", "when": "end", "probe": {"host": "10.0.0.82", "at": 1791852412.7131739, "probes": 20, "lost": 0, "offset_s": -0.000153, "rtt_s": 0.000127, "error_s": 6.3e-05}}

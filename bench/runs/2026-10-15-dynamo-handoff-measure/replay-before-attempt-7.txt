@@ -1,0 +1,117 @@
+== bench/runs/2026-10-15-dynamo-handoff-measure/run/engines-proof-loss-1.json
+ok   serving               Serving True (Members); 2 of 2 positions held; head on computeinstance-e00vetp7742q69j534
+ok   head-ranks            computeinstance-e00vetp7742q69j534 1
+ok   head-covered          head on computeinstance-e00vetp7742q69j534, standby on computeinstance-e00jtck728t9hqfr3z; Covered False: 1 losses without a formed set (0 planned and forming): [[0]]; the head's node holds [1], whose loss restarts the engine
+ok   holder           0    computeinstance-e00jtck728t9hqfr3z
+no   covered          0    plan 1 at epoch 0: no set planned for the loss of rank 0
+ok   holder           1    computeinstance-e00vetp7742q69j534
+no   covered          1    plan 1 at epoch 0: no set planned for the loss of rank 1
+no   engine-covered   1    Covered False (LossUncovered): 1 losses without a formed set (0 planned and forming): [[0]]; the head's node holds [1], whose loss restarts the engine
+no   replaced         1 1  no change committed
+no   head-changed     1 -  epoch None: None; head on computeinstance-e00vetp7742q69j534; down None
+no   replaced         1 2  no change committed
+no   head-changed     2 -  epoch None: None; head on computeinstance-e00vetp7742q69j534; down None
+== bench/runs/2026-10-15-dynamo-handoff-measure/run-2/engines-proof.json
+ok   serving               Serving True (Members); 2 of 2 positions held; head on computeinstance-e00scybs4vddbkrb05
+ok   head-ranks            computeinstance-e00scybs4vddbkrb05 1
+no   head-covered          head on computeinstance-e00scybs4vddbkrb05, standby on None; Covered True: every node's and position's loss has a formed set; the head's node holds [1], whose loss restarts the engine
+ok   holder           0    computeinstance-e00qyvw8ryhr6995hm
+ok   covered          0    plan 2 at epoch 0: R0@computeinstance-e00z48393x2mbk55tc:0-1: 1 of 1 groups formed
+ok   holder           1    computeinstance-e00scybs4vddbkrb05
+no   covered          1    plan 2 at epoch 0: no set planned for the loss of rank 1
+ok   engine-covered   1    Covered True (EveryLossCovered): every node's and position's loss has a formed set; the head's node holds [1], whose loss restarts the engine
+no   replaced         1 1  no change committed
+no   head-changed     1 -  epoch None: None; head on computeinstance-e00scybs4vddbkrb05; down None
+no   replaced         1 2  no change committed
+no   head-changed     2 -  epoch None: None; head on computeinstance-e00scybs4vddbkrb05; down None
+== bench/runs/2026-10-15-dynamo-handoff-measure/run-3/engines-proof.json
+no   serving               Serving False (NoMembers); 0 of 0 positions held; head on computeinstance-e00eb684n03w3raead
+no   head-ranks            head on computeinstance-e00eb684n03w3raead, holding no rank; members []
+no   head-covered          head on computeinstance-e00eb684n03w3raead, standby on None; Covered Unknown: no position is held; no other node of the engine can start a successor: a notice for computeinstance-e00eb684n03w3raead restarts the engine
+no   holder           0    no member holds rank 0
+no   covered          0    plan None at epoch None: no set planned for the loss of rank 0
+no   holder           1    no member holds rank 1
+no   covered          1    plan None at epoch None: no set planned for the loss of rank 1
+no   engine-covered   1    Covered Unknown (NoMembers): no position is held; no other node of the engine can start a successor: a notice for computeinstance-e00eb684n03w3raead restarts the engine
+no   replaced         1 1  no change committed
+no   head-changed     1 -  epoch None: None; head on computeinstance-e00eb684n03w3raead; down None
+no   replaced         1 2  no change committed
+no   head-changed     2 -  epoch None: None; head on computeinstance-e00eb684n03w3raead; down None
+== bench/runs/2026-10-15-dynamo-handoff-measure/run-4/engines-proof.json
+ok   serving               Serving True (Members); 2 of 2 positions held; head on computeinstance-e00njd6jm25gs5hpwt
+ok   head-ranks            computeinstance-e00njd6jm25gs5hpwt 0
+no   head-covered          head on computeinstance-e00njd6jm25gs5hpwt, standby on None; Covered False: 2 losses without a formed set (0 planned and forming): [[0], [1]]; the head's node holds [0], which a notice moves before the head
+ok   holder           0    computeinstance-e00njd6jm25gs5hpwt
+no   covered          0    plan 1 at epoch 0: no set planned for the loss of rank 0
+ok   holder           1    computeinstance-e00wfr0npqxvj529x0
+no   covered          1    plan 1 at epoch 0: no set planned for the loss of rank 1
+no   engine-covered   1    Covered False (LossUncovered): 2 losses without a formed set (0 planned and forming): [[0], [1]]; the head's node holds [0], which a notice moves before the head
+no   replaced         1 1  no change committed
+no   head-changed     1 -  epoch None: None; head on computeinstance-e00njd6jm25gs5hpwt; down None
+no   replaced         1 2  no change committed
+no   head-changed     2 -  epoch None: None; head on computeinstance-e00njd6jm25gs5hpwt; down None
+== bench/runs/2026-10-15-dynamo-handoff-measure/run-5/engines-proof-loss-1.json
+no   serving               Serving True (Members); 1 of 2 positions held; head on None
+no   head-ranks            head on None, holding no rank; members [(0, 'computeinstance-e00mdkb0vtfhytjqjw')]
+no   head-covered          head on None, standby on computeinstance-e00pdcjne99023kprz; Covered False: 1 losses without a formed set (0 planned and forming): [[0]]
+ok   holder           0    computeinstance-e00mdkb0vtfhytjqjw
+no   covered          0    plan 3 at epoch 1: no set planned for the loss of rank 0
+no   holder           1    no member holds rank 1
+no   covered          1    plan 3 at epoch 1: no set planned for the loss of rank 1
+no   engine-covered   1    Covered False (LossUncovered): 1 losses without a formed set (0 planned and forming): [[0]]
+no   replaced         1 1  epoch 1: replace of ranks [0] through covered set R0@computeinstance-e00mdkb0vtfhytjqjw:0-1
+no   head-changed     1 -  epoch 1: replace; head on None; down None
+no   replaced         1 2  epoch 1: replace of ranks [0] through covered set R0@computeinstance-e00mdkb0vtfhytjqjw:0-1; epoch 2 expected
+no   head-changed     2 -  epoch 1: replace; head on None; down None
+== bench/runs/2026-10-15-dynamo-handoff-measure/run-6/engines-proof.json
+no   serving               Serving False (NoMembers); 0 of 2 positions held; head on None
+no   head-ranks            head on None, holding no rank; members []
+no   head-covered          head on None, standby on computeinstance-e00g5yg7w0x9k3h30k; Covered True: every node's and position's loss has a formed set
+no   holder           0    no member holds rank 0
+no   covered          0    plan 3 at epoch 1: no set planned for the loss of rank 0
+no   holder           1    no member holds rank 1
+no   covered          1    plan 3 at epoch 1: no set planned for the loss of rank 1
+ok   engine-covered   1    Covered True (EveryLossCovered): every node's and position's loss has a formed set
+no   replaced         1 1  epoch 1: replace of ranks [0] through covered set R0@computeinstance-e00kgqyny9a36neht0:0-1
+no   head-changed     1 -  epoch 1: replace; head on None; down None
+no   replaced         1 2  epoch 1: replace of ranks [0] through covered set R0@computeinstance-e00kgqyny9a36neht0:0-1; epoch 2 expected
+no   head-changed     2 -  epoch 1: replace; head on None; down None
+== bench/runs/2026-10-15-dynamo-handoff-measure/run-6/engines-proof-loss-1.json
+no   serving               Serving False (NoMembers); 0 of 2 positions held; head on None
+no   head-ranks            head on None, holding no rank; members []
+no   head-covered          head on None, standby on computeinstance-e00g5yg7w0x9k3h30k; Covered True: every node's and position's loss has a formed set
+no   holder           0    no member holds rank 0
+no   covered          0    plan 3 at epoch 1: no set planned for the loss of rank 0
+no   holder           1    no member holds rank 1
+no   covered          1    plan 3 at epoch 1: no set planned for the loss of rank 1
+ok   engine-covered   1    Covered True (EveryLossCovered): every node's and position's loss has a formed set
+no   replaced         1 1  epoch 1: replace of ranks [0] through covered set R0@computeinstance-e00kgqyny9a36neht0:0-1
+no   head-changed     1 -  epoch 1: replace; head on None; down None
+no   replaced         1 2  epoch 1: replace of ranks [0] through covered set R0@computeinstance-e00kgqyny9a36neht0:0-1; epoch 2 expected
+no   head-changed     2 -  epoch 1: replace; head on None; down None
+== bench/runs/2026-10-15-dynamo-proof-gated-join/run/engines-proof-loss-1.json
+ok   serving               Serving True (Members); 2 of 2 positions held; head on computeinstance-e00h8q579gcdmej8a6
+ok   head-ranks            computeinstance-e00h8q579gcdmej8a6 0
+no   head-covered          head on computeinstance-e00h8q579gcdmej8a6, standby on None; Covered False: 1 losses without a formed set (0 planned and forming): [[1]]; the head's node holds [0], whose loss restarts the engine
+ok   holder           0    computeinstance-e00h8q579gcdmej8a6
+no   covered          0    plan 3 at epoch 1: no set planned for the loss of rank 0
+ok   holder           1    computeinstance-e00jh0j1ryxae786kr
+no   covered          1    plan 3 at epoch 1: no set planned for the loss of rank 1
+no   engine-covered   1    Covered False (LossUncovered): 1 losses without a formed set (0 planned and forming): [[1]]; the head's node holds [0], whose loss restarts the engine
+ok   replaced         1 1  epoch 1: replace of ranks [1] through covered set 0-R1@computeinstance-e00jh0j1ryxae786kr:0
+no   head-changed     1 -  epoch 1: replace; head on computeinstance-e00h8q579gcdmej8a6; down None
+no   replaced         1 2  epoch 1: replace of ranks [1] through covered set 0-R1@computeinstance-e00jh0j1ryxae786kr:0; epoch 2 expected
+no   head-changed     2 -  epoch 1: replace; head on computeinstance-e00h8q579gcdmej8a6; down None
+== bench/runs/2026-10-15-dynamo-proof-gated-join/run/engines-proof-loss-2.json
+ok   serving               Serving True (Members); 2 of 2 positions held; head on computeinstance-e00h8q579gcdmej8a6
+ok   head-ranks            computeinstance-e00h8q579gcdmej8a6 0
+no   head-covered          head on computeinstance-e00h8q579gcdmej8a6, standby on None; Covered False: 1 losses without a formed set (0 planned and forming): [[1]]; the head's node holds [0], whose loss restarts the engine
+ok   holder           0    computeinstance-e00h8q579gcdmej8a6
+no   covered          0    plan 5 at epoch 2: no set planned for the loss of rank 0
+ok   holder           1    computeinstance-e00gdq11amv5ep4ja7
+no   covered          1    plan 5 at epoch 2: no set planned for the loss of rank 1
+no   engine-covered   1    Covered False (LossUncovered): 1 losses without a formed set (0 planned and forming): [[1]]; the head's node holds [0], whose loss restarts the engine
+no   replaced         1 1  epoch 2: replace of ranks [1] through covered set 0-R1@computeinstance-e00gdq11amv5ep4ja7:0; epoch 1 expected
+no   head-changed     1 -  epoch 2: replace; head on computeinstance-e00h8q579gcdmej8a6; down None
+ok   replaced         1 2  epoch 2: replace of ranks [1] through covered set 0-R1@computeinstance-e00gdq11amv5ep4ja7:0
+no   head-changed     2 -  epoch 2: replace; head on computeinstance-e00h8q579gcdmej8a6; down None

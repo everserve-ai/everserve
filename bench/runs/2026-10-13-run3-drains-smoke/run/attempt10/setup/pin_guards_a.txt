@@ -1,0 +1,36 @@
+.....................                                                    [100%]
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: 14 warnings
+  /workspace/everserve/.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==================================== PASSES ====================================
+_ test_a_worker_whose_position_left_and_never_released_is_ended_after_the_hang_bound _
+------------------------------ Captured log call -------------------------------
+WARNING  everserve_vllm.node:node.py:156 worker 1 not released 11.0 s after it left; ended
+_ test_a_rank_its_claim_named_a_fault_is_ended_at_once_and_a_departing_one_after_its_grace _
+------------------------------ Captured log call -------------------------------
+WARNING  everserve_vllm.node:node.py:156 worker 1 not released 0.0 s after it left; ended
+=========================== short test summary info ============================
+PASSED adapters/vllm/tests/test_executor_failed.py::test_vllm_carries_a_change_abort_to_the_executor_with_its_marker_first[error0]
+PASSED adapters/vllm/tests/test_executor_failed.py::test_vllm_carries_a_change_abort_to_the_executor_with_its_marker_first[error1]
+PASSED adapters/vllm/tests/test_executor_failed.py::test_the_executor_reads_a_refused_step_as_the_loss_it_holds
+PASSED adapters/vllm/tests/test_node.py::test_a_worker_keeps_its_step_word_while_it_runs_a_step_rpc
+PASSED adapters/vllm/tests/test_node.py::test_without_a_slot_region_no_word_is_kept
+PASSED adapters/vllm/tests/test_node.py::test_a_taken_position_of_this_stage_goes_to_the_spare_s_row
+PASSED adapters/vllm/tests/test_node.py::test_a_change_moves_the_spare_s_row_in_and_clears_the_rows_that_left
+PASSED adapters/vllm/tests/test_node.py::test_a_position_moved_to_another_node_has_left_not_been_taken_here
+PASSED adapters/vllm/tests/test_node.py::test_the_entry_point_takes_the_engine_s_arguments_and_the_node_s_place
+PASSED adapters/vllm/tests/test_node.py::test_a_set_whose_group_is_this_process_alone_gets_a_stand_in
+PASSED adapters/vllm/tests/test_node.py::test_only_the_head_registers_as_the_engine_s_head_and_says_goodbye[EverserveExecutor]
+PASSED adapters/vllm/tests/test_node.py::test_only_the_head_registers_as_the_engine_s_head_and_says_goodbye[NodeExecutor]
+PASSED adapters/vllm/tests/test_node.py::test_a_node_that_heard_only_a_commit_before_protocol_9_learns_the_ranks_it_lost_from_it
+PASSED adapters/vllm/tests/test_node.py::test_the_commit_s_members_say_a_rank_launched_here_has_left_whatever_claims_were_missed
+PASSED adapters/vllm/tests/test_node.py::test_a_worker_whose_position_left_and_never_released_is_ended_after_the_hang_bound
+PASSED adapters/vllm/tests/test_node.py::test_a_rank_its_claim_named_a_fault_is_ended_at_once_and_a_departing_one_after_its_grace
+PASSED adapters/vllm/tests/test_resident.py::test_the_copy_holds_every_file_s_tensors_as_views_into_its_buffers
+PASSED adapters/vllm/tests/test_resident.py::test_the_copy_refuses_what_it_cannot_hold
+PASSED adapters/vllm/tests/test_resident.py::test_the_loader_feeds_the_held_copy_to_the_model_and_records_what_it_took
+PASSED adapters/vllm/tests/test_resident.py::test_the_copy_holds_each_file_s_tensor_bytes_and_no_more
+PASSED adapters/vllm/tests/test_resident.py::test_the_pinned_copy_is_locked_in_place_at_its_own_size_and_released

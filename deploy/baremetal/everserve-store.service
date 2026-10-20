@@ -1,0 +1,36 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# The store: one per node, the committed-KV mirror over shared memory, replicating to the spare
+# nodes' stores and taking their replicas.
+[Unit]
+Description=Everserve store
+Documentation=file:///usr/share/doc/everserve/README.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=everserve
+Group=everserve
+EnvironmentFile=/etc/everserve/store.env
+ExecStart=/usr/local/bin/everserve-store
+RuntimeDirectory=everserve
+RuntimeDirectoryPreserve=yes
+KillSignal=SIGTERM
+TimeoutStopSec=20
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectControlGroups=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+SyslogIdentifier=everserve-store
+# the tables live under /dev/shm/everserve (tmpfiles.d creates it); the workers map them
+ReadWritePaths=/dev/shm/everserve
+# the tables are device-mapped by the workers: no memory accounting surprises
+LimitMEMLOCK=infinity
+
+[Install]
+WantedBy=multi-user.target

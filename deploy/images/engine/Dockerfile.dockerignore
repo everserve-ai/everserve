@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Everserve
+# SPDX-License-Identifier: Apache-2.0
+# the engine image copies the Python packages it builds wheels from, and nothing else
+*
+!pyproject.toml
+!uv.lock
+!LICENSE
+!core
+!adapters/vllm
+!integrations/dynamo
+**/__pycache__
+**/.pytest_cache
+**/tests

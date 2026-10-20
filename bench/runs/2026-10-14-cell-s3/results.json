@@ -1,0 +1,418 @@
+{
+  "preregistration": "PREREGISTRATION.md (82a9a3d)",
+  "host": "Apple M-series Mac, 14 cores, 36 GiB",
+  "runs": [
+    {
+      "commit": "82a9a3d",
+      "size": 1250,
+      "measured": {
+        "api_node_list_s": 0.006741792,
+        "burst": {
+          "max": 0.013538333,
+          "n": 100,
+          "p50": 0.012937417,
+          "wall_s": 0.013715417
+        },
+        "bytes_received_per_change": [
+          593,
+          601,
+          601,
+          601,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609
+        ],
+        "change_s": {
+          "max": 0.001499375,
+          "n": 20,
+          "p50": 0.000590125,
+          "p99": 0.001499375
+        },
+        "connections_refused": 969,
+        "cpu_s": {
+          "changes": 0.07,
+          "link": 0.25
+        },
+        "daemons_sent_to_per_change": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "engines": 625,
+        "feed_refresh_s": 0.013660167,
+        "gpus": 10000,
+        "link_s": 0.511777459,
+        "node_views_s": 0.001543042,
+        "nodes": 1250,
+        "nodes_per_engine": 2,
+        "readiness_s": 0.002406209,
+        "rss_bytes": {
+          "after_changes": 72335360,
+          "idle": 6012928,
+          "linked": 69550080
+        }
+      }
+    },
+    {
+      "commit": "82a9a3d",
+      "size": 2500,
+      "measured": {
+        "api_node_list_s": 0.012665917,
+        "burst": {
+          "max": 0.014692625,
+          "n": 100,
+          "p50": 0.013960792,
+          "wall_s": 0.014864834
+        },
+        "bytes_received_per_change": [
+          593,
+          601,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          617,
+          617,
+          617,
+          617
+        ],
+        "change_s": {
+          "max": 0.002257959,
+          "n": 20,
+          "p50": 0.0005935,
+          "p99": 0.002257959
+        },
+        "connections_refused": 2114,
+        "cpu_s": {
+          "changes": 0.08999999999999997,
+          "link": 0.55
+        },
+        "daemons_sent_to_per_change": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "engines": 1250,
+        "feed_refresh_s": 0.028563167,
+        "gpus": 20000,
+        "link_s": 0.512346708,
+        "node_views_s": 0.002946084,
+        "nodes": 2500,
+        "nodes_per_engine": 2,
+        "readiness_s": 0.004626917,
+        "rss_bytes": {
+          "after_changes": 135397376,
+          "idle": 7880704,
+          "linked": 132612096
+        }
+      }
+    },
+    {
+      "commit": "82a9a3d",
+      "size": 5000,
+      "measured": {
+        "api_node_list_s": 0.027887042,
+        "burst": {
+          "max": 0.009269417,
+          "n": 100,
+          "p50": 0.008768292,
+          "wall_s": 0.009383375
+        },
+        "bytes_received_per_change": [
+          593,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          609,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617,
+          617
+        ],
+        "change_s": {
+          "max": 0.000857166,
+          "n": 20,
+          "p50": 0.000488917,
+          "p99": 0.000857166
+        },
+        "connections_refused": 4439,
+        "cpu_s": {
+          "changes": 0.07000000000000006,
+          "link": 1.13
+        },
+        "daemons_sent_to_per_change": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "engines": 2500,
+        "feed_refresh_s": 0.056045541,
+        "gpus": 40000,
+        "link_s": 0.517311,
+        "node_views_s": 0.004658125,
+        "nodes": 5000,
+        "nodes_per_engine": 2,
+        "readiness_s": 0.006550417,
+        "rss_bytes": {
+          "after_changes": 266420224,
+          "idle": 11665408,
+          "linked": 263962624
+        }
+      }
+    }
+  ],
+  "diagnostic": {
+    "note": "not pre-registered: taken after the result, to find where the burst waits",
+    "runs": [
+      {
+        "test": "cell_1250",
+        "store_write_s": 0.0,
+        "measured": {
+          "api_node_list_s": 0.006040625,
+          "burst": {
+            "max": 0.010116958,
+            "n": 100,
+            "p50": 0.009740666,
+            "wall_s": 0.010268791
+          },
+          "bytes_received_per_change": [
+            593,
+            601,
+            601,
+            601,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609
+          ],
+          "change_s": {
+            "max": 0.004162458,
+            "n": 20,
+            "p50": 0.003548,
+            "p99": 0.004162458
+          },
+          "connections_refused": 937,
+          "cpu_s": {
+            "changes": 0.08000000000000002,
+            "link": 0.27999999999999997
+          },
+          "daemons_sent_to_per_change": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "engines": 625,
+          "feed_refresh_s": 0.012759042,
+          "gpus": 10000,
+          "link_s": 0.513100958,
+          "node_views_s": 0.0012555,
+          "nodes": 1250,
+          "nodes_per_engine": 2,
+          "readiness_s": 0.001978,
+          "rss_bytes": {
+            "after_changes": 73007104,
+            "idle": 6225920,
+            "linked": 70107136
+          },
+          "store_write_s": 0.0
+        }
+      },
+      {
+        "test": "cell_1250_store_10ms",
+        "store_write_s": 0.01,
+        "measured": {
+          "api_node_list_s": 0.006313958,
+          "burst": {
+            "max": 0.037336625,
+            "n": 100,
+            "p50": 0.03678,
+            "wall_s": 0.037547125
+          },
+          "bytes_received_per_change": [
+            593,
+            601,
+            601,
+            601,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609,
+            609
+          ],
+          "change_s": {
+            "max": 0.027633334,
+            "n": 20,
+            "p50": 0.026288792,
+            "p99": 0.027633334
+          },
+          "connections_refused": 936,
+          "cpu_s": {
+            "changes": 0.10000000000000003,
+            "link": 0.29
+          },
+          "daemons_sent_to_per_change": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "engines": 625,
+          "feed_refresh_s": 0.013727916,
+          "gpus": 10000,
+          "link_s": 0.516154375,
+          "node_views_s": 0.0015835,
+          "nodes": 1250,
+          "nodes_per_engine": 2,
+          "readiness_s": 0.003148375,
+          "rss_bytes": {
+            "after_changes": 72859648,
+            "idle": 6258688,
+            "linked": 70025216
+          },
+          "store_write_s": 0.01
+        }
+      }
+    ]
+  }
+}

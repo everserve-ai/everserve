@@ -1,0 +1,20 @@
+2026-10-08T21:53:31Z battery on Qwen/Qwen3-1.7B, TP1 x PP2, members a:1 b:1, spares c:1, 8 sessions x 512 prompt, 1792 tokens, blocks 1400, slots 22400; arms: mirror_off; trials 5 (fault) / 3 (other); tree 5854fae + uncommitted
+2026-10-08T21:54:25Z nodes updated from the working tree (5854fae + uncommitted)
+2026-10-08T21:54:57Z iperf3 node-b -> node-a: 41.13 Gbit/s
+2026-10-08T21:55:08Z NCCL send node-a <-> node-b: "decode_pp_send_128KB: 0.17 ms per send, 0.76 GB/s;prefill_pp_send_268MB: 136.64 ms per send, 1.96 GB/s;replication_burst_650MB: 325.37 ms per send, 2.00 GB/s;"
+2026-10-08T21:55:23Z iperf3 node-c -> node-a: 41.83 Gbit/s
+2026-10-08T21:55:23Z fabric: slowest link to node-a 41.13 Gbit/s (floor 1)
+2026-10-08T21:55:49Z clock of node-b against node-a: {"host": "10.0.0.9", "at": 1791496549.506649, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-08T21:56:11Z clock of node-c against node-a: {"host": "10.0.0.78", "at": 1791496571.1726384, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-08T21:56:14Z == mirror_off trial 1
+2026-10-08T21:56:50Z control plane up: coordinator on a at 10.0.0.14:7400, daemons linked on a b c, records exchanged
+2026-10-08T21:56:55Z node-b headless started: the node role (Qwen/Qwen3-1.7B, TP1 x PP2, rank 1 of 2 nodes)
+2026-10-08T21:57:36Z end mirror_off_1 rc=0
+2026-10-08T21:58:45Z collected into bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass6/exchange/packed2_mirror_off/arms/mirror_off/trial1
+2026-10-08T21:58:53Z mirror_off_1: rows for 0 sampled slots pulled from the kill-time file and both stores
+mirror_off trial 1: no control; figures only
+2026-10-08T21:59:02Z nodes a b c down
+mirror_off: 1 trials, green True, replica_lag_max_steps=0.0, replication_dropped_total=0, shadow_formation_s=1.259
+2026-10-08T21:59:28Z clock of node-b against node-a: {"host": "10.0.0.9", "at": 1791496768.434314, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-08T21:59:50Z clock of node-c against node-a: {"host": "10.0.0.78", "at": 1791496790.0734234, "probes": 20, "lost": 20, "error": "no reply"}
+2026-10-08T21:59:50Z battery done: mirror_off ; the record is bench/runs/PLANNED/p2-two-node/dryrun-1gpu-pass6/exchange/packed2_mirror_off

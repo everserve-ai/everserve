@@ -1,0 +1,11 @@
+04:29:34Z the certificates, made here
+[2m2026-10-15T04:29:34.528260Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5b/certs/ca.crt
+[2m2026-10-15T04:29:34.528309Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5b/certs/ca.key
+[2m2026-10-15T04:29:34.528318Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5b/certs/coordinator.crt
+[2m2026-10-15T04:29:34.528326Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5b/certs/coordinator.key
+[2m2026-10-15T04:29:34.528333Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5b/certs/operator-proof.crt
+[2m2026-10-15T04:29:34.528340Z[0m [32m INFO[0m [2meverserve_controller::cli[0m[2m:[0m wrote /private/tmp/claude-501/-Users-cortfisher-workspace-everserve/7e31603e-c077-481a-8d56-4a11af142f2e/scratchpad/probe-5b/certs/operator-proof.key
+04:29:34Z the cluster: 3 L40S nodes, released at the latest after 1.5 h
+2026-10-15T04:35:15Z node-group create --async answered: 'opmk8snodegroup-e00svwa0nb1hfdgddm\n'
+04:50:17Z taking the cluster down
+2026-10-15T04:55:19Z down: {"down": "everserve-proof-1015042934", "cluster": "mk8scluster-e00p61w9x804dnmdej"}

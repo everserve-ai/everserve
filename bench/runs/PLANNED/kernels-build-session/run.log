@@ -1,0 +1,17 @@
+# Kernel build session (not a measurement run): run log
+2026-10-05T14:38:32Z Pasted brief, standing permission. Base fdc3ed5. Cap $40. Balance 41.97.
+2026-10-05T14:38:32Z deploy 5x NVIDIA A100-SXM4-80GB COMMUNITY: {"errors": [{"message": "There are no longer any instances available with the requested specifications. Please refresh and try again.", "path": ["podFindAndDeployOnDemand"], "extensions": {"code": "SUPPLY_CONSTRAINT", "userId": "user_3I8zGEEqMhMQMezZwX8YxeTdCw9"}}], "data": {"podFindAndDeployOnDemand": null}}
+2026-10-05T14:38:33Z deploy 5x NVIDIA A100-SXM4-80GB SECURE: {"data": {"podFindAndDeployOnDemand": {"id": "rsdyb5sl4ftg67", "costPerHr": 7.95, "machine": {"gpuDisplayName": "A100 SXM", "location": "US"}}}}
+2026-10-05T14:38:40Z pod rsdyb5sl4ftg67 5x A100 SXM 80GB secure US $7.95/h; laptop watchdog terminates at 2026-10-05T19:18:40Z (+4h40m, ~$37)
+2026-10-05T14:54:45Z host: 5x A100-SXM4-80GB, driver 580.126.16, NVLink NV12 all pairs, /dev/shm 583 GB. Working tree (landing 1 draft on fdc3ed5) copied; setup (CUDA 13 toolkit, vllm pin, kernel build) started
+2026-10-05T15:19:17Z landing 2 (slot kernel) GPU tests: test_slot_kernel 2 passed (host, p2p), full non-slow suite passed on the pod; choose_variant -> p2p on this NVLink host. Engine check: adapter_port.sh smoke (dev).
+2026-10-05T15:31:29Z engine check (dev): REPLACE recovered with the P2P slot kernel, epochs 1, restore 48/48; tps 476 in the smoke. Sanity runs (dev): stock, adapter_nomirror, adapter x1 each.
+2026-10-05T16:34:23Z landing 2: slot kernel push (p2p) + pull (host); control words read once per block. slot_bench (4x A100 SXM, CUDA graph, us/call): 16384 el p2p 16.0-18.0, host 25.8, NCCL (pynccl) 20.2; 2048 el p2p 7.7, host 15.4, NCCL 15.8. Engine (dev, P2P on): stock 837.1 tok/s (9.55 ms/step), mirror-off 906.8, adapter 903.5; REPLACE smoke recovered, restore 48/48. Full suite passed on the pod.
+2026-10-05T16:43:40Z landing 3 (concurrent aborts), 3 REPLACE runs (dev, P2P on): ncclCommAbort live 0.44-0.76 s, _EP 0.41-0.70 s, torch 0.002 s, overlapping; change segment 0.39-0.55 s (serial on the shm A100 pod: 0.40-0.92); pause 1.20 / 1.29 / 2.28 s (detect 0.40 / 0.53 / 1.36 s); restore 0.18-0.22 s, 48/48.
+2026-10-05T16:55:57Z step time (P2P on): stock x3 836.5-838.2 tok/s, step p50 9.55-9.57 ms; mirror-off x2 904.8-906.9, 8.81-8.82 ms; adapter x2 903.7-904.0, 8.83-8.84 ms. Adapter commit p50 7.0 ms = fence_wait p50 6.95 ms; event_lag p50 15.3 ms. Experiment (not committed): side stream at high priority -> unchanged (event_lag 15.32, fence_wait 6.96). Outputs copied to data/ (gitignored). pod: cleanup (weights deleted)
+overlay         200G   26G  175G  13% /
+ls: cannot access '/workspace/models': No such file or directory
+2026-10-05T16:56:00Z terminate rsdyb5sl4ftg67: {"data": {"podTerminate": null}}
+2026-10-05T16:56:00Z laptop watchdog stopped
+2026-10-05T16:56:05Z balance 24.04
+2026-10-05T16:56:49Z pod terminated 16:56:00Z; uptime cost $18.20 (2h17m x $7.95); balance 24.04 (41.97 at start). Pre-registration draft written at bench/runs/PLANNED/p1-kernels-4gpu/; session note NOTE.md.
